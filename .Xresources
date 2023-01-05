@@ -1,0 +1,56 @@
+!nord
+
+!define color
+#define color0 #2E3440
+#define color1 #3B4252
+#define color2 #434C5E
+#define color3 #4C566A
+#define color4 #D8DEE9
+#define color5 #E5E9F0
+#define color6 #ECEFF4
+#define color7 #8FBCBB
+#define color8 #88C0D0
+#define color9 #81A1C1
+#define color10 #5E81AC
+#define color11 #BF616A
+#define color12 #D08770
+#define color13 #EBCB8B
+#define color14 #A3BE8C
+#define color15 #B48EAD
+
+*.foreground: color4
+*.background: color0
+*.cursorColor: color4
+*fading: 35
+*fadeColor: color3
+
+*.color0: color1
+*.color1: color11
+*.color2: color14
+*.color3: color13
+*.color4: color9
+*.color5: color15
+*.color6: color8
+*.color7: color5
+*.color8: color3
+*.color9: color11
+*.color10: color14
+*.color11: color13
+*.color12: color9
+*.color13: color15
+*.color14: color7
+*.color15: color6
+
+! urxvt
+URxvt.perl-ext: xim-onthespot
+URxvt.inputMethod: fcitx
+URxvt.preeditType: OnTheSpot
+URxvt.transparent: true
+URxvt.shading: 20
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: true
+URxvt.saveLines: 4096
+URxvt.fading: 40
+urxvt.font: xft:cica:Normal:size=15:antialias=true
+Urxvt.letterSpace: -5
+URxvt.scrollBar: false

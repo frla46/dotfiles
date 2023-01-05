@@ -1,0 +1,11 @@
+general {
+        interval = 1
+        colors = false
+}
+
+order += "tztime local"
+
+tztime local {
+        format = " %m.%d. %H:%M "
+}
+

@@ -1,0 +1,4 @@
+configuration {
+  hide-scrollbar: true;
+}
+@theme "/home/frla/.config/rofi/themes/nord.rasi"
