@@ -6,7 +6,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mbbill/undotree'
-"Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
+Plug 'RRethy/vim-hexokinase', { 'do': 'make hexokinase' }
 "Plug 'svermeulen/vimpeccable'
 "Plug 'sheerun/vim-polyglot'
 "Plug 'cocopon/iceberg.vim'
@@ -19,64 +19,50 @@ call plug#end()
 " option
 set autoindent
 set autoread
-set background=dark
-set belloff=all
-set clipboard+=unnamed,unnamedplus
+set clipboard=unnamedplus
 set cursorline
-set display+=lastline
 set encoding=utf-8
 set expandtab
 set fileencoding=utf-8
-set fileencodings=utf-8
-set formatoptions-=ro
+set fileencodings=utf-8,sjis
 set gdefault
 set hidden
 set history=1000
 set hlsearch
 set ignorecase
 set incsearch
-set infercase
 set laststatus=2
-set linebreak
-set matchpairs& matchpairs+=<:>
-set matchtime=1
-set novisualbell
+set matchpairs+=<:>
 set number
-set pumheight=10
+set relativenumber
 set scrolloff=5
 set shiftround
 set shiftwidth=2
 set shortmess+=I
 set showcmd
-set showmatch
 set smartcase
 set smartindent
 set smarttab
 set statusline=%F%m%=%l/%L
 set tabstop=2
-set termencoding=utf-8
-set termguicolors
 set virtualedit+=block
-set wildignorecase
-set wildmenu
-set wildmode=full
-set wrap
-set wrapscan
-
-" other config
-syntax enable
-filetype plugin on
-
-" disable auto commentout
-autocmd FileType * setlocal formatoptions-=ro
 
 " color
-colorscheme iceberg
+colorscheme nord
 
 " ime
+"if executable('fcitx5')
+"   autocmd InsertLeave * :call system('fcitx5-remote -c')
+"   autocmd CmdlineLeave * :call system('fcitx5-remote -c')
+"endif
 if executable('fcitx5')
-   autocmd InsertLeave * :call system('fcitx5-remote -c')
-   autocmd CmdlineLeave * :call system('fcitx5-remote -c')
+  let g:fcitx_state = 1
+  augroup fcitx_savestate
+    autocmd!
+    autocmd InsertLeave * let g:fcitx_state = str2nr(system('fcitx5-remote'))
+    autocmd InsertLeave * call system('fcitx5-remote -c')
+    autocmd InsertEnter * call system(g:fcitx_state == 1 ? 'fcitx5-remote -c': 'fcitx5-remote -o')
+  augroup END
 endif
 
 " Open read-only when swap file exists
@@ -108,7 +94,8 @@ nnoremap Y y$
 nnoremap <Down> gj
 nnoremap <Up> gk
 cnoremap w!! w !sudo tee > /dev/null %<CR>
-
+nnoremap + <c-a>
+nnoremap - <c-x>
 
 " zsh emacs bindings inspire
 inoremap <c-f> <right>
@@ -123,8 +110,6 @@ inoremap <c-i> <tab>
 inoremap <c-g> <esc>
 inoremap <c-h> <bs>
 inoremap <c-d> <del>
-inoremap <c-u> <esc>^v$hdi
-inoremap <c-k> <esc>ld$a
 
 " spacemacs bindings inspire
 nnoremap <silent><leader>- :
@@ -148,6 +133,7 @@ nnoremap <silent><leader>fr :source %<CR>
 nnoremap <silent><leader>bn :bn<CR>
 nnoremap <silent><leader>bp :bp<CR>
 nnoremap <silent><leader>bd :bd<CR>
+nnoremap <silent><leader>bD :bd!<CR>
 nnoremap <silent><leader>bN :enew<CR>
 nnoremap <silent><leader>bl :ls<CR>
 nnoremap <silent><leader>bT :tab ba<CR> 
@@ -179,8 +165,9 @@ nnoremap <silent><leader>to :tabonly<CR>
 " edit file
 nnoremap <silent><leader>fez :e ~/.zshrc<CR>
 nnoremap <silent><leader>fev :e $MYVIMRC<CR>
-nnoremap <silent><leader>few :e ~/.config/i3/config<CR>
-nnoremap <silent><leader>fec :e ~/.Xresource<CR>
+nnoremap <silent><leader>fei :e ~/.config/i3/config<CR>
+nnoremap <silent><leader>fex :e ~/.Xresource<CR>
+nnoremap <silent><leader>fes :e ~/.snippets<CR>
 
 " script
 function! Scouter(file, ...)

@@ -3,6 +3,7 @@
 
 # mod key (alt)
 set $mod Mod1
+set $super Mod4
 
 # font
 font pango:cica,FontAwesome 14
@@ -11,7 +12,7 @@ font pango:cica,FontAwesome 14
 set $up k
 set $down j
 set $left h
-set $right l 
+set $right l
 
 # kill
 bindsym $mod+q kill
@@ -35,21 +36,6 @@ bindsym $mod+f fullscreen toggle
 # scratchpad
 bindsym $mod+shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-
-# go
-bindsym $mod+m exec i3-msg mark $(rofi -dmenu -l 0 -p 'mark')
-bindsym $mod+g exec i3-msg [con_mark=$(rofi -dmenu -l 0 -p 'goto')] focus
-#set $go "go"
-#bindsym $mod+g mode $go
-#mode $go {
-#  bindsym $mod+w [class="Vivaldi-stable" title="^(?!LINE - Vivaldi)"] focus; mode "default"
-#  bindsym $mod+d [class="discord"] focus; mode "default"
-#  bindsym $mod+l [class="Vivaldi-stable" title="LINE - Vivaldi"] focus; mode "default"
-#  bindsym Escape mode "default"
-#}
-
-# rename workspace
-#bindsym $mod+n exec i3-msg rename workspace to $(rofi -dmenu -l 0 -p 'New name' -config ~/.config/rofi/config.rasi)
 
 # workspace
 set $ws1 1:
@@ -96,68 +82,98 @@ set $system "system [q:poweroff, r:reboot, s:suspend, l:logout]"
 bindsym $mod+shift+q mode $system
 mode $system {
   bindsym q exec "systemctl poweroff"; mode "default"
-  bindsym r exec "systemctl reboot"; mode "default"
-  bindsym s exec "systemctl suspend"; mode "default"
-  bindsym l exec "logout"; mode "default"
-  bindsym Escape mode "default"
+    bindsym r exec "systemctl reboot"; mode "default"
+    bindsym s exec "systemctl suspend"; mode "default"
+    bindsym l exec "logout"; mode "default"
+    bindsym Escape mode "default"
 }
 
-# layout (setup or style)
-set $layout "layout [h:split h, v:split v, s:stacking, t:tabbed, e:toggle f:floating, p:parent, c:child]"
+# layout (style)
+set $layout "layout [h:split h, v:split v, s:stacking, t:tabbed, e:toggle, f:floating, p:parent, c:child]"
 bindsym $mod+s mode $layout
 mode $layout {
-  bindsym $mod+h split h; mode "default"
-  bindsym $mod+v split v; mode "default"
-  bindsym $mod+s layout stacking; mode "default"
-  bindsym $mod+t layout tabbed; mode "default"
-  bindsym $mod+e layout toggle split; mode "default"
-  bindsym $mod+f floating toggle; mode "default"
-  bindsym $mod+p focus parent; mode "default"
-  bindsym $mod+c focus child; mode "default"
-  bindsym Escape mode "default"
+    bindsym $mod+h split h; mode "default"
+    bindsym $mod+v split v; mode "default"
+    bindsym $mod+s layout stacking; mode "default"
+    bindsym $mod+t layout tabbed; mode "default"
+    bindsym $mod+e layout toggle split; mode "default"
+    bindsym $mod+f floating toggle; mode "default"
+    bindsym $mod+p focus parent; mode "default"
+    bindsym $mod+c focus child; mode "default"
+    bindsym Escape mode "default"
 }
 
 # audio
-set $audio "audio [j:down, k:up, m:mute, 0-9:%]"
+set $audio "audio [0-9:%, m:mute, mpd[space:toggle, j:voldown, k:volup, <:prev, >:next]]"
 set $volset pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
-  bindsym j exec --no-startup-id $volset -5%
-  bindsym k exec --no-startup-id $volset +5%
-  bindsym m exec --no-startup-id $volset 0%
-  bindsym 1 exec --no-startup-id $volset 10%
-  bindsym 2 exec --no-startup-id $volset 20%
-  bindsym 3 exec --no-startup-id $volset 30%
-  bindsym 4 exec --no-startup-id $volset 40%
-  bindsym 5 exec --no-startup-id $volset 50%
-  bindsym 6 exec --no-startup-id $volset 60%
-  bindsym 7 exec --no-startup-id $volset 70%
-  bindsym 8 exec --no-startup-id $volset 80%
-  bindsym 9 exec --no-startup-id $volset 90%
-  bindsym 0 exec --no-startup-id $volset 100%
-  bindsym Escape mode "default"
+    bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym 1 exec --no-startup-id $volset 10%
+    bindsym 2 exec --no-startup-id $volset 20%
+    bindsym 3 exec --no-startup-id $volset 30%
+    bindsym 4 exec --no-startup-id $volset 40%
+    bindsym 5 exec --no-startup-id $volset 50%
+    bindsym 6 exec --no-startup-id $volset 60%
+    bindsym 7 exec --no-startup-id $volset 70%
+    bindsym 8 exec --no-startup-id $volset 80%
+    bindsym 9 exec --no-startup-id $volset 90%
+    bindsym 0 exec --no-startup-id $volset 100%
+    bindsym space exec --no-startup-id mpc toggle
+    bindsym shift+comma exec --no-startup-id mpc prev
+    bindsym shift+period exec --no-startup-id mpc next
+    bindsym j exec --no-startup-id mpc volume -10
+    bindsym k exec --no-startup-id mpc volume +10
+    bindsym Escape mode "default"
 }
 
 # resize
 bindsym $mod+r mode "resize"
 set $resize_init 5 px or 5 ppt
 mode "resize" {
-  bindsym $left resize shrink width $resize_init
-  bindsym $down resize grow height $resize_init
-  bindsym $up resize shrink height $resize_init
-  bindsym $right resize grow width $resize_init
-  bindsym Escape mode "default"
+    bindsym $left resize shrink width $resize_init
+    bindsym $down resize grow height $resize_init
+    bindsym $up resize shrink height $resize_init
+    bindsym $right resize grow width $resize_init
+    bindsym Escape mode "default"
 }
 
 # screenshot
-set $capture "capture [a:copy all, A:save all, s:copy select, S:save select]"
+set $capture "screen shot"
 bindsym $mod+shift+s mode $capture
 mode  $capture {
-  bindsym a exec --no-startup-id maim | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+a --no-startup-id exec maim ~/Pictures/$(date +%Y%m%d%H%M%S).png;  mode "default"
-  bindsym s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+s --no-startup-id exec maim -s ~/Pictures/$(date +%Y%m%d%H%M%S).png;  mode "default"
-  bindsym Escape mode "default"
+    bindsym a exec --no-startup-id maim -d 0.1| xclip -selection clipboard -t image/png;  mode "default"
+    bindsym shift+a exec --no-startup-id maim -d 0.1 ~/pic/$(date +%Y%m%d%H%M%S).png;  mode "default"
+    bindsym s exec --no-startup-id maim -s -d 0.1| xclip -selection clipboard -t image/png;  mode "default"
+    bindsym shift+s exec --no-startup-id maim -s -d 0.1 ~/pic/$(date +%Y%m%d%H%M%S).png;  mode "default"
+    bindsym Escape mode "default"
+}
+
+# app launcher
+set $exec "exec [w:vivaldi, d:discord, e:nvim, f:ranger, m:ncmpcpp, v:pulsemixer]"
+bindsym $mod+x mode $exec
+mode  $exec {
+    bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
+    bindsym d exec --no-startup-id  discord; mode "default"
+    bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
+    bindsym f exec --no-startup-id  alacritty -e ranger; mode "default"
+    bindsym m exec --no-startup-id  alacritty -e ncmpcpp; mode "default"
+    bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
+    bindsym Escape mode "default"
+}
+
+set $notify "notify [d:close-all, h:history]"
+bindsym $mod+n mode $notify
+mode $notify {
+    bindsym d exec --no-startup-id dunstctl close-all; mode "default"
+    bindsym h exec --no-startup-id dunstctl history-pop
+    bindsym Escape mode "default"
+}
+
+# insert
+bindsym $mod+i mode "insert"
+mode  "insert" {
+    bindsym Escape mode "default"
 }
 
 # restart
@@ -189,39 +205,38 @@ set_from_resource $blue color9 #81A1C1
 set_from_resource $red color11 #BF616A
 set_from_resource $yellow color13 #EBCB8B
 
-#class                  border backgr  text   indicator
-client.focused          $black $gray   $white $yellow
-client.unfocused        $black $black  $white $yellow
-client.focused_inactive $black $black  $white $yellow
-client.placeholder      $black $black  $white $yellow
-client.urgent           $black $black  $red   $yellow
+#class                  border backgr  text   indicator child_border
+client.focused          $black $gray   $white $yellow   $blue
+client.unfocused        $black $black  $white $yellow   $blue
+client.focused_inactive $black $black  $white $yellow   $blue
+client.placeholder      $black $black  $white $yellow   $blue
+client.urgent           $black $black  $red   $yellow   $blue
 client.background       $black
 
 # statusbar
 bar {
-  status_command i3status
-  #status_command i3blocks
-  #status_command /usr/bin/i3status-rs ~/.config/i3status-rs/config.toml
-  strip_workspace_numbers yes
-  colors {
-    separator  $black
-    background $black
-    statusline $white
-    #                  border backgr text
-    focused_workspace  $black $black $blue
-    active_workspace   $black $black $gray
-    inactive_workspace $black $black $gray
-    urgent_workspace   $black $black $red
-    binding_mode       $black $black $blue
-  }
+    status_command i3status
+    strip_workspace_numbers yes
+    tray_output none
+    colors {
+        separator  $black
+        background $black
+        statusline $white
+        focused_workspace  $black $black $blue
+        active_workspace   $black $black $gray
+        inactive_workspace $black $black $gray
+        urgent_workspace   $black $black $red
+        binding_mode       $black $black $blue
+    }
 }
 
 # gaps
-#gaps top 2
-#gaps bottom 2
-#gaps right 2
-#gaps left 2
-#gaps inner 2
+set $gapsize 10
+gaps top $gapsize
+gaps bottom $gapsize
+gaps right $gapsize
+gaps left $gapsize
+gaps inner $gapsize
 
 # other
 show_marks yes
@@ -232,42 +247,33 @@ default_border none
 exec --no-startup-id dex --autostart --environment i3 #xdg autostart
 exec --no-startup-id nm-applet #network
 exec --no-startup-id fcitx5 #input japanese
-exec --no-startup-id redshift -b 0.5:0.5 -t 6500:3000 -l 36:140 #reduce bluelight
+#exec --no-startup-id redshift -b 0.9:0.7 -t 6500:3000 -l 36:140 -r #reduce bluelight
+exec --no-startup-id "source ~/.zshrc && redshift"
 exec --no-startup-id xset r rate 200 40 #set key repeat rate
 exec --no-startup-id clipmenud #clipboard manager
-exec --no-startup-id mpd ~/.config/mpd/mpd.conf #mpd
-exec --no-startup-id feh --bg-scale "~/Pictures/wallpaper/landscape-black-monochrome-night-planet-nature.jpg" #set wallpaper
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc #notification
 exec --no-startup-id unclutter -idle 1 -root #hidden mouse cursor when stopped
-#exec_always --no-startup-id $HOME/polybar-collection/launch.sh #polybar
-#exec --no-startup-id picom -b #picom daemon
-#exec --no-startup-id pulseaudio -k #audio restart
-#exec --no-startup-id pulseaudio --start #audio restart
+exec --no-startup-id feh --bg-scale '/home/frla/pictures/wallpaper/landscape-black-monochrome-night-planet-nature.jpg' #wallpaper
+exec --no-startup-id picom -b #picom daemon
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc #notification
 
-exec --no-startup-id vivaldi-stable
+exec --no-startup-id i3-msg 'workspace $ws1; exec --no-startup-id vivaldi-stable'
+exec --no-startup-id i3-msg 'workspace $ws2; exec --no-startup-id discord'
+exec --no-startup-id i3-msg 'workspace $ws3; exec --no-startup-id alacritty -e ranger'
+exec --no-startup-id i3-msg 'workspace $ws3; exec --no-startup-id alacritty -e ncmpcpp'
+exec --no-startup-id i3-msg 'workspace $ws1'
 
 # app shortcut
 # terminal
 set $term alacritty
 bindsym $mod+Return exec --no-startup-id $term
-# dmenu
-#set $dmenu_color -nb '#161821' -sf '#161821' -sb '#84a0c6' -nf '#84a0c6'
-#bindsym $mod+space exec --no-startup-id dmenu_run $dmenu_color
-#bindsym $mod+c exec --no-startup-id clipmenu $dmenu_color
 # rofi
-bindsym $mod+space exec rofi -show run
+bindsym $mod+space exec rofi -show drun
 bindsym $mod+w exec rofi -show window
 bindsym $mod+c exec clipmenu
 bindsym $mod+v exec ~/bin/snippets.sh
 
 # assign window to workspace
-assign [class="vivaldi-stable"] number $ws1
-assign [class="discord"] number $ws2
-assign [class="Vivaldi-stable" title="LINE - Vivaldi"] number $ws2
-
-# mark
-for_window [class="Vivaldi-stable" title="^(?!LINE - Vivaldi)"] mark w
-for_window [class="Vivaldi-stable" title="LINE - Vivaldi"] mark l
-for_window [class="discord"] mark d
-
+for_window [class="vivaldi-stable"] move --no-auto-back-and-forth to workspace $ws1
+for_window [class="discord"] move --no-auto-back-and-forth to workspace $ws2
+for_window [class="Vivaldi-stable" title="LINE - Vivaldi"] move --no-auto-back-and-forth to workspace $ws2
 

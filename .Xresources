@@ -1,6 +1,6 @@
 !nord
 
-!define color
+!define colors
 #define color0 #2E3440
 #define color1 #3B4252
 #define color2 #434C5E
@@ -40,17 +40,3 @@
 *.color13: color15
 *.color14: color7
 *.color15: color6
-
-! urxvt
-URxvt.perl-ext: xim-onthespot
-URxvt.inputMethod: fcitx
-URxvt.preeditType: OnTheSpot
-URxvt.transparent: true
-URxvt.shading: 20
-URxvt.cursorBlink: true
-URxvt.cursorUnderline: true
-URxvt.saveLines: 4096
-URxvt.fading: 40
-urxvt.font: xft:cica:Normal:size=15:antialias=true
-Urxvt.letterSpace: -5
-URxvt.scrollBar: false
