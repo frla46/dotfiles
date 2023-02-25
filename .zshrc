@@ -46,6 +46,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
+export PATH=$PATH:/home/frla/.local/bin
 
 ## options
 setopt IGNOREEOF
@@ -73,6 +74,7 @@ bindkey -e #emacs mode
 
 
 ## alias
+alias _='sudo'
 alias c='cd'
 alias q='exit'
 alias v='$PAGER'
@@ -80,11 +82,12 @@ alias e='$EDITOR'
 alias fm='_ranger-cd'
 alias ps='procs'
 alias grep='rg'
-alias find='fd'
-alias _='sudo'
+#alias find='fd'
 alias md='mkdir'
+#alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias tmr='timer'
 
 # global alias
 alias -g rm='trash-put'
@@ -95,19 +98,23 @@ alias -g S='|sort -h'
 alias -g Sr='|sort -rh'
 alias -g C='|xsel --clipboard --input'
 alias -g VI='|_vipe'
+alias -g n='notify-send'
 
 # oneliner
 alias precp='fc -lrn|head -n 1 C'
-alias du_sort='du --max-depth=1 -h --apparent-size | sort -rh'
-alias duff_del='duff -re0 ./* | xargs -0 rm'
 alias fmt_spc="rename -a ' ' '_' ./*; rename -a '-' '_' ./*"
 alias sz='source ~/.zshrc'
 alias mpdcp="mpc current | sed -e 's/^.*\///; s/\..*$//' C"
 alias memo="e ~/doc/memo.txt"
 alias rst_display='killall redshift; \redshift -x'
-alias resenu='\ls -Fv1 | grep -v "/$" | cat -n | while read n f; do mv -n "${f}" "$(printf "%d" $n).${f#*.}"; done'
+alias resenu='\ls -Fv1 | grep -v "/$" | sed s/\*$//g | cat -n | while read n f; do mv -n "${f}" "$(printf "%d" $n).${f#*.}"; done'
 alias subresenu='fmt_spc; for d in $(\ls -F | grep /); do cd $d; pwd; resenu; cd ..; done'
 alias wx='curl wttr.in'
+alias skr='xset r rate 200 40' # set key repeat rate
+alias dus='du --max-depth=1 -h --apparent-size | sort -rh'
+alias dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
+alias adddic='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
+alias psvr='python -m http.server 8000'
 
 # startup option
 alias feh='feh --quiet --auto-zoom --scale-down --fullscreen --borderless --draw-filename'
@@ -149,17 +156,17 @@ zle -N _select-history
 bindkey '^r' _select-history
 
 # edit file with fzf
-function _fe() {
-  local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-}
+#function _fe() {
+#  local files
+#  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+#  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+#}
 
 # z with fzf
 function _fz() {
   local dir
   dir=$(z -l | sed 's/[0-9 ]*//' | fzf)
-  cd $dir
+  cd "$dir"
 }
 
 # cd with fzf included hidden directory
@@ -169,7 +176,7 @@ function _fd() {
 }
 
 # use c-z instead of fg
-function _c-z-nofg () {
+function _^z-fg () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line
@@ -178,16 +185,16 @@ function _c-z-nofg () {
     zle clear-screen
   fi
 }
-zle -N _c-z-nofg
-bindkey '^z' _c-z-nofg
+zle -N _^z-fg
+bindkey '^z' _^z-fg
 
 # fg with fzf
 alias j='_fg-fzf'
 function _fg-fzf() {
-  local c job
-  c=$(jobs | wc -l)
-  if [[ c -eq 0 ]]; then
-  elif [[ c -eq 1 ]]; then
+  local cnt job
+  cnt=$(jobs | wc -l)
+  if [[ cnt -eq 0 ]]; then
+  elif [[ cnt -eq 1 ]]; then
     fg
   else
     job=$(jobs | fzf | sed -e 's/\[//; s/\].*//' )
@@ -212,7 +219,7 @@ function _ranger-cd {
 }
 
 # kill with fzf
-function _fkill() {
+function _fk() {
   local pid
   pid=$(\ps -ef | sed 1d | fzf -m | awk '{print $2}')
 
@@ -237,9 +244,15 @@ function _aria-mp4() {
 
 # disable "crontab -r"
 function crontab () {
-    if [ "$1" = "-r" ]; then
-      echo "disabled '-r' option";
-    else
-        command crontab "$@";
-    fi
+  if [ "$1" = "-r" ]; then
+    echo "crontab: disabled '-r' option";
+  else
+    command crontab "$@";
+  fi
+}
+
+# timer notification
+alias ntmr='_timer-notify'
+function _timer-notify () {
+  timer -s $1; n done $1
 }

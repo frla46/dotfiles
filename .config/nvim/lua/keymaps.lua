@@ -35,6 +35,7 @@ map('n', '<c-a>', 'ggVG')
 map('c', 'jq', "%!jq '.'")
 map('c', 'fmtSpc', 's/<space>+/<space>/')
 --map('c', 'w!!', 'w !sudo tee > /dev/null %')
+map('c', 'sum', "!awk '{sum += $1} END {print sum}'")
 
 -- insert mode bindings
 map('i', '<c-h>', '<left>')
@@ -62,7 +63,7 @@ map('n', '<leader>qA', ':qa!<CR>')
 -- file
 map('n', '<leader>fs', ':w<CR>')
 map('n', '<leader>fa', ':w ')
-map('n', '<leader>ft', ':e .<CR>')
+--map('n', '<leader>ft', ':e .<CR>')
 map('n', '<leader>fr', ':source %<CR>')
 -- buffer
 map('n', '<leader>bn', ':bn<CR>')
@@ -99,8 +100,15 @@ map('n', '<leader>fes', ':e ~/doc/snippets.txt<CR>')
 map('n', '<leader>fem', ':e ~/doc/memo.txt<CR>')
 
 -- fzf-lua
-vim.keymap.set('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>")
-vim.keymap.set('n', '<leader>fh', "<cmd>lua require('fzf-lua').oldfiles()<CR>")
-vim.keymap.set('n', '<leader>bb', "<cmd>lua require('fzf-lua').buffers()<CR>")
-vim.keymap.set('n', '<leader>sf', "<cmd>lua require('fzf-lua').blines()<CR>")
-vim.keymap.set('n', '<leader>sb', "<cmd>lua require('fzf-lua').lines()<CR>")
+map('n', '<leader>ff', "<cmd>lua require('fzf-lua').files()<CR>")
+map('n', '<leader>fh', "<cmd>lua require('fzf-lua').oldfiles()<CR>")
+map('n', '<leader>bb', "<cmd>lua require('fzf-lua').buffers()<CR>")
+map('n', '<leader>sf', "<cmd>lua require('fzf-lua').blines()<CR>")
+map('n', '<leader>sb', "<cmd>lua require('fzf-lua').lines()<CR>")
+
+-- nvim-tree
+map('n', '<leader>fd', ":NvimTreeToggle<CR>")
+
+-- markdown-preview
+map('n', '<leader>mm', ":MarkdownPreview<CR>")
+map('n', '<leader>ms', ":MarkdownPreviewStop<CR>")
