@@ -101,12 +101,13 @@ alias -g VI='|_vipe'
 alias -g n='notify-send'
 
 # oneliner
+alias sz='source ~/.zshrc'
 alias precp='fc -lrn|head -n 1 C'
 alias fmt_spc="rename -a ' ' '_' ./*; rename -a '-' '_' ./*"
-alias sz='source ~/.zshrc'
+alias rempd='killall mpd; mpd'
 alias mpdcp="mpc current | sed -e 's/^.*\///; s/\..*$//' C"
 alias memo="e ~/doc/memo.txt"
-alias rst_display='killall redshift; \redshift -x'
+alias rst_light='killall redshift; \redshift -x'
 alias resenu='\ls -Fv1 | grep -v "/$" | sed s/\*$//g | cat -n | while read n f; do mv -n "${f}" "$(printf "%d" $n).${f#*.}"; done'
 alias subresenu='fmt_spc; for d in $(\ls -F | grep /); do cd $d; pwd; resenu; cd ..; done'
 alias wx='curl wttr.in'
