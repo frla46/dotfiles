@@ -4,7 +4,6 @@
 local opt = vim.opt
 
 opt.swapfile = false
-opt.wrap = true
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileencodings = "utf-8,sjis"

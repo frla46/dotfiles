@@ -7,19 +7,11 @@ local opts = { noremap = true, silent = true }
 
 vim.g.mapleader = " "
 
---map("n", "<esc><esc>", ":nohlsearch<CR><c-l>", opts)
---map("i", "jk", "<ESC>", { noremap = true, silent = true, desc = "<ESC>" })
-map("n", "<c-j>", "<cmd>bn<CR>", opts) --next buffer
-map("n", "<c-k>", "<cmd>bp<CR>", opts) --prev buffer
--- map("n", "<c-h>", "gt", opts)
--- map("n", "<c-l>", "gT", opts)
-map("n", "<c-a>", "ggVG", opts)
+map({ "n", "v" }, "<leader>-", ":", opts)
+map("n", "<C-a>", "ggVG", opts)
 map("n", "+", "<c-a>", opts)
 map("n", "-", "<c-x>", opts)
-map({ "n", "v" }, "<leader>-", ":", opts)
 --map({ "n", "v" }, "<leader>;", ":", opts)
-map("n", "<leader>fs", "<cmd>w<CR>", opts)
-map("n", "<leader>fS", "<cmd>w!<CR>", opts)
 
 -- insert mode bindings
 -- map('i', '<c-h>', '<left>', opts)
