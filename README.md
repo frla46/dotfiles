@@ -1,5 +1,5 @@
 # dotfiles
 - alacritty
 - zsh
-- neovim(LazyVim)
+- neovim([LazyVim](https://github.com/LazyVim/LazyVim))
 - i3
