@@ -126,7 +126,7 @@ mode $audio {
   bindsym shift+period exec --no-startup-id mpc next
   bindsym j exec --no-startup-id mpc volume -10
   bindsym k exec --no-startup-id mpc volume +10
-  bindsym c exec --no-startup-id "mpc current | sed -e 's/^.*\///; s/\..*$//' | xsel --clipboard --input"; mode "default"
+  bindsym c exec --no-startup-id "mpc current | sed -e 's/^.*\///; s/\..*$//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 
@@ -176,10 +176,10 @@ mode $notify {
 }
 
 # insert
-#bindsym $mod+i mode "insert"
-#mode  "insert" {
-#    bindsym Escape mode "default"
-#}
+bindsym $mod+i mode "insert"
+mode  "insert" {
+    bindsym Escape mode "default"
+}
 
 ## color
 # nord
@@ -250,14 +250,18 @@ default_border none
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
-exec_always --no-startup-id killall redshift; \redshift -x; redshift -b 0.9:0.7 -t 6500:3000 -l 36:140 -r
+exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.9:0.7 -t 6500:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 200 40
+exec --no-startup-id xset -b
 exec --no-startup-id clipmenud
 exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
 exec --no-startup-id picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+
 # window
+#exec --no-startup-id i3-msg 'workspace 1:'
 exec --no-startup-id vivaldi-stable
 exec --no-startup-id discord
 exec --no-startup-id alacritty -t scratch

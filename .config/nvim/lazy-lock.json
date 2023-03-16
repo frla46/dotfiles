@@ -1,0 +1,11 @@
+{
+  "fzf-lua": { "branch": "main", "commit": "8089b5f2aea09836eef2a2bab8a96fe3493ed041" },
+  "impatient.nvim": { "branch": "main", "commit": "c90e273f7b8c50a02f956c24ce4804a47f18162e" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "018bd04d80c9a73d399c1061fa0c3b14a7614399" },
+  "lazy.nvim": { "branch": "main", "commit": "5b4444f0d7e556deba3f7ca949a2ba0e2c3369fb" },
+  "nord.nvim": { "branch": "master", "commit": "be318c83a233cb877ba08faa15380a54241272b1" },
+  "nvim-tree.lua": { "branch": "master", "commit": "bbb6d4891009de7dab05ad8fc2d39f272d7a751c" },
+  "nvim-web-devicons": { "branch": "master", "commit": "4af94fec29f508159ceab5413383e5dedd6c24e3" },
+  "pounce.nvim": { "branch": "master", "commit": "a573820b20882c70d241a1ac94aa27670442c027" },
+  "vimdoc-ja": { "branch": "master", "commit": "46c25d6f3faa14d80758e28a1e577223e5e1df33" }
+}

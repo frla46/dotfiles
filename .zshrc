@@ -62,6 +62,7 @@ setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt hist_verify
 setopt inc_append_history
+setopt no_beep
 setopt no_flow_control
 setopt nocorrect
 setopt share_history
@@ -79,6 +80,8 @@ alias c='cd'
 alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
+alias vi='nvim'
+alias vim='nvim'
 alias fm='_ranger-cd'
 alias ps='procs'
 alias grep='rg'
@@ -105,21 +108,17 @@ alias sz='source ~/.zshrc'
 alias precp='fc -lrn|head -n 1 C'
 alias fmt_spc="rename -a ' ' '_' ./*; rename -a '-' '_' ./*"
 alias rempd='killall mpd; mpd'
-alias mpdcp="mpc current | sed -e 's/^.*\///; s/\..*$//' C"
 alias memo="e ~/doc/memo.txt"
-alias rst_light='killall redshift; \redshift -x'
 alias resenu='\ls -Fv1 | grep -v "/$" | sed s/\*$//g | cat -n | while read n f; do mv -n "${f}" "$(printf "%d" $n).${f#*.}"; done'
 alias subresenu='fmt_spc; for d in $(\ls -F | grep /); do cd $d; pwd; resenu; cd ..; done'
 alias wx='curl wttr.in'
-alias skr='xset r rate 200 40' # set key repeat rate
 alias dus='du --max-depth=1 -h --apparent-size | sort -rh'
 alias dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias adddic='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias psvr='python -m http.server 8000'
 
-# startup option
+# execute with option
 alias feh='feh --quiet --auto-zoom --scale-down --fullscreen --borderless --draw-filename'
-alias redshift='redshift -b 0.9:0.7 -t 6500:3000 -l 36:140 &'
 
 # git
 if [[ $(type git) ]]; then
@@ -157,11 +156,11 @@ zle -N _select-history
 bindkey '^r' _select-history
 
 # edit file with fzf
-#function _fe() {
-#  local files
-#  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-#  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
-#}
+function _fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
 
 # z with fzf
 function _fz() {
