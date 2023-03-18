@@ -7,3 +7,4 @@ opt.swapfile = false
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileencodings = "utf-8,sjis"
+opt.wrap = true
