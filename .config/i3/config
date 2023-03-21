@@ -250,7 +250,7 @@ default_border none
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
-exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.9:0.7 -t 6500:3000 -l 36:140 -r
+exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 200 40
 exec --no-startup-id xset -b
 exec --no-startup-id clipmenud
