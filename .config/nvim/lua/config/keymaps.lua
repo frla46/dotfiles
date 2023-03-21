@@ -13,6 +13,8 @@ map("n", "+", "<c-a>", opts)
 map("n", "-", "<c-x>", opts)
 --map({ "n", "v" }, "<leader>;", ":", opts)
 
+vim.keymap.del("n", "<leader>|")
+
 -- insert mode bindings
 -- map('i', '<c-h>', '<left>', opts)
 -- map('i', '<c-j>', '<down>', opts)
