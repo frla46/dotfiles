@@ -26,7 +26,7 @@ autocmd("FileType", {
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
 })
 
--- transparent with picom (take long time)
+-- transparent with picom
 vim.cmd([[
   if system('pgrep -x picom > /dev/null && echo 1 || echo 0') == 1
     highlight Normal guibg=NONE
@@ -34,3 +34,9 @@ vim.cmd([[
   "   highlight Normal guibg=#282A36
   endif
 ]])
+
+-- Remove postspace on save
+autocmd("BufWritePre", {
+	pattern = "*",
+	command = ":%s/\\s\\+$//e",
+})

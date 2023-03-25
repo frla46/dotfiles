@@ -3,8 +3,8 @@
 -- Add any additional options here
 local opt = vim.opt
 
-opt.swapfile = false
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileencodings = "utf-8,sjis"
-opt.wrap = true
+opt.helplang = "ja,en"
+opt.swapfile = false
