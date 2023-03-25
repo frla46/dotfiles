@@ -106,19 +106,11 @@ alias -g n='notify-send'
 # oneliner
 alias sz='source ~/.zshrc'
 alias precp='fc -lrn|head -n 1 C'
-alias fmt_spc="rename -a ' ' '_' ./*; rename -a '-' '_' ./*"
-alias rempd='killall mpd; mpd'
 alias memo="e ~/doc/memo.txt"
-alias resenu='\ls -Fv1 | grep -v "/$" | sed s/\*$//g | cat -n | while read n f; do mv -n "${f}" "$(printf "%d" $n).${f#*.}"; done'
-alias subresenu='fmt_spc; for d in $(\ls -F | grep /); do cd $d; pwd; resenu; cd ..; done'
-alias wx='curl wttr.in'
 alias dus='du --max-depth=1 -h --apparent-size | sort -rh'
-alias dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
+alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias adddic='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
-alias psvr='python -m http.server 8000'
-
-# execute with option
-alias feh='feh --quiet --auto-zoom --scale-down --fullscreen --borderless --draw-filename'
+alias pysvr='python -m http.server 8000'
 
 # git
 if [[ $(type git) ]]; then

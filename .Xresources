@@ -40,3 +40,6 @@
 *.color13: color15
 *.color14: color7
 *.color15: color6
+
+! cursor
+Xcursor.size: 32
