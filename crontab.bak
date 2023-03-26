@@ -1,8 +1,0 @@
-# clamav
-5 0 * * * /usr/bin/clamscan --exclude-dir=/home/frla/.clamtk/viruses --exclude-dir=smb4k --exclude-dir=/run/user/frla/gvfs --exclude-dir=/home/frla/.gvfs --exclude-dir=.thunderbird --exclude-dir=.mozilla-thunderbird --exclude-dir=.evolution --exclude-dir=Mail --exclude-dir=kmail --database=/home/frla/.clamtk/db -i  --detect-pua -r /home/frla --log="$HOME/.clamtk/history/$(date +\%b-\%d-\%Y).log" 2>/dev/null # clamtk-scan
-0 0 * * * /usr/bin/freshclam --config-file=/home/frla/.clamtk/db/local.conf --datadir=/home/frla/.clamtk/db --log=/home/frla/.clamtk/db/freshclam.log # clamtk-defs
-
-@weekly /usr/bin/deja-dup --backup
-@daily /usr/bin/yay -Qt >| /home/frla/dotfiles/yay.bak
-@daily /usr/bin/tree /home/D/ -fi --gitignore | sed '$d' >| /home/frla/doc/backup/Ddrive.bak
-@daily /usr/bin/crontab -l >| /home/frla/doc/backup/crontab.bak

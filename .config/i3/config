@@ -6,7 +6,7 @@ set $mod Mod1
 set $super Mod4
 
 # font
-font pango:Hackgen 12
+font pango:HackGen 12
 
 # direction (vim)
 set $up k
@@ -120,7 +120,7 @@ mode $audio {
   bindsym 7 exec --no-startup-id $volset 70%
   bindsym 8 exec --no-startup-id $volset 80%
   bindsym 9 exec --no-startup-id $volset 90%
-  bindsym 10 exec --no-startup-id $volset 100%
+  bindsym 0 exec --no-startup-id $volset 100%
   bindsym space exec --no-startup-id mpc toggle
   bindsym shift+comma exec --no-startup-id mpc prev
   bindsym shift+period exec --no-startup-id mpc next
@@ -143,7 +143,7 @@ mode "resize" {
 
 # screenshot
 set $capture "screen shot"
-set $pic_dir /home/D/pic/screenshot
+set $pic_dir /home/pic/screenshot
 bindsym $mod+shift+s mode $capture
 mode  $capture {
   bindsym a exec --no-startup-id maim -d 0.1| xclip -selection clipboard -t image/png;  mode "default"
@@ -260,10 +260,9 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
 # window
-#exec --no-startup-id i3-msg 'workspace 1:'
+exec --no-startup-id alacritty -t scratch
 exec --no-startup-id vivaldi-stable
 exec --no-startup-id discord
-exec --no-startup-id alacritty -t scratch
 exec --no-startup-id alacritty -t ranger -e ranger
 
 ## app shortcut

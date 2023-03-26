@@ -20,7 +20,7 @@ vim.cmd([[
   endif
 ]])
 
--- Don't auto commenting new lines
+-- Don't auto commenting new line
 autocmd("FileType", {
 	pattern = "*",
 	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
@@ -30,12 +30,12 @@ autocmd("FileType", {
 vim.cmd([[
   if system('pgrep -x picom > /dev/null && echo 1 || echo 0') == 1
     highlight Normal guibg=NONE
-  " else
-  "   highlight Normal guibg=#282A36
+  else
+    highlight Normal guibg=#282A36
   endif
 ]])
 
--- Remove postspace on save
+-- Remove postspaces on save
 autocmd("BufWritePre", {
 	pattern = "*",
 	command = ":%s/\\s\\+$//e",
