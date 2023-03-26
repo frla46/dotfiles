@@ -37,12 +37,13 @@ zstyle :prompt:pure:prompt:success color green
 zstyle :prompt:pure:suspended_jobs color blue
 
 # environment variable
-export BROWSER='/bin/vivaldi-stable'
+export BROWSER='vivaldi-stable'
 export TERM='alacritty'
-export PAGER='/usr/bin/less'
-export EDITOR='/usr/bin/nvim'
-export VISUAL='/usr/bin/nvim'
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export PAGER='less'
+export EDITOR='nvim'
+export VISUAL='nvim'
+export FZF_DEFAULT_COMMAND='fd --type file --hidden'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -80,8 +81,6 @@ alias c='cd'
 alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
-alias vi='nvim'
-alias vim='nvim'
 alias fm='_ranger-cd'
 alias ps='procs'
 alias grep='rg'
@@ -96,12 +95,8 @@ alias tmr='timer'
 alias -g rm='trash-put'
 alias -g G='|rg --color=auto'
 alias -g V='|$PAGER'
-alias -g X='|xargs'
-alias -g S='|sort -h'
-alias -g Sr='|sort -rh'
 alias -g C='|xsel --clipboard --input'
 alias -g VI='|_vipe'
-alias -g n='notify-send'
 
 # oneliner
 alias sz='source ~/.zshrc'
@@ -146,6 +141,12 @@ function _select-history() {
 }
 zle -N _select-history
 bindkey '^r' _select-history
+
+# open file in editor with fzf
+function _fe() {
+  local file
+  file=$(fd --type file -H | fzf) && $EDITOR $file
+}
 
 # z with fzf
 function _fz() {
