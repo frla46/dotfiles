@@ -151,28 +151,24 @@ function _fe() {
 # z with fzf
 function _fz() {
   local dir
-  dir=$(z -l | sed 's/[0-9 ]*//' | fzf)
-  cd "$dir"
+  dir=$(z -l | sed 's/[0-9 ]*//' | fzf) && cd "$dir"
 }
 
 # cd with fzf included hidden directory
 function _fd() {
   local dir
-  dir=$(fd -H | fzf) && cd "$dir"
+  dir=$(fd --type d -H | fzf) && cd "$dir"
 }
 
-# use c-z instead of fg
-function _^z-fg () {
-  if [[ $#BUFFER -eq 0 ]]; then
-    BUFFER="fg"
-    zle accept-line
-  else
-    zle push-input
-    zle clear-screen
+# kill with fzf
+function _fk() {
+  local pid
+  pid=$(\ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
   fi
 }
-zle -N _^z-fg
-bindkey '^z' _^z-fg
 
 # fg with fzf
 alias j='_fg-fzf'
@@ -188,6 +184,19 @@ function _fg-fzf() {
   fi
 }
 
+# use c-z instead of fg
+function _^z-fg () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    BUFFER="fg"
+    zle accept-line
+  else
+    zle push-input
+    zle clear-screen
+  fi
+}
+zle -N _^z-fg
+bindkey '^z' _^z-fg
+
 function _ranger-cd {
   # prevent ranger nest
   if [ -z "$RANGER_LEVEL" ]; then
@@ -201,17 +210,6 @@ function _ranger-cd {
     rm -f -- "$tempfile"
   else
     exit
-  fi
-}
-
-# kill with fzf
-function _fk() {
-  local pid
-  pid=$(\ps -ef | sed 1d | fzf -m | awk '{print $2}')
-
-  if [ "x$pid" != "x" ]
-  then
-    echo $pid | xargs kill -${1:-9}
   fi
 }
 
