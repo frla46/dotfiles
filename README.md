@@ -7,3 +7,8 @@
   - plugin manager: zinit
 - editor: neovim
   - [LazyVim](https://github.com/LazyVim/LazyVim)
+
+# TODO
+- installer(Makefile)
+- install guide
+- usage
