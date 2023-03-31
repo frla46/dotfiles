@@ -1,5 +1,9 @@
 # dotfiles
-- alacritty
-- zsh
-- neovim([LazyVim](https://github.com/LazyVim/LazyVim))
-- i3
+- os: Arch Linux
+- wm: i3
+- terminal: alacritty
+- shell: zsh
+  - prompt: pure
+  - plugin manager: zinit
+- editor: neovim
+  - [LazyVim](https://github.com/LazyVim/LazyVim)
