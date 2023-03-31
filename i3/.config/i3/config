@@ -144,12 +144,13 @@ mode "resize" {
 # screenshot
 set $capture "screen shot"
 set $pic_dir /home/pic/screenshot
+set $delay 0.1
 bindsym $mod+shift+s mode $capture
 mode  $capture {
-  bindsym a exec --no-startup-id maim -d 0.1| xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+a exec --no-startup-id maim -d 0.1 $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
-  bindsym s exec --no-startup-id maim -s -d 0.1| xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+s exec --no-startup-id maim -s -d 0.1 $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
+  bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym shift+a exec --no-startup-id maim -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
+  bindsym s exec --no-startup-id maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym shift+s exec --no-startup-id maim -s -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
   bindsym Escape mode "default"
 }
 
@@ -250,7 +251,7 @@ default_border none
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
-exec_always --no-startup-id killall redshift; redshift -b 0.9:0.6 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 200 40
 exec --no-startup-id clipmenud
 exec --no-startup-id unclutter -idle 1 -root

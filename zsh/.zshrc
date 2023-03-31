@@ -81,10 +81,9 @@ alias c='cd'
 alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
+alias vim='$EDITOR'
 alias fm='_ranger-cd'
 alias ps='procs'
-alias grep='rg'
-#alias find='fd'
 alias md='mkdir'
 #alias rm='rm -i'
 alias cp='cp -i'
@@ -102,14 +101,24 @@ alias -g VI='|_vipe'
 alias sz='source ~/.zshrc'
 alias precp='fc -lrn|head -n 1 C'
 alias memo="e ~/doc/memo.txt"
-alias dus='du --max-depth=1 -h --apparent-size | sort -rh'
+alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
-alias adddic='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
+alias mozc_adddic='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias pysvr='python -m http.server 8000'
 
 # git
 if [[ $(type git) ]]; then
   alias g='git'
+fi
+
+# fd
+if [[ $(type fd) ]]; then
+  alias find='fd'
+fi
+
+# rg
+if [[ $(type rg) ]]; then
+  alias grep='rg'
 fi
 
 # protonvpn
@@ -219,11 +228,11 @@ function _vipe () {
   \vim - -es +"norm gg$COMMAND" +'%p|q!' |sed '1d'
 }
 
-# download .mp4 video with aria2
+# download mp4 video with aria2
 alias ariav='_aria-mp4'
 function _aria-mp4() {
   sed -e '/^$/d; /^http/!s/\(.\{80\}\)\(.*\)$/\1/; /^http/!s/^/ out=/; /^http/!s/$/.mp4/; /^http/!s/\// /g' $1 >| /tmp/aria-ed.list
-  aria2c -i /tmp/aria-ed.list
+  aria2c -i /tmp/aria-ed.list -UWget
 }
 
 # disable "crontab -r"
