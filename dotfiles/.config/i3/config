@@ -80,14 +80,15 @@ bindsym $mod+shift+10 move container to workspace number $ws10
 
 ## mode
 # system
-set $system "system [q:poweroff, r:reboot, s:suspend, l:logout]"
+set $system "system [q:poweroff, r:reboot, s:suspend, L:logout, l:lock]"
 bindsym $mod+shift+q mode $system
 mode $system {
   bindsym q exec "systemctl poweroff"; mode "default"
-    bindsym r exec "systemctl reboot"; mode "default"
-    bindsym s exec "systemctl suspend"; mode "default"
-    bindsym l exec "logout"; mode "default"
-    bindsym Escape mode "default"
+  bindsym r exec "systemctl reboot"; mode "default"
+  bindsym s exec "systemctl suspend"; mode "default"
+  bindsym L exec "logout"; mode "default"
+  bindsym l exec "dm-tool lock"; mode "default"
+  bindsym Escape mode "default"
 }
 
 # layout (style)
@@ -95,14 +96,14 @@ set $layout "layout [h:split h, v:split v, s:stacking, t:tabbed, e:toggle, f:flo
 bindsym $mod+s mode $layout
 mode $layout {
   bindsym $mod+h split h; mode "default"
-    bindsym $mod+v split v; mode "default"
-    bindsym $mod+s layout stacking; mode "default"
-    bindsym $mod+t layout tabbed; mode "default"
-    bindsym $mod+e layout toggle split; mode "default"
-    bindsym $mod+f floating toggle; mode "default"
-    bindsym $mod+p focus parent; mode "default"
-    bindsym $mod+c focus child; mode "default"
-    bindsym Escape mode "default"
+  bindsym $mod+v split v; mode "default"
+  bindsym $mod+s layout stacking; mode "default"
+  bindsym $mod+t layout tabbed; mode "default"
+  bindsym $mod+e layout toggle split; mode "default"
+  bindsym $mod+f floating toggle; mode "default"
+  bindsym $mod+p focus parent; mode "default"
+  bindsym $mod+c focus child; mode "default"
+  bindsym Escape mode "default"
 }
 
 # audio
@@ -143,7 +144,7 @@ mode "resize" {
 
 # screenshot
 set $capture "screen shot"
-set $pic_dir /home/pic/screenshot
+set $pic_dir /home/frla/pic/screenshot
 set $delay 0.1
 bindsym $mod+shift+s mode $capture
 mode  $capture {
@@ -155,15 +156,15 @@ mode  $capture {
 }
 
 # app launcher
-set $exec "exec [w:vivaldi, d:discord, e:nvim, f:ranger, m:ncmpcpp, v:pulsemixer]"
+set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer]"
 bindsym $mod+x mode $exec
 mode  $exec {
   bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
   bindsym d exec --no-startup-id  discord; mode "default"
-  bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
-  bindsym f exec --no-startup-id  alacritty -e ranger; mode "default"
-  bindsym m exec --no-startup-id  alacritty -e ncmpcpp; mode "default"
-  bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
+  bindsym e exec --no-startup-id  alacritty -t nvim -e nvim; mode "default"
+  bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
+  bindsym v exec --no-startup-id  alacritty -t pulsemixer -e pulsemixer; mode "default"
+  bindsym m exec --no-startup-id  alacritty -t ncmpcpp -e ncmpcpp; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -179,7 +180,7 @@ mode $notify {
 # insert
 bindsym $mod+i mode "insert"
 mode  "insert" {
-    bindsym Escape mode "default"
+  bindsym Escape mode "default"
 }
 
 ## color
@@ -247,38 +248,34 @@ focus_follows_mouse no
 default_border none
 
 ## autostart
-# background
-exec --no-startup-id dex --autostart --environment i3
+# exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
 exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 200 40
-exec --no-startup-id clipmenud
+# exec --no-startup-id clipmenud
+exec --no-startup-id greenclip daemon > /dev/null
 exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
 exec --no-startup-id picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
-# window
 exec --no-startup-id alacritty -t scratch
 exec --no-startup-id vivaldi-stable
 exec --no-startup-id discord
-exec --no-startup-id alacritty -t ranger -e ranger
+exec --no-startup-id alacritty -t nvim -e nvim
 
 ## app shortcut
-# terminal
 bindsym $mod+Return exec --no-startup-id alacritty
-# rofi
 bindsym $mod+space exec rofi -show drun
 bindsym $mod+w exec rofi -show window
-bindsym $mod+c exec clipmenu
-bindsym $mod+v exec ~/bin/snippets.sh
+bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
+bindsym $mod+shift+c exec ~/bin/snippets.sh
 
 # assign window to workspace
 for_window [class="^Alacritty$" title="^scratch$"] move scratchpad
 for_window [class="^Vivaldi-stable$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws2
 for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws2
-for_window [class="^Alacritty$" title="^ranger$"] move --no-auto-back-and-forth to workspace $ws3
-for_window [class="^Alacritty$" title="^ncmpcpp$"] move --no-auto-back-and-forth to workspace $ws3
+for_window [class="^Alacritty$" title="^nvim$"] move --no-auto-back-and-forth to workspace $ws3

@@ -1,4 +1,11 @@
 configuration {
+  font: "hackgen 14";
   hide-scrollbar: true;
+  kb-accept-entry: "Control+m,Return,KP_Enter";
+  kb-remove-to-eol: "";
+  kb-remove-to-sol: "";
+	kb-clear-line: "Control+u";
+  kb-row-down: "Control+j,Down";
+  kb-row-up: "Control+k,Up";
 }
 @theme "/home/frla/.config/rofi/themes/nord.rasi"

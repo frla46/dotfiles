@@ -12,8 +12,8 @@ bison
 capitaine-cursors
 chromium
 clamav
-clamtk
 clipnotify
+ctpv-git
 debugedit
 deja-dup
 discord
@@ -54,6 +54,7 @@ i3status
 iwd
 jq
 lazygit
+lf
 libpulse
 libreoffice-still
 libtool
@@ -104,6 +105,7 @@ ranger
 redshift
 ripgrep
 rofi
+rofi-greenclip
 sed
 smartmontools
 stalonetray
@@ -121,6 +123,7 @@ unclutter
 unrar
 unzip
 vim
+vimv-git
 virtualbox
 vivaldi
 vulkan-radeon

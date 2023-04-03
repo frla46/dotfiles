@@ -8,6 +8,30 @@ return {
 	},
 	{ "vim-jp/vimdoc-ja" },
 	{
+		"nvim-neo-tree/neo-tree.nvim",
+		enabled = false,
+	},
+	{
+		"lmburns/lf.nvim",
+		dependencies = { "plenary.nvim", "toggleterm.nvim" },
+		event = "VeryLazy",
+		keys = {
+			{ "<leader>e", "<cmd>Lf<cr>" },
+		},
+		init = function()
+			-- vim.g.lf_netrw = 1
+			require("lf").setup({
+				escape_quit = true,
+				border = "rounded",
+			})
+		end,
+	},
+	{
+		"akinsho/toggleterm.nvim",
+		event = "VeryLazy",
+		config = true,
+	},
+	{
 		"rcarriga/nvim-notify",
 		keys = {
 			{
@@ -31,7 +55,6 @@ return {
 			end,
 		},
 		init = function()
-			-- when noice is not enabled, install notify on VeryLazy
 			local Util = require("lazyvim.util")
 			if not Util.has("noice.nvim") then
 				Util.on_very_lazy(function()
@@ -82,18 +105,24 @@ return {
             },
 					},
 					lualine_x = {
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.command.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-              color = fg("Statement")
-            },
-            -- stylua: ignore
-            {
-              function() return require("noice").api.status.mode.get() end,
-              cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-              color = fg("Constant") ,
-            },
+						{
+							function()
+								return require("noice").api.status.command.get()
+							end,
+							cond = function()
+								return package.loaded["noice"] and require("noice").api.status.command.has()
+							end,
+							color = fg("Statement"),
+						},
+						{
+							function()
+								return require("noice").api.status.mode.get()
+							end,
+							cond = function()
+								return package.loaded["noice"] and require("noice").api.status.mode.has()
+							end,
+							color = fg("Constant"),
+						},
 						{
 							require("lazy.status").updates,
 							cond = require("lazy.status").has_updates,
@@ -108,17 +137,11 @@ return {
 							},
 						},
 					},
-					lualine_y = {
-						--{ "progress", separator = " ", padding = { left = 1, right = 0 } },
-					},
+					lualine_y = {},
 					lualine_z = {
 						{ "location", padding = { left = 0, right = 1 } },
-						-- function()
-						--   return " " .. os.date("%R")
-						-- end,
 					},
 				},
-				extensions = { "neo-tree" },
 			}
 		end,
 	},
@@ -153,78 +176,6 @@ return {
 			},
 			pickers = {
 				find_files = { hidden = true },
-			},
-		},
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		cmd = "Neotree",
-		keys = {
-			{
-				"<leader>fe",
-				function()
-					require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").get_root() })
-				end,
-				desc = "Explorer NeoTree (root dir)",
-			},
-			{
-				"<leader>fE",
-				function()
-					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
-				end,
-				desc = "Explorer NeoTree (cwd)",
-			},
-			{ "<leader>e", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
-			{ "<leader>E", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-		},
-		deactivate = function()
-			vim.cmd([[Neotree close]])
-		end,
-		init = function()
-			vim.g.neo_tree_remove_legacy_commands = 1
-			if vim.fn.argc() == 1 then
-				---@diagnostic disable-next-line: param-type-mismatch
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
-				if stat and stat.type == "directory" then
-					require("neo-tree")
-				end
-			end
-		end,
-		opts = {
-			filesystem = {
-				bind_to_cwd = false,
-				follow_current_file = true,
-			},
-			window = {
-				mappings = {
-					["<space>"] = "none",
-					["h"] = function(state)
-						local node = state.tree:get_node()
-						if (node.type == "directory" or node:has_children()) and node:is_expanded() then
-							state.commands.toggle_node(state)
-						else
-							require("neo-tree.ui.renderer").focus_node(state, node:get_parent_id())
-						end
-					end,
-					["l"] = function(state)
-						local node = state.tree:get_node()
-						if node.type == "directory" or node:has_children() then
-							if not node:is_expanded() then
-								state.commands.toggle_node(state)
-							else
-								require("neo-tree.ui.renderer").focus_node(state, node:get_child_ids()[1])
-							end
-						end
-					end,
-				},
-			},
-			default_component_configs = {
-				indent = {
-					with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
-					expander_collapsed = "",
-					expander_expanded = "",
-					expander_highlight = "NeoTreeExpander",
-				},
 			},
 		},
 	},

@@ -1,0 +1,17 @@
+*.db
+*.jpg
+*.mo
+*.pdf
+*.png
+
+.cache/
+cache/
+.git/
+/.cargo/
+/.clamtk/
+/.local/lib/
+/.local/share/Trash/
+/.local/state/
+/.npm/
+/.wine/
+node_modules/

@@ -36,19 +36,6 @@ zstyle :prompt:pure:path color blue
 zstyle :prompt:pure:prompt:success color green
 zstyle :prompt:pure:suspended_jobs color blue
 
-# environment variable
-export BROWSER='vivaldi-stable'
-export TERM='alacritty'
-export PAGER='less'
-export EDITOR='nvim'
-export VISUAL='nvim'
-export FZF_DEFAULT_COMMAND='fd --type file --hidden'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export HISTFILE=~/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
-export PATH=$PATH:/home/frla/.local/bin
-
 ## options
 setopt IGNOREEOF
 setopt append_history
@@ -82,7 +69,6 @@ alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
 alias vim='$EDITOR'
-alias fm='_ranger-cd'
 alias ps='procs'
 alias md='mkdir'
 #alias rm='rm -i'
@@ -154,7 +140,7 @@ bindkey '^r' _select-history
 # open file in editor with fzf
 function _fe() {
   local file
-  file=$(fd --type file -H | fzf) && $EDITOR $file
+  file=$(fd --type file -H | fzf) && $EDITOR "$file"
 }
 
 # z with fzf
@@ -184,12 +170,12 @@ alias j='_fg-fzf'
 function _fg-fzf() {
   local cnt job
   cnt=$(jobs | wc -l)
-  if [[ cnt -eq 0 ]]; then
-  elif [[ cnt -eq 1 ]]; then
+  if [[ "$cnt" -eq 0 ]]; then
+  elif [[ "$cnt" -eq 1 ]]; then
     fg
   else
     job=$(jobs | fzf | sed -e 's/\[//; s/\].*//' )
-    fg %$job
+    fg %"$job"
   fi
 }
 
@@ -206,33 +192,15 @@ function _^z-fg () {
 zle -N _^z-fg
 bindkey '^z' _^z-fg
 
-function _ranger-cd {
-  # prevent ranger nest
-  if [ -z "$RANGER_LEVEL" ]; then
-    # automatic cd when ranger quitted
-    tempfile="$(mktemp -t tmp.XXXXXX)"
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-      cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-  else
-    exit
-  fi
+# prevent instance nested in lf
+function lf() {
+  [ -n "$LF_LEVEL" ] && exit || command lf "$@"
 }
 
 # use vim as a pipe
 function _vipe () {
   COMMAND=$(echo "$*")
   \vim - -es +"norm gg$COMMAND" +'%p|q!' |sed '1d'
-}
-
-# download mp4 video with aria2
-alias ariav='_aria-mp4'
-function _aria-mp4() {
-  sed -e '/^$/d; /^http/!s/\(.\{80\}\)\(.*\)$/\1/; /^http/!s/^/ out=/; /^http/!s/$/.mp4/; /^http/!s/\// /g' $1 >| /tmp/aria-ed.list
-  aria2c -i /tmp/aria-ed.list -UWget
 }
 
 # disable "crontab -r"
@@ -242,4 +210,11 @@ function crontab () {
   else
     command crontab "$@";
   fi
+}
+
+# download mp4 video with aria2
+alias ariav='_aria-mp4'
+function _aria-mp4() {
+  sed -e '/^$/d; /^http/!s/\(.\{80\}\)\(.*\)$/\1/; /^http/!s/^/ out=/; /^http/!s/$/.mp4/; /^http/!s/\// /g' $1 >| /tmp/aria-ed.list
+  aria2c -i /tmp/aria-ed.list -UWget
 }
