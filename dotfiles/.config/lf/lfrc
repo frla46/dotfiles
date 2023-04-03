@@ -1,0 +1,116 @@
+# lfrc
+# https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfrc.example
+
+## setitngs
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set scrolloff 5
+set ignorecase true
+set incsearch true
+# set ratios 1:3:4
+
+# preview
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
+
+## mappings
+# disable mappings
+map y
+map d
+map "'"
+map s
+map H
+map M
+map L
+# set mappings
+map <esc> quit
+map <enter> shell
+map yy copy
+map yp yank-path
+map yd yank-dirname
+map yn yank-basename
+map y. yank-basename-without-extension
+map dd cut
+map pp paste
+map x $$f
+map X !$f
+map <c-x> &$f
+map <backspace2> set hidden!
+map e &alacritty -e nvim $fx
+map zp set preview!
+map DD trash
+map DR trash-restore
+map ? !file --mime-type -Lb $f
+map ` mark-load
+map <c-z> $kill -STOP $PPID
+map gv push :glob-select<space>
+map R bulkrename
+map J :updir; down; open
+map K :updir; up; open
+
+## commands
+cmd open &{{
+  case $(file --mime-type -Lb $f) in
+    text/* | application/json | inode/x-empty )
+      lf -remote "send $id \$$EDITOR \$fx";;
+    # text/* | application/json ) alacritty -e nvim $fx;;
+    audio/* | video/* ) mpv $fx;;
+    image/*) qimgv $fx;;
+    application/pdf ) zathura $fx;;
+    exe/* ) wine $fx;;
+    # *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+    *) case $f in
+        *.pptx | *.odt | *.docx | *.ods )
+          libreoffice $fx;;
+        * ) :;;
+      esac;;
+  esac
+}}
+
+cmd trash %trash-put $fx
+# TODO: fix trash-restore
+cmd trash-restore ${{
+  lf -remote "send $id \$trash-restore \$fx"
+}}
+
+cmd extract ${{
+    set -f
+    atool -x $f
+}}
+
+cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
+cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
+cmd yank-basename-without-extension ${{
+  echo "$fx" |
+    xargs -r -d '\n' basename -a |
+    awk -e '{
+      for (i=length($0); i > 0; i--) {
+        if (substr($0, i, 1) == ".") {
+          if (i == 1) print $0
+          else print substr($0, 0, i-1)
+
+          break
+        }
+      }
+
+      if (i == 0)
+        print $0
+    }' |
+    if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
+    xclip -i -selection clipboard
+}}
+
+cmd on-cd &{{
+  # printf "\033]0; $PWD\007" > /dev/tty
+  printf "\033]0; $(pwd | sed "s|$HOME|~|") - lf\007" > /dev/tty
+}}
+
+cmd bulkrename ${{
+    vimv $(basename -a -- $fx)
+    lf -remote "send $id load"
+    lf -remote "send $id unselect"
+}}
