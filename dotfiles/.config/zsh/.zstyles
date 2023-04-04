@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+zstyle :prompt:pure:path color blue
+zstyle :prompt:pure:prompt:success color green
+zstyle :prompt:pure:suspended_jobs color blue

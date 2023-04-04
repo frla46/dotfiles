@@ -1,40 +1,21 @@
-### Added by Zinit's installer
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})窶ｦ%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
-fi
+#!/bin/zsh
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-### End of Zinit's installer chunk
-
-# zinit plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-completions
-zinit load agkozak/zsh-z
+# antidote
+source '/usr/share/zsh-antidote/antidote.zsh'
+antidote load
 
 # prompt
-# pure
-zinit ice pick"async.zsh" src"pure.zsh"
-zinit light sindresorhus/pure
+autoload -Uz promptinit && promptinit && prompt pure
 PURE_CMD_MAX_EXEC_TIME=86400 #1day
-zstyle :prompt:pure:path color blue
-zstyle :prompt:pure:prompt:success color green
-zstyle :prompt:pure:suspended_jobs color blue
+
+# load zstyles
+[[ -f ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles
+
+# # zinit plugins
+# zinit light zsh-users/zsh-syntax-highlighting
+# zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-completions
+# zinit load agkozak/zsh-z
 
 ## options
 setopt IGNOREEOF
@@ -84,7 +65,7 @@ alias -g C='|xsel --clipboard --input'
 alias -g VI='|_vipe'
 
 # oneliner
-alias sz='source ~/.zshrc'
+alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias precp='fc -lrn|head -n 1 C'
 alias memo="e ~/doc/memo.txt"
 alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
@@ -180,7 +161,7 @@ function _fg-fzf() {
 }
 
 # use c-z instead of fg
-function _^z-fg () {
+function _ctrl-z-fg () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line
@@ -189,8 +170,8 @@ function _^z-fg () {
     zle clear-screen
   fi
 }
-zle -N _^z-fg
-bindkey '^z' _^z-fg
+zle -N _ctrl-z-fg
+bindkey '^z' _ctrl-z-fg
 
 # prevent instance nested in lf
 function lf() {
