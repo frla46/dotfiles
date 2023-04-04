@@ -1,0 +1,232 @@
+[options]
+sort=1
+fullscreen=1
+hide-info-box=true
+background-pattern=black
+end-of-files-action=wait
+thumbnail-size=256x256
+
+[keybindings]
+# # default
+# <KP_Add>  { set_scale_level_relative(1.1) }
+# h  { flip_horizontally() }
+# <Control><KP_Add>  { set_slideshow_interval_relative(1) }
+# <Control><period>  { animation_continue() }
+# t  { toggle_scale_mode(0) }
+# <Alt><KP_Add>  { animation_set_speed_relative(1.1) }
+# <Control>t  { toggle_scale_mode(4) }
+# i  { toggle_info_box() }
+# <Alt>t  { toggle_scale_mode(5) }
+# <Mouse-1>  { goto_file_relative(-1) }
+# <KP_Subtract>  { set_scale_level_relative(0.9) }
+# <KP_Left>  { shift_x(10) }
+# j  { jump_dialog() }
+# <Left>  { shift_x(10) }
+# <Control><KP_Subtract>  { set_slideshow_interval_relative(-1) }
+# <Control><KP_Left>  { shift_x(50) }
+# v  { flip_vertically() }
+# <Control><Left>  { shift_x(50) }
+# 1  { numeric_command(1) }
+# <KP_Up>  { shift_y(10) }
+# <Alt><KP_Subtract>  { animation_set_speed_relative(0.9) }
+# k  { rotate_right() }
+# 0  { reset_scale_level() }
+# <Up>  { shift_y(10) }
+# <Control><KP_Up>  { shift_y(50) }
+# <Mouse-2>  { quit() }
+# <Control><Up>  { shift_y(50) }
+# 2  { numeric_command(2) }
+# <KP_Right>  { shift_x(-10) }
+# <Mouse-3>  { goto_file_relative(1) }
+# l  { rotate_left() }
+# <Right>  { shift_x(-10) }
+# <Control><KP_Right>  { shift_x(-50) }
+# <Control><Right>  { shift_x(-50) }
+# 3  { numeric_command(3) }
+# <KP_Down>  { shift_y(-10) }
+# <Mouse-Scroll-1>  { goto_file_relative(1) }
+# m  { montage_mode_enter() }
+# <Control>a  { hardlink_current_image() }
+# <Down>  { shift_y(-10) }
+# <Control><KP_Down>  { shift_y(-50) }
+# b  { toggle_background_pattern(0) }
+# <Control><Down>  { shift_y(-50) }
+# 4  { numeric_command(4) }
+# <KP_Page_Up>  { goto_file_relative(10) }
+# <Escape>  { quit() }
+# n  { toggle_negate_mode(0) }
+# <Page_Up>  { goto_file_relative(10) }
+# <Control><KP_Page_Up>  { goto_file_relative(10) }
+# <Control><Page_Up>  { goto_file_relative(10) }
+# 5  { numeric_command(5) }
+# <KP_Next>  { goto_file_relative(-10) }
+# o  { toggle_mark() }
+# <Page_Down>  { goto_file_relative(-10) }
+# <Control>o  { clear_marks() }
+# 6  { numeric_command(6) }
+# <plus>  { set_scale_level_relative(1.1) }
+# <Control>p  { goto_earlier_file() }
+# <Mouse-Scroll-2>  { goto_file_relative(-1) }
+# 7  { numeric_command(7) }
+# <Control><plus>  { set_slideshow_interval_relative(1) }
+# <space>  { goto_file_relative(1) }
+# q  { quit() }
+# <Control><space>  { goto_logical_directory_relative(1) }
+# <Alt><plus>  { animation_set_speed_relative(1.1) }
+# f  { toggle_fullscreen(0) }
+# 8  { numeric_command(8) }
+# <BackSpace>  { goto_file_relative(-1) }
+# r  { reload() }
+# <minus>  { set_scale_level_relative(0.9) }
+# <Control><BackSpace>  { goto_logical_directory_relative(-1) }
+# <Control>r  { toggle_shuffle_mode(0) }
+# 9  { numeric_command(9) }
+# <Control><minus>  { set_slideshow_interval_relative(-1) }
+# s  { toggle_slideshow() }
+# <period>  { animation_step(1) }
+# <Alt><minus>  { animation_set_speed_relative(0.9) }
+# @MONTAGE {
+#   <Page_Up>  { montage_mode_shift_y_pg(-1) }
+#   <KP_Left>  { montage_mode_shift_x(-1) }
+#   q  { quit() }
+#   <KP_Down>  { montage_mode_shift_y(1) }
+#   f  { toggle_fullscreen(0) }
+#   <Home>  { goto_file_byindex(0) }
+#   <Right>  { montage_mode_shift_x(1) }
+#   <Mouse-Scroll-1>  { montage_mode_shift_y_rows(1) }
+#   <Page_Down>  { montage_mode_shift_y_pg(1) }
+#   o  { toggle_mark() }
+#   <KP_Up>  { montage_mode_shift_y(-1) }
+#   <Escape>  { montage_mode_return_cancel() }
+#   <KP_Page_Up>  { montage_mode_shift_y_pg(-1) }
+#   g  { montage_mode_follow(asdfghjkl) }
+#   <Return>  { montage_mode_return_proceed() }
+#   <Left>  { montage_mode_shift_x(-1) }
+#   <Down>  { montage_mode_shift_y(1) }
+#   m  { montage_mode_return_cancel() }
+#   <End>  { goto_file_byindex(-1) }
+#   <KP_Right>  { montage_mode_shift_x(1) }
+#   <KP_Next>  { montage_mode_shift_y_pg(1) }
+#   <Mouse-Scroll-2>  { montage_mode_shift_y_rows(-1) }
+#   <Control>o  { clear_marks() }
+#   <Up>  { montage_mode_shift_y(-1) }
+# }
+
+# disable
+0 { nop(); }
+1 { nop(); }
+2 { nop(); }
+3 { nop(); }
+4 { nop(); }
+5 { nop(); }
+6 { nop(); }
+7 { nop(); }
+8 { nop(); }
+9 { nop(); }
+<Alt><KP_Add> { nop(); }
+<Alt><KP_Subtract> { nop(); }
+<Alt><minus> { nop(); }
+<Alt><plus> { nop(); }
+<Alt>t { nop(); }
+<BackSpace> { nop(); }
+<Control><BackSpace> { nop(); }
+<Control><Down> { nop(); }
+<Control><KP_Add> { nop(); }
+<Control><KP_Down> { nop(); }
+<Control><KP_Left> { nop(); }
+<Control><KP_Page_Up> { nop(); }
+<Control><KP_Right> { nop(); }
+<Control><KP_Subtract> { nop(); }
+<Control><KP_Up> { nop(); }
+<Control><Left> { nop(); }
+<Control><Page_Up> { nop(); }
+<Control><Right> { nop(); }
+<Control><Up> { nop(); }
+<Control><minus> { nop(); }
+<Control><period> { nop(); }
+<Control><plus> { nop(); }
+<Control><space> { nop(); }
+<Control>a { nop(); }
+<Control>o { nop(); }
+<Control>p { nop(); }
+<Control>r { nop(); }
+<Control>t { nop(); }
+<Down> { nop(); }
+<KP_Add> { nop(); }
+<KP_Down> { nop(); }
+<KP_Left> { nop(); }
+<KP_Next> { nop(); }
+<KP_Page_Up> { nop(); }
+<KP_Right> { nop(); }
+<KP_Subtract> { nop(); }
+<KP_Up> { nop(); }
+<Left> { nop(); }
+<Mouse-1> { nop(); }
+<Mouse-2> { nop(); }
+<Mouse-3> { nop(); }
+<Mouse-Scroll-1> { nop(); }
+<Mouse-Scroll-2> { nop(); }
+<Page_Down> { nop(); }
+<Page_Up> { nop(); }
+<Right> { nop(); }
+<Up> { nop(); }
+<minus> { nop(); }
+<period> { nop(); }
+<plus> { nop(); }
+<space> { nop(); }
+b { nop(); }
+h { nop(); }
+l { nop(); }
+n { nop(); }
+o { nop(); }
+t { nop(); }
+v  { nop(); }
+@MONTAGE {
+  <Control>o { nop(); }
+  <Down> { nop(); }
+  <End> { nop(); }
+  <Home> { nop(); }
+  <KP_Down> { nop(); }
+  <KP_Left> { nop(); }
+  <KP_Next> { nop(); }
+  <KP_Page_Up> { nop(); }
+  <KP_Right> { nop(); }
+  <KP_Up> { nop(); }
+  <Left> { nop(); }
+  <Mouse-Scroll-1> { nop(); }
+  <Mouse-Scroll-2> { nop(); }
+  <Page_Down> { nop(); }
+  <Page_Up> { nop(); }
+  <Return> { nop(); }
+  <Right> { nop(); }
+  <Up> { nop(); }
+  m { nop(); }
+  o { nop(); }
+}
+
+<Escape> { quit(); }
+q { quit(); }
+r { reload(); }
+m { montage_mode_enter(); }
+k { goto_file_relative(-1); }
+j { goto_file_relative(1); }
+g { goto_file_byindex(0); }
+G { goto_file_byindex(-1); }
+i { toggle_info_box(); }
+f { toggle_fullscreen(0); }
+s { toggle_scale_mode(); }
+n { toggle_negate_mode(0) }
+c { command(echo -n $(realpath $1\) | xsel --input --clipboard); }
+D { command(trash-put $1)}
+
+@MONTAGE {
+  g { goto_file_byindex(0); }
+  G { goto_file_byindex(-1); }
+	h { montage_mode_shift_x(-1); }
+	l { montage_mode_shift_x(1); }
+	k { montage_mode_shift_y(-1); }
+	j { montage_mode_shift_y(0); }
+  K { montage_mode_shift_y_pg(-1); }
+  J { montage_mode_shift_y_pg(1); }
+  f { toggle_fullscreen(0); }
+}
