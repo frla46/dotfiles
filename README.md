@@ -8,10 +8,12 @@
   - prompt: pure
   - plugin manager: zinit
 - editor: neovim
-  - [LazyVim](https://github.com/LazyVim/LazyVim)
+  - [LazyVim](https://github.com/LazyVim/LazyVim) based
 - launcher: rofi
 - file manager: lf
   - preview: ctpv
+- image viewer: pqiv
+- video viewer: mpv
 
 # TODO
 - add images in README.md

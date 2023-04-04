@@ -2,16 +2,16 @@
 
 current_dir := $(shell pwd)
 
-packages := alacritty aria2 atool capitaine-cursors chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli qimgv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv
+packages := alacritty aria2 atool capitaine-cursors chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv
 
-setup: yay pkgs link conf
+setup: yay pkg link conf
 
 yay:
 	git clone https://aur.archlinux.org/yay.git
 	cd yay
 	makepkg -si
 
-pkgs:
+pkg:
 	yay
 	yay --needed -S ${packages}
 
