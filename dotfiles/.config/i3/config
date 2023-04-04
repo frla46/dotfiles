@@ -127,7 +127,7 @@ mode $audio {
   bindsym shift+period exec --no-startup-id mpc next
   bindsym j exec --no-startup-id mpc volume -10
   bindsym k exec --no-startup-id mpc volume +10
-  bindsym c exec --no-startup-id "mpc current | sed -e 's/^.*\///; s/\..*$//' | xsel --clipboard --input"
+  bindsym c exec --no-startup-id "mpc current | sed -e 's|^.*/||; s|\..*$||' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 
@@ -156,7 +156,7 @@ mode  $capture {
 }
 
 # app launcher
-set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer]"
+set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer, t:gotop]"
 bindsym $mod+x mode $exec
 mode  $exec {
   bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
@@ -165,6 +165,7 @@ mode  $exec {
   bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
   bindsym v exec --no-startup-id  alacritty -t pulsemixer -e pulsemixer; mode "default"
   bindsym m exec --no-startup-id  alacritty -t ncmpcpp -e ncmpcpp; mode "default"
+  bindsym t exec --no-startup-id  alacritty -t gotop -e gotop; mode "default"
   bindsym Escape mode "default"
 }
 
