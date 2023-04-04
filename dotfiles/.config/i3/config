@@ -186,29 +186,29 @@ mode  "insert" {
 
 ## color
 # nord
-#color0 #2E3440
-#color1 #3B4252
-#color2 #434C5E
-#color3 #4C566A
-#color4 #D8DEE9
-#color5 #E5E9F0
-#color6 #ECEFF4
-#color7 #8FBCBB
-#color8 #88C0D0
-#color9 #81A1C1
-#color10 #5E81AC
-#color11 #BF616A
-#color12 #D08770
-#color13 #EBCB8B
-#color14 #A3BE8C
-#color15 #B48EAD
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
 
-set_from_resource $black color0 #2E3440
-set_from_resource $gray color3 #4C566A
-set_from_resource $white color6 #ECEFF4
-set_from_resource $blue color9 #81A1C1
-set_from_resource $red color11 #BF616A
-set_from_resource $yellow color13 #EBCB8B
+set_from_resource $black nord0 #2E3440
+set_from_resource $gray nord3 #4C566A
+set_from_resource $white nord6 #ECEFF4
+set_from_resource $blue nord9 #81A1C1
+set_from_resource $red nord11 #BF616A
+set_from_resource $yellow nord13 #EBCB8B
 
 #class                  border backgr  text   indicator child_border
 client.focused          $black $gray   $white $yellow   $blue
