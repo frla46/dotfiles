@@ -1,11 +1,11 @@
 return {
-	{ "shaunsingh/nord.nvim" },
 	{
 		"LazyVim/LazyVim",
 		opts = {
 			colorscheme = "nord",
 		},
 	},
+	{ "shaunsingh/nord.nvim" },
 	{ "vim-jp/vimdoc-ja" },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -17,18 +17,17 @@ return {
 		keys = {
 			{ "<leader>e", "<cmd>Lf<cr>" },
 		},
-		init = function()
+		opts = function()
 			-- vim.g.lf_netrw = 1
 			require("lf").setup({
-				escape_quit = true,
+				-- escape_quit = true,
 				border = "rounded",
 			})
 		end,
 	},
 	{
 		"akinsho/toggleterm.nvim",
-		event = "VeryLazy",
-		config = true,
+		lazy = true,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -182,7 +181,7 @@ return {
 		"nvim-orgmode/orgmode",
 		event = { "VeryLazy" },
 		ft = { "org" },
-		init = function()
+		opts = function()
 			require("orgmode").setup_ts_grammar()
 			require("nvim-treesitter.configs").setup({
 				highlight = {
