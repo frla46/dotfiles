@@ -8,7 +8,6 @@ set ifs "\n"
 set scrolloff 5
 set ignorecase true
 set incsearch true
-# set ratios 1:3:4
 
 # preview
 set previewer ctpv
@@ -25,6 +24,9 @@ map s
 map H
 map M
 map L
+map u
+map '"'
+
 # set mappings
 map <esc> quit
 map <enter> shell
@@ -34,46 +36,59 @@ map yd yank-dirname
 map yn yank-basename
 map y. yank-basename-without-extension
 map dd cut
-map pp paste
+map p paste
 map x $$f
 map X !$f
 map <c-x> &$f
 map <backspace2> set hidden!
-map e &alacritty -e nvim $fx
+map e $lf -remote "send $id \$$EDITOR \$fx"
+map E &alacritty -e nvim $fx
 map zp set preview!
 map DD trash
 map DR trash-restore
-map ? !file --mime-type -Lb $f
+map ? !file --mime-type -Lb $fx
 map ` mark-load
 map <c-z> $kill -STOP $PPID
 map gv push :glob-select<space>
 map R bulkrename
 map J :updir; down; open
 map K :updir; up; open
+map uv unselect
+map um mark-remove
+map P :link
 
 ## commands
 cmd open &{{
-  case $(file --mime-type -Lb $f) in
+  mimetype=$(file --mime-type -Lb $fx)
+  case $mimetype in
     text/* | application/json | inode/x-empty )
       lf -remote "send $id \$$EDITOR \$fx";;
-    # text/* | application/json ) alacritty -e nvim $fx;;
-    audio/* | video/* ) mpv $fx;;
-    image/*) qimgv $fx;;
-    application/pdf ) zathura $fx;;
-    exe/* ) wine $fx;;
-    # *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
-    *) case $f in
+    audio/* | video/* )
+      mpv $fx;;
+    image/*)
+      pqiv $(\ls -F | rg -v / | sed s/\*$//g) ;;
+    application/pdf )
+      zathura $fx;;
+    exe/* )
+      wine $fx;;
+    *)
+      case $fx in
         *.pptx | *.odt | *.docx | *.ods )
           libreoffice $fx;;
+        *.zip | *.rar | *.7z )
+          lf -remote "send $id :extract \$fx";;
         * ) :;;
       esac;;
   esac
 }}
 
-cmd trash %trash-put $fx
-# TODO: fix trash-restore
+cmd hoge !{{
+  echo "$fx"
+}}
+
+cmd trash $trash-put $fx
 cmd trash-restore ${{
-  lf -remote "send $id \$trash-restore \$fx"
+  lf -remote "send $id \$trash-restore"
 }}
 
 cmd extract ${{
@@ -82,7 +97,7 @@ cmd extract ${{
 }}
 
 cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
-cmd yank-dirname $dirname -- "$f" | head -c-1 | xclip -i -selection clipboard
+cmd yank-dirname $dirname -- "$fx" | head -c-1 | xclip -i -selection clipboard
 cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -i -selection clipboard
 cmd yank-basename-without-extension ${{
   echo "$fx" |
@@ -92,11 +107,9 @@ cmd yank-basename-without-extension ${{
         if (substr($0, i, 1) == ".") {
           if (i == 1) print $0
           else print substr($0, 0, i-1)
-
           break
         }
       }
-
       if (i == 0)
         print $0
     }' |
@@ -106,11 +119,31 @@ cmd yank-basename-without-extension ${{
 
 cmd on-cd &{{
   # printf "\033]0; $PWD\007" > /dev/tty
-  printf "\033]0; $(pwd | sed "s|$HOME|~|") - lf\007" > /dev/tty
+  printf "\033]0; $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
 }}
 
 cmd bulkrename ${{
-    vimv $(basename -a -- $fx)
-    lf -remote "send $id load"
-    lf -remote "send $id unselect"
+  vimv $(basename -a -- $fx)
+  lf -remote "send $id load"
+  lf -remote "send $id unselect"
+}}
+
+cmd link %{{
+  # y (select for copy) and P to paste soft-link
+  # d (select for cut) and P to paste hard-link
+  set -- $(cat ~/.local/share/lf/files)
+  mode="$1"
+  shift
+  if [ "$#" -lt 1 ]; then
+    lf -remote "send $id echo no files to link"
+    exit 0
+  fi
+  case "$mode" in
+    # symbolically copy mode is indicating a soft link
+    copy) ln -sr -t . -- "$@";;
+    # while a move mode is indicating a hard link
+    move) ln -t . -- "$@";;
+  esac
+  rm ~/.local/share/lf/files
+  lf -remote "send clear"
 }}
