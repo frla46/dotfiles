@@ -2,7 +2,7 @@
 
 current_dir := $(shell pwd)
 
-packages := alacritty aria2 atool capitaine-cursors chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv
+packages := alacritty aria2 atool capitaine-cursors chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv zsh-antidote
 
 setup: yay pkg link conf
 
@@ -32,6 +32,28 @@ conf:
 	# ufw
 	sudo ufw default deny
 	sudo ufw enable
-	# todo: clamav
-	# todo: lxappearance gtk-theme cursor-theme
-	# todo: add cronrab deja-dup --backup
+
+## todo
+# clamav config
+# lxappearance gtk-theme cursor-theme
+# add cronrab deja-dup --backup
+# browser config
+#	- chromium or vivaldi
+#	- chrome://flags/#enable-force-dark -> CIELAB based inversion
+#	- extentions:
+#		- bitwarden
+#		- Blocktube
+#		- BookmarkCleanUp
+#		- copyAllURLs
+#		- DuplicateTabCloser
+#		- Feedbro
+#		- Keepa
+#		- LINE
+#		- MALSync
+#		- pdfViewerForVimiumC
+#		- uAutoPagerize
+#		- uBlacklist
+#		- ubo
+#		- videoDownloadHelper
+#		- videoSpeedController
+#		- vimiumC

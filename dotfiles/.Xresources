@@ -1,45 +1,43 @@
-!nord
+! https://github.com/nordtheme/xresources
+! Copyright (c) 2016-present Sven Greb <development@svengreb.de>
+! This source code is licensed under the MIT license found in the license file.
 
-!define colors
-#define color0 #2E3440
-#define color1 #3B4252
-#define color2 #434C5E
-#define color3 #4C566A
-#define color4 #D8DEE9
-#define color5 #E5E9F0
-#define color6 #ECEFF4
-#define color7 #8FBCBB
-#define color8 #88C0D0
-#define color9 #81A1C1
-#define color10 #5E81AC
-#define color11 #BF616A
-#define color12 #D08770
-#define color13 #EBCB8B
-#define color14 #A3BE8C
-#define color15 #B48EAD
+#define nord0 #2E3440
+#define nord1 #3B4252
+#define nord2 #434C5E
+#define nord3 #4C566A
+#define nord4 #D8DEE9
+#define nord5 #E5E9F0
+#define nord6 #ECEFF4
+#define nord7 #8FBCBB
+#define nord8 #88C0D0
+#define nord9 #81A1C1
+#define nord10 #5E81AC
+#define nord11 #BF616A
+#define nord12 #D08770
+#define nord13 #EBCB8B
+#define nord14 #A3BE8C
+#define nord15 #B48EAD
 
-*.foreground: color4
-*.background: color0
-*.cursorColor: color4
+*.foreground:   nord4
+*.background:   nord0
+*.cursorColor:  nord4
 *fading: 35
-*fadeColor: color3
+*fadeColor: nord3
 
-*.color0: color1
-*.color1: color11
-*.color2: color14
-*.color3: color13
-*.color4: color9
-*.color5: color15
-*.color6: color8
-*.color7: color5
-*.color8: color3
-*.color9: color11
-*.color10: color14
-*.color11: color13
-*.color12: color9
-*.color13: color15
-*.color14: color7
-*.color15: color6
-
-! cursor
-Xcursor.size: 32
+*.color0: nord1
+*.color1: nord11
+*.color2: nord14
+*.color3: nord13
+*.color4: nord9
+*.color5: nord15
+*.color6: nord8
+*.color7: nord5
+*.color8: nord3
+*.color9: nord11
+*.color10: nord14
+*.color11: nord13
+*.color12: nord9
+*.color13: nord15
+*.color14: nord7
+*.color15: nord6
