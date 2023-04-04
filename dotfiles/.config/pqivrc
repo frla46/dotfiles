@@ -112,7 +112,7 @@ thumbnail-size=256x256
 #   <Up>  { montage_mode_shift_y(-1) }
 # }
 
-# disable
+# disable all
 0 { nop(); }
 1 { nop(); }
 2 { nop(); }
@@ -128,7 +128,9 @@ thumbnail-size=256x256
 <Alt><minus> { nop(); }
 <Alt><plus> { nop(); }
 <Alt>t { nop(); }
+b { nop(); }
 <BackSpace> { nop(); }
+<Control>a { nop(); }
 <Control><BackSpace> { nop(); }
 <Control><Down> { nop(); }
 <Control><KP_Add> { nop(); }
@@ -139,19 +141,24 @@ thumbnail-size=256x256
 <Control><KP_Subtract> { nop(); }
 <Control><KP_Up> { nop(); }
 <Control><Left> { nop(); }
-<Control><Page_Up> { nop(); }
-<Control><Right> { nop(); }
-<Control><Up> { nop(); }
 <Control><minus> { nop(); }
-<Control><period> { nop(); }
-<Control><plus> { nop(); }
-<Control><space> { nop(); }
-<Control>a { nop(); }
 <Control>o { nop(); }
 <Control>p { nop(); }
+<Control><Page_Up> { nop(); }
+<Control><period> { nop(); }
+<Control><plus> { nop(); }
 <Control>r { nop(); }
+<Control><Right> { nop(); }
+<Control><space> { nop(); }
 <Control>t { nop(); }
+<Control><Up> { nop(); }
 <Down> { nop(); }
+<Escape> { nop(); }
+f { nop(); }
+h { nop(); }
+i { nop(); }
+j { nop(); }
+k { nop(); }
 <KP_Add> { nop(); }
 <KP_Down> { nop(); }
 <KP_Left> { nop(); }
@@ -160,31 +167,36 @@ thumbnail-size=256x256
 <KP_Right> { nop(); }
 <KP_Subtract> { nop(); }
 <KP_Up> { nop(); }
+l { nop(); }
 <Left> { nop(); }
+m { nop(); }
+<minus> { nop(); }
 <Mouse-1> { nop(); }
 <Mouse-2> { nop(); }
 <Mouse-3> { nop(); }
 <Mouse-Scroll-1> { nop(); }
 <Mouse-Scroll-2> { nop(); }
-<Page_Down> { nop(); }
-<Page_Up> { nop(); }
-<Right> { nop(); }
-<Up> { nop(); }
-<minus> { nop(); }
-<period> { nop(); }
-<plus> { nop(); }
-<space> { nop(); }
-b { nop(); }
-h { nop(); }
-l { nop(); }
 n { nop(); }
 o { nop(); }
+<Page_Down> { nop(); }
+<Page_Up> { nop(); }
+<period> { nop(); }
+<plus> { nop(); }
+q { nop(); }
+r { nop(); }
+<Right> { nop(); }
+s { nop(); }
+<space> { nop(); }
 t { nop(); }
-v  { nop(); }
-@MONTAGE {
+<Up> { nop(); }
+v { nop(); }
+@MONTAGE { nop(); }
   <Control>o { nop(); }
   <Down> { nop(); }
   <End> { nop(); }
+  <Escape> { nop(); }
+  f { nop(); }
+  g { nop(); }
   <Home> { nop(); }
   <KP_Down> { nop(); }
   <KP_Left> { nop(); }
@@ -193,17 +205,19 @@ v  { nop(); }
   <KP_Right> { nop(); }
   <KP_Up> { nop(); }
   <Left> { nop(); }
+  m { nop(); }
   <Mouse-Scroll-1> { nop(); }
   <Mouse-Scroll-2> { nop(); }
+  o { nop(); }
   <Page_Down> { nop(); }
   <Page_Up> { nop(); }
+  q { nop(); }
   <Return> { nop(); }
   <Right> { nop(); }
   <Up> { nop(); }
-  m { nop(); }
-  o { nop(); }
 }
 
+# set mapping
 <Escape> { quit(); }
 q { quit(); }
 r { reload(); }

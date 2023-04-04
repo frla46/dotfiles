@@ -6,7 +6,7 @@
 - terminal: alacritty
 - shell: zsh
   - prompt: pure
-  - plugin manager: zinit
+  - plugin manager: antidote
 - editor: neovim
   - [LazyVim](https://github.com/LazyVim/LazyVim) based
 - launcher: rofi
