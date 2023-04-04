@@ -5,6 +5,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- use engligh messages
+vim.cmd([[ language en_US.UTF-8 ]])
 vim.cmd([[ language messages en_US.UTF-8 ]])
 
 -- ime

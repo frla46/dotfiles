@@ -14,7 +14,6 @@ return {
 	{
 		"lmburns/lf.nvim",
 		dependencies = { "plenary.nvim", "toggleterm.nvim" },
-		event = "VeryLazy",
 		keys = {
 			{ "<leader>e", "<cmd>Lf<cr>" },
 		},
@@ -178,5 +177,24 @@ return {
 				find_files = { hidden = true },
 			},
 		},
+	},
+	{
+		"nvim-orgmode/orgmode",
+		event = { "VeryLazy" },
+		ft = { "org" },
+		init = function()
+			require("orgmode").setup_ts_grammar()
+			require("nvim-treesitter.configs").setup({
+				highlight = {
+					enable = true,
+					additional_vim_regex_highlighting = { "org" },
+				},
+				ensure_installed = { "org" },
+			})
+			require("orgmode").setup({
+				org_agenda_files = { "~/doc/org/*" },
+				org_default_notes_file = "~/doc/org/refile.org",
+			})
+		end,
 	},
 }
