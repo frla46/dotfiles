@@ -234,12 +234,14 @@ c { command(echo -n $(realpath $1\) | xsel --input --clipboard); }
 D { command(trash-put $1)}
 
 @MONTAGE {
+  <Escape>  { montage_mode_return_cancel() }
+  q { quit(); }
   g { goto_file_byindex(0); }
   G { goto_file_byindex(-1); }
 	h { montage_mode_shift_x(-1); }
 	l { montage_mode_shift_x(1); }
 	k { montage_mode_shift_y(-1); }
-	j { montage_mode_shift_y(0); }
+	j { montage_mode_shift_y(1); }
   K { montage_mode_shift_y_pg(-1); }
   J { montage_mode_shift_y_pg(1); }
   f { toggle_fullscreen(0); }

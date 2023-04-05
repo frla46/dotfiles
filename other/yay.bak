@@ -75,6 +75,7 @@ man-db
 man-pages-ja
 mpc
 mpd
+mpv
 ncmpcpp
 neofetch
 neovim
@@ -150,3 +151,4 @@ zathura
 zathura-pdf-poppler
 zram-generator
 zsh
+zsh-antidote

@@ -28,7 +28,7 @@ map u
 map '"'
 
 # set mappings
-map <esc> quit
+# map <esc> quit
 map <enter> shell
 map yy copy
 map yp yank-path
@@ -51,6 +51,10 @@ map ` mark-load
 map <c-z> $kill -STOP $PPID
 map gv push :glob-select<space>
 map R bulkrename
+map A rename
+map I push A<c-a>
+map i push A<a-b><a-b><a-f>
+map a push A<a-b>
 map J :updir; down; open
 map K :updir; up; open
 map uv unselect
@@ -66,7 +70,7 @@ cmd open &{{
     audio/* | video/* )
       mpv $fx;;
     image/*)
-      pqiv $(\ls -F | rg -v / | sed s/\*$//g) ;;
+      pqiv $(fd -I -H -d 1 -t f -e 'png' -e 'jpg' -e 'jpeg' -e 'gif' -e 'webp');;
     application/pdf )
       zathura $fx;;
     exe/* )
@@ -80,10 +84,6 @@ cmd open &{{
         * ) :;;
       esac;;
   esac
-}}
-
-cmd hoge !{{
-  echo "$fx"
 }}
 
 cmd trash $trash-put $fx
