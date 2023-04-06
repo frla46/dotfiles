@@ -222,20 +222,47 @@ v { nop(); }
 q { quit(); }
 r { reload(); }
 m { montage_mode_enter(); }
+# nav
 k { goto_file_relative(-1); }
 j { goto_file_relative(1); }
 g { goto_file_byindex(0); }
 G { goto_file_byindex(-1); }
+f  { jump_dialog() }
+u  { goto_earlier_file() }
+# options
 i { toggle_info_box(); }
-f { toggle_fullscreen(0); }
+F { toggle_fullscreen(0); }
 s { toggle_scale_mode(); }
 n { toggle_negate_mode(0) }
+S { toggle_slideshow() }
+# rotate and flip
+<Control>h  { rotate_left() }
+<Control>l  { rotate_right() }
+<Control>j  { flip_horizontally() }
+<Control>k  { flip_vertically() }
+# mouse
+<Mouse-Scroll-1>  { goto_file_relative(-1) }
+<Mouse-Scroll-2>  { goto_file_relative(1) }
+<Mouse-3>  { quit() }
+# zoom and shift
+<plus>  { set_scale_level_relative(1.1) }
+<minus>  { set_scale_level_relative(0.9) }
+<equal> { reset_scale_level() }
+<Up>  { shift_y(50) }
+<Down>  { shift_y(-50) }
+<Left>  { shift_x(50) }
+<Right>  { shift_x(-50) }
+# command
 c { command(echo -n $(realpath $1\) | xsel --input --clipboard); }
 D { command(trash-put $1)}
 
 @MONTAGE {
+  <Return>  { montage_mode_return_proceed() }
   <Escape>  { montage_mode_return_cancel() }
+  m { montage_mode_return_cancel() }
+  F { toggle_fullscreen(0); }
   q { quit(); }
+  # nav
   g { goto_file_byindex(0); }
   G { goto_file_byindex(-1); }
 	h { montage_mode_shift_x(-1); }
@@ -244,5 +271,5 @@ D { command(trash-put $1)}
 	j { montage_mode_shift_y(1); }
   K { montage_mode_shift_y_pg(-1); }
   J { montage_mode_shift_y_pg(1); }
-  f { toggle_fullscreen(0); }
+  f { montage_mode_follow(fdsajklrewuiovcxm) }
 }

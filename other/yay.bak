@@ -84,6 +84,7 @@ networkmanager
 nodejs
 nordic-darker-theme
 nordic-theme
+nordzy-cursors
 noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
@@ -115,6 +116,7 @@ stow
 sudo
 texinfo
 timeshift
+tmux
 trash-cli
 tree
 ttf-hackgen
@@ -129,7 +131,6 @@ vimv-git
 virtualbox
 vivaldi
 vulkan-radeon
-w3m
 wget
 which
 wine

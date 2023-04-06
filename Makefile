@@ -2,7 +2,7 @@
 
 current_dir := $(shell pwd)
 
-packages := alacritty aria2 atool capitaine-cursors chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv zsh-antidote
+packages := alacritty aria2 atool capitaine-cursors chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv zsh-antidote mpd zoxide
 
 setup: yay pkg link conf
 

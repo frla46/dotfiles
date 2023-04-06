@@ -29,37 +29,39 @@ map '"'
 
 # set mappings
 # map <esc> quit
-map <enter> shell
-map yy copy
-map yp yank-path
-map yd yank-dirname
-map yn yank-basename
-map y. yank-basename-without-extension
-map dd cut
-map p paste
+map <enter> :shell
+map yy :copy
+map yp :yank-path
+map yd :yank-dirname
+map yn :yank-basename
+map y. :yank-basename-without-extension
+map dd :cut
+map p :paste
+map P :link
 map x $$f
 map X !$f
 map <c-x> &$f
-map <backspace2> set hidden!
+map <backspace2> :set hidden!
 map e $lf -remote "send $id \$$EDITOR \$fx"
 map E &alacritty -e nvim $fx
-map zp set preview!
-map DD trash
-map DR trash-restore
+map zp :set preview!
+map DD :trash
+map DR :trash-restore
 map ? !file --mime-type -Lb $fx
-map ` mark-load
+map ` :mark-load
 map <c-z> $kill -STOP $PPID
-map gv push :glob-select<space>
-map R bulkrename
-map A rename
-map I push A<c-a>
-map i push A<a-b><a-b><a-f>
-map a push A<a-b>
+map gv :push :glob-select<space>
+map R :bulkrename
+map A :rename
+map I :push A<c-a>
+map i :push A<a-b><a-b><a-f>
+map a :push A<a-b>
 map J :updir; down; open
 map K :updir; up; open
-map uv unselect
-map um mark-remove
-map P :link
+map uv :unselect
+map um :mark-remove
+map f :zi
+map F :push :z<space>
 
 ## commands
 cmd open &{{
@@ -119,6 +121,7 @@ cmd yank-basename-without-extension ${{
 
 cmd on-cd &{{
   # printf "\033]0; $PWD\007" > /dev/tty
+  zoxide add $(pwd)
   printf "\033]0; $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
 }}
 
@@ -146,4 +149,14 @@ cmd link %{{
   esac
   rm ~/.local/share/lf/files
   lf -remote "send clear"
+}}
+
+# zoxide
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@)"
+	lf -remote "send $id cd $result"
+}}
+cmd zi ${{
+	result="$(zoxide query -i)"
+	lf -remote "send $id cd $result"
 }}

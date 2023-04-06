@@ -1,7 +1,5 @@
 # .zsh_plugins.txt
 sindresorhus/pure kind:fpath
-olets/zsh-abbr    kind:defer
 zsh-users/zsh-completions kind:defer
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-syntax-highlighting kind:defer
-agkozak/zsh-z kind:defer

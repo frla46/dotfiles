@@ -111,7 +111,7 @@ set $audio "audio [0-9:%, m:mute, mpd[space:toggle, j:voldown, k:volup, <:prev, 
 set $volset pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
-  bindsym m exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+  bindsym m exec --no-startup-id $volset 0%
   bindsym 1 exec --no-startup-id $volset 10%
   bindsym 2 exec --no-startup-id $volset 20%
   bindsym 3 exec --no-startup-id $volset 30%
@@ -125,6 +125,8 @@ mode $audio {
   bindsym space exec --no-startup-id mpc toggle
   bindsym shift+comma exec --no-startup-id mpc prev
   bindsym shift+period exec --no-startup-id mpc next
+  bindsym h exec --no-startup-id mpc seek -00:00:10
+  bindsym l exec --no-startup-id mpc seek +00:00:10
   bindsym j exec --no-startup-id mpc volume -10
   bindsym k exec --no-startup-id mpc volume +10
   bindsym c exec --no-startup-id "mpc current | sed -e 's|^.*/||; s|\..*$||' | xsel --clipboard --input"
@@ -251,9 +253,9 @@ default_border none
 ## autostart
 # exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
-exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 200 40
-exec_always --no-startup-id greenclip daemon > /dev/null
+exec_always --no-startup-id killall greenclip && greenclip daemon
+exec --no-startup-id killall redshift && redshift -x && redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
 exec --no-startup-id picom -b
