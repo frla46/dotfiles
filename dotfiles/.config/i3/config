@@ -255,7 +255,7 @@ default_border none
 exec --no-startup-id fcitx5
 exec_always --no-startup-id xset r rate 200 40
 exec_always --no-startup-id killall greenclip; greenclip daemon
-exec --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
 exec --no-startup-id picom -b

@@ -41,3 +41,11 @@ autocmd("BufWritePre", {
 	pattern = "*",
 	command = ":%s/\\s\\+$//e",
 })
+
+-- disable spellcheck for lazyvim
+autocmd({ "FileType" }, {
+	pattern = "markdown",
+	callback = function()
+		vim.opt_local["spell"] = false
+	end,
+})

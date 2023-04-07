@@ -5,18 +5,11 @@ function _select-history() {
   CURSOR=${#BUFFER}
 }
 zle -N _select-history
-bindkey '^r' _select-history
 
 # open file in editor with fzf
 function _fe() {
   local file
   file=$(fd --type file -H | fzf) && $EDITOR "$file"
-}
-
-# z with fzf
-function _fz() {
-  local dir
-  dir=$(z -l | sed 's/[0-9 ]*//' | fzf) && cd "$dir"
 }
 
 # cd with fzf included hidden directory
@@ -60,7 +53,6 @@ function _ctrl-z-fg () {
   fi
 }
 zle -N _ctrl-z-fg
-bindkey '^z' _ctrl-z-fg
 
 # prevent instance nested in lf
 # function lf() {
