@@ -30,5 +30,3 @@ eval "$(zoxide init zsh)"
 # bindkey
 bindkey '^r' _select-history
 bindkey '^z' _ctrl-z-fg
-
-source /home/frla/.config/broot/launcher/bash/br
