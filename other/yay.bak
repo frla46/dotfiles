@@ -7,8 +7,10 @@ atool
 autoconf
 automake
 base
+bat
 binutils
 bison
+bottom
 capitaine-cursors
 chromium
 clamav
@@ -18,7 +20,6 @@ debugedit
 deja-dup
 discord
 dmenu
-docker
 dunst
 exa
 fakeroot
@@ -41,7 +42,6 @@ gcc
 gettext
 gimp
 git
-gotop
 grep
 groff
 grub
@@ -49,6 +49,7 @@ gst-plugin-pipewire
 gzip
 hdparm
 i3-wm
+i3blocks
 i3lock
 i3status
 iwd
@@ -76,8 +77,9 @@ man-pages-ja
 mpc
 mpd
 mpv
+nb
+ncdu
 ncmpcpp
-neofetch
 neovim
 network-manager-applet
 networkmanager
@@ -91,6 +93,7 @@ noto-fonts-extra
 npm
 p7zip
 pacman
+pandoc-cli
 patch
 picom
 pipewire
@@ -114,6 +117,8 @@ stalonetray
 steam
 stow
 sudo
+task
+taskwarrior-tui
 texinfo
 timeshift
 tmux

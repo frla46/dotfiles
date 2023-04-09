@@ -22,10 +22,9 @@ alias -g VI='|_vipe'
 # oneliner
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias precp='fc -lrn|head -n 1 C'
-alias memo="$EDITOR ~/doc/org/memo.org"
 alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
-alias mozc_adddic='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
+alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias pysvr='python -m http.server 8000'
 
 # git
@@ -63,3 +62,7 @@ if [[ $(type exa) ]]; then
   alias lal='exa -a -l'
 fi
 
+# nb
+if [[ $(type nb) ]]; then
+  alias nbf='nb edit $(nb list --no-color | fzf | sed "s|\[\([0-9]*\)\].*|\1|")'
+fi
