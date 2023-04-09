@@ -79,7 +79,7 @@ cmd open &{{
       wine $fx;;
     *)
       case $fx in
-        *.pptx | *.odt | *.docx | *.ods )
+        *.pptx | *.odt | *.docx | *.ods | *.xlsx)
           libreoffice $fx;;
         *.zip | *.rar | *.7z )
           lf -remote "send $id :extract \$fx";;
