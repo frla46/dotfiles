@@ -22,3 +22,6 @@ export XMODIFIERS=@im=fcitx5
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type file --hidden'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+
+# bat
+export BAT_THEME="Nord"
