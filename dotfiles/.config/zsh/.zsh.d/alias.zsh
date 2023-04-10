@@ -4,7 +4,6 @@ alias c='cd'
 alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
-alias ps='procs'
 alias md='mkdir'
 #alias rm='rm -i'
 alias cp='cp -i'
@@ -21,16 +20,11 @@ alias -g VI='|_vipe'
 
 # oneliner
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
-alias precp='fc -lrn|head -n 1 C'
+alias precp='fc -ln | tail -n 1 C'
 alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias pysvr='python -m http.server 8000'
-
-# git
-if [[ $(type git) ]]; then
-  alias g='git'
-fi
 
 # fd
 if [[ $(type fd) ]]; then
@@ -41,6 +35,12 @@ fi
 if [[ $(type rg) ]]; then
   alias grep='rg'
 fi
+
+# procs
+if [[ $(type procs) ]]; then
+  alias ps='procs'
+fi
+
 
 # protonvpn
 if [[ $(type protonvpn-cli) ]]; then
@@ -64,5 +64,11 @@ fi
 
 # nb
 if [[ $(type nb) ]]; then
-  alias nbf='nb edit $(nb list --no-color | fzf | sed "s|\[\([0-9]*\)\].*|\1|")'
+  alias n='nb'
+  alias na='n a'
+  alias ne='n e'
+  alias nd='n d'
+  alias nf='n list --no-color | fzf | sed "s|\[\([0-9]*\)\].*|\1|"'
+  alias nfe='ne $(nf)'
+  alias nfd='nd $(nf)'
 fi

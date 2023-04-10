@@ -80,14 +80,14 @@ bindsym $mod+shift+10 move container to workspace number $ws10
 
 ## mode
 # system
-set $system "system [q:poweroff, r:reboot, s:suspend, L:logout, l:lock]"
+set $system "system [q:poweroff, r:reboot, s:suspend, l:lock]"
 bindsym $mod+shift+q mode $system
 mode $system {
   bindsym q exec "systemctl poweroff"; mode "default"
   bindsym r exec "systemctl reboot"; mode "default"
   bindsym s exec "systemctl suspend"; mode "default"
-  bindsym L exec "logout"; mode "default"
-  bindsym l exec "dm-tool lock"; mode "default"
+  bindsym l exec "i3lock --color=2E3440 --ring-color=5E81AC --inside-color=2E3440 --insidever-color=2E3440 --ringver-color=A3BE8C --ringwrong-color=D08770 --insidewrong-color=2E3440 --keyhl-color=81A1C1 --bshl-color=81A1C1 --line-color=2E3440ff --separator-color=2E344000 --radius=200 --ring-width=10 --verif-text='' --wrong-text='' --noinput-text='' --lock-text='' --lockfailed-text=''"; mode "default"
+  # bindsym L exec "logout"; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -107,8 +107,9 @@ mode $layout {
 }
 
 # audio
-set $audio "audio [0-9:%, m:mute, mpd[space:toggle, j:voldown, k:volup, <:prev, >:next, c:cpTitle]]"
+set $audio "audio [0-9:%, m:mute, mpv[space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]]"
 set $volset pactl set-sink-volume @DEFAULT_SINK@
+set $mpvctl playerctl -p mpv
 bindsym $mod+a mode $audio
 mode $audio {
   bindsym m exec --no-startup-id $volset 0%
@@ -122,14 +123,14 @@ mode $audio {
   bindsym 8 exec --no-startup-id $volset 80%
   bindsym 9 exec --no-startup-id $volset 90%
   bindsym 0 exec --no-startup-id $volset 100%
-  bindsym space exec --no-startup-id mpc toggle
-  bindsym shift+comma exec --no-startup-id mpc prev
-  bindsym shift+period exec --no-startup-id mpc next
-  bindsym h exec --no-startup-id mpc seek -00:00:10
-  bindsym l exec --no-startup-id mpc seek +00:00:10
-  bindsym j exec --no-startup-id mpc volume -10
-  bindsym k exec --no-startup-id mpc volume +10
-  bindsym c exec --no-startup-id "mpc current | sed -e 's|^.*/||; s|\..*$||' | xsel --clipboard --input"
+  bindsym space exec --no-startup-id $mpvctl play-pause
+  bindsym shift+comma exec --no-startup-id $mpvctl previous
+  bindsym shift+period exec --no-startup-id $mpvctl next
+  bindsym h exec --no-startup-id $mpvctl position 5-
+  bindsym l exec --no-startup-id $mpvctl position 5+
+  bindsym j exec --no-startup-id $mpvctl volume 0.1-
+  bindsym k exec --no-startup-id $mpvctl volume 0.1+
+  bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 
@@ -147,7 +148,7 @@ mode "resize" {
 # screenshot
 set $capture "screen shot"
 set $pic_dir /home/frla/pic/screenshot
-set $delay 0.1
+set $delay 0.01
 bindsym $mod+shift+s mode $capture
 mode  $capture {
   bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
@@ -163,11 +164,11 @@ bindsym $mod+x mode $exec
 mode  $exec {
   bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
   bindsym d exec --no-startup-id  discord; mode "default"
-  bindsym e exec --no-startup-id  alacritty -t nvim -e nvim; mode "default"
+  bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
   bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
-  bindsym v exec --no-startup-id  alacritty -t pulsemixer -e pulsemixer; mode "default"
-  bindsym m exec --no-startup-id  alacritty -t ncmpcpp -e ncmpcpp; mode "default"
-  bindsym t exec --no-startup-id  alacritty -t btm -e btm; mode "default"
+  bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
+  bindsym m exec --no-startup-id  alacritty -e ncmpcpp; mode "default"
+  bindsym t exec --no-startup-id  alacritty -e btm; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -251,7 +252,6 @@ focus_follows_mouse no
 default_border none
 
 ## autostart
-# exec --no-startup-id nm-applet
 exec --no-startup-id fcitx5
 exec_always --no-startup-id xset r rate 200 40
 exec_always --no-startup-id killall greenclip; greenclip daemon
@@ -261,6 +261,7 @@ exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-mo
 exec --no-startup-id picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+exec --no-startup-id nm-applet
 
 exec --no-startup-id alacritty -t scratch
 exec --no-startup-id vivaldi-stable

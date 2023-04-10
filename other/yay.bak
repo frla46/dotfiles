@@ -21,12 +21,13 @@ deja-dup
 discord
 dmenu
 dunst
+duply
 exa
 fakeroot
 fcitx5
 fcitx5-configtool
 fcitx5-gtk
-fcitx5-mozc
+fcitx5-mozc-ext-neologd
 fcitx5-nord
 fcitx5-qt
 fd
@@ -106,7 +107,7 @@ procs
 protonvpn-cli
 pulsemixer
 python-pip
-ranger
+rclone
 redshift
 ripgrep
 rofi
@@ -136,6 +137,7 @@ vimv-git
 virtualbox
 vivaldi
 vulkan-radeon
+w3m
 wget
 which
 wine
@@ -152,6 +154,7 @@ xorg-xinput
 xsel
 xterm
 yay
+yt-dlp
 z
 zathura
 zathura-pdf-poppler

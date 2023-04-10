@@ -1,19 +1,25 @@
 # dotfiles
 - os: Arch Linux
-- theme: nord
-- wm: i3
-  - bar: i3-status
-- terminal: alacritty
-- shell: zsh
-  - prompt: pure
-  - plugin manager: antidote
-- editor: neovim
+- theme: [nord](https://github.com/nordtheme/nord)
+  - cursor: [nordzy-cursors](https://github.com/alvatip/Nordzy-cursors)
+  - gtk-theme: [nordic-darker-theme](https://github.com/EliverLara/Nordic)
+- wm: [i3](https://github.com/i3/i3)
+  - bar: [i3-status](https://github.com/i3/i3status)
+- terminal: [alacritty](https://github.com/alacritty/alacritty)
+- shell: [zsh](https://github.com/zsh-users/zsh)
+  - prompt: [pure](https://github.com/sindresorhus/pure)
+  - plugin manager: [antidote](https://github.com/mattmc3/antidote)
+  - plugins
+    - [zsh-users/zsh-completions](https://github.com/zsh-users/zsh-completions)
+    - [zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
+    - [zsh-users/zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
+- editor: [neovim](https://github.com/neovim/neovim)
   - [LazyVim](https://github.com/LazyVim/LazyVim) based
-- launcher: rofi
-- file manager: lf
-  - preview: ctpv
-- image viewer: pqiv
-- video viewer: mpv
+- launcher: [rofi](https://github.com/davatorium/rofi)
+- file manager: [lf](https://github.com/gokcehan/lf)
+  - preview: [ctpv](https://github.com/NikitaIvanovV/ctpv)
+- image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
+- video viewer: [mpv](https://github.com/mpv-player/mpv)
 
 # TODO
 - add images in README.md

@@ -1,0 +1,40 @@
+playlist_disable_highlight_delay = 0
+message_delay_time = 3
+seek_time = 5
+volume_change_step = 10
+centered_cursor  = yes
+
+### Appearance
+colors_enabled = "yes"
+playlist_display_mode = "columns"
+user_interface = "alternative"
+statusbar_visibility = "no"
+header_visibility = "no"
+titles_visibility = "no"
+browser_display_mode = "columns"
+search_engine_display_mode = "columns"
+playlist_editor_display_mode = "columns"
+display_bitrate = "no"
+display_remaining_time = "no"
+
+# Progress bar
+progressbar_look = ─|
+progressbar_color = "black"
+progressbar_elapsed_color = "cyan"
+
+# Song status
+now_playing_prefix = "$b"
+now_playing_suffix = "$/b"
+song_status_format = "$b%f$/b {by} $b%l$/b"
+
+# Header
+alternative_header_second_line_format =
+
+# Song list
+song_list_format = "{%f}$R{%l}"
+
+# Playlist
+song_columns_list_format = "(40)[cyan]{f} (7f)[cyan]{l}"
+
+# Colors
+main_window_color = "cyan"

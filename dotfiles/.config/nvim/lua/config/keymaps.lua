@@ -12,7 +12,6 @@ map("n", "+", "<c-a>", opts)
 map("n", "-", "<c-x>", opts)
 map({ "n", "v" }, "<leader>-", ":", opts)
 --map({ "n", "v" }, "<leader>;", ":", opts)
-map("n", "<leader>fem", ":e ~/doc/org/memo.org<cr>", opts)
 
 vim.keymap.del("n", "<leader>|")
 
