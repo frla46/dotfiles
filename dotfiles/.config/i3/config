@@ -260,7 +260,6 @@ exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
 exec --no-startup-id picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 exec --no-startup-id nm-applet
 
 exec --no-startup-id alacritty -t scratch
