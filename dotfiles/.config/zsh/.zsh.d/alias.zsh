@@ -64,6 +64,7 @@ fi
 
 # nb
 if [[ $(type nb) ]]; then
+  alias ng='lazygit -p ~/.nb/home/'
   alias n='nb'
   alias na='n a'
   alias ne='n e'

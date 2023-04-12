@@ -1,7 +1,7 @@
 # i3 config file (v4)
 # https://i3wm.org/docs/userguide.html
 
-# mod key (alt)
+# mod key
 set $mod Mod1
 set $super Mod4
 
@@ -9,9 +9,9 @@ set $super Mod4
 font pango:HackGen 12
 
 # direction (vim)
-set $up k
-set $down j
 set $left h
+set $down j
+set $up k
 set $right l
 
 # change focus
@@ -35,7 +35,7 @@ bindsym $mod+minus scratchpad show
 
 # kill
 bindsym $mod+q kill
-bindsym --release button3 kill
+bindsym --release button2 kill
 
 # restart
 bindsym $mod+shift+r restart

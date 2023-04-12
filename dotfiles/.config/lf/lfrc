@@ -142,9 +142,7 @@ cmd link %{{
     exit 0
   fi
   case "$mode" in
-    # symbolically copy mode is indicating a soft link
     copy) ln -sr -t . -- "$@";;
-    # while a move mode is indicating a hard link
     move) ln -t . -- "$@";;
   esac
   rm ~/.local/share/lf/files

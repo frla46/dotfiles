@@ -12,6 +12,7 @@ binutils
 bison
 bottom
 capitaine-cursors
+chezmoi
 chromium
 clamav
 clipnotify
@@ -51,7 +52,7 @@ gzip
 hdparm
 i3-wm
 i3blocks
-i3lock
+i3lock-color
 i3status
 iwd
 jq
@@ -78,9 +79,9 @@ man-pages-ja
 mpc
 mpd
 mpv
+mpv-mpris
 nb
 ncdu
-ncmpcpp
 neovim
 network-manager-applet
 networkmanager
@@ -102,6 +103,7 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 pkgconf
+playerctl
 pqiv
 procs
 protonvpn-cli
@@ -112,6 +114,7 @@ redshift
 ripgrep
 rofi
 rofi-greenclip
+rofimpd
 sed
 smartmontools
 stalonetray
@@ -131,8 +134,6 @@ ufw
 unclutter
 unrar
 unzip
-vi
-vim
 vimv-git
 virtualbox
 vivaldi
