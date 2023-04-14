@@ -68,7 +68,9 @@ cmd open &{{
   case $mimetype in
     text/* | application/json | inode/x-empty )
       lf -remote "send $id \$$EDITOR \$fx";;
-    audio/* | video/* )
+    audio/* )
+      mpv --no-video $fx;;
+    video/* )
       mpv $fx;;
     image/*)
       pqiv --browse $fx;;
