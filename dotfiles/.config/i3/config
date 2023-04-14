@@ -95,21 +95,25 @@ mode $system {
 set $layout "layout [h:split h, v:split v, s:stacking, t:tabbed, e:toggle, f:floating, p:parent, c:child]"
 bindsym $mod+s mode $layout
 mode $layout {
-  bindsym $mod+h split h; mode "default"
-  bindsym $mod+v split v; mode "default"
-  bindsym $mod+s layout stacking; mode "default"
-  bindsym $mod+t layout tabbed; mode "default"
-  bindsym $mod+e layout toggle split; mode "default"
-  bindsym $mod+f floating toggle; mode "default"
-  bindsym $mod+p focus parent; mode "default"
-  bindsym $mod+c focus child; mode "default"
+  bindsym h split h; mode "default"
+  bindsym v split v; mode "default"
+  bindsym s layout stacking; mode "default"
+  bindsym t layout tabbed; mode "default"
+  bindsym e layout toggle split; mode "default"
+  bindsym f floating toggle; mode "default"
+  bindsym p focus parent; mode "default"
+  bindsym c focus child; mode "default"
   bindsym Escape mode "default"
 }
 
 # audio
-set $audio "audio [0-9:%, m:mute, mpv[space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]]"
+set $audio "audio [m0-9]"
+set $mpd_audio "mpd_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
+set $mpv_audio "mpv_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
+set $chromium_audio "chromium_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $volset pactl set-sink-volume @DEFAULT_SINK@
 set $mpvctl playerctl -p mpv
+set $chromiumctl playerctl -p chromium
 bindsym $mod+a mode $audio
 mode $audio {
   bindsym m exec --no-startup-id $volset 0%
@@ -123,6 +127,12 @@ mode $audio {
   bindsym 8 exec --no-startup-id $volset 80%
   bindsym 9 exec --no-startup-id $volset 90%
   bindsym 0 exec --no-startup-id $volset 100%
+  bindsym $mod+m mode $mpd_audio
+  bindsym $mod+v mode $mpv_audio
+  bindsym $mod+w mode $chromium_audio
+  bindsym Escape mode "default"
+}
+mode $mpv_audio {
   bindsym space exec --no-startup-id $mpvctl play-pause
   bindsym shift+comma exec --no-startup-id $mpvctl previous
   bindsym shift+period exec --no-startup-id $mpvctl next
@@ -131,6 +141,28 @@ mode $audio {
   bindsym j exec --no-startup-id $mpvctl volume 0.1-
   bindsym k exec --no-startup-id $mpvctl volume 0.1+
   bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
+  bindsym Escape mode "default"
+}
+mode $chromium_audio {
+  bindsym space exec --no-startup-id $chromiumctl play-pause
+  bindsym shift+comma exec --no-startup-id $chromiumctl previous
+  bindsym shift+period exec --no-startup-id $chromiumctl next
+  bindsym h exec --no-startup-id $chromiumctl position 5-
+  bindsym l exec --no-startup-id $chromiumctl position 5+
+  bindsym j exec --no-startup-id $chromiumctl volume 0.1-
+  bindsym k exec --no-startup-id $chromiumctl volume 0.1+
+  bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
+  bindsym Escape mode "default"
+}
+mode $mpd_audio {
+  bindsym space exec --no-startup-id mpc toggle
+  bindsym shift+comma exec --no-startup-id mpc prev
+  bindsym shift+period exec --no-startup-id mpc next
+  bindsym h exec --no-startup-id mpc seek -00:00:10
+  bindsym l exec --no-startup-id mpc seek +00:00:10
+  bindsym j exec --no-startup-id mpc volume -10
+  bindsym k exec --no-startup-id mpc volume +10
+  bindsym c exec --no-startup-id "mpc current | sed -e 's|^.*/||; s|\..*$||' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 
@@ -253,7 +285,7 @@ default_border none
 
 ## autostart
 exec --no-startup-id fcitx5
-exec_always --no-startup-id xset r rate 200 40
+exec_always --no-startup-id xset r rate 180 50
 exec_always --no-startup-id killall greenclip; greenclip daemon
 exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec --no-startup-id unclutter -idle 1 -root
@@ -261,7 +293,7 @@ exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-mo
 exec --no-startup-id picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id nm-applet
-exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+# exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
 exec --no-startup-id alacritty -t scratch
 exec --no-startup-id vivaldi-stable
