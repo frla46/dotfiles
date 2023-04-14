@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 -- https://github.com/NurioHin/mpv-bookmarker
 
 -- // Bookmarker Menu v1.3.1 for mpv \\ --
@@ -35,33 +36,72 @@ local oldSlot = 0
 
 -- // Controls \\ --
 
--- List of custom controls and their function
+-- -- List of custom controls and their function
+-- local bookmarkerControls = {
+-- 	ESC = function()
+-- 		abort("")
+-- 	end,
+-- 	DOWN = function()
+-- 		jumpSlot(1)
+-- 	end,
+-- 	UP = function()
+-- 		jumpSlot(-1)
+-- 	end,
+-- 	RIGHT = function()
+-- 		jumpPage(1)
+-- 	end,
+-- 	LEFT = function()
+-- 		jumpPage(-1)
+-- 	end,
+-- 	s = function()
+-- 		addBookmark()
+-- 	end,
+-- 	S = function()
+-- 		mode = "save"
+-- 		typerStart()
+-- 	end,
+-- 	p = function()
+-- 		mode = "replace"
+-- 		typerStart()
+-- 	end,
+-- 	r = function()
+-- 		mode = "rename"
+-- 		typerStart()
+-- 	end,
+-- 	f = function()
+-- 		mode = "filepath"
+-- 		typerStart()
+-- 	end,
+-- 	m = function()
+-- 		mode = "move"
+-- 		moverStart()
+-- 	end,
+-- 	DEL = function()
+-- 		mode = "delete"
+-- 		typerStart()
+-- 	end,
+-- 	ENTER = function()
+-- 		jumpToBookmark(currentSlot)
+-- 	end,
+-- 	KP_ENTER = function()
+-- 		jumpToBookmark(currentSlot)
+-- 	end,
+-- }
 local bookmarkerControls = {
 	ESC = function()
 		abort("")
 	end,
-	DOWN = function()
+	j = function()
 		jumpSlot(1)
 	end,
-	UP = function()
+	k = function()
 		jumpSlot(-1)
 	end,
-	RIGHT = function()
+	l = function()
 		jumpPage(1)
 	end,
-	LEFT = function()
+	h = function()
 		jumpPage(-1)
-	end,
-	s = function()
-		addBookmark()
-	end,
-	S = function()
-		mode = "save"
-		typerStart()
-	end,
-	p = function()
-		mode = "replace"
-		typerStart()
 	end,
 	r = function()
 		mode = "rename"
@@ -87,22 +127,28 @@ local bookmarkerControls = {
 	end,
 }
 
+-- local bookmarkerFlags = {
+-- 	DOWN = { repeatable = true },
+-- 	UP = { repeatable = true },
+-- 	RIGHT = { repeatable = true },
+-- 	LEFT = { repeatable = true },
+-- }
 local bookmarkerFlags = {
-	DOWN = { repeatable = true },
-	UP = { repeatable = true },
-	RIGHT = { repeatable = true },
-	LEFT = { repeatable = true },
+	j = { repeatable = true },
+	k = { repeatable = true },
+	l = { repeatable = true },
+	h = { repeatable = true },
 }
 
 -- Activate the custom controls
-function activateControls(name, controls, flags)
+local function activateControls(name, controls, flags)
 	for key, func in pairs(controls) do
 		mp.add_forced_key_binding(key, name .. key, func, flags[key])
 	end
 end
 
 -- Deactivate the custom controls
-function deactivateControls(name, controls)
+local function deactivateControls(name, controls)
 	for key, _ in pairs(controls) do
 		mp.remove_key_binding(name .. key)
 	end
@@ -498,7 +544,9 @@ end
 function saveTable(t, path)
 	local contents = utils.format_json(t)
 	local file = io.open(path .. ".tmp", "wb")
-	file:write(contents)
+	if file then
+		file:write(contents)
+	end
 	io.close(file)
 	os.remove(path)
 	os.rename(path .. ".tmp", path)
