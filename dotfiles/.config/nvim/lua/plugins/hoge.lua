@@ -15,7 +15,7 @@ return {
 		"lmburns/lf.nvim",
 		dependencies = { "plenary.nvim", "toggleterm.nvim" },
 		keys = {
-			{ "<leader>e", "<cmd>Lf<cr>" },
+			{ "<leader>e", "<cmd>Lf<cr>", desc = "File manager (lf)" },
 		},
 		opts = function()
 			-- vim.g.lf_netrw = 1
@@ -136,9 +136,7 @@ return {
 						},
 					},
 					lualine_y = {},
-					lualine_z = {
-						{ "location", padding = { left = 0, right = 1 } },
-					},
+					lualine_z = {},
 				},
 			}
 		end,
