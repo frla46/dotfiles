@@ -61,7 +61,6 @@ map K :updir; up; open
 map uv :unselect
 map um :mark-remove
 map f :zi
-map F :push :z<space>
 
 ## commands
 cmd open &{{
@@ -72,14 +71,14 @@ cmd open &{{
     audio/* | video/* )
       mpv $fx;;
     image/*)
-      pqiv $(fd -I -H -d 1 -t f -e 'png' -e 'jpg' -e 'jpeg' -e 'gif' -e 'webp');;
+      pqiv --browse $fx;;
     application/pdf )
       zathura $fx;;
     exe/* )
       wine $fx;;
     *)
       case $fx in
-        *.pptx | *.odt | *.docx | *.ods | *.xlsx)
+        *.pptx | *.odt | *.docx | *.ods | *.xlsx )
           libreoffice $fx;;
         *.zip | *.rar | *.7z )
           lf -remote "send $id :extract \$fx";;
@@ -89,13 +88,11 @@ cmd open &{{
 }}
 
 cmd trash $trash-put $fx
-cmd trash-restore ${{
-  lf -remote "send $id \$trash-restore"
-}}
+cmd trash-restore $trash-restore
 
 cmd extract ${{
     set -f
-    atool -x $f
+    atool -x $fx
 }}
 
 cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard
@@ -150,10 +147,6 @@ cmd link %{{
 }}
 
 # zoxide
-cmd z %{{
-	result="$(zoxide query --exclude $PWD $@)"
-	lf -remote "send $id cd $result"
-}}
 cmd zi ${{
 	result="$(zoxide query -i)"
 	lf -remote "send $id cd $result"
