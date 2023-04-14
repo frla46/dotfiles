@@ -112,8 +112,6 @@ set $mpd_audio "mpd_audio [space:play-pause, j:voldown, k:volup, l:forward, h:ba
 set $mpv_audio "mpv_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $chromium_audio "chromium_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $volset pactl set-sink-volume @DEFAULT_SINK@
-set $mpvctl playerctl -p mpv
-set $chromiumctl playerctl -p chromium
 bindsym $mod+a mode $audio
 mode $audio {
   bindsym m exec --no-startup-id $volset 0%
@@ -133,25 +131,25 @@ mode $audio {
   bindsym Escape mode "default"
 }
 mode $mpv_audio {
-  bindsym space exec --no-startup-id $mpvctl play-pause
-  bindsym shift+comma exec --no-startup-id $mpvctl previous
-  bindsym shift+period exec --no-startup-id $mpvctl next
-  bindsym h exec --no-startup-id $mpvctl position 5-
-  bindsym l exec --no-startup-id $mpvctl position 5+
-  bindsym j exec --no-startup-id $mpvctl volume 0.1-
-  bindsym k exec --no-startup-id $mpvctl volume 0.1+
+  bindsym space exec --no-startup-id playerctl -p mpv play-pause
+  bindsym shift+comma exec --no-startup-id playerctl -p mpv previous
+  bindsym shift+period exec --no-startup-id playerctl -p mpv next
+  bindsym h exec --no-startup-id playerctl -p mpv position 5-
+  bindsym l exec --no-startup-id playerctl -p mpv position 5+
+  bindsym j exec --no-startup-id playerctl -p mpv volume 0.1-
+  bindsym k exec --no-startup-id playerctl -p mpv volume 0.1+
   bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 mode $chromium_audio {
-  bindsym space exec --no-startup-id $chromiumctl play-pause
-  bindsym shift+comma exec --no-startup-id $chromiumctl previous
-  bindsym shift+period exec --no-startup-id $chromiumctl next
-  bindsym h exec --no-startup-id $chromiumctl position 5-
-  bindsym l exec --no-startup-id $chromiumctl position 5+
-  bindsym j exec --no-startup-id $chromiumctl volume 0.1-
-  bindsym k exec --no-startup-id $chromiumctl volume 0.1+
-  bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
+  bindsym space exec --no-startup-id playerctl -p chromium play-pause
+  bindsym shift+comma exec --no-startup-id playerctl -p chromium previous
+  bindsym shift+period exec --no-startup-id playerctl -p chromium next
+  bindsym h exec --no-startup-id playerctl -p chromium position 5-
+  bindsym l exec --no-startup-id playerctl -p chromium position 5+
+  bindsym j exec --no-startup-id playerctl -p chromium volume 0.1-
+  bindsym k exec --no-startup-id playerctl -p chromium volume 0.1+
+  bindsym c exec --no-startup-id "playerctl -p chromium metadata title | sed 's/\..*//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 mode $mpd_audio {
