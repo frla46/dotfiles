@@ -6,7 +6,7 @@ set $mod Mod1
 set $super Mod4
 
 # font
-font pango:HackGen 12
+font pango:hackgen 12
 
 # direction (vim)
 set $left h
@@ -110,7 +110,7 @@ mode $layout {
 set $audio "audio [m0-9]"
 set $mpd_audio "mpd_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $mpv_audio "mpv_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
-set $chromium_audio "chromium_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
+set $browser_audio "chromium_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $volset pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
@@ -127,7 +127,7 @@ mode $audio {
   bindsym 0 exec --no-startup-id $volset 100%
   bindsym $mod+m mode $mpd_audio
   bindsym $mod+v mode $mpv_audio
-  bindsym $mod+w mode $chromium_audio
+  bindsym $mod+w mode $browser_audio
   bindsym Escape mode "default"
 }
 mode $mpv_audio {
@@ -141,7 +141,7 @@ mode $mpv_audio {
   bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
-mode $chromium_audio {
+mode $browser_audio {
   bindsym space exec --no-startup-id playerctl -p chromium play-pause
   bindsym shift+comma exec --no-startup-id playerctl -p chromium previous
   bindsym shift+period exec --no-startup-id playerctl -p chromium next

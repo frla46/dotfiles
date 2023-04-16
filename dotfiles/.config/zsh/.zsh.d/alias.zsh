@@ -9,7 +9,12 @@ alias md='mkdir'
 alias cp='cp -i'
 alias mv='mv -i'
 alias y='yay'
-alias f='lf'
+alias f='lfcd'
+
+
+# my command
+alias j='_fg-fzf'
+alias ariav='_aria-mp4'
 
 # global alias
 alias -g rm='trash-put'
@@ -25,6 +30,9 @@ alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias pysvr='python -m http.server 8000'
+
+# startup option
+alias mpv='mpv --no-terminal'
 
 # fd
 if [[ $(type fd) ]]; then

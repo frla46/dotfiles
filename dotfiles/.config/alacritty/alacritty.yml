@@ -1,7 +1,7 @@
 font:
   normal:
-    family: HackGen Console
-    style: Regular
+    family: hackgen console
+    style: regular
   size: 14.0
 
 window:

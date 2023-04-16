@@ -29,7 +29,6 @@ function _fk() {
 }
 
 # fg with fzf
-alias j='_fg-fzf'
 function _fg-fzf() {
   local cnt job
   cnt=$(jobs | wc -l)
@@ -58,11 +57,24 @@ zle -N _ctrl-z-fg
 # function lf() {
 #   [ -n "$LF_LEVEL" ] && exit || command lf "$@"
 # }
+function lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
 
 # use vim as a pipe
 function _vipe () {
   COMMAND=$(echo "$*")
-  \vim - -es +"norm gg$COMMAND" +'%p|q!' |sed '1d'
+  \vim - -es +"norm gg$COMMAND" + '%p|q!' | sed '1d'
 }
 
 # disable "crontab -r"
@@ -75,7 +87,6 @@ function crontab () {
 }
 
 # download mp4 video with aria2
-alias ariav='_aria-mp4'
 function _aria-mp4() {
   sed -e '/^$/d; /^http/!s/\(.\{80\}\)\(.*\)$/\1/; /^http/!s/^/ out=/; /^http/!s/$/.mp4/; /^http/!s/\// /g' $1 >| /tmp/aria-ed.list
   aria2c -i /tmp/aria-ed.list -UWget

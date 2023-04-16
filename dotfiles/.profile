@@ -1,11 +1,8 @@
-# profile
-
-export BROWSER=vivaldi-stable
-export TERM=alacritty
-export TERMINAL=alacritty
-export PAGER=less
-export EDITOR=nvim
-export VISUAL=nvim
+## profile
+export BROWSER='vivaldi-stable'
+export TERM='alacritty'
+export PAGER='bat -p'
+export EDITOR='nvim'
 
 # zsh
 export ZDOTDIR=~/.config/zsh
@@ -24,7 +21,7 @@ export FZF_DEFAULT_COMMAND='fd --type file --hidden'
 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 # bat
-export BAT_THEME="Nord"
+export BAT_THEME='Nord'
 
 # nb
-export NB_COLOR_THEME="smoke"
+export NB_COLOR_THEME='smoke'
