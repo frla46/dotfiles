@@ -5,8 +5,14 @@ return {
 			colorscheme = "nord",
 		},
 	},
-	{ "shaunsingh/nord.nvim" },
-	{ "vim-jp/vimdoc-ja" },
+	{
+		"shaunsingh/nord.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"vim-jp/vimdoc-ja",
+		event = "VeryLazy",
+	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		enabled = false,
@@ -18,9 +24,7 @@ return {
 			{ "<leader>e", "<cmd>Lf<cr>", desc = "File manager (lf)" },
 		},
 		opts = function()
-			-- vim.g.lf_netrw = 1
 			require("lf").setup({
-				-- escape_quit = true,
 				border = "rounded",
 			})
 		end,
