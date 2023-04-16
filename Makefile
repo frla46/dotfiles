@@ -1,8 +1,8 @@
 .PHONY = setup pkgs link conf
 
-current_dir := $(shell pwd)
+CURRENT_DIR := $(shell pwd)
 
-packages := alacritty aria2 atool chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv zsh-antidote zoxide nordzy-cursors bottom i3lock-color playerctl mpv-mpris bat
+PACKAGES := alacritty aria2 atool chromium clamav deja-dup discord dunst exa fcitx5-im fcitx5-nord fd fzf git i3 lazygit lf lxappearance maim man-pages-ja mpv neovim nordic-darker-theme noto-fonts-cjk picom protonvpn-cli pqiv redshift ripgrep rofi rofi-greenclip stow trash-cli ttf-hackgen ufw unclutter zathura zsh ctpv-git vimv zsh-antidote zoxide nordzy-cursors bottom i3lock-color playerctl mpv-mpris bat
 
 setup: yay pkg link conf
 
@@ -10,13 +10,13 @@ yay:
 	git clone https://aur.archlinux.org/yay.git
 	cd yay
 	makepkg -si
+	yay
 
 pkg:
-	yay
-	yay --needed -S ${packages}
+	yay --needed -S ${PACKAGES}
 
 link:
-	cd ${current_dir}
+	cd ${CURRENT_DIR}
 	stow -v dotfiles
 
 conf:
