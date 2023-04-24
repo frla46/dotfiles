@@ -1,0 +1,103 @@
+#header {
+  display: none;
+}
+#browser.linux:not(.native).address-top .toolbar:has(.window-buttongroup.on-mainbar) {
+  padding: 0;
+  min-height: 0;
+  border: none;
+}
+.vivaldi {
+  display: none;
+}
+.window-minimize, .window-maximize, .window-close {
+  display: none;
+}
+.ToolbarButton-Button {
+  display: none;
+}
+
+.panel {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+#panels .tree-item:nth-child(2n) {
+  background-color: #2f2f2f;
+}
+#panels .tree-item:nth-child(2n+1) {
+  background-color: #393939;
+}
+
+.panel .vivaldi-tree .tree-row.folder .expand-icon {
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  margin: 0 !important;
+}
+.panel .vivaldi-tree .tree-row.folder .expand-icon>svg {
+  display: none;
+}
+.panel .vivaldi-tree .tree-row.folder .expand-icon[style*="margin-left: 0px"]+svg {
+  margin-left: 0px !important;
+}
+.panel .vivaldi-tree .tree-row.folder .expand-icon[style*="margin-left: 16px"]+svg {
+  margin-left: 16px !important;
+}
+.panel .vivaldi-tree .tree-row.folder .expand-icon[style*="margin-left: 32px"]+svg {
+  margin-left: 32px !important;
+}
+.panel .vivaldi-tree .tree-row.folder .expand-icon[style*="margin-left: 48px"]+svg {
+  margin-left: 48px !important;
+}
+.panel .vivaldi-tree .tree-row label img[style*="margin-left: 16px"] {
+  margin-left: 0px !important;
+}
+.panel .vivaldi-tree .tree-row label img[style*="margin-left: 32px"] {
+  margin-left: 16px !important;
+}
+.panel .vivaldi-tree .tree-row label img[style*="margin-left: 48px"] {
+  margin-left: 32px !important;
+}
+.panel .vivaldi-tree .tree-row label img[style*="margin-left: 64px"] {
+  margin-left: 48px !important;
+}
+.panel .vivaldi-tree .tree-row label img[style*="margin-left: 80px"] {
+  margin-left: 64px !important;
+}
+
+.title {
+  margin: 0px !important;
+}
+#tabs-tabbar-container > button {
+  display: none !important;
+}
+
+.panel-bookmarks-edit {
+  display: none !important;
+}
+#panels>div.panel-group>div>div.panel.panel-bookmarks>header>h1 {
+  display: none !important;
+}
+#panels>div.panel-group>div>div.panel.panel-bookmarks>header>div>div {
+  display: none !important;
+}
+#panels > div.panel-group > div > div.panel.downloads.isEmpty > div > div {
+  display: none;
+}
+#window-panel > header > div > div {
+  display: none;
+}
+#panels > div.panel-group > div > div.panel.downloads.isEmpty > header > h1 > button {
+  display: none;
+}
+#tabs-container > div.resize > div > div > div {
+  display: none;
+}
+.toolbar-insideinput.toolbar-insideinput.toolbar-insideinput > .button-toolbar > button, .toolbar-insideinput.toolbar-insideinput.toolbar-insideinput > .toolbar-group > .button-toolbar > button {
+  display: none;
+}
+
+.toolbar-extensions svg path {
+	d: path("M10 13l3.634-3.634c.504-.504 1.366-.147 1.366.566v6.137c0 .713-.862 1.07-1.366.566l-3.634-3.634z");
+	opacity: .5;
+}
+

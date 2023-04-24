@@ -49,6 +49,15 @@ if [[ $(type procs) ]]; then
   alias ps='procs'
 fi
 
+# git
+if [[ $(type git) ]]; then
+  alias g='git'
+fi
+
+# lazigit
+if [[ $(type lazygit) ]]; then
+  alias lg='lazygit'
+fi
 
 # protonvpn
 if [[ $(type protonvpn-cli) ]]; then

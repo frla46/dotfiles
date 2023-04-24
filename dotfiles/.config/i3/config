@@ -110,7 +110,7 @@ mode $layout {
 set $audio "audio [m0-9]"
 set $mpd_audio "mpd_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $mpv_audio "mpv_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
-set $browser_audio "chromium_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
+set $browser_audio "browser_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
 set $volset pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
@@ -147,9 +147,9 @@ mode $browser_audio {
   bindsym shift+period exec --no-startup-id playerctl -p chromium next
   bindsym h exec --no-startup-id playerctl -p chromium position 5-
   bindsym l exec --no-startup-id playerctl -p chromium position 5+
-  bindsym j exec --no-startup-id playerctl -p chromium volume 0.1-
-  bindsym k exec --no-startup-id playerctl -p chromium volume 0.1+
-  bindsym c exec --no-startup-id "playerctl -p chromium metadata title | sed 's/\..*//' | xsel --clipboard --input"
+  # # not working change volume
+  # bindsym j exec --no-startup-id playerctl -p chromium volume 0.1-
+  # bindsym k exec --no-startup-id playerctl -p chromium volume 0.1+
   bindsym Escape mode "default"
 }
 mode $mpd_audio {
@@ -291,7 +291,7 @@ exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-mo
 exec --no-startup-id picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id nm-applet
-# exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+exec --no-startup-id mpd ~/.config/mpd/mpd.conf
 
 exec --no-startup-id alacritty -t scratch
 exec --no-startup-id vivaldi-stable

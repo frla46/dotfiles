@@ -20,12 +20,13 @@ set cleaner ctpvclear
 map y
 map d
 map "'"
+map '"'
 map s
 map H
 map M
 map L
 map u
-map '"'
+map r
 
 # set mappings
 # map <esc> quit
@@ -42,20 +43,23 @@ map x $$f
 map X !$f
 map <c-x> &$f
 map <backspace2> :set hidden!
-map e $lf -remote "send $id \$$EDITOR \$fx"
-map E &alacritty -e nvim $fx
+map oe $lf -remote "send $id \$$EDITOR \$fx"
+map oE &alacritty -e $EDITOR $fx
+map ov $lf -remote "send $id \$$PAGER \$fx"
+map oV &alacritty -e bat -p $fx
 map zp :set preview!
-map DD :trash
-map DR :trash-restore
+map DD $trash-put $fx
+map DR $trash-restore
 map ? !file --mime-type -Lb $fx
 map ` :mark-load
 map <c-z> $kill -STOP $PPID
 map gv :push :glob-select<space>
-map R :bulkrename
 map A :rename
+map r :push A<c-u>
 map I :push A<c-a>
 map i :push A<a-b><a-b><a-f>
 map a :push A<a-b>
+map R :bulkrename
 map J :updir; down; open
 map K :updir; up; open
 map uv :unselect
@@ -69,7 +73,7 @@ cmd open &{{
     text/* | application/json | inode/x-empty )
       lf -remote "send $id \$$EDITOR \$fx";;
     audio/* )
-      mpv --no-video $fx;;
+      mpv $fx;;
     video/* )
       mpv $fx;;
     image/*)
@@ -83,18 +87,10 @@ cmd open &{{
         *.pptx | *.odt | *.docx | *.ods | *.xlsx )
           libreoffice $fx;;
         *.zip | *.rar | *.7z )
-          lf -remote "send $id :extract \$fx";;
+          atool -xe $fx;;
         * ) :;;
       esac;;
   esac
-}}
-
-cmd trash $trash-put $fx
-cmd trash-restore $trash-restore
-
-cmd extract ${{
-    set -f
-    atool -x $fx
 }}
 
 cmd yank-path $printf '%s' "$fx" | xclip -i -selection clipboard

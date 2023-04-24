@@ -2,10 +2,13 @@ font:
   normal:
     family: hackgen console
     style: regular
-  size: 14.0
+  size: 13.0
 
 window:
   opacity: 0.5
+
+scrolling:
+  history: 100000
 
 # Copyright (c) 2017-present Arctic Ice Studio <development@arcticicestudio.com>
 # Copyright (c) 2017-present Sven Greb <code@svengreb.de>

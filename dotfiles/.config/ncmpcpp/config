@@ -1,0 +1,27 @@
+playlist_disable_highlight_delay = 0
+message_delay_time = 2
+seek_time = 5
+volume_change_step = 10
+centered_cursor  = yes
+
+### Appearance
+colors_enabled = "no"
+user_interface = "alternative"
+header_visibility = "no"
+browser_display_mode = "columns"
+search_engine_display_mode = "columns"
+playlist_editor_display_mode = "columns"
+display_bitrate = "no"
+display_remaining_time = "no"
+
+# Progress bar
+progressbar_look = ─|
+progressbar_color = "black"
+
+# Song status
+now_playing_prefix = "$b"
+now_playing_suffix = "$/b"
+song_status_format = "$b%f$/b {by} $b%l$/b"
+
+# Playlist
+song_columns_list_format = "(40)[white]{D}(40)[white]{f} (7f)[white]{l}"
