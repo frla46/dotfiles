@@ -90,3 +90,10 @@ if [[ $(type nb) ]]; then
   alias nfe='ne $(nf)'
   alias nfd='nd $(nf)'
 fi
+
+# at
+if [[ $(type at) ]]; then
+  alias atl='at -l'
+  alias atn='at -f ~/bin/timer_notify.sh'
+  alias atd='at -d $(at -l | fzf | cut -f 1'
+fi

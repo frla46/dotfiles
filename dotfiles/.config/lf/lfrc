@@ -17,11 +17,24 @@ set cleaner ctpvclear
 
 ## mappings
 # disable mappings
+map <up>
+map <down>
+map <left>
+map <right>
+map <pgup>
+map <pgdn>
+map <home>
+map <end>
+map [
+map ]
+map f
+map F
+map ;
+map ,
 map y
 map d
 map "'"
 map '"'
-map s
 map H
 map M
 map L

@@ -1,7 +1,7 @@
 ## profile
 export BROWSER='vivaldi-stable'
 export TERM='alacritty'
-export PAGER='bat -p'
+export PAGER='less'
 export EDITOR='nvim'
 
 # zsh
