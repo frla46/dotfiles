@@ -8,7 +8,6 @@ alias md='mkdir'
 #alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias y='yay'
 alias f='lfcd'
 
 
@@ -33,6 +32,12 @@ alias pysvr='python -m http.server 8000'
 
 # startup option
 alias mpv='mpv --no-terminal'
+
+# yay
+if [[ $(type yay) ]]; then
+  alias y='yay'
+  alias yy='yay --noconfirm --needed'
+fi
 
 # fd
 if [[ $(type fd) ]]; then
