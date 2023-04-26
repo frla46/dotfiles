@@ -12,9 +12,10 @@ autoload -Uz promptinit && promptinit && prompt pure
 PURE_CMD_MAX_EXEC_TIME=86400 #1day
 
 # load zstyles
+autoload -Uz compinit && compinit
 [[ -f ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles
 
-# load *.zsh file in zsh.d
+# load *.zsh file in .zsh.d
 ZSHHOME="${ZDOTDIR}/.zsh.d"
 if [ -d $ZSHHOME -a -r $ZSHHOME -a \
      -x $ZSHHOME ]; then
@@ -30,3 +31,4 @@ eval "$(zoxide init zsh)"
 # bindkey
 bindkey '^r' _select-history
 bindkey '^z' _ctrl-z-fg
+bindkey '^xe' edit-command-line

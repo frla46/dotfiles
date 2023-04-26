@@ -8,7 +8,7 @@ alias md='mkdir'
 #alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias f='lfcd'
+alias f='_lfcd'
 
 
 # my command

@@ -59,7 +59,7 @@ map <backspace2> :set hidden!
 map oe $lf -remote "send $id \$$EDITOR \$fx"
 map oE &alacritty -e $EDITOR $fx
 map ov $lf -remote "send $id \$$PAGER \$fx"
-map oV &alacritty -e bat -p $fx
+map oV &alacritty -e $PAGER $fx
 map zp :set preview!
 map DD $trash-put $fx
 map DR $trash-restore
@@ -67,6 +67,7 @@ map ? !file --mime-type -Lb $fx
 map ` :mark-load
 map <c-z> $kill -STOP $PPID
 map gv :push :glob-select<space>
+map ugv :push :glob-unselect<space>
 map A :rename
 map r :push A<c-u>
 map I :push A<c-a>

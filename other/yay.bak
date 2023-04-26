@@ -4,6 +4,7 @@ ani-cli
 anki
 archlinux-keyring
 aria2
+at
 atool
 autoconf
 automake
@@ -102,6 +103,7 @@ pipewire-jack
 pipewire-pulse
 pkgconf
 playerctl
+polybar
 pqiv
 procs
 protonvpn-cli

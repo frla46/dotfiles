@@ -53,23 +53,25 @@ function _ctrl-z-fg () {
 }
 zle -N _ctrl-z-fg
 
-# prevent instance nested in lf
+# cd when quittng lf
+function _lfcd () {
+  tmp="$(mktemp)"
+  lf -last-dir-path="$tmp" "$@"
+  if [ -f "$tmp" ]; then
+    dir="$(cat "$tmp")"
+    rm -f "$tmp"
+    if [ -d "$dir" ]; then
+      if [ "$dir" != "$(pwd)" ]; then
+        cd "$dir"
+      fi
+    fi
+  fi
+}
+
+# # prevent instance nested in lf
 # function lf() {
 #   [ -n "$LF_LEVEL" ] && exit || command lf "$@"
 # }
-function lfcd () {
-    tmp="$(mktemp)"
-    lf -last-dir-path="$tmp" "$@"
-    if [ -f "$tmp" ]; then
-        dir="$(cat "$tmp")"
-        rm -f "$tmp"
-        if [ -d "$dir" ]; then
-            if [ "$dir" != "$(pwd)" ]; then
-                cd "$dir"
-            fi
-        fi
-    fi
-}
 
 # use vim as a pipe
 function _vipe () {
@@ -91,3 +93,7 @@ function _aria-mp4() {
   sed -e '/^$/d; /^http/!s/\(.\{80\}\)\(.*\)$/\1/; /^http/!s/^/ out=/; /^http/!s/$/.mp4/; /^http/!s/\// /g' $1 >| /tmp/aria-ed.list
   aria2c -i /tmp/aria-ed.list -UWget
 }
+
+# edit current command with EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
