@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# # profiling zsh startup time
+# zmodload zsh/zprof
+
 # plugin manager (antidote)
 # archlinux: pacman -S zsh-antidote
 # git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote

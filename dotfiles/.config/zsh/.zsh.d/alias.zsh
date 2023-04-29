@@ -5,66 +5,57 @@ alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
 alias md='mkdir'
-#alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias f='_lfcd'
-
-
-# my command
-alias j='_fg-fzf'
-alias ariav='_aria-mp4'
+alias cal='cal -Y'
 
 # global alias
-alias -g rm='trash-put'
-alias -g G='|rg --color=auto'
 alias -g V='|$PAGER'
 alias -g C='|xsel --clipboard --input'
+
+# my function
+alias j='_fg-fzf'
+alias ariav='_aria-mp4'
 alias -g VI='|_vipe'
 
-# oneliner
-alias sz='source ${ZDOTDIR:-~}/.zshrc'
-alias precp='fc -ln | tail -n 1 C'
-alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
-alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
-alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
-alias pysvr='python -m http.server 8000'
-
-# startup option
-alias mpv='mpv --no-terminal'
-
-# yay
 if [[ $(type yay) ]]; then
   alias y='yay'
   alias yy='yay --noconfirm --needed'
 fi
 
-# fd
+if [[ $(type lf) ]]; then
+  alias f='_lfcd'
+fi
+
+if [[ $(type trash-put) ]]; then
+  alias -g rm='trash-put'
+else
+  alias rm='rm -i'
+fi
+
 if [[ $(type fd) ]]; then
   alias find='fd'
 fi
 
-# rg
 if [[ $(type rg) ]]; then
   alias grep='rg'
+  alias -g G='|rg --color=auto'
+else
+  alias -g G='|grep --color=auto'
 fi
 
-# procs
 if [[ $(type procs) ]]; then
   alias ps='procs'
 fi
 
-# git
 if [[ $(type git) ]]; then
   alias g='git'
 fi
 
-# lazigit
 if [[ $(type lazygit) ]]; then
   alias lg='lazygit'
 fi
 
-# protonvpn
 if [[ $(type protonvpn-cli) ]]; then
     alias vpn='protonvpn-cli'
     alias vpns='vpn status'
@@ -72,7 +63,6 @@ if [[ $(type protonvpn-cli) ]]; then
     alias vpnd='vpn d'
 fi
 
-# exa
 if [[ $(type exa) ]]; then
   alias exa='exa --icons'
   alias l='exa'
@@ -84,7 +74,6 @@ if [[ $(type exa) ]]; then
   alias lal='exa -a -l'
 fi
 
-# nb
 if [[ $(type nb) ]]; then
   alias ng='lazygit -p ~/.nb/home/'
   alias n='nb'
@@ -96,9 +85,18 @@ if [[ $(type nb) ]]; then
   alias nfd='nd $(nf)'
 fi
 
-# at
 if [[ $(type at) ]]; then
   alias atl='at -l'
   alias atn='at -f ~/bin/timer_notify.sh'
-  alias atd='at -d $(at -l | fzf | cut -f 1'
+  alias atd='at -d $(at -l | fzf | cut -f 1)'
 fi
+
+# oneliner
+alias sz='source ${ZDOTDIR:-~}/.zshrc'
+alias precp='fc -ln | tail -n 1 C'
+alias dusort='du --max-depth=1 -h --apparent-size | sort -rh'
+alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
+alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
+alias pysvr='python -m http.server 8000'
+alias mpv='mpv --no-terminal'
+

@@ -3,13 +3,13 @@ export BROWSER='vivaldi-stable'
 export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
+export PATH=$PATH:/home/frla/.local/bin
 
 # zsh
 export ZDOTDIR=~/.config/zsh
 export HISTFILE=${ZDOTDIR:-~}/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
-export PATH=$PATH:/home/frla/.local/bin
 
 # fcitx
 export GTK_IM_MODULE=fcitx5
@@ -25,3 +25,6 @@ export BAT_THEME='Nord'
 
 # nb
 export NB_COLOR_THEME='smoke'
+
+# pfetch
+export PF_INFO="ascii title os host kernel shell editor"

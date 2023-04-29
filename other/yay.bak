@@ -14,6 +14,7 @@ binutils
 bison
 bottom
 capitaine-cursors
+cava
 chromium
 clamav
 clipnotify
@@ -21,6 +22,7 @@ ctpv-git
 debugedit
 deja-dup
 discord
+docker
 dunst
 exa
 fakeroot
@@ -96,6 +98,7 @@ p7zip
 pacman
 pandoc-cli
 patch
+pfetch
 picom
 pipewire
 pipewire-alsa
