@@ -14,10 +14,6 @@ return {
 		event = "VeryLazy",
 	},
 	{
-		"nvim-neo-tree/neo-tree.nvim",
-		enabled = false,
-	},
-	{
 		"lmburns/lf.nvim",
 		dependencies = { "plenary.nvim", "toggleterm.nvim" },
 		keys = {
@@ -29,9 +25,43 @@ return {
 			})
 		end,
 	},
+	{ "akinsho/toggleterm.nvim", lazy = true },
 	{
-		"akinsho/toggleterm.nvim",
-		lazy = true,
+		"is0n/jaq-nvim",
+		keys = {
+			{ "<leader>r", "<cmd>Jaq<cr>", desc = "Quickrun (jaq-nvim)" },
+		},
+
+		opts = function()
+			require("jaq-nvim").setup({
+				cmds = {
+					internal = {},
+					external = {
+						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
+					},
+				},
+				behavior = {
+					-- Default type
+					default = "quickfix",
+
+					-- Start in insert mode
+					startinsert = false,
+
+					-- Use `wincmd p` on startup
+					wincmd = false,
+
+					-- Auto-save files
+					autosave = false,
+				},
+
+				ui = {
+					quickfix = {
+						position = "bot",
+						size = 10,
+					},
+				},
+			})
+		end,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -74,6 +104,7 @@ return {
 			local function fg(name)
 				return function()
 					---@type {foreground?:number}?
+					---@diagnostic disable-next-line: undefined-field
 					local hl = vim.api.nvim_get_hl_by_name(name, true)
 					return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
 				end
@@ -179,4 +210,65 @@ return {
 			},
 		},
 	},
+	{
+		"hrsh7th/nvim-cmp",
+		version = false, -- last release is way too old
+		event = "InsertEnter",
+		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+		},
+		opts = function()
+			local cmp = require("cmp")
+			return {
+				completion = {
+					completeopt = "menu,menuone,noinsert",
+				},
+				snippet = {
+					expand = function(args)
+						require("luasnip").lsp_expand(args.body)
+					end,
+				},
+				mapping = cmp.mapping.preset.insert({
+					["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-Space>"] = cmp.mapping.complete(),
+					["<C-e>"] = cmp.mapping.abort(),
+					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+					["<S-CR>"] = cmp.mapping.confirm({
+						behavior = cmp.ConfirmBehavior.Replace,
+						select = true,
+					}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+				}),
+				sources = cmp.config.sources({
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "path" },
+				}),
+				formatting = {
+					format = function(_, item)
+						local icons = require("lazyvim.config").icons.kinds
+						if icons[item.kind] then
+							item.kind = icons[item.kind] .. item.kind
+						end
+						return item
+					end,
+				},
+				experimental = {
+					ghost_text = {
+						hl_group = "LspCodeLens",
+					},
+				},
+			}
+		end,
+	},
+	-- disabled plugins
+	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
+	{ "folke/tokyonight.nvim", enabled = false },
+	{ "catppuccin", enabled = false },
 }

@@ -15,22 +15,24 @@ end
 
 vim.g.mapleader = " "
 
+map({ "n", "v" }, "_", ":", { desc = "Command mode" })
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "+", "<c-a>", { desc = "Increment" })
 map("n", "-", "<c-x>", { desc = "Decrement" })
-map({ "n", "v" }, "<leader>-", ":", { desc = "Command mode" })
---map({ "n", "v" }, "<leader>;", ":", opts)
 
-vim.keymap.del("n", "<leader>|")
+-- insert mode key bindings
+-- map("i", "<c-h>", "<left>")
+-- map("i", "<c-j>", "<down>")
+-- map("i", "<c-k>", "<up>")
+-- map("i", "<c-l>", "<right>")
+-- map("i", "<c-a>", "<home>")
+-- map("i", "<c-e>", "<end>")
+-- map("i", "<c-i>", "<tab>")
+-- map("i", "<c-n>", "<bs>")
+-- map("i", "<c-m>", "<cr>")
+-- map("i", "<c-q>", "<esc>")
+-- map("i", "<c-d>", "<del>")
 
--- insert mode bindings
--- map('i', '<c-h>', '<left>', opts)
--- map('i', '<c-j>', '<down>', opts)
--- map('i', '<c-k>', '<up>', opts)
--- map('i', '<c-l>', '<right>', opts)
--- map('i', '<c-a>', '<home>', opts)
--- map('i', '<c-e>', '<end>', opts)
--- map('i', '<c-u>', '<bs>', opts)
--- map('i', '<c-o>', '<CR>', opts)
--- map('i', '<c-q>', '<esc>', opts)
--- map('i', '<c-d>', '<del>', opts)
+-- disable keymaps
+-- vim.keymap.del("i", "<tab>")
+-- vim.keymap.del("i", "<S-tab>")

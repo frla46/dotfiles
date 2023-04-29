@@ -43,7 +43,7 @@ autocmd("BufWritePre", {
 })
 
 -- disable spellcheck for lazyvim
-autocmd({ "FileType" }, {
+autocmd("FileType", {
 	pattern = "markdown",
 	callback = function()
 		vim.opt_local["spell"] = false
