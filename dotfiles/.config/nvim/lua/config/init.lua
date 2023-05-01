@@ -7,7 +7,7 @@ ls.add_snippets("all", {
 	s({
 		trig = "hello",
 	}, {
-		t({ [[hello, world!]] }),
+		t({ "hello, world!" }),
 		i(0),
 	}),
 })

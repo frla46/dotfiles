@@ -211,8 +211,27 @@ return {
 		},
 	},
 	{
+		"L3MON4D3/LuaSnip",
+		build = (not jit.os:find("Windows"))
+				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
+			or nil,
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
+				-- TODO:use snipmate
+				-- require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./lus/snip/snipmate/" })
+			end,
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+	},
+	{
 		"hrsh7th/nvim-cmp",
-		version = false, -- last release is way too old
+		version = false,
 		event = "InsertEnter",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
