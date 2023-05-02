@@ -86,7 +86,7 @@ mode $system {
   bindsym q exec "systemctl poweroff"; mode "default"
   bindsym r exec "systemctl reboot"; mode "default"
   bindsym s exec "systemctl suspend"; mode "default"
-  bindsym l exec "i3lock --color=2E3440 --ring-color=5E81AC --inside-color=2E3440 --insidever-color=2E3440 --ringver-color=A3BE8C --ringwrong-color=D08770 --insidewrong-color=2E3440 --keyhl-color=81A1C1 --bshl-color=81A1C1 --line-color=2E3440ff --separator-color=2E344000 --radius=200 --ring-width=10 --verif-text='' --wrong-text='' --noinput-text='' --lock-text='' --lockfailed-text=''"; mode "default"
+  bindsym l exec ~/bin/i3lock-color.sh; mode "default"
   # bindsym L exec "logout"; mode "default"
   bindsym Escape mode "default"
 }
@@ -147,7 +147,7 @@ mode $browser_audio {
   bindsym shift+period exec --no-startup-id playerctl -p chromium next
   bindsym h exec --no-startup-id playerctl -p chromium position 5-
   bindsym l exec --no-startup-id playerctl -p chromium position 5+
-  # # not working change volume
+  # TODO: not working change volume
   # bindsym j exec --no-startup-id playerctl -p chromium volume 0.1-
   # bindsym k exec --no-startup-id playerctl -p chromium volume 0.1+
   bindsym Escape mode "default"
@@ -308,7 +308,7 @@ bindsym $mod+shift+c exec ~/bin/snippets.sh
 
 # assign window to workspace
 for_window [class="^Alacritty$" title="^scratch$"] move scratchpad
-for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws1
-for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Vivaldi-stable$"] move --no-auto-back-and-forth to workspace $ws2
+for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1
+for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Alacritty$" title="^nvim$"] move --no-auto-back-and-forth to workspace $ws3
