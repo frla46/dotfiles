@@ -19,8 +19,10 @@ map({ "n", "v" }, "_", ":", { desc = "Command mode" })
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "+", "<c-a>", { desc = "Increment" })
 map("n", "-", "<c-x>", { desc = "Decrement" })
+-- map("n", "fk", "f<c-k>", { desc = "Jump cursor with digraphs" })
+-- map("n", "Fk", "f<c-k>", { desc = "Jump cursor with digraphs" })
 
--- insert mode key bindings
+-- -- insert mode key bindings
 -- map("i", "<c-h>", "<left>")
 -- map("i", "<c-j>", "<down>")
 -- map("i", "<c-k>", "<up>")
@@ -32,7 +34,3 @@ map("n", "-", "<c-x>", { desc = "Decrement" })
 -- map("i", "<c-m>", "<cr>")
 -- map("i", "<c-q>", "<esc>")
 -- map("i", "<c-d>", "<del>")
-
--- disable keymaps
--- vim.keymap.del("i", "<tab>")
--- vim.keymap.del("i", "<S-tab>")

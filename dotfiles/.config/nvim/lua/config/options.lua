@@ -9,3 +9,4 @@ opt.fileencodings = "utf-8,sjis"
 opt.helplang = "ja,en"
 opt.swapfile = false
 opt.gdefault = true
+opt.autochdir = true

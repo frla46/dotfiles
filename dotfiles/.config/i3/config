@@ -87,7 +87,7 @@ mode $system {
   bindsym r exec "systemctl reboot"; mode "default"
   bindsym s exec "systemctl suspend"; mode "default"
   bindsym l exec ~/bin/i3lock-color.sh; mode "default"
-  # bindsym L exec "logout"; mode "default"
+  bindsym L exec "i3-msg exit"; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -107,60 +107,29 @@ mode $layout {
 }
 
 # audio
-set $audio "audio [m0-9]"
-set $mpd_audio "mpd_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
-set $mpv_audio "mpv_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
-set $browser_audio "browser_audio [space:play-pause, j:voldown, k:volup, l:forward, h:backward, <:prev, >:next, c:cpTitle]"
-set $volset pactl set-sink-volume @DEFAULT_SINK@
+set $audio "audio [vol:m0-9, space:play-pause, <:prev, >:next, j:voldn, k:volup, l:forward, h:backward]"
+set $volset "pactl set-sink-volume @DEFAULT_SINK@"
 bindsym $mod+a mode $audio
 mode $audio {
-  bindsym m exec --no-startup-id $volset 0%
-  bindsym 1 exec --no-startup-id $volset 10%
-  bindsym 2 exec --no-startup-id $volset 20%
-  bindsym 3 exec --no-startup-id $volset 30%
-  bindsym 4 exec --no-startup-id $volset 40%
-  bindsym 5 exec --no-startup-id $volset 50%
-  bindsym 6 exec --no-startup-id $volset 60%
-  bindsym 7 exec --no-startup-id $volset 70%
-  bindsym 8 exec --no-startup-id $volset 80%
-  bindsym 9 exec --no-startup-id $volset 90%
-  bindsym 0 exec --no-startup-id $volset 100%
-  bindsym $mod+m mode $mpd_audio
-  bindsym $mod+v mode $mpv_audio
-  bindsym $mod+w mode $browser_audio
-  bindsym Escape mode "default"
-}
-mode $mpv_audio {
-  bindsym space exec --no-startup-id playerctl -p mpv play-pause
-  bindsym shift+comma exec --no-startup-id playerctl -p mpv previous
-  bindsym shift+period exec --no-startup-id playerctl -p mpv next
-  bindsym h exec --no-startup-id playerctl -p mpv position 5-
-  bindsym l exec --no-startup-id playerctl -p mpv position 5+
-  bindsym j exec --no-startup-id playerctl -p mpv volume 0.1-
-  bindsym k exec --no-startup-id playerctl -p mpv volume 0.1+
-  bindsym c exec --no-startup-id "playerctl -p mpv metadata title | sed 's/\..*//' | xsel --clipboard --input"
-  bindsym Escape mode "default"
-}
-mode $browser_audio {
-  bindsym space exec --no-startup-id playerctl -p chromium play-pause
-  bindsym shift+comma exec --no-startup-id playerctl -p chromium previous
-  bindsym shift+period exec --no-startup-id playerctl -p chromium next
-  bindsym h exec --no-startup-id playerctl -p chromium position 5-
-  bindsym l exec --no-startup-id playerctl -p chromium position 5+
-  # TODO: not working change volume
-  # bindsym j exec --no-startup-id playerctl -p chromium volume 0.1-
-  # bindsym k exec --no-startup-id playerctl -p chromium volume 0.1+
-  bindsym Escape mode "default"
-}
-mode $mpd_audio {
-  bindsym space exec --no-startup-id mpc toggle
-  bindsym shift+comma exec --no-startup-id mpc prev
-  bindsym shift+period exec --no-startup-id mpc next
-  bindsym h exec --no-startup-id mpc seek -00:00:10
-  bindsym l exec --no-startup-id mpc seek +00:00:10
-  bindsym j exec --no-startup-id mpc volume -10
-  bindsym k exec --no-startup-id mpc volume +10
-  bindsym c exec --no-startup-id "mpc current | sed -e 's|^.*/||; s|\..*$||' | xsel --clipboard --input"
+  bindsym m exec $volset 0%
+  bindsym 1 exec $volset 10%
+  bindsym 2 exec $volset 20%
+  bindsym 3 exec $volset 30%
+  bindsym 4 exec $volset 40%
+  bindsym 5 exec $volset 50%
+  bindsym 6 exec $volset 60%
+  bindsym 7 exec $volset 70%
+  bindsym 8 exec $volset 80%
+  bindsym 9 exec $volset 90%
+  bindsym 0 exec $volset 100%
+  bindsym space exec playerctl play-pause
+  bindsym shift+comma exec playerctl previous
+  bindsym shift+period exec playerctl next
+  bindsym h exec playerctl position 5-
+  bindsym l exec playerctl position 5+
+  bindsym j exec playerctl volume 0.1-
+  bindsym k exec playerctl volume 0.1+
+  bindsym c exec "playerctl metadata title | sed 's/\..*//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 
@@ -181,34 +150,41 @@ set $pic_dir /home/frla/pic/screenshot
 set $delay 0.01
 bindsym $mod+shift+s mode $capture
 mode  $capture {
-  bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+a exec --no-startup-id maim -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
-  bindsym s exec --no-startup-id maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+s exec --no-startup-id maim -s -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
+  bindsym a exec maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym shift+a exec maim -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
+  bindsym s exec maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym shift+s exec maim -s -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
   bindsym Escape mode "default"
 }
 
-# app launcher
-set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer, t:btm]"
-bindsym $mod+x mode $exec
-mode  $exec {
-  bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
-  bindsym d exec --no-startup-id  discord; mode "default"
-  bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
-  bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
-  bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
-  bindsym m exec --no-startup-id  alacritty -e ncmpcpp; mode "default"
-  bindsym t exec --no-startup-id  alacritty -e btm; mode "default"
-  bindsym Escape mode "default"
-}
+# # app launcher
+bindsym $super+w exec vivaldi-stable
+bindsym $super+d exec discord
+bindsym $super+e exec alacritty -e nvim
+bindsym $super+f exec alacritty -e lf
+bindsym $super+v exec alacritty -e pulsemixer
+bindsym $super+m exec alacritty -e ncmpcpp
+bindsym $super+t exec alacritty -e btm
+# set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer, t:btm]"
+# bindsym $mod+x mode $exec
+# mode  $exec {
+#   bindsym w exec  vivaldi-stable; mode "default"
+#   bindsym d exec  discord; mode "default"
+#   bindsym e exec  alacritty -e nvim; mode "default"
+#   bindsym f exec  alacritty -e lf; mode "default"
+#   bindsym v exec  alacritty -e pulsemixer; mode "default"
+#   bindsym m exec  alacritty -e ncmpcpp; mode "default"
+#   bindsym t exec  alacritty -e btm; mode "default"
+#   bindsym Escape mode "default"
+# }
 
 # notify
-bindsym $mod+d exec --no-startup-id dunstctl close-all
+bindsym $mod+d exec dunstctl close-all
 # set $notify "notify [d:close-all, h:history]"
 # bindsym $mod+n mode $notify
 # mode $notify {
-#   bindsym d exec --no-startup-id dunstctl close-all; mode "default"
-#   bindsym h exec --no-startup-id dunstctl history-pop
+#   bindsym d exec dunstctl close-all; mode "default"
+#   bindsym h exec dunstctl history-pop
 #   bindsym Escape mode "default"
 # }
 
@@ -283,25 +259,25 @@ focus_follows_mouse no
 default_border none
 
 ## autostart
-exec --no-startup-id fcitx5
-exec_always --no-startup-id xset r rate 180 50
-exec_always --no-startup-id killall greenclip; greenclip daemon
-exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
-exec --no-startup-id unclutter -idle 1 -root
-exec --no-startup-id feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
-exec --no-startup-id picom -b
-exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id nm-applet
-exec --no-startup-id mpd ~/.config/mpd/mpd.conf
+exec fcitx5
+exec_always xset r rate 180 50
+exec_always killall greenclip; greenclip daemon
+exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
+exec unclutter -idle 1 -root
+exec feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
+exec picom -b
+exec dunst -config ~/.config/dunst/dunstrc
+exec nm-applet
+exec_always mpd ~/.config/mpd/mpd.conf
 
-exec --no-startup-id alacritty -t scratch
-exec --no-startup-id vivaldi-stable
-exec --no-startup-id discord
-exec --no-startup-id alacritty -t nvim -e nvim
+exec alacritty -t scratch
+exec vivaldi-stable
+exec discord
+exec alacritty -t term
 
 ## app shortcut
-bindsym $mod+Return exec --no-startup-id alacritty
-bindsym $mod+space exec rofi -show drun
+bindsym $mod+Return exec alacritty
+bindsym $mod+space exec rofi -show run
 bindsym $mod+w exec rofi -show window
 bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+shift+c exec ~/bin/snippets.sh
@@ -311,4 +287,4 @@ for_window [class="^Alacritty$" title="^scratch$"] move scratchpad
 for_window [class="^Vivaldi-stable$"] move --no-auto-back-and-forth to workspace $ws2
 for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws1
-for_window [class="^Alacritty$" title="^nvim$"] move --no-auto-back-and-forth to workspace $ws3
+for_window [class="^Alacritty$" title="^term$"] move --no-auto-back-and-forth to workspace $ws3

@@ -1,4 +1,6 @@
 # keybind
+def_key "enter"
+ play_item
 def_key "space"
   pause
 def_key "j"
