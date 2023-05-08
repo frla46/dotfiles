@@ -108,20 +108,20 @@ mode $layout {
 
 # audio
 set $audio "audio [vol:m0-9, space:play-pause, <:prev, >:next, j:voldn, k:volup, l:forward, h:backward]"
-set $volset "pactl set-sink-volume @DEFAULT_SINK@"
+set $setvol pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
-  bindsym m exec $volset 0%
-  bindsym 1 exec $volset 10%
-  bindsym 2 exec $volset 20%
-  bindsym 3 exec $volset 30%
-  bindsym 4 exec $volset 40%
-  bindsym 5 exec $volset 50%
-  bindsym 6 exec $volset 60%
-  bindsym 7 exec $volset 70%
-  bindsym 8 exec $volset 80%
-  bindsym 9 exec $volset 90%
-  bindsym 0 exec $volset 100%
+  bindsym m exec $setvol 0%
+  bindsym 1 exec $setvol 10%
+  bindsym 2 exec $setvol 20%
+  bindsym 3 exec $setvol 30%
+  bindsym 4 exec $setvol 40%
+  bindsym 5 exec $setvol 50%
+  bindsym 6 exec $setvol 60%
+  bindsym 7 exec $setvol 70%
+  bindsym 8 exec $setvol 80%
+  bindsym 9 exec $setvol 90%
+  bindsym 0 exec $setvol 100%
   bindsym space exec playerctl play-pause
   bindsym shift+comma exec playerctl previous
   bindsym shift+period exec playerctl next
