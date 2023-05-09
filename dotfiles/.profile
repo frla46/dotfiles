@@ -7,7 +7,7 @@ export PATH=$PATH:/home/frla/.local/bin
 
 # zsh
 export ZDOTDIR=~/.config/zsh
-export HISTFILE=${ZDOTDIR:-~}/.zsh_history
+# export HISTFILE=${ZDOTDIR:-~}/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 
@@ -18,13 +18,12 @@ export XMODIFIERS=@im=fcitx5
 
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type file --hidden'
-export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 
 # bat
 export BAT_THEME='Nord'
 
-# nb
-export NB_COLOR_THEME='smoke'
-
 # pfetch
 export PF_INFO="ascii title os host kernel shell editor"
+
+# zk
+export ZK_NOTEBOOK_DIR=~/note/

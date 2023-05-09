@@ -6,6 +6,67 @@ return {
 		},
 	},
 	{
+		"mickael-menu/zk-nvim",
+		keys = {
+			{
+				"<leader>zn",
+				function()
+					require("zk.commands").get("ZkNew")({ title = vim.fn.input("title: ") })
+				end,
+				desc = "Create notes (zk)",
+			},
+			{
+				"<leader>zf",
+				function()
+					require("zk.commands").get("ZkNotes")({ sort = { "modified" } })
+				end,
+				desc = "Open notes (zk)",
+			},
+			{
+				"<leader>zt",
+				function()
+					require("zk.commands").get("ZkTags")()
+				end,
+				desc = "Open notes associated with the selected tags (zk)",
+			},
+			{
+				"<leader>zb",
+				function()
+					require("zk.commands").get("ZkBacklinks")()
+				end,
+				desc = "Open notes linking to the current note (zk)",
+			},
+			{
+				"<leader>zl",
+				function()
+					require("zk.commands").get("ZkLinks")()
+				end,
+				desc = "Open notes linked by the current note (zk)",
+			},
+		},
+		config = function()
+			require("zk").setup({
+				-- can be "telescope", "fzf" or "select" (`vim.ui.select`)
+				-- it's recommended to use "telescope" or "fzf"
+				picker = "telescope",
+				lsp = {
+					-- `config` is passed to `vim.lsp.start_client(config)`
+					config = {
+						cmd = { "zk", "lsp" },
+						name = "zk",
+						-- on_attach = ...
+						-- etc, see `:h vim.lsp.start_client()`
+					},
+					-- automatically attach buffers in a zk notebook that match the given filetypes
+					auto_attach = {
+						enabled = true,
+						filetypes = { "markdown" },
+					},
+				},
+			})
+		end,
+	},
+	{
 		"shaunsingh/nord.nvim",
 		event = "VeryLazy",
 	},
@@ -178,13 +239,6 @@ return {
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-telescope/telescope-fzf-native.nvim",
-			build = "make",
-			config = function()
-				require("telescope").load_extension("fzf")
-			end,
-		},
 		opts = {
 			defaults = {
 				mappings = {
@@ -220,7 +274,7 @@ return {
 			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
-				-- TODO:use snipmate
+				-- TODO:snipmate
 				-- require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./lus/snip/snipmate/" })
 			end,
 		},

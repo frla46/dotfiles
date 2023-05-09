@@ -23,6 +23,7 @@ deja-dup
 discord
 docker
 dunst
+dust
 exa
 fakeroot
 fcitx5
@@ -56,6 +57,7 @@ i3lock-color
 i3status
 iwd
 jq
+lazydocker
 lazygit
 lf
 libpulse
@@ -79,8 +81,6 @@ mpc
 mpd
 mpv
 mpv-mpris
-nb
-ncdu
 ncmpcpp
 neovim
 network-manager-applet
@@ -154,11 +154,11 @@ xorg-server
 xorg-xinit
 xorg-xinput
 xsel
-xterm
 yay
 yt-dlp
 zathura
 zathura-pdf-poppler
+zk
 zoxide
 zram-generator
 zsh

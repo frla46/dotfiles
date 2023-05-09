@@ -6,12 +6,12 @@
 
 .cache/
 cache/
-.git/
 /.cargo/
 /.clamtk/
+.git/
 /.local/lib/
 /.local/share/Trash/
 /.local/state/
+node_modules/
 /.npm/
 /.wine/
-node_modules/
