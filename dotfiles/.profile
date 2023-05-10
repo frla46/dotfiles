@@ -7,7 +7,7 @@ export PATH=$PATH:/home/frla/.local/bin
 
 # zsh
 export ZDOTDIR=~/.config/zsh
-# export HISTFILE=${ZDOTDIR:-~}/.zsh_history
+export HISTFILE=${ZDOTDIR:-~}/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
 

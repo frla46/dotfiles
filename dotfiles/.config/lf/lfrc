@@ -91,7 +91,7 @@ cmd open &{{
     video/* )
       mpv $fx;;
     image/*)
-      pqiv --browse $fx;;
+      pqiv --browse $f;;
     application/pdf )
       zathura $fx;;
     exe/* )
