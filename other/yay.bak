@@ -13,10 +13,8 @@ bat
 binutils
 bison
 bottom
-capitaine-cursors
 chromium
 clamav
-clipnotify
 ctpv-git
 debugedit
 deja-dup
@@ -55,6 +53,7 @@ i3-wm
 i3blocks
 i3lock-color
 i3status
+inotify-tools
 iwd
 jq
 lazydocker
@@ -97,7 +96,6 @@ p7zip
 pacman
 pandoc-cli
 patch
-pfetch
 picom
 pipewire
 pipewire-alsa
@@ -105,7 +103,6 @@ pipewire-jack
 pipewire-pulse
 pkgconf
 playerctl
-polybar
 pqiv
 procs
 protonvpn-cli
@@ -126,6 +123,7 @@ sudo
 texinfo
 timeshift
 tmux
+translate-shell
 trash-cli
 tree
 ttf-hackgen
@@ -134,7 +132,7 @@ ufw
 unclutter
 unrar
 unzip
-vim
+vdhcoapp
 vimv-git
 virtualbox
 vivaldi

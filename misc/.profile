@@ -1,12 +1,11 @@
 ## profile
-export BROWSER='vivaldi-stable'
 export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
 export PATH=$PATH:/home/frla/.local/bin
 
 # zsh
-export ZDOTDIR=~/.config/zsh
+export ZDOTDIR=~/.config/zsh/
 export HISTFILE=${ZDOTDIR:-~}/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -21,9 +20,6 @@ export FZF_DEFAULT_COMMAND='fd --type file --hidden'
 
 # bat
 export BAT_THEME='Nord'
-
-# pfetch
-export PF_INFO="ascii title os host kernel shell editor"
 
 # zk
 export ZK_NOTEBOOK_DIR=~/note/

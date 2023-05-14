@@ -6,6 +6,59 @@ return {
 		},
 	},
 	{
+		"shaunsingh/nord.nvim",
+		event = "VeryLazy",
+	},
+	{
+		"vim-jp/vimdoc-ja",
+		event = "VeryLazy",
+	},
+	{
+		"lmburns/lf.nvim",
+		dependencies = { "plenary.nvim", "toggleterm.nvim" },
+		keys = {
+			{ "<leader>e", "<cmd>Lf<cr>", desc = "File manager (lf)" },
+		},
+		opts = function()
+			require("lf").setup({
+				border = "rounded",
+			})
+		end,
+	},
+	{ "akinsho/toggleterm.nvim", lazy = true },
+	{
+		"is0n/jaq-nvim",
+		keys = {
+			{ "<leader>r", "<cmd>Jaq<cr>", desc = "Quickrun (jaq-nvim)" },
+		},
+		opts = function()
+			require("jaq-nvim").setup({
+				cmds = {
+					internal = {},
+					external = {
+						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
+					},
+				},
+				behavior = {
+					-- Default type
+					default = "quickfix",
+					-- Start in insert mode
+					startinsert = false,
+					-- Use `wincmd p` on startup
+					wincmd = false,
+					-- Auto-save files
+					autosave = false,
+				},
+				ui = {
+					quickfix = {
+						position = "bot",
+						size = 10,
+					},
+				},
+			})
+		end,
+	},
+	{
 		"mickael-menu/zk-nvim",
 		keys = {
 			{
@@ -67,64 +120,6 @@ return {
 		end,
 	},
 	{
-		"shaunsingh/nord.nvim",
-		event = "VeryLazy",
-	},
-	{
-		"vim-jp/vimdoc-ja",
-		event = "VeryLazy",
-	},
-	{
-		"lmburns/lf.nvim",
-		dependencies = { "plenary.nvim", "toggleterm.nvim" },
-		keys = {
-			{ "<leader>e", "<cmd>Lf<cr>", desc = "File manager (lf)" },
-		},
-		opts = function()
-			require("lf").setup({
-				border = "rounded",
-			})
-		end,
-	},
-	{ "akinsho/toggleterm.nvim", lazy = true },
-	{
-		"is0n/jaq-nvim",
-		keys = {
-			{ "<leader>r", "<cmd>Jaq<cr>", desc = "Quickrun (jaq-nvim)" },
-		},
-
-		opts = function()
-			require("jaq-nvim").setup({
-				cmds = {
-					internal = {},
-					external = {
-						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
-					},
-				},
-				behavior = {
-					-- Default type
-					default = "quickfix",
-
-					-- Start in insert mode
-					startinsert = false,
-
-					-- Use `wincmd p` on startup
-					wincmd = false,
-
-					-- Auto-save files
-					autosave = false,
-				},
-
-				ui = {
-					quickfix = {
-						position = "bot",
-						size = 10,
-					},
-				},
-			})
-		end,
-	},
-	{
 		"rcarriga/nvim-notify",
 		keys = {
 			{
@@ -137,8 +132,6 @@ return {
 		},
 		opts = {
 			stages = "static",
-			background_colour = "#000000", -- for transparent
-			--fps = 60,
 			timeout = 3000,
 			max_height = function()
 				return math.floor(vim.o.lines * 0.75)
@@ -161,7 +154,6 @@ return {
 		event = "VeryLazy",
 		opts = function()
 			local icons = require("lazyvim.config").icons
-
 			local function fg(name)
 				return function()
 					---@type {foreground?:number}?
@@ -170,7 +162,6 @@ return {
 					return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
 				end
 			end
-
 			return {
 				options = {
 					theme = "auto",

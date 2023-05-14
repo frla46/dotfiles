@@ -30,6 +30,9 @@ bindsym $mod+shift+$right move right
 bindsym $mod+f fullscreen toggle
 
 # scratchpad
+bindsym $mod+shift+semicolon move scratchpad
+bindsym $mod+semicolon scratchpad show
+#for custom keyboard
 bindsym $mod+shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
@@ -147,12 +150,13 @@ mode "resize" {
 set $capture "screen shot"
 set $pic_dir /home/frla/pic/screenshot
 set $delay 0.01
+set $date $(date +%Y%m%d%H%M%S)
 bindsym $mod+shift+s mode $capture
 mode  $capture {
   bindsym a exec maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+a exec maim -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
   bindsym s exec maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+s exec maim -s -d $delay $pic_dir/$(date +%Y%m%d%H%M%S).png;  mode "default"
+  bindsym shift+a exec maim -d $delay $pic_dir/$date.png;  mode "default"
+  bindsym shift+s exec maim -s -d $delay $pic_dir/$date.png;  mode "default"
   bindsym Escape mode "default"
 }
 
@@ -245,12 +249,11 @@ bar {
 }
 
 # gaps
-set $gapsize 10
-gaps top $gapsize
-gaps bottom $gapsize
-gaps right $gapsize
-gaps left $gapsize
-gaps inner $gapsize
+gaps inner 10
+# gaps top 5
+# gaps bottom 5
+# gaps right 5
+# gaps left 5
 
 # other
 show_marks yes
@@ -260,14 +263,16 @@ default_border none
 ## autostart
 exec fcitx5
 exec_always xset r rate 180 50
-exec_always killall greenclip; greenclip daemon
-exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
+# exec_always killall greenclip; greenclip daemon
+# exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
+exec greenclip daemon
+exec redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec unclutter -idle 1 -root
 exec feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
 exec picom -b
 exec dunst -config ~/.config/dunst/dunstrc
 exec nm-applet
-exec_always mpd ~/.config/mpd/mpd.conf
+exec rclone mount home:home ~/drive &
 
 exec alacritty -t scratch
 exec vivaldi-stable

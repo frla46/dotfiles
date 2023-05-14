@@ -41,44 +41,44 @@ map L
 map u
 map r
 
-# set mappings
+# # set mappings
 # map <esc> quit
-map <enter> :shell
-map yy :copy
-map yp :yank-path
-map yd :yank-dirname
-map yn :yank-basename
-map y. :yank-basename-without-extension
-map dd :cut
-map p :paste
-map P :link
+map A :rename
+map i :push A<a-b><a-b><a-f>
+map I :push A<c-a>
+map r :push A<c-u><c-k>
+map R :bulkrename
+map zp :set preview!
+map <backspace2> :set hidden!
 map x $$f
 map X !$f
 map <c-x> &$f
-map <backspace2> :set hidden!
+map DD $trash-put $fx
+map DR $trash-restore
+map yy :copy
+map dd :cut
+map p :paste
+map P :link
+map yd :yank-dirname
+map yn :yank-basename
+map yp :yank-path
+map y. :yank-basename-without-extension
+map J :updir; down; open
+map K :updir; up; open
+map <enter> :shell
+map f :zi
+map ? !file --mime-type -Lb $fx
+map <c-z> $kill -STOP $PPID
+map ` :mark-load
+map "'" :push :tag<space>
 map oe $lf -remote "send $id \$$EDITOR \$fx"
 map oE &alacritty -e $EDITOR $fx
 map ov $lf -remote "send $id \$$PAGER \$fx"
 map oV &alacritty -e $PAGER $fx
-map zp :set preview!
-map DD $trash-put $fx
-map DR $trash-restore
-map ? !file --mime-type -Lb $fx
-map ` :mark-load
-map <c-z> $kill -STOP $PPID
 map gv :push :glob-select<space>
 map ugv :push :glob-unselect<space>
-map A :rename
-map r :push A<c-u>
-map I :push A<c-a>
-map i :push A<a-b><a-b><a-f>
-map a :push A<a-b>
-map R :bulkrename
-map J :updir; down; open
-map K :updir; up; open
-map uv :unselect
 map um :mark-remove
-map f :zi
+map uv :unselect
 
 ## commands
 cmd open &{{
