@@ -250,10 +250,6 @@ bar {
 
 # gaps
 gaps inner 10
-# gaps top 5
-# gaps bottom 5
-# gaps right 5
-# gaps left 5
 
 # other
 show_marks yes
@@ -272,7 +268,6 @@ exec feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-p
 exec picom -b
 exec dunst -config ~/.config/dunst/dunstrc
 exec nm-applet
-exec rclone mount home:home ~/drive &
 
 exec alacritty -t scratch
 exec vivaldi-stable

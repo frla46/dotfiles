@@ -17,13 +17,11 @@ cui: aria2 at atool bat bottom docker dust exa fd fzf jq lf procs protonvpn-cli 
 gui: chromium discord dunst i3 libreoffice maim mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## init gui
 misc: link systemd ## init misc
 
-alacritty: stow
+alacritty:
 	$(YAY) $@
-	stow $@
 
-aria2: stow
+aria2:
 	$(YAY) $@
-	stow $@
 
 at:
 	$(YAY) $@
@@ -34,9 +32,8 @@ atool:
 bat:
 	$(YAY) $@
 
-bottom: stow
+bottom:
 	$(YAY) $@
-	stow $@
 
 chromium:
 	$(YAY) $@
@@ -49,9 +46,8 @@ docker:
 	sudo usermod -aG $@ ${USER}
 	sudo systemctl --now enable docker
 
-dunst: stow
+dunst:
 	$(YAY) $@
-	stow $@
 
 dust:
 	$(YAY) $@
@@ -71,21 +67,18 @@ fd:
 fzf:
 	$(YAY) $@
 
-git: stow
+git:
 	$(YAY) $@ lazy$@
-	stow $@
 
-i3: stow
+i3:
 	# $(YAY) $@
 	$(YAY) $@lock-color
-	stow $@
 
 jq:
 	$(YAY) $@
 
-lf: stow
+lf:
 	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer
-	stow $@
 
 libreoffice:
 	$(YAY) $@-still
@@ -93,27 +86,23 @@ libreoffice:
 maim:
 	$(YAY) $@
 
-mpv: stow
+mpv:
 	$(YAY) $@ $@-mpris
-	stow $@
 
 nord-theme:
 	$(YAY) nordic-darker-theme nordzy-cursors fcitx5-nord
 
-nvim: stow
+nvim:
 	$(YAY) neovim
-	stow $@
 
-picom: stow
+picom:
 	$(YAY) $@
-	stow $@
 
 playerctl:
 	$(YAY) $@
 
-pqiv: stow
+pqiv:
 	$(YAY) $@
-	stow $@
 
 procs:
 	$(YAY) $@
@@ -133,13 +122,11 @@ redshift:
 ripgrep:
 	$(YAY) $@
 
-rofi: stow
+rofi:
 	$(YAY) $@
-	stow $@
 
-rofi-greenclip: stow
+rofi-greenclip:
 	$(YAY) $@
-	stow $@
 
 stow:
 	$(YAY) $@
@@ -161,9 +148,8 @@ ufw:
 unclutter:
 	$(YAY) $@
 
-vivaldi: stow
+vivaldi:
 	$(YAY) $@
-	stow $@
 
 yay:
 	mkdir -p ~/src/
@@ -174,9 +160,8 @@ yay:
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 	yay
 
-zathura: stow
+zathura:
 	$(YAY) $@
-	stow $@
 
 zk:
 	$(YAY) $@
@@ -184,14 +169,12 @@ zk:
 zoxide:
 	$(YAY) $@
 
-zsh: stow
+zsh:
 	$(YAY) $@ $@-antidote
-	stow $@
 	chsh -s $(shell which zsh)
 
-
 link: stow
-	stow $@
+	stow dotfiles
 
 systemd: #config systemd
 	sudo sed -i 's/#SystemMaxUse=/SystemMaxUse=50M' /etc/systemd/journald.conf
