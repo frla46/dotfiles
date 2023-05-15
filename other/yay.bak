@@ -49,6 +49,7 @@ grub
 gst-plugin-pipewire
 gzip
 hdparm
+hlsdl
 i3-wm
 i3blocks
 i3lock-color
@@ -103,6 +104,7 @@ pipewire-jack
 pipewire-pulse
 pkgconf
 playerctl
+powerpill
 pqiv
 procs
 protonvpn-cli
@@ -110,6 +112,7 @@ pulsemixer
 python-pip
 rclone
 redshift
+reflector
 ripgrep
 rofi
 rofi-greenclip
@@ -117,7 +120,6 @@ rustup
 sed
 smartmontools
 stalonetray
-steam
 stow
 sudo
 texinfo
