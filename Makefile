@@ -39,7 +39,7 @@ discord: ## install discord
 	$(YAY) $@
 
 docker: ## init docker
-	$(YAY) $@ lazy$@
+	$(YAY) $@ lazy$@ docker-compose
 	sudo usermod -aG $@ ${USER}
 	sudo systemctl --now enable docker
 
@@ -53,7 +53,7 @@ exa: ## install exa
 	$(YAY) $@
 
 fcitx5: ## init fcitx5
-	$(YAY) $@-im
+	$(YAY) $@ $@-gtk $@-qt $@-configtool
 
 fd: ## install fd
 	$(YAY) $@
@@ -65,8 +65,7 @@ git: ## install git
 	$(YAY) $@ lazy$@
 
 i3: ## install i3
-	# $(YAY) $@
-	$(YAY) $@lock-color
+	$(YAY) $@-wm $@status $@lock-color
 
 jq: ## install jq
 	$(YAY) $@
@@ -155,12 +154,12 @@ vivaldi: ## install vivaldi
 	$(YAY) $@
 
 yay: ## install yay
+	mkdir -p ~/src/
+	which yay || cd ~/src/ && git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si
 	$(YAY) reflector
 	sudo reflector -c jp -p https,rsync -f 5 --save /etc/pacman.d/mirrorlist
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
-	mkdir -p ~/src/
-	cd ~/src/ && git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si
 	yay
 
 zathura: ## install zathura
@@ -174,16 +173,18 @@ zoxide: ## install zoxide
 
 zsh: ## install zsh
 	$(YAY) $@ $@-antidote
-	chsh -s $(shell which zsh)
+	cat /etc/shells
+	chsh
+
 
 link: stow ## symlink dotfiles
-	stow dotfiles
+	stow -Rv -t ~ dotfiles
 
 docker_image: docker ## build docker image for test
 	docker build -t dotfiles ${PWD}
 
 test: docker_image ## test Makefile
-	docker run -it --name makefile_test -d dotfiles:latest /bin/bash
+	docker run -it --name make_test -d dotfiles:latest /bin/bash
 
 # # todo
 # - set gtk-theme cursor-theme

@@ -1,11 +1,14 @@
 FROM archlinux:latest
 
 ARG USER=frla
-ARG PASSWORD=hogehoge
+ARG PASSWORD=hoge
 ARG HOSTNAME=home
-ARG REPO=/home/${USER}/src/
 
 ENV HOME /home/${USER}
+ENV ZDOTDIR ~/.config/zsh/
+ENV HISTFILE ${ZDOTDIR:-~}/.zsh_history
+ENV HISTSIZE 10000
+ENV SAVEHIST 10000
 
 RUN pacman -Syu --noconfirm
 RUN pacman -S base base-devel --noconfirm
@@ -18,6 +21,5 @@ RUN echo "${USER}:${PASSWORD}" | chpasswd
 RUN echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
 
 USER ${USER}
-RUN mkdir -p ${REPO}
-WORKDIR ${REPOSITORY}
+WORKDIR ${HOME}
 RUN git clone https://github.com/frla46/dotfiles.git
