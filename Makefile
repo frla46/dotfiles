@@ -7,184 +7,183 @@ help: ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-# make yay
-# cd yay/ && makepkg -si
-# yay
-
 all: minimal cui gui misc ## init all
 minimal: yay alacritty fcitx5 git nvim zsh ## init minimal
-cui: aria2 at atool bat bottom docker dust exa fd fzf jq lf procs protonvpn-cli rclone ripgrep trash-cli tree ttf-hackgen ufw zk zoxide ## init cui
+cui: aria2 at atool bat bottom docker dust exa fd fzf jq lf procs protonvpn-cli rclone ripgrep trash-cli tree ttf-hackgen ufw zk zoxide systemd ## init cui
 gui: chromium discord dunst i3 libreoffice maim mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## init gui
-misc: link systemd ## init misc
+misc: link ## init misc
+conf: systemd locale
 
-alacritty:
+alacritty: ## install alacritty
 	$(YAY) $@
 
-aria2:
+aria2: ## install aria2
 	$(YAY) $@
 
-at:
+at: ## install at
 	$(YAY) $@
 
-atool:
+atool: ## install atool
 	$(YAY) $@
 
-bat:
+bat: ## install bat
 	$(YAY) $@
 
-bottom:
+bottom: ## install bottom
 	$(YAY) $@
 
-chromium:
+chromium: ## install chromium
 	$(YAY) $@
 
-discord:
+discord: ## install discord
 	$(YAY) $@
 
-docker:
+docker: ## init docker
 	$(YAY) $@ lazy$@
 	sudo usermod -aG $@ ${USER}
 	sudo systemctl --now enable docker
 
-dunst:
+dunst: ## install dunst
 	$(YAY) $@
 
-dust:
+dust: ## install dust
 	$(YAY) $@
 
-exa:
+exa: ## install exa
 	$(YAY) $@
 
-fcitx5:
+fcitx5: ## init fcitx5
 	$(YAY) $@-im
+
+fd: ## install fd
+	$(YAY) $@
+
+fzf: ## install fzf
+	$(YAY) $@
+
+git: ## install git
+	$(YAY) $@ lazy$@
+
+i3: ## install i3
+	# $(YAY) $@
+	$(YAY) $@lock-color
+
+jq: ## install jq
+	$(YAY) $@
+
+lf: ## install lf
+	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer
+
+libreoffice: ## install libreoffice
+	$(YAY) $@-still
+
+locale: ## init locale
 	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' > /etc/locale.gen
 	locale-gen
 	echo 'LANG=ja_JP.UTF-8' > /etc/locale.conf
 
-fd:
+maim: ## install maim
 	$(YAY) $@
 
-fzf:
-	$(YAY) $@
-
-git:
-	$(YAY) $@ lazy$@
-
-i3:
-	# $(YAY) $@
-	$(YAY) $@lock-color
-
-jq:
-	$(YAY) $@
-
-lf:
-	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer
-
-libreoffice:
-	$(YAY) $@-still
-
-maim:
-	$(YAY) $@
-
-mpv:
+mpv: ## install mpv
 	$(YAY) $@ $@-mpris
 
-nord-theme:
+nord-theme: ## install nord theme
 	$(YAY) nordic-darker-theme nordzy-cursors fcitx5-nord
 
-nvim:
+nvim: ## install nvim
 	$(YAY) neovim
 
-picom:
+picom: ## install picom
 	$(YAY) $@
 
-playerctl:
+playerctl: ## install playerctl
 	$(YAY) $@
 
-pqiv:
+pqiv: ## install pqiv
 	$(YAY) $@
 
-procs:
+procs: ## install procs
 	$(YAY) $@
 
-protonvpn-cli:
+protonvpn-cli: ## install protonvpn-cli
 	$(YAY) $@
 
-pulsemixer:
+pulsemixer: ## install pulsemixer
 	$(YAY) $@
 
-rclone:
+rclone: ## install rclone
 	$(YAY) $@
 
-redshift:
+redshift: ## install redshift
 	$(YAY) $@
 
-ripgrep:
+ripgrep: ## install ripgrep
 	$(YAY) $@
 
-rofi:
+rofi: ## install rofi
 	$(YAY) $@
 
-rofi-greenclip:
+rofi-greenclip: ## install rofi-greenclip
 	$(YAY) $@
 
-stow:
+stow: ## install stow
 	$(YAY) $@
-
-trash-cli:
-	$(YAY) $@
-
-tree:
-	$(YAY) $@
-
-ttf-hackgen:
-	$(YAY) $@
-
-ufw:
-	$(YAY) $@
-	sudo ufw default deny
-	sudo ufw enable
-
-unclutter:
-	$(YAY) $@
-
-vivaldi:
-	$(YAY) $@
-
-yay:
-	mkdir -p ~/src/
-	cd ~/src/
-	git clone https://aur.archlinux.org/yay.git
-	cd yay/ && makepkg -si
-	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
-	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
-	yay
-
-zathura:
-	$(YAY) $@
-
-zk:
-	$(YAY) $@
-
-zoxide:
-	$(YAY) $@
-
-zsh:
-	$(YAY) $@ $@-antidote
-	chsh -s $(shell which zsh)
-
-link: stow
-	stow dotfiles
 
 systemd: #config systemd
 	sudo sed -i 's/#SystemMaxUse=/SystemMaxUse=50M' /etc/systemd/journald.conf
 	sudo systemctl restart systemd-journald
 
-docker_image: docker
+trash-cli: ## install trash-cli
+	$(YAY) $@
+
+tree: ## install tree
+	$(YAY) $@
+
+ttf-hackgen: ## install ttf-hackgen
+	$(YAY) $@
+
+ufw: ## init ufw
+	$(YAY) $@
+	sudo ufw default deny
+	sudo ufw enable
+
+unclutter: ## install unclutter
+	$(YAY) $@
+
+vivaldi: ## install vivaldi
+	$(YAY) $@
+
+yay: ## install yay
+	$(YAY) reflector
+	sudo reflector -c jp -p https,rsync -f 5 --save /etc/pacman.d/mirrorlist
+	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
+	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+	mkdir -p ~/src/
+	cd ~/src/ && git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si
+	yay
+
+zathura: ## install zathura
+	$(YAY) $@
+
+zk: ## install zk
+	$(YAY) $@
+
+zoxide: ## install zoxide
+	$(YAY) $@
+
+zsh: ## install zsh
+	$(YAY) $@ $@-antidote
+	chsh -s $(shell which zsh)
+
+link: stow ## symlink dotfiles
+	stow dotfiles
+
+docker_image: docker ## build docker image for test
 	docker build -t dotfiles ${PWD}
 
 test: docker_image ## test Makefile
-	docker run -it --name maketest -d dotfiles:latest /bin/bash
+	docker run -it --name makefile_test -d dotfiles:latest /bin/bash
 
 # # todo
 # - set gtk-theme cursor-theme
