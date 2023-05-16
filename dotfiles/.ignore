@@ -3,6 +3,10 @@
 *.mo
 *.pdf
 *.png
+*.xlsx
+*.docx
+*.ldb
+*.zip
 
 .cache/
 cache/

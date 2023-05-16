@@ -1,14 +1,12 @@
 FROM archlinux:latest
 
-ARG HOSTNAME=home
+ARG HOSTNAME=make_test
 ARG USER=frla
 ARG PASSWORD=hoge
 
 ENV HOME /home/${USER}
 ENV ZDOTDIR ~/.config/zsh
 ENV HISTFILE ${ZDOTDIR:-~}/.zsh_history
-ENV HISTSIZE 10000
-ENV SAVEHIST 10000
 
 RUN pacman -Syu --noconfirm\
   && pacman -S base base-devel --noconfirm\
