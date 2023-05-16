@@ -24,6 +24,18 @@ test: docker ## test Makefile
 update: ## update packages
 	yay
 
+backup_home:
+	time rclone sync ${HOME}/backup home:HOME
+
+restore_home:
+	time rclone sync home:home ${HOME/backup}
+
+backup_res:
+	time rclone sync ${HOME}/backup home:res
+
+restore_res:
+	time rclone sync home:res ${HOME/backup}
+
 # packages
 alacritty:
 	$(YAY) $@
