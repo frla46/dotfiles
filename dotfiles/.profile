@@ -7,8 +7,8 @@ export PATH=$PATH:/home/frla/.local/bin
 # zsh
 export ZDOTDIR=~/.config/zsh
 export HISTFILE=${ZDOTDIR:-~}/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
+export HISTSIZE=100000
+export SAVEHIST=100000
 
 # fcitx
 export GTK_IM_MODULE=fcitx5
