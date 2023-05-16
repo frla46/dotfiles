@@ -1,24 +1,25 @@
 FROM archlinux:latest
 
+ARG HOSTNAME=home
 ARG USER=frla
 ARG PASSWORD=hoge
-ARG HOSTNAME=home
 
 ENV HOME /home/${USER}
-ENV ZDOTDIR ~/.config/zsh/
+ENV ZDOTDIR ~/.config/zsh
 ENV HISTFILE ${ZDOTDIR:-~}/.zsh_history
 ENV HISTSIZE 10000
 ENV SAVEHIST 10000
 
-RUN pacman -Syu --noconfirm
-RUN pacman -S base base-devel --noconfirm
-RUN pacman -Syy
-RUN pacman -S git --noconfirm
+RUN pacman -Syu --noconfirm\
+  && pacman -S base base-devel --noconfirm\
+  && pacman -Syy\
+  && pacman -S git --noconfirm
 
-RUN useradd -m -r -G wheel -s /bin/bash ${USER}
-RUN echo "root:${PASSWORD}" | chpasswd
-RUN echo "${USER}:${PASSWORD}" | chpasswd
-RUN echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo
+RUN useradd -m -r -G wheel -s /bin/bash ${USER}\
+  && echo "root:${PASSWORD}" | chpasswd\
+  && echo "${USER}:${PASSWORD}" | chpasswd\
+  && echo '%wheel ALL=(ALL) ALL' | EDITOR='tee -a' visudo\
+  && echo '${HOSTNAME}' > /etc/hostname
 
 USER ${USER}
 WORKDIR ${HOME}

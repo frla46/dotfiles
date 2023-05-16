@@ -20,6 +20,7 @@ debugedit
 deja-dup
 discord
 docker
+docker-compose
 dunst
 dust
 exa
@@ -70,6 +71,7 @@ linux-firmware
 linux-lts
 linux-zen
 linux-zen-headers
+lostfiles
 lua-language-server
 luarocks
 lxappearance
@@ -104,7 +106,6 @@ pipewire-jack
 pipewire-pulse
 pkgconf
 playerctl
-powerpill
 pqiv
 procs
 protonvpn-cli
