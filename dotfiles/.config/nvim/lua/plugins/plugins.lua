@@ -10,10 +10,6 @@ return {
 		event = "VeryLazy",
 	},
 	{
-		"vim-jp/vimdoc-ja",
-		event = "VeryLazy",
-	},
-	{
 		"lmburns/lf.nvim",
 		dependencies = { "plenary.nvim", "toggleterm.nvim" },
 		keys = {
