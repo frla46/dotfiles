@@ -88,7 +88,7 @@ mode $system {
   bindsym q exec "systemctl poweroff"; mode "default"
   bindsym r exec "systemctl reboot"; mode "default"
   bindsym s exec "systemctl suspend"; mode "default"
-  bindsym l exec ~/bin/i3lock-color.sh; mode "default"
+  bindsym l exec ~/.config/i3/i3lock-color.sh; mode "default"
   bindsym L exec "i3-msg exit"; mode "default"
   bindsym Escape mode "default"
 }
@@ -259,8 +259,6 @@ default_border none
 ## autostart
 exec fcitx5
 exec_always xset r rate 180 50
-# exec_always killall greenclip; greenclip daemon
-# exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec greenclip daemon
 exec redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec unclutter -idle 1 -root

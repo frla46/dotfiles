@@ -1,5 +1,4 @@
 .DEFAULT_GOAL = help
-# .PHONY = setup pkgs link conf
 
 YAY := yay -S --needed --noconfirm
 
@@ -7,14 +6,14 @@ help: ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-all: minimal cui gui conf ## init all
-minimal: yay link git nvim zsh ## init minimal
-cui: aria2 at atool bat bottom docker dust exa fcitx5 fd fzf jq lf procs protonvpn-cli rclone ripgrep trash-cli tree ufw zk zoxide ## init cui
-gui: alacritty chromium discord dunst i3 libreoffice maim mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip ttf-hackgen unclutter zathura ## init gui
-conf: docker_conf locale_conf systemd_conf zsh_conf dns_conf ## config
+all: minimal cui gui conf ## deploy all
+minimal: yay link git nvim zsh lf fd ripgrep procs exa  ## deploy minimal
+cui: aria2 at atool bat bottom docker dust fcitx5 jq protonvpn-cli rclone tree ufw zk ## deploy cui
+gui: alacritty chromium discord dunst i3 libreoffice maim mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip ttf-hackgen unclutter zathura ## deploy gui
+conf: docker_conf locale_conf systemd_conf zsh_conf dns_conf ## config all
 
-
-link: stow ## symlink dotfiles
+link: ## symlink dotfiles
+	$(YAY) stow
 	stow -Rv -t ~ dotfiles
 
 test: docker ## test Makefile
@@ -24,17 +23,11 @@ test: docker ## test Makefile
 update: ## update packages
 	yay
 
-backup_home:
-	time rclone sync ${HOME}/backup home:HOME
+backup: rclone ## backup ~/backup/
+	time rclone sync ${HOME}/backup home:$${HOSTNAME}
 
-restore_home:
-	time rclone sync home:home ${HOME/backup}
-
-backup_res:
-	time rclone sync ${HOME}/backup home:res
-
-restore_res:
-	time rclone sync home:res ${HOME/backup}
+restore: rclone ## restore ~/backup/
+	time rclone sync home:$${HOSTNAME} ${HOME}/backup
 
 # packages
 alacritty:
@@ -80,9 +73,6 @@ fcitx5:
 	$(YAY) $@ $@-gtk $@-qt $@-configtool $@-mozc
 
 fd:
-	$(YAY) $@
-
-fzf:
 	$(YAY) $@
 
 git:
@@ -145,9 +135,6 @@ rofi:
 rofi-greenclip: rofi
 	$(YAY) $@
 
-stow:
-	$(YAY) $@
-
 tree:
 	$(YAY) $@
 
@@ -177,11 +164,8 @@ zathura:
 zk:
 	$(YAY) $@
 
-zoxide: fzf
-	$(YAY) $@
-
-zsh: zoxide
-	$(YAY) $@ $@-antidote
+zsh:
+	$(YAY) $@ $@-antidote zoxide fzf
 
 
 # config

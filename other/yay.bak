@@ -1,7 +1,5 @@
 alacritty
 amd-ucode
-ani-cli
-anki
 archlinux-keyring
 aria2
 at
@@ -19,8 +17,8 @@ ctpv-git
 debugedit
 deja-dup
 discord
+dnsmasq
 docker
-docker-compose
 dunst
 dust
 exa
@@ -44,6 +42,7 @@ gcc
 gettext
 gimp
 git
+git-crypt
 grep
 groff
 grub
@@ -97,7 +96,6 @@ noto-fonts-extra
 npm
 p7zip
 pacman
-pandoc-cli
 patch
 picom
 pipewire
@@ -114,6 +112,7 @@ python-pip
 rclone
 redshift
 reflector
+restic
 ripgrep
 rofi
 rofi-greenclip
@@ -136,6 +135,7 @@ unclutter
 unrar
 unzip
 vdhcoapp
+vim
 vimv-git
 virtualbox
 vivaldi

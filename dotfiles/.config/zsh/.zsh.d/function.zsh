@@ -76,7 +76,8 @@ function _lfcd () {
 # use vim as a pipe
 function _vipe () {
   COMMAND=$(echo "$*")
-  \vim - -es +"norm gg$COMMAND" + '%p|q!' | sed '1d'
+  \vim - -es +"$COMMAND" +'%p' +'q!' | sed '1d'
+
 }
 
 # disable "crontab -r"

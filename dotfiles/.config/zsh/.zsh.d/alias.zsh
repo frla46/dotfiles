@@ -13,9 +13,9 @@ alias -g V='|$PAGER'
 alias -g C='|xsel --clipboard --input'
 
 # my function
+alias -g VI='|_vipe'
 alias j='_fg-fzf'
 alias ariav='_aria-mp4'
-alias -g VI='|_vipe'
 
 if [ $(which yay) &> /dev/null ]; then
   alias y='yay'
@@ -77,10 +77,6 @@ if [ $(which at) &> /dev/null ]; then
   alias atl='at -l'
   alias atn='at -f ~/bin/timer_notify.sh'
   alias atd='at -d $(at -l | fzf | cut -f 1)'
-fi
-
-if [ $(which hoge) &> /dev/null ]; then
-  alias fuga='piyo'
 fi
 
 # misc
