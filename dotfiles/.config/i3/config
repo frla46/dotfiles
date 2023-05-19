@@ -257,15 +257,15 @@ focus_follows_mouse no
 default_border none
 
 ## autostart
-exec fcitx5
-exec_always xset r rate 180 50
-exec greenclip daemon
 exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
-exec unclutter -idle 1 -root
-exec feh --bg-scale '/home/frla/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg'
-exec picom -b
+exec_always xset r rate 180 50
 exec dunst -config ~/.config/dunst/dunstrc
+exec fcitx5
+exec feh --bg-scale "~/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
+exec greenclip daemon
 exec nm-applet
+exec picom -b
+exec unclutter -idle 1 -root
 
 exec alacritty -t scratch
 exec vivaldi-stable
