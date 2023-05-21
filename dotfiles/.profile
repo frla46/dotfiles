@@ -2,7 +2,7 @@
 export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
-export PATH=$PATH:/home/frla/.local/bin
+export PATH=$PATH:~/.local/bin
 
 # zsh
 export ZDOTDIR=~/.config/zsh
@@ -17,6 +17,9 @@ export XMODIFIERS=@im=fcitx5
 
 # fzf
 export FZF_DEFAULT_COMMAND='fd --type file --hidden'
+
+# restic
+export $RESTIC_REPOSITORY=~/backup/restic_repo
 
 # bat
 export BAT_THEME='Nord'

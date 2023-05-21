@@ -33,6 +33,7 @@ return {
 					internal = {},
 					external = {
 						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
+						py = "python %",
 					},
 				},
 				behavior = {

@@ -23,12 +23,6 @@ test: docker ## test Makefile
 update: ## update packages
 	yay
 
-backup: rclone ## backup ~/backup/
-	time rclone sync ${HOME}/backup home:$${HOSTNAME}
-
-restore: rclone ## restore ~/backup/
-	time rclone sync home:$${HOSTNAME} ${HOME}/backup
-
 # packages
 alacritty:
 	$(YAY) $@
