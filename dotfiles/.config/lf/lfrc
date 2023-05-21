@@ -43,10 +43,11 @@ map r
 
 # # set mappings
 # map <esc> quit
-map A :rename
-map i :push A<a-b><a-b><a-f>
-map I :push A<c-a>
-map r :push A<c-u><c-k>
+map r :rename
+map a :push r<a-b><a-b><a-f><c-f>
+map A :push r<c-e>
+map i :push r<a-b><a-b><a-f>
+map I :push r<c-a>
 map R :bulkrename
 map zp :set preview!
 map <backspace2> :set hidden!
