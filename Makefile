@@ -8,20 +8,26 @@ help: ## show this help
 
 all: minimal cui gui conf ## deploy all
 minimal: yay link git nvim zsh lf fd ripgrep procs exa  ## deploy minimal
-cui: aria2 at atool bat bottom docker dust fcitx5 jq protonvpn-cli rclone tree ufw zk ## deploy cui
+cui: aria2 at atool bat bottom docker dust fcitx5 jq protonvpn-cli rclone restic tree ufw zk ## deploy cui
 gui: alacritty chromium discord dunst i3 libreoffice maim mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip ttf-hackgen unclutter zathura ## deploy gui
-conf: docker_conf locale_conf systemd_conf zsh_conf dns_conf ## config all
+conf: docker_conf locale_conf systemd_conf zsh_conf dns_conf ## configure all
 
 link: ## symlink dotfiles
 	$(YAY) stow
 	stow -Rv -t ~ dotfiles
 
+allupdate: update pipupdate ## update all
+
+update: ## update archlinux packages
+	yay
+
+pipupdate: ## Update python packages
+	pip list --user | cut -d" " -f 1 | tail -n +3 | xargs pip install -U --user
+
 test: docker ## test Makefile
 	docker build -t dotfiles ${PWD}
-	docker run -it --name make_test -d dotfiles:latest /bin/bash
+	docker run -it --name dotfiles_test -d dotfiles:latest /bin/bash
 
-update: ## update packages
-	yay
 
 # packages
 alacritty:
@@ -120,6 +126,9 @@ rclone:
 redshift:
 	$(YAY) $@
 
+restic:
+	$(YAY) $@
+
 ripgrep:
 	$(YAY) $@
 
@@ -148,7 +157,7 @@ yay: ## install yay
 	mkdir -p ~/src/
 	-cd ~/src/ && git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si
 	$(YAY) yay reflector rsync
-	sudo reflector -c jp -p https,rsync -l 5 --save /etc/pacman.d/mirrorlist
+	sudo reflector -c jp -p https -l 5 --save /etc/pacman.d/mirrorlist
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 

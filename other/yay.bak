@@ -1,5 +1,6 @@
 alacritty
 amd-ucode
+ani-cli
 archlinux-keyring
 aria2
 at
@@ -12,10 +13,8 @@ binutils
 bison
 bottom
 chromium
-clamav
 ctpv-git
 debugedit
-deja-dup
 discord
 dnsmasq
 docker
@@ -117,6 +116,7 @@ ripgrep
 rofi
 rofi-greenclip
 rustup
+sbcl
 sed
 smartmontools
 stalonetray
