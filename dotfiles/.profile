@@ -26,3 +26,6 @@ export BAT_THEME='Nord'
 
 # zk
 export ZK_NOTEBOOK_DIR=~/note
+
+# ssh
+eval "$(ssh-agent -s)"

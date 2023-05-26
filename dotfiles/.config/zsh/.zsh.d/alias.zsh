@@ -1,6 +1,5 @@
 ## alias
 alias _='sudo'
-alias c='cd'
 alias q='exit'
 alias v='$PAGER'
 alias e='$EDITOR'
@@ -10,7 +9,7 @@ alias cal='cal -Y'
 
 # global alias
 alias -g V='|$PAGER'
-alias -g C='|xsel --clipboard --input'
+alias -g C='|xsel -bi'
 
 # my function
 alias -g VI='|_vipe'
