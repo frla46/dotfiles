@@ -56,20 +56,19 @@ fi
 
 if [ $(which protonvpn-cli) &> /dev/null ]; then
   alias vpn='protonvpn-cli'
-  alias vpns='vpn status'
-  alias vpnc='vpn c --cc NL'
-  alias vpnd='vpn d'
+  alias vpns='protonvpn-cli status'
+  alias vpnc='protonvpn-cli c --cc NL'
+  alias vpnd='protonvpn-cli d'
 fi
 
 if [ $(which exa) &> /dev/null ]; then
-  alias exa='exa --icons'
   alias l='exa'
   alias ls='exa'
   alias sl='exa'
   alias la='exa -a'
   alias ll='exa -l'
-  alias lla='exa -a -l'
-  alias lal='exa -a -l'
+  alias lla='exa -al'
+  alias lal='exa -al'
 fi
 
 if [ $(which at) &> /dev/null ]; then
@@ -80,8 +79,7 @@ fi
 
 # misc
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
-alias precp='fc -ln | tail -n 1 C'
+alias precp='fc -ln | tail -n 1 | xsel -bi'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias mpv='mpv --no-terminal'
-

@@ -9,6 +9,7 @@ autoconf
 automake
 base
 bat
+betterdiscordctl
 binutils
 bison
 bottom
@@ -42,6 +43,7 @@ gettext
 gimp
 git
 git-crypt
+github-cli
 grep
 groff
 grub

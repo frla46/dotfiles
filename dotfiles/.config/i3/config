@@ -198,30 +198,12 @@ mode  "insert" {
 }
 
 ## color
-# nord
-#define nord0 #2E3440
-#define nord1 #3B4252
-#define nord2 #434C5E
-#define nord3 #4C566A
-#define nord4 #D8DEE9
-#define nord5 #E5E9F0
-#define nord6 #ECEFF4
-#define nord7 #8FBCBB
-#define nord8 #88C0D0
-#define nord9 #81A1C1
-#define nord10 #5E81AC
-#define nord11 #BF616A
-#define nord12 #D08770
-#define nord13 #EBCB8B
-#define nord14 #A3BE8C
-#define nord15 #B48EAD
-
-set_from_resource $black nord0 #2E3440
-set_from_resource $gray nord3 #4C566A
-set_from_resource $white nord6 #ECEFF4
-set_from_resource $blue nord9 #81A1C1
-set_from_resource $red nord11 #BF616A
-set_from_resource $yellow nord13 #EBCB8B
+set $black #2E3440
+set $gray #4C566A
+set $white #ECEFF4
+set $blue #81A1C1
+set $red #BF616A
+set $yellow #EBCB8B
 
 #class                  border backgr  text   indicator child_border
 client.focused          $black $gray   $white $yellow   $blue
@@ -251,18 +233,18 @@ bar {
 # gaps
 gaps inner 10
 
-# other
+# misc
 show_marks yes
 focus_follows_mouse no
 default_border none
 
 ## autostart
+exec_always killall redshift; greenclip daemon
 exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
 exec_always xset r rate 180 50
 exec dunst -config ~/.config/dunst/dunstrc
 exec fcitx5
-exec feh --bg-scale "~/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
-exec greenclip daemon
+exec feh --bg-scale "$HOME/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
 exec nm-applet
 exec picom -b
 exec unclutter -idle 1 -root
@@ -270,7 +252,6 @@ exec unclutter -idle 1 -root
 exec alacritty -t scratch
 exec vivaldi-stable
 exec discord
-exec alacritty -t term
 
 ## app shortcut
 bindsym $mod+Return exec alacritty
@@ -284,4 +265,3 @@ for_window [class="^Alacritty$" title="^scratch$"] move scratchpad
 for_window [class="^Vivaldi-stable$"] move --no-auto-back-and-forth to workspace $ws2
 for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws1
-for_window [class="^Alacritty$" title="^term$"] move --no-auto-back-and-forth to workspace $ws3

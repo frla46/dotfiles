@@ -54,7 +54,8 @@ chromium:
 	$(YAY) $@
 
 discord:
-	$(YAY) $@
+	$(YAY) $@ betterdiscordctl
+	betterdiscordctl install
 
 docker:
 	$(YAY) $@ lazy$@
