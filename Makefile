@@ -9,17 +9,17 @@ help: ## show this help
 all: minimal cui gui conf ## deploy all
 minimal: yay link git nvim zsh lf fd ripgrep procs exa  ## deploy minimal
 cui: aria2 at atool bat bottom docker dust fcitx5 jq protonvpn-cli rclone restic tree ufw zk ## deploy cui
-gui: alacritty chromium discord dunst i3 libreoffice maim mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip ttf-hackgen unclutter zathura ## deploy gui
+gui: alacritty chromium discord dunst i3 libreoffice maim megacmd mpv nord-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip ttf-hackgen unclutter zathura ## deploy gui
 conf: docker_conf locale_conf systemd_conf zsh_conf dns_conf ## configure all
 
-link: ## symlink dotfiles
+link: ## set symlink dotfiles
 	$(YAY) stow
 	stow -Rv -t ~ dotfiles
 
 allupdate: update pipupdate ## update all
 
 update: ## update archlinux packages
-	yay
+	yay --needed --noconfirm
 
 pipupdate: ## Update python packages
 	pip list --user | cut -d" " -f 1 | tail -n +3 | xargs pip install -U --user
@@ -92,6 +92,9 @@ libreoffice:
 	$(YAY) $@-still
 
 maim:
+	$(YAY) $@
+
+megacmd:
 	$(YAY) $@
 
 mpv:

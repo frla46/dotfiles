@@ -5,9 +5,9 @@
 
 # plugin manager (antidote)
 # archlinux: pacman -S zsh-antidote
+source '/usr/share/zsh-antidote/antidote.zsh'
 # git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
 # source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-source '/usr/share/zsh-antidote/antidote.zsh'
 antidote load
 
 # prompt

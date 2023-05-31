@@ -1,21 +1,15 @@
-*.db
+# ignore files for telescope
+## file
+*.docx
+*.gz
 *.jpg
-*.mo
 *.pdf
 *.png
+*.tar
 *.xlsx
-*.docx
-*.ldb
 *.zip
 
-.cache/
-cache/
-/.cargo/
-/.clamtk/
-.git/
-/.local/lib/
-/.local/share/Trash/
-/.local/state/
-node_modules/
-/.npm/
-/.wine/
+## directory
+restic_repo/
+windows/
+src/res/text/

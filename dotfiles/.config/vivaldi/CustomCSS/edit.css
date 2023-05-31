@@ -12,9 +12,6 @@
 .window-minimize, .window-maximize, .window-close {
   display: none;
 }
-.ToolbarButton-Button {
-  display: none;
-}
 
 .panel {
   padding-right: 0px !important;

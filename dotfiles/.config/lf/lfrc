@@ -44,10 +44,8 @@ map r
 # # set mappings
 # map <esc> quit
 map r :rename
-map a :push r<a-b><a-b><a-f><c-f>
-map A :push r<c-e>
-map i :push r<a-b><a-b><a-f>
-map I :push r<c-a>
+map a :push r<c-e>
+map i :push r<c-a>
 map R :bulkrename
 map zp :set preview!
 map <backspace2> :set hidden!
@@ -72,6 +70,7 @@ map ? !file --mime-type -Lb $fx
 map <c-z> $kill -STOP $PPID
 map ` :mark-load
 map "'" :push :tag<space>
+map ut :tag-clear
 map oe $lf -remote "send $id \$$EDITOR \$fx"
 map oE &alacritty -e $EDITOR $fx
 map ov $lf -remote "send $id \$$PAGER \$fx"
@@ -102,7 +101,7 @@ cmd open &{{
         *.pptx | *.odt | *.docx | *.ods | *.xlsx )
           libreoffice $fx;;
         *.zip | *.rar | *.7z )
-          atool -xe $fx;;
+          atool -xe $fx && lf -remote "send $id load";;
         * ) :;;
       esac;;
   esac
@@ -130,8 +129,8 @@ cmd yank-basename-without-extension ${{
 }}
 
 cmd on-cd &{{
-  # printf "\033]0; $PWD\007" > /dev/tty
   zoxide add $(pwd)
+  # printf "\033]0; $PWD\007" > /dev/tty
   printf "\033]0; $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
 }}
 
@@ -164,3 +163,5 @@ cmd zi ${{
 	result="$(zoxide query -i)"
 	lf -remote "send $id cd $result"
 }}
+
+cmd tag-clear :tag; tag-toggle

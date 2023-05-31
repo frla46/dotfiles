@@ -69,6 +69,13 @@ if [ $(which exa) &> /dev/null ]; then
   alias ll='exa -l'
   alias lla='exa -al'
   alias lal='exa -al'
+else
+  alias l='ls'
+  alias sl='ls'
+  alias la='ls -a'
+  alias ll='ls -l'
+  alias lal='ls -al'
+  alias lla='ls -al'
 fi
 
 if [ $(which at) &> /dev/null ]; then

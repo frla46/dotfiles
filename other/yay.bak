@@ -13,6 +13,7 @@ betterdiscordctl
 binutils
 bison
 bottom
+capitaine-cursors
 chromium
 ctpv-git
 debugedit
@@ -34,6 +35,7 @@ feh
 ffmpegthumbnailer
 file
 findutils
+firefox
 flex
 freerdp
 fzf
@@ -79,6 +81,7 @@ m4
 maim
 make
 man-db
+megacmd
 mpc
 mpd
 mpv
@@ -110,7 +113,7 @@ procs
 protonvpn-cli
 pulsemixer
 python-pip
-rclone
+rbw
 redshift
 reflector
 restic
@@ -125,7 +128,6 @@ stow
 sudo
 texinfo
 timeshift
-tmux
 translate-shell
 trash-cli
 tree
