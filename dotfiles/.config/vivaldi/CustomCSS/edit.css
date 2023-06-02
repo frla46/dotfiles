@@ -17,13 +17,6 @@
   padding-right: 0px !important;
   padding-left: 0px !important;
 }
-#panels .tree-item:nth-child(2n) {
-  background-color: #2f2f2f;
-}
-#panels .tree-item:nth-child(2n+1) {
-  background-color: #393939;
-}
-
 .panel .vivaldi-tree .tree-row.folder .expand-icon {
   width: 50%;
   height: 100%;
@@ -33,6 +26,7 @@
 .panel .vivaldi-tree .tree-row.folder .expand-icon>svg {
   display: none;
 }
+
 .panel .vivaldi-tree .tree-row.folder .expand-icon[style*="margin-left: 0px"]+svg {
   margin-left: 0px !important;
 }
@@ -61,35 +55,19 @@
   margin-left: 64px !important;
 }
 
-.title {
-  margin: 0px !important;
-}
-#tabs-tabbar-container > button {
-  display: none !important;
-}
-
-.panel-bookmarks-edit {
-  display: none !important;
-}
-#panels>div.panel-group>div>div.panel.panel-bookmarks>header>h1 {
-  display: none !important;
-}
-#panels>div.panel-group>div>div.panel.panel-bookmarks>header>div>div {
-  display: none !important;
-}
-#panels > div.panel-group > div > div.panel.downloads.isEmpty > div > div {
+#panels > div.panel-group > div > div.panel.panel-bookmarks > section.panel-bookmarks-edit.limited {
   display: none;
 }
-#window-panel > header > div > div {
+#panels > div.panel-group > div > div.panel.panel-bookmarks > header > div > div {
   display: none;
 }
-#panels > div.panel-group > div > div.panel.downloads.isEmpty > header > h1 > button {
+#tabs-container > div.resize > div > div > div > button {
   display: none;
 }
-#tabs-container > div.resize > div > div > div {
+#main > div.mainbar > div > div.UrlBar-AddressField.button-textonly.below > div:nth-child(1) {
   display: none;
 }
-.toolbar-insideinput.toolbar-insideinput.toolbar-insideinput > .button-toolbar > button, .toolbar-insideinput.toolbar-insideinput.toolbar-insideinput > .toolbar-group > .button-toolbar > button {
+#main > div.mainbar > div > div.UrlBar-AddressField.button-textonly.below > button {
   display: none;
 }
 

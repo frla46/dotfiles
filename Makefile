@@ -160,7 +160,7 @@ vivaldi:
 yay: ## install yay
 	mkdir -p ~/src/
 	-cd ~/src/ && git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si
-	$(YAY) yay reflector rsync
+	$(YAY) yay reflector
 	sudo reflector -c jp -p https -l 5 --save /etc/pacman.d/mirrorlist
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
