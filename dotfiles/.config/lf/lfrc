@@ -54,6 +54,7 @@ map X !$f
 map <c-x> &$f
 map DD $trash-put $fx
 map DR $trash-restore
+map DU !dust
 map yy :copy
 map dd :cut
 map p :paste

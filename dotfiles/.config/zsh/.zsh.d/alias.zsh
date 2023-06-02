@@ -16,19 +16,21 @@ alias -g VI='|_vipe'
 alias j='_fg-fzf'
 alias ariav='_aria-mp4'
 
-if [ $(which yay) &> /dev/null ]; then
-  alias y='yay'
-  alias yy='yay --noconfirm --needed'
-fi
-
-if [ $(which lf) &> /dev/null ]; then
-  alias f='_lfcd'
-fi
-
-if [ $(which trash-put) &> /dev/null ]; then
-  alias -g rm='trash-put'
+if [ $(which exa) &> /dev/null ]; then
+  alias l='exa'
+  alias ls='exa'
+  alias sl='exa'
+  alias la='exa -a'
+  alias ll='exa -l'
+  alias lla='exa -al'
+  alias lal='exa -al'
 else
-  alias rm='rm -i'
+  alias l='ls'
+  alias sl='ls'
+  alias la='ls -a'
+  alias ll='ls -l'
+  alias lal='ls -al'
+  alias lla='ls -al'
 fi
 
 if [ $(which fd) &> /dev/null ]; then
@@ -46,6 +48,25 @@ if [ $(which procs) &> /dev/null ]; then
   alias ps='procs'
 fi
 
+if [ $(which trash-put) &> /dev/null ]; then
+  alias -g rm='trash-put'
+else
+  alias rm='rm -i'
+fi
+
+if [ $(which dust) &> /dev/null ]; then
+  alias du='dust'
+fi
+
+if [ $(which yay) &> /dev/null ]; then
+  alias y='yay'
+  alias yy='yay --noconfirm --needed'
+fi
+
+if [ $(which lf) &> /dev/null ]; then
+  alias f='_lfcd'
+fi
+
 if [ $(which git) &> /dev/null ]; then
   alias g='git'
 fi
@@ -59,23 +80,6 @@ if [ $(which protonvpn-cli) &> /dev/null ]; then
   alias vpns='protonvpn-cli status'
   alias vpnc='protonvpn-cli c --cc NL'
   alias vpnd='protonvpn-cli d'
-fi
-
-if [ $(which exa) &> /dev/null ]; then
-  alias l='exa'
-  alias ls='exa'
-  alias sl='exa'
-  alias la='exa -a'
-  alias ll='exa -l'
-  alias lla='exa -al'
-  alias lal='exa -al'
-else
-  alias l='ls'
-  alias sl='ls'
-  alias la='ls -a'
-  alias ll='ls -l'
-  alias lal='ls -al'
-  alias lla='ls -al'
 fi
 
 if [ $(which at) &> /dev/null ]; then

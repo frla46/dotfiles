@@ -5,8 +5,10 @@ ${HOME}/**/Cache/
 ${HOME}/backup/
 ${HOME}/.cargo/
 ${HOME}/.clamtk/
-${HOME}/.config/vivaldi/Default/Service Worker/
+${HOME}/**/Default/Service Worker/
 ${HOME}/.local/lib/
 ${HOME}/.local/share/Trash/
 ${HOME}/.local/share/steam/
 ${HOME}/.wine/
+${HOME}/.rustup/
+${HOME}/.config/discord/Code Cache/
