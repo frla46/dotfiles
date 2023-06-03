@@ -237,6 +237,7 @@ exec dunst -config ~/.config/dunst/dunstrc
 exec fcitx5
 exec feh --bg-scale "$HOME/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
 exec nm-applet
+exec mega-sync
 exec picom -b
 exec unclutter -idle 1 -root
 

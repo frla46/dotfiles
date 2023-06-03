@@ -5,26 +5,26 @@ export PAGER='less'
 export EDITOR='nvim'
 export PATH=$PATH:~/.local/bin
 
-# zsh
+## zsh
 export ZDOTDIR=~/.config/zsh
 export HISTFILE=~/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
 export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# fcitx
+## fcitx
 export GTK_IM_MODULE=fcitx5
 export QT_IM_MODULE=fcitx5
 export XMODIFIERS=@im=fcitx5
 
-# fzf
+## fzf
 export FZF_DEFAULT_COMMAND='fd --type file --hidden'
 
-# restic
+## restic
 export RESTIC_REPOSITORY=~/backup/restic_repo
 
-# bat
+## bat
 export BAT_THEME='Nord'
 
-# zk
+## zk
 export ZK_NOTEBOOK_DIR=~/note

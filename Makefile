@@ -21,7 +21,7 @@ allupdate: update pipupdate ## update all
 update: ## update archlinux packages
 	yay --needed --noconfirm
 
-pipupdate: ## Update python packages
+pipupdate: ## update python packages
 	pip list --user | cut -d" " -f 1 | tail -n +3 | xargs pip install -U --user
 
 test: docker ## test Makefile
@@ -101,7 +101,7 @@ mpv:
 	$(YAY) $@ $@-mpris
 
 nord-theme:
-	$(YAY) nordic-darker-theme nordzy-cursors fcitx5-nord
+	$(YAY) nordic-darker-theme capitaine-cursors fcitx5-nord
 
 nvim:
 	$(YAY) neovim
@@ -201,24 +201,10 @@ zsh_conf: zsh
 	cat /etc/shells
 	chsh
 
-
 # # todo
-# - set gtk-theme cursor-theme
-# - browser config
-# 	- chrome://flags/#enable-force-dark -> CIELAB based inversion
-# 	- extentions:
-# 		- bitwarden
-# 		- Blocktube
-# 		- BookmarkCleanUp
-# 		- copyAllURLs
-# 		- DuplicateTabCloser
-# 		- Feedbro
-# 		- Keepa
-# 		- LINE
-# 		- MALSync
-# 		- uAutoPagerize
-# 		- uBlacklist
-# 		- ubo
-# 		- videoSpeedController
-# 		- vimiumC
-# 		- pdfViewerForVimiumC
+# set gtk-theme cursor-theme
+# browser config
+# - chrome://flags/#enable-force-dark -> CIELAB based inversion
+# mega
+# 	mega-login 'USERID' 'PASSWORD'
+# 	mega-sync ~/backup/ /

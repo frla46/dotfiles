@@ -61,6 +61,10 @@ fi
 if [ $(which yay) &> /dev/null ]; then
   alias y='yay'
   alias yy='yay --noconfirm --needed'
+  alias ya='yay -S $(yay -Ssq | fzf -m)'
+  alias yya='yay --noconfirm -S $(yay -Ssq | fzf -m)'
+  alias yr='yay -Rs $(yay -Qeq | fzf -m)'
+  alias yc='yay --noconfirm -Yc && yay --noconfirm -Sc'
 fi
 
 if [ $(which lf) &> /dev/null ]; then

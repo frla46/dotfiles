@@ -3,3 +3,6 @@ lazy-lock.json
 .zsh_plugins.zsh
 .zcompdump
 lazygit/state.yml
+mpv/watch_later
+mpv/bookmarker.json
+mpv/persistent_config.json

@@ -10,6 +10,7 @@ automake
 base
 bat
 betterdiscordctl
+binggpt-desktop-bin
 binutils
 bison
 bottom
@@ -35,7 +36,6 @@ feh
 ffmpegthumbnailer
 file
 findutils
-firefox
 flex
 freerdp
 fzf
