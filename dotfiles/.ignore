@@ -1,6 +1,7 @@
 # ignore files for telescope
 ## file
 *.docx
+*.db
 *.gz
 *.jpg
 *.pdf
