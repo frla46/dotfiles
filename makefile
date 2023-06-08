@@ -173,9 +173,8 @@ zsh:
 
 
 # config
-dns_conf:
-	$(YAY) dnsmasq
-	sudo sed -i 's/dns=none/dns=dnsmasq/' /etc/NetworkManager/NetworkManager.conf
+nm_conf:
+	echo '[main]\ndns=none' | sudo tee /etc/NetworkManager/NetworkManager.conf
 	sudo systemctl restart NetworkManager
 
 docker_conf: docker
@@ -195,8 +194,7 @@ ufw_conf: ufw
 	sudo ufw enable
 
 zsh_conf: zsh
-	cat /etc/shells
-	chsh
+	chsh -s $(shell which zsh)
 
 # # todo
 # set gtk-theme cursor-theme

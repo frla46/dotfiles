@@ -7,10 +7,9 @@ export PATH=$PATH:~/.local/bin
 
 ## zsh
 export ZDOTDIR=~/.config/zsh
-export HISTFILE=~/.zsh_history
+export HISTFILE=~/backup/files/.zsh_history
 export HISTSIZE=100000
 export SAVEHIST=100000
-export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 ## fcitx
 export GTK_IM_MODULE=fcitx5
