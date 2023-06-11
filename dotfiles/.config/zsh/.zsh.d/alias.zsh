@@ -92,6 +92,11 @@ if [ $(which at) &> /dev/null ]; then
   alias atd='at -d $(at -l | fzf | cut -f 1)'
 fi
 
+if [$(which restic) &> /dev/null ]; then
+  alias restic_backup='restic --exclude-file ~/.resticignore backup ~'
+  alias restic_delete='restic snapshots | rg '^\w{8}\s' | fzf | cut -d ' ' -f 1'
+fi
+
 # misc
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias precp='fc -ln | tail -n 1 | xsel -bi'

@@ -12,3 +12,4 @@ ${HOME}/.local/share/steam/
 ${HOME}/.wine/
 ${HOME}/.rustup/
 ${HOME}/.config/discord/Code Cache/
+${HOME}/.config/vivaldi/BrowserMetrics/

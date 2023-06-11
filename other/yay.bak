@@ -16,6 +16,7 @@ bison
 bottom
 capitaine-cursors
 chromium
+cronie
 ctpv-git
 debugedit
 discord
@@ -23,12 +24,10 @@ dnsmasq
 docker
 dunst
 dust
-emacs
 exa
 fakeroot
 fcitx5
 fcitx5-configtool
-fcitx5-gruvbox-dark-theme-git
 fcitx5-gtk
 fcitx5-mozc
 fcitx5-nord
@@ -38,7 +37,6 @@ feh
 ffmpegthumbnailer
 file
 findutils
-firefox
 flex
 freerdp
 fzf
@@ -131,7 +129,6 @@ stalonetray
 stow
 sudo
 texinfo
-timeshift
 translate-shell
 trash-cli
 tree

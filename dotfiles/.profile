@@ -1,5 +1,5 @@
 # profile
-
+## variables
 export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
@@ -21,6 +21,7 @@ export FZF_DEFAULT_COMMAND='fd --type file --hidden'
 
 ## restic
 export RESTIC_REPOSITORY=~/backup/restic_repo
+export RESTIC_PASSWORD_FILE=~/backup/files/restic_passwd.txt
 
 ## bat
 export BAT_THEME='Nord'
