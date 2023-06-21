@@ -88,13 +88,13 @@ cmd open &{{
     text/* | application/json | inode/x-empty )
       lf -remote "send $id \$$EDITOR \$fx";;
     audio/* )
-      mpv $fx;;
+      mpv --title='${filename}' $fx;;
     video/* )
-      mpv $fx;;
+      mpv --title='${filename}' $fx;;
     image/*)
       pqiv --browse $f;;
     application/pdf )
-      zathura $fx;;
+      zathura $fx &;;
     exe/* )
       wine $fx;;
     *)

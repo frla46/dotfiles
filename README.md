@@ -17,6 +17,5 @@
 
 # TODO
 - add images in README.md
-- installer(Makefile)
 - install guide
 - usage
