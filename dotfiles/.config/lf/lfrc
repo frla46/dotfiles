@@ -76,6 +76,7 @@ map oe $lf -remote "send $id \$$EDITOR \$fx"
 map oE &alacritty -e $EDITOR $fx
 map ov $lf -remote "send $id \$$PAGER \$fx"
 map oV &alacritty -e $PAGER $fx
+map oi $pqiv --browse ./
 map gv :push :glob-select<space>
 map ugv :push :glob-unselect<space>
 map um :mark-remove
@@ -87,9 +88,7 @@ cmd open &{{
   case $mimetype in
     text/* | application/json | inode/x-empty )
       lf -remote "send $id \$$EDITOR \$fx";;
-    audio/* )
-      mpv --title='${filename}' $fx;;
-    video/* )
+    audio/* | video/* )
       mpv --title='${filename}' $fx;;
     image/*)
       pqiv --browse $f;;
