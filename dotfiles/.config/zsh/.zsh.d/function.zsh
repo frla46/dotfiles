@@ -31,7 +31,8 @@ function _fk() {
 # kill with click
 function _ck() {
   local pid
-  pid=$(xprop | grep '_NET_WM_PID\(CARDINAL\)' | head -n 1 | sed 's/_NET_WM_PID(CARDINAL) = //')
+  # pid=$(xprop | \grep '_NET_WM_PID\(CARDINAL\)' | head -n 1 | sed 's/_NET_WM_PID(CARDINAL) = //')
+  pid=$(xprop | \grep "_NET_WM_PID(CARDINAL) = " | head -n 1 | sed 's/_NET_WM_PID(CARDINAL) = //')
   if [ "x$pid" != "x" ]
   then
     echo $pid | xargs kill -${1:-9}
