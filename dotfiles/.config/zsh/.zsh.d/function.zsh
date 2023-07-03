@@ -28,6 +28,16 @@ function _fk() {
   fi
 }
 
+# kill with click
+function _ck() {
+  local pid
+  pid=$(xprop | grep '_NET_WM_PID\(CARDINAL\)' | head -n 1 | sed 's/_NET_WM_PID(CARDINAL) = //')
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
+}
+
 # fg with fzf
 function _fg-fzf() {
   local cnt job
@@ -67,11 +77,6 @@ function _lfcd () {
     fi
   fi
 }
-
-# # prevent instance nested in lf
-# function lf() {
-#   [ -n "$LF_LEVEL" ] && exit || command lf "$@"
-# }
 
 # use vim as a pipe
 function _vipe () {

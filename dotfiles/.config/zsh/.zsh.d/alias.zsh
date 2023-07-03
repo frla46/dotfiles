@@ -95,11 +95,12 @@ fi
 if [ $(which restic) &> /dev/null ]; then
   alias restic_backup='restic --exclude-file ~/.resticignore backup ~'
   alias restic_delete="restic snapshots | rg '^\w{8}\s' | fzf | cut -d ' ' -f 1"
+  alias restic_mount='sudo mkdir -p /mnt/restic && restic mount /mnt/restic'
 fi
 
 # misc
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
-alias precp='fc -ln | tail -n 1 | xsel -bi'
+alias hcp='fc -lnr | fzf | xsel -bi'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias mpv='mpv --no-terminal'
