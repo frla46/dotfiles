@@ -8,6 +8,8 @@ set ifs "\n"
 set scrolloff 5
 set ignorecase true
 set incsearch true
+&printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
+
 
 # preview
 set previewer ctpv
@@ -130,9 +132,8 @@ cmd yank-basename-without-extension ${{
 }}
 
 cmd on-cd &{{
+  printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
   zoxide add $(pwd)
-  # printf "\033]0; $PWD\007" > /dev/tty
-  printf "\033]0; $(pwd | sed "s|$HOME|~|")\007" > /dev/tty
 }}
 
 cmd bulkrename ${{
