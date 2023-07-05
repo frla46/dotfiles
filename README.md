@@ -14,6 +14,7 @@
   - preview: [ctpv](https://github.com/NikitaIvanovV/ctpv)
 - image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
 - video viewer: [mpv](https://github.com/mpv-player/mpv)
+- keyboard: [crdbd](https://github.com/foostan/crkbd)
 
 # TODO
 - add images in README.md

@@ -222,7 +222,7 @@ bar {
 }
 
 # gaps
-gaps inner 10
+gaps inner 15
 
 # misc
 show_marks yes
