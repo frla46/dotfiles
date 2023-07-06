@@ -32,7 +32,7 @@ function _fk() {
 function _ck() {
   local pid
   # pid=$(xprop | \grep '_NET_WM_PID\(CARDINAL\)' | head -n 1 | sed 's/_NET_WM_PID(CARDINAL) = //')
-  pid=$(xprop | \grep "_NET_WM_PID(CARDINAL) = " | head -n 1 | sed 's/_NET_WM_PID(CARDINAL) = //')
+  pid=$(xprop | sed -e '/_NET_WM_PID(CARDINAL) = /!d; s/_NET_WM_PID(CARDINAL) = //')
   if [ "x$pid" != "x" ]
   then
     echo $pid | xargs kill -${1:-9}
@@ -93,12 +93,6 @@ function crontab () {
   else
     command crontab "$@";
   fi
-}
-
-# download mp4 video with aria2
-function _aria-mp4() {
-  sed -e '/^$/d; /^http/!s/\(.\{80\}\)\(.*\)$/\1/; /^http/!s/^/ out=/; /^http/!s/$/.mp4/; /^http/!s/\// /g' $1 >| /tmp/aria-ed.list
-  aria2c -i /tmp/aria-ed.list -UWget
 }
 
 # edit current command with EDITOR

@@ -85,11 +85,11 @@ bindsym $mod+shift+10 move container to workspace number $ws10
 set $system "system [q:poweroff, r:reboot, s:suspend, l:lock, L:logout]"
 bindsym $mod+shift+q mode $system
 mode $system {
-  bindsym q exec "systemctl poweroff"; mode "default"
-  bindsym r exec "systemctl reboot"; mode "default"
-  bindsym s exec "systemctl suspend"; mode "default"
-  bindsym l exec ~/.config/i3/i3lock-color.sh; mode "default"
-  bindsym L exec "i3-msg exit"; mode "default"
+  bindsym q exec --no-startup-id "systemctl poweroff"; mode "default"
+  bindsym r exec --no-startup-id "systemctl reboot"; mode "default"
+  bindsym s exec --no-startup-id "systemctl suspend"; mode "default"
+  bindsym l exec --no-startup-id ~/.config/i3/i3lock-color.sh; mode "default"
+  bindsym L exec --no-startup-id "i3-msg exit"; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -113,25 +113,25 @@ set $audio "audio [vol:m0-9, space:play-pause, <:prev, >:next, j:voldn, k:volup,
 set $setvol pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
-  bindsym m exec $setvol 0%
-  bindsym 1 exec $setvol 10%
-  bindsym 2 exec $setvol 20%
-  bindsym 3 exec $setvol 30%
-  bindsym 4 exec $setvol 40%
-  bindsym 5 exec $setvol 50%
-  bindsym 6 exec $setvol 60%
-  bindsym 7 exec $setvol 70%
-  bindsym 8 exec $setvol 80%
-  bindsym 9 exec $setvol 90%
-  bindsym 0 exec $setvol 100%
-  bindsym space exec playerctl play-pause
-  bindsym shift+comma exec playerctl previous
-  bindsym shift+period exec playerctl next
-  bindsym h exec playerctl position 5-
-  bindsym l exec playerctl position 5+
-  bindsym j exec playerctl volume 0.1-
-  bindsym k exec playerctl volume 0.1+
-  bindsym c exec "playerctl metadata title | sed 's/\..*//' | xsel --clipboard --input"
+  bindsym m exec --no-startup-id $setvol 0%
+  bindsym 1 exec --no-startup-id $setvol 10%
+  bindsym 2 exec --no-startup-id $setvol 20%
+  bindsym 3 exec --no-startup-id $setvol 30%
+  bindsym 4 exec --no-startup-id $setvol 40%
+  bindsym 5 exec --no-startup-id $setvol 50%
+  bindsym 6 exec --no-startup-id $setvol 60%
+  bindsym 7 exec --no-startup-id $setvol 70%
+  bindsym 8 exec --no-startup-id $setvol 80%
+  bindsym 9 exec --no-startup-id $setvol 90%
+  bindsym 0 exec --no-startup-id $setvol 100%
+  bindsym space exec --no-startup-id playerctl play-pause
+  bindsym shift+comma exec --no-startup-id playerctl previous
+  bindsym shift+period exec --no-startup-id playerctl next
+  bindsym h exec --no-startup-id playerctl position 5-
+  bindsym l exec --no-startup-id playerctl position 5+
+  bindsym j exec --no-startup-id playerctl volume 0.1-
+  bindsym k exec --no-startup-id playerctl volume 0.1+
+  bindsym c exec --no-startup-id "playerctl metadata title | sed 's/\..*//' | xsel --clipboard --input"
   bindsym Escape mode "default"
 }
 
@@ -153,10 +153,10 @@ set $delay 0.01
 set $date $(date +%Y%m%d%H%M%S)
 bindsym $mod+shift+s mode $capture
 mode  $capture {
-  bindsym a exec maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym s exec maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+a exec maim -d $delay $pic_dir/$date.png;  mode "default"
-  bindsym shift+s exec maim -s -d $delay $pic_dir/$date.png;  mode "default"
+  bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym s exec --no-startup-id maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym shift+a exec --no-startup-id maim -d $delay $pic_dir/$date.png;  mode "default"
+  bindsym shift+s exec --no-startup-id maim -s -d $delay $pic_dir/$date.png;  mode "default"
   bindsym Escape mode "default"
 }
 
@@ -164,23 +164,23 @@ mode  $capture {
 set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer, t:btm]"
 bindsym $mod+x mode $exec
 mode  $exec {
-  bindsym w exec  vivaldi-stable; mode "default"
-  bindsym d exec  discord; mode "default"
-  bindsym e exec  alacritty -e nvim; mode "default"
-  bindsym f exec  alacritty -e lf; mode "default"
-  bindsym v exec  alacritty -e pulsemixer; mode "default"
-  bindsym t exec  alacritty -e btm; mode "default"
+  bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
+  bindsym d exec --no-startup-id  discord; mode "default"
+  bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
+  bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
+  bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
+  bindsym t exec --no-startup-id  alacritty -e btm; mode "default"
   bindsym Escape mode "default"
 }
-# bindsym $super+w exec vivaldi-stable
-# bindsym $super+d exec discord
-# bindsym $super+e exec alacritty -e nvim
-# bindsym $super+f exec alacritty -e lf
-# bindsym $super+v exec alacritty -e pulsemixer
-# bindsym $super+t exec alacritty -e btm
+# bindsym $super+w exec --no-startup-id vivaldi-stable
+# bindsym $super+d exec --no-startup-id discord
+# bindsym $super+e exec --no-startup-id alacritty -e nvim
+# bindsym $super+f exec --no-startup-id alacritty -e lf
+# bindsym $super+v exec --no-startup-id alacritty -e pulsemixer
+# bindsym $super+t exec --no-startup-id alacritty -e btm
 
 # notify
-bindsym $mod+d exec dunstctl close-all
+bindsym $mod+d exec --no-startup-id dunstctl close-all
 
 # insert
 bindsym $mod+i mode "insert"
@@ -230,27 +230,27 @@ focus_follows_mouse no
 default_border none
 
 ## autostart
-exec_always killall greenclip; greenclip daemon
-exec_always killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
-exec_always xset r rate 180 50
-exec dunst -config ~/.config/dunst/dunstrc
-exec fcitx5
-exec feh --bg-scale "$HOME/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
-exec nm-applet
-exec mega-sync
-exec picom -b
-exec unclutter -idle 1 -root
+exec_always --no-startup-id killall greenclip; greenclip daemon
+exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id xset r rate 180 50
+exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec --no-startup-id fcitx5
+exec --no-startup-id feh --bg-scale "$HOME/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
+exec --no-startup-id nm-applet
+exec --no-startup-id mega-sync
+exec --no-startup-id picom -b
+exec --no-startup-id unclutter -idle 1 -root
 
-exec alacritty -t scratch
-exec vivaldi-stable
-exec discord
+exec --no-startup-id alacritty -t scratch
+exec --no-startup-id vivaldi-stable
+exec --no-startup-id discord
 
 ## app shortcut
-bindsym $mod+Return exec alacritty
-bindsym $mod+space exec rofi -show run
-bindsym $mod+w exec rofi -show window
-bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
-bindsym $mod+shift+c exec ~/bin/snippets.sh
+bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+space exec --no-startup-id rofi -show run
+bindsym $mod+w exec --no-startup-id rofi -show window
+bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
+bindsym $mod+shift+c exec --no-startup-id ~/bin/snippets.sh
 
 # assign window to workspace
 for_window [class="^Alacritty$" title="^scratch$"] move --no-auto-back-and-forth scratchpad

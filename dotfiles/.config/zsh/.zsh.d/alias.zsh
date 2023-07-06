@@ -14,7 +14,6 @@ alias -g C='|xsel -bi'
 # my function
 alias -g VI='|_vipe'
 alias j='_fg-fzf'
-alias ariav='_aria-mp4'
 
 if [ $(which exa) &> /dev/null ]; then
   alias l='exa'
@@ -46,6 +45,10 @@ fi
 
 if [ $(which procs) &> /dev/null ]; then
   alias ps='procs'
+fi
+
+if [ $(which bat) &> /dev/null ]; then
+  alias cat='bat -p'
 fi
 
 if [ $(which trash-put) &> /dev/null ]; then

@@ -8,14 +8,15 @@ set ifs "\n"
 set scrolloff 5
 set ignorecase true
 set incsearch true
-&printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
-
 
 # preview
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
+
+# set window title
+&printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
 
 ## mappings
 # disable mappings
