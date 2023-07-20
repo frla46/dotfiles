@@ -7,10 +7,10 @@ help: ## show this help
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 all: minimal cui gui conf ## deploy all
-minimal: yay link git nvim zsh lf fd ripgrep procs exa  ## deploy minimal
-cui: aria2 at atool bat bottom docker dust fcitx5 jq protonvpn-cli restic tree ufw zk cronie ## deploy cui
-gui: alacritty chromium discord dunst i3 libreoffice maim megacmd mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip ttf-hackgen unclutter zathura binggpt-desktop-bin  ## deploy gui
-conf: docker_conf locale_conf systemd_conf zsh_conf dns_conf ## configure all
+minimal: yay link git nvim zsh lf fd rg procs exa bat  ## deploy minimal
+cui: at atool bottom docker dust fcitx5 ttf-hackgen jq protonvpn-cli restic tree ufw zk cronie ## deploy cui
+gui: alacritty chromium discord dunst i3 libreoffice maim megacmd mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura binggpt-desktop-bin  ## deploy gui
+conf: locale_conf systemd_conf zsh_conf nm_conf ## configure all
 
 link: ## set symlink dotfiles
 	$(YAY) stow
@@ -33,15 +33,12 @@ test: docker ## test Makefile
 alacritty:
 	$(YAY) $@
 
-aria2:
-	$(YAY) $@
-
 at:
 	$(YAY) $@
 
 atool:
 	$(YAY) $@
-	$(YAY) zip unzip
+	$(YAY) zip unzip tar
 	# $(YAY) bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip
 
 bat:
@@ -53,6 +50,9 @@ bottom:
 chromium:
 	$(YAY) $@
 
+cronie:
+	$(YAY) $@
+
 discord:
 	$(YAY) $@ betterdiscordctl
 	betterdiscordctl install
@@ -60,6 +60,8 @@ discord:
 docker:
 	$(YAY) $@ lazy$@
 	sudo usermod -aG $@ $(shell whoami)
+	sudo systemctl --now enable docker
+
 
 dunst:
 	$(YAY) $@
@@ -86,7 +88,7 @@ jq:
 	$(YAY) $@
 
 lf:
-	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer trash-cli
+	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer trash-cli xsel
 
 libreoffice:
 	$(YAY) $@-still
@@ -130,8 +132,8 @@ redshift:
 restic:
 	$(YAY) $@
 
-ripgrep:
-	$(YAY) $@
+rg:
+	$(YAY) ripgrep
 
 rofi:
 	$(YAY) $@
@@ -147,6 +149,9 @@ ttf-hackgen:
 
 ufw:
 	$(YAY) $@
+	sudo ufw default deny
+	sudo ufw enable
+
 
 unclutter:
 	$(YAY) $@
@@ -180,21 +185,14 @@ nm_conf:
 	echo '[main]\ndns=none' | sudo tee /etc/NetworkManager/NetworkManager.conf
 	sudo systemctl restart NetworkManager
 
-docker_conf: docker
-	sudo systemctl --now enable docker
-
 locale_conf:
-	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' | sudo tee -a /etc/locale.gen
+	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' | sudo tee /etc/locale.gen
 	locale-gen
 	echo 'LANG=ja_JP.UTF-8' | sudo tee -a /etc/locale.conf
 
 systemd_conf:
 	sudo sed -i 's/#SystemMaxUse=/SystemMaxUse=50M/' /etc/systemd/journald.conf
 	sudo systemctl restart systemd-journald
-
-ufw_conf: ufw
-	sudo ufw default deny
-	sudo ufw enable
 
 zsh_conf: zsh
 	chsh -s $(shell which zsh)

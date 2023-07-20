@@ -17,7 +17,7 @@ return {
 		},
 		opts = function()
 			require("lf").setup({
-				border = "rounded",
+				border = "single",
 			})
 		end,
 	},
@@ -33,7 +33,7 @@ return {
 					internal = {},
 					external = {
 						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
-						py = "python %",
+						python = "python %",
 					},
 				},
 				behavior = {
@@ -73,11 +73,11 @@ return {
 				desc = "Open notes (zk)",
 			},
 			{
-				"<leader>zt",
+				"<leader>zl",
 				function()
-					require("zk.commands").get("ZkTags")()
+					require("zk.commands").get("ZkLinks")()
 				end,
-				desc = "Open notes associated with the selected tags (zk)",
+				desc = "Open notes linked by the current note (zk)",
 			},
 			{
 				"<leader>zb",
@@ -85,13 +85,6 @@ return {
 					require("zk.commands").get("ZkBacklinks")()
 				end,
 				desc = "Open notes linking to the current note (zk)",
-			},
-			{
-				"<leader>zl",
-				function()
-					require("zk.commands").get("ZkLinks")()
-				end,
-				desc = "Open notes linked by the current note (zk)",
 			},
 		},
 		config = function()
@@ -262,8 +255,6 @@ return {
 			config = function()
 				require("luasnip.loaders.from_vscode").lazy_load()
 				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
-				-- TODO:snipmate
-				-- require("luasnip.loaders.from_snipmate").lazy_load({ paths = "./lus/snip/snipmate/" })
 			end,
 		},
 		opts = {

@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-# # profiling zsh startup time
-# zmodload zsh/zprof
-
 # plugin manager (antidote)
 # archlinux: pacman -S zsh-antidote
 source '/usr/share/zsh-antidote/antidote.zsh'
@@ -14,8 +11,10 @@ antidote load
 autoload -Uz promptinit && promptinit && prompt pure
 PURE_CMD_MAX_EXEC_TIME=86400 #1day
 
+# completion
+autoload -Uz compinit && compinit -C
+
 # load zstyles
-autoload -Uz compinit && compinit
 [[ -f ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles
 
 # load *.zsh file in .zsh.d
@@ -31,7 +30,13 @@ fi
 # load zoxide
 eval "$(zoxide init zsh)"
 
+# load gh comp
+eval "$(gh completion -s zsh)"
+
 # bindkey
 bindkey '^r' _select-history
 bindkey '^z' _ctrl-z-fg
 bindkey '^xe' edit-command-line
+
+# # profiling zsh startup time
+# zmodload zsh/zprof

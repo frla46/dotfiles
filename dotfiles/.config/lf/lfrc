@@ -47,10 +47,12 @@ map r
 # # set mappings
 # map <esc> quit
 map r :rename
-map a :push r<c-e>
-map i :push r<c-a>
+map A :push r<c-e>
+map I :push r<c-a>
 map R :bulkrename
 map zp :set preview!
+map af :push $touch<space>
+map ad :push $mkdir<space>
 map <backspace2> :set hidden!
 map x $$f
 map X !$f

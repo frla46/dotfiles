@@ -21,6 +21,7 @@ debugedit
 discord
 dnsmasq
 docker
+downgrade
 dunst
 dust
 exa
@@ -91,6 +92,7 @@ ncmpcpp
 neovim
 network-manager-applet
 networkmanager
+nim
 nodejs
 nordic-darker-theme
 nordic-theme
@@ -99,10 +101,13 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 npm
+openresolv
 osu
 p7zip
 pacman
 patch
+pdfgrep
+pfetch
 picom
 pipewire
 pipewire-alsa
@@ -116,6 +121,7 @@ protonvpn-cli
 pueue
 pulsemixer
 python-pip
+python-pytest
 rbw
 redshift
 reflector
@@ -127,12 +133,13 @@ rustup
 sed
 smartmontools
 stalonetray
+steam
 stow
 sudo
 texinfo
+thunar
 translate-shell
 trash-cli
-tree
 ttf-hackgen
 ueberzug
 ufw
@@ -161,7 +168,6 @@ xorg-xinit
 xorg-xinput
 xsel
 yay
-yt-dlp
 zathura
 zathura-pdf-poppler
 zk

@@ -8,7 +8,8 @@ ${HOME}/.clamtk/
 ${HOME}/**/Default/Service Worker/
 ${HOME}/.local/lib/
 ${HOME}/.local/share/Trash/
-${HOME}/.local/share/steam/
+${HOME}/.local/share/Steam/
+${HOME}/.local/share/nvim/
 ${HOME}/.wine/
 ${HOME}/.rustup/
 ${HOME}/.config/discord/Code Cache/

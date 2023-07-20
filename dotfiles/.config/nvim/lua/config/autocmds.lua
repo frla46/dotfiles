@@ -5,8 +5,8 @@
 local autocmd = vim.api.nvim_create_autocmd
 
 -- use engligh messages
-vim.cmd([[ language en_US.UTF-8 ]])
-vim.cmd([[ language messages en_US.UTF-8 ]])
+vim.cmd([[ language C.UTF-8 ]])
+vim.cmd([[ language messages C.UTF-8 ]])
 
 -- ime
 vim.cmd([[
@@ -28,13 +28,7 @@ autocmd("FileType", {
 })
 
 -- transparent with picom
-vim.cmd([[
-  if system('pgrep -x picom > /dev/null && echo 1 || echo 0') == 1
-    highlight Normal guibg=NONE
-  else
-    highlight Normal guibg=#282A36
-  endif
-]])
+vim.cmd([[highlight Normal guibg=NONE]])
 
 -- Remove postspaces on save
 autocmd("BufWritePre", {
