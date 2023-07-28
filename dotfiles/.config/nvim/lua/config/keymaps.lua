@@ -19,8 +19,7 @@ map({ "n", "v" }, "_", ":", { desc = "Command mode" })
 map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "+", "<c-a>", { desc = "Increment" })
 map("n", "-", "<c-x>", { desc = "Decrement" })
--- map("n", "fk", "f<c-k>", { desc = "Jump cursor with digraphs" })
--- map("n", "Fk", "f<c-k>", { desc = "Jump cursor with digraphs" })
+map("n", "<c-t>", "<cmd>term<cr>", { desc = "Open terminal tab" })
 
 -- -- insert mode key bindings
 -- map("i", "<c-h>", "<left>")

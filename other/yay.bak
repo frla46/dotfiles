@@ -62,7 +62,7 @@ i3status
 inotify-tools
 iwd
 jq
-lazydocker
+lazydocker-bin
 lazygit
 lf
 libpulse
@@ -83,11 +83,13 @@ m4
 maim
 make
 man-db
+marp-cli-bin
 megacmd
 mpc
 mpd
 mpv
 mpv-mpris
+mullvad-vpn-cli
 ncmpcpp
 neovim
 network-manager-applet
@@ -138,7 +140,6 @@ stow
 sudo
 texinfo
 thunar
-translate-shell
 trash-cli
 ttf-hackgen
 ueberzug

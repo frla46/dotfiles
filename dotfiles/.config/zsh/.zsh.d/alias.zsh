@@ -1,6 +1,7 @@
 ## alias
 alias _='sudo'
 alias q='exit'
+alias c='clear'
 alias v='$PAGER'
 alias e='$EDITOR'
 alias cp='cp -i'
