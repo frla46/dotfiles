@@ -6,7 +6,7 @@ alias v='$PAGER'
 alias e='$EDITOR'
 alias cp='cp -i'
 alias mv='mv -i'
-alias cal='cal -Y'
+alias cal='cal -y'
 
 alias -g VI='|_vipe'
 alias j='_fg-fzf'

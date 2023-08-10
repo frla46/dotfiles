@@ -1,9 +1,10 @@
 # profile
 ## variables
+export PATH=$PATH:~/.local/bin
 export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
-export PATH=$PATH:~/.local/bin
+export BROWSER='vivaldi-stable'
 
 ## zsh
 export ZDOTDIR=~/.config/zsh
@@ -27,7 +28,9 @@ export RESTIC_PASSWORD_FILE=~/backup/files/restic_passwd.txt
 export BAT_THEME='Nord'
 
 ## zk
-export ZK_NOTEBOOK_DIR=~/note
+export ZK_NOTEBOOK_DIR=~/backup/note/
 
 ## ssh
-eval $(ssh-agent)
+if [ $(pgrep -c ssh-agent) -eq 0 ]; then
+	eval $(ssh-agent)
+fi

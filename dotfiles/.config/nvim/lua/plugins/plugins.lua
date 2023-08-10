@@ -15,11 +15,6 @@ return {
 		keys = {
 			{ "<leader>e", "<cmd>Lf<cr>", desc = "File manager (lf)" },
 		},
-		opts = function()
-			require("lf").setup({
-				border = "single",
-			})
-		end,
 	},
 	{ "akinsho/toggleterm.nvim", lazy = true },
 	{
@@ -34,6 +29,7 @@ return {
 					external = {
 						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
 						python = "python %",
+						cpp = "g++ % && ./a.out",
 					},
 				},
 				behavior = {
@@ -61,7 +57,7 @@ return {
 			{
 				"<leader>zn",
 				function()
-					require("zk.commands").get("ZkNew")({ title = vim.fn.input("title: ") })
+					require("zk.commands").get("ZkNew")({})
 				end,
 				desc = "Create notes (zk)",
 			},
@@ -69,6 +65,13 @@ return {
 				"<leader>zf",
 				function()
 					require("zk.commands").get("ZkNotes")({ sort = { "modified" } })
+				end,
+				desc = "Open notes (zk)",
+			},
+			{
+				"<leader>zt",
+				function()
+					require("zk.commands").get("ZkTags")({})
 				end,
 				desc = "Open notes (zk)",
 			},

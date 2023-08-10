@@ -20,10 +20,10 @@ set cleaner ctpvclear
 
 ## mappings
 # disable mappings
-map <up>
-map <down>
-map <left>
-map <right>
+# map <up>
+# map <down>
+# map <left>
+# map <right>
 map <pgup>
 map <pgdn>
 map <home>
@@ -68,8 +68,8 @@ map yd :yank-dirname
 map yn :yank-basename
 map yp :yank-path
 map y. :yank-basename-without-extension
-map J :updir; down; open
-map K :updir; up; open
+map J :next-dir
+map K :prev-dir
 map <enter> :shell
 map f :zi
 map ? !file --mime-type -Lb $fx
@@ -77,10 +77,8 @@ map <c-z> $kill -STOP $PPID
 map ` :mark-load
 map "'" :push :tag<space>
 map ut :tag-clear
-map oe &alacritty -e $EDITOR $fx
-map oE $lf -remote "send $id \$$EDITOR \$fx"
-map ov &alacritty -e $PAGER $fx
-map oV $lf -remote "send $id \$$PAGER \$fx"
+map oe $lf -remote "send $id \$$EDITOR \$fx"
+map ov $lf -remote "send $id \$$PAGER \$fx"
 map of &alacritty -e lf $(pwd)
 map oi $pqiv --browse ./
 map gv :push :glob-select<space>
@@ -104,7 +102,7 @@ cmd open &{{
       wine $fx;;
     *)
       case $fx in
-        *.pptx | *.odt | *.docx | *.ods | *.xlsx )
+        *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx )
           libreoffice $fx;;
         *.zip | *.rar | *.7z )
           atool -xe $fx && lf -remote "send $id load";;
@@ -170,3 +168,5 @@ cmd zi ${{
 }}
 
 cmd tag-clear :tag; tag-toggle
+cmd prev-dir :updir; up; open
+cmd next-dir :updir; down; open
