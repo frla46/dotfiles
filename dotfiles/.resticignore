@@ -1,11 +1,13 @@
-${HOME}/**/.cache/
-${HOME}/**/.Cache/
-${HOME}/**/cache/
-${HOME}/**/Cache/
+.cache/
+.Cache/
+cache/
+Cache/
 ${HOME}/backup/
 ${HOME}/.cargo/
 ${HOME}/.clamtk/
 ${HOME}/**/Default/Service Worker/
+${HOME}/.config/vivaldi/BrowserMetrics/
+${HOME}/.config/vivaldi/Default/File System/
 ${HOME}/.local/lib/
 ${HOME}/.local/share/Trash/
 ${HOME}/.local/share/Steam/
@@ -13,4 +15,4 @@ ${HOME}/.local/share/nvim/
 ${HOME}/.wine/
 ${HOME}/.rustup/
 ${HOME}/.config/discord/Code Cache/
-${HOME}/.config/vivaldi/BrowserMetrics/
+${HOME}/.megaCmd/megacmdserver.log

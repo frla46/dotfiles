@@ -77,8 +77,10 @@ map <c-z> $kill -STOP $PPID
 map ` :mark-load
 map "'" :push :tag<space>
 map ut :tag-clear
-map oe $lf -remote "send $id \$$EDITOR \$fx"
-map ov $lf -remote "send $id \$$PAGER \$fx"
+map oe &alacritty -e $EDITOR $f
+map oE $lf -remote "send $id \$$EDITOR \$fx"
+map ov &alacritty -e $PAGER $f
+map oV $lf -remote "send $id \$$PAGER \$fx"
 map of &alacritty -e lf $(pwd)
 map oi $pqiv --browse ./
 map gv :push :glob-select<space>

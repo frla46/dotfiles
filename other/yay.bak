@@ -124,6 +124,7 @@ protonvpn-cli
 pueue
 pulsemixer
 python-pip
+python-pynvim
 python-pytest
 rbw
 redshift
@@ -141,6 +142,7 @@ stow
 sudo
 texinfo
 thunar
+tmux
 trash-cli
 ttf-hackgen
 ueberzug

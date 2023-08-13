@@ -9,13 +9,19 @@ return {
 		"shaunsingh/nord.nvim",
 		event = "VeryLazy",
 	},
-	{
-		"lmburns/lf.nvim",
-		dependencies = { "plenary.nvim", "toggleterm.nvim" },
-		keys = {
-			{ "<leader>e", "<cmd>Lf<cr>", desc = "File manager (lf)" },
-		},
-	},
+	-- {
+	-- 	"lmburns/lf.nvim",
+	-- 	dependencies = { "plenary.nvim", "toggleterm.nvim" },
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>e",
+	-- 			function()
+	-- 				require("lf").start({})
+	-- 			end,
+	-- 			desc = "File manager (lf)",
+	-- 		},
+	-- 	},
+	-- },
 	{ "akinsho/toggleterm.nvim", lazy = true },
 	{
 		"is0n/jaq-nvim",
@@ -326,4 +332,5 @@ return {
 	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
 	{ "folke/tokyonight.nvim", enabled = false },
 	{ "catppuccin", enabled = false },
+	{ "echasnovski/mini.indentscope", enabled = false },
 }

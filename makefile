@@ -168,7 +168,7 @@ yay: ## install yay
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 zathura:
-	$(YAY) $@
+	$(YAY) $@ $@-pdf-poppler
 
 zk:
 	$(YAY) $@
