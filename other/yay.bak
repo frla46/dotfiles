@@ -13,13 +13,11 @@ binggpt-desktop-bin
 binutils
 bison
 bottom
-capitaine-cursors
 chromium
 cronie
 ctpv-git
 debugedit
 discord
-dnsmasq
 docker
 downgrade
 dunst
@@ -38,7 +36,6 @@ ffmpegthumbnailer
 file
 findutils
 flex
-freerdp
 fzf
 gawk
 gcc
@@ -46,7 +43,6 @@ gdb
 gettext
 gimp
 git
-git-crypt
 github-cli
 grep
 groff
@@ -61,9 +57,8 @@ i3lock-color
 i3status
 inotify-tools
 iwd
-jpegoptim
 jq
-lazydocker-bin
+lazydocker
 lazygit
 lf
 libpulse
@@ -87,15 +82,11 @@ make
 man-db
 marp-cli-bin
 megacmd
-mpc
-mpd
 mpv
 mpv-mpris
-ncmpcpp
 neovim
 network-manager-applet
 networkmanager
-nim
 nodejs
 nordic-darker-theme
 nordic-theme
@@ -109,7 +100,6 @@ osu
 p7zip
 pacman
 patch
-pdfgrep
 pfetch
 picom
 pipewire
@@ -121,12 +111,10 @@ playerctl
 pqiv
 procs
 protonvpn-cli
-pueue
 pulsemixer
 python-pip
 python-pynvim
 python-pytest
-rbw
 redshift
 reflector
 restic
@@ -142,7 +130,6 @@ stow
 sudo
 texinfo
 thunar
-tmux
 trash-cli
 ttf-hackgen
 ueberzug

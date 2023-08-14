@@ -6,6 +6,7 @@ local function map(mode, lhs, rhs, opts)
 	local keys = require("lazy.core.handler").handlers.keys
 	---@cast keys LazyKeysHandler
 	-- do not create the keymap if a lazy keys handler exists
+	---@diagnostic disable-next-line: missing-fields
 	if not keys.active[keys.parse({ lhs, mode = mode }).id] then
 		opts = opts or {}
 		opts.silent = opts.silent ~= false
@@ -20,6 +21,20 @@ map("n", "<C-a>", "ggVG", { desc = "Select all" })
 map("n", "+", "<c-a>", { desc = "Increment" })
 map("n", "-", "<c-x>", { desc = "Decrement" })
 map("n", "<c-t>", "<cmd>term<cr>", { desc = "Open terminal tab" })
+
+-- copy
+map("n", "yp", function()
+	vim.cmd("let @+ = expand('%:p')")
+end, { desc = "Copy buffer full path" })
+map("n", "yd", function()
+	vim.cmd("let @+ = expand('%:p:h')")
+end, { desc = "Copy buffer directory" })
+map("n", "yn", function()
+	vim.cmd("let @+ = expand('%:t')")
+end, { desc = "Copy buffer name" })
+map("n", "y.", function()
+	vim.cmd("let @+ = expand('%:t:r')")
+end, { desc = "Copy buffer name without ext" })
 
 -- -- insert mode key bindings
 -- map("i", "<c-h>", "<left>")
