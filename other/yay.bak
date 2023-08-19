@@ -112,7 +112,9 @@ pqiv
 procs
 protonvpn-cli
 pulsemixer
+python-keyboard
 python-pip
+python-pynput
 python-pynvim
 python-pytest
 redshift
@@ -159,6 +161,7 @@ xorg-xinit
 xorg-xinput
 xsel
 yay
+yq
 zathura
 zathura-pdf-poppler
 zk

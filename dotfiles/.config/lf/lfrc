@@ -64,10 +64,10 @@ map yy :copy
 map dd :cut
 map p :paste
 map P :link
-map yd :yank-dirname
-map yn :yank-basename
 map yp :yank-path
-map y. :yank-basename-without-extension
+map yd :yank-dirname
+map yf :yank-basename
+map y. :yank-basename-without-ext
 map J :next-dir
 map K :prev-dir
 map <enter> :shell
@@ -116,7 +116,7 @@ cmd open &{{
 cmd yank-path $printf '%s' "$fx" | xsel -bi
 cmd yank-dirname $dirname -- "$fx" | head -c-1 | xsel -bi
 cmd yank-basename $basename -a -- $fx | head -c-1 | xsel -bi
-cmd yank-basename-without-extension ${{
+cmd yank-basename-without-ext ${{
   echo "$fx" |
     xargs -r -d '\n' basename -a |
     awk -e '{

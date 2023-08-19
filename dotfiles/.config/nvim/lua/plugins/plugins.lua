@@ -3,26 +3,14 @@ return {
 		"LazyVim/LazyVim",
 		opts = {
 			colorscheme = "nord",
+			-- colorscheme = "tokyonight",
+			-- colorscheme = "catppuccin",
 		},
 	},
 	{
 		"shaunsingh/nord.nvim",
 		event = "VeryLazy",
 	},
-	-- {
-	-- 	"lmburns/lf.nvim",
-	-- 	dependencies = { "plenary.nvim", "toggleterm.nvim" },
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>e",
-	-- 			function()
-	-- 				require("lf").start({})
-	-- 			end,
-	-- 			desc = "File manager (lf)",
-	-- 		},
-	-- 	},
-	-- },
-	{ "akinsho/toggleterm.nvim", lazy = true },
 	{
 		"is0n/jaq-nvim",
 		keys = {
@@ -33,9 +21,9 @@ return {
 				cmds = {
 					internal = {},
 					external = {
-						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
 						python = "python %",
 						cpp = "g++ % && ./a.out",
+						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
 					},
 				},
 				behavior = {
@@ -330,9 +318,23 @@ return {
 			}
 		end,
 	},
-	-- disabled plugins
+	-- {
+	-- 	"lmburns/lf.nvim",
+	-- 	dependencies = { "plenary.nvim", "toggleterm.nvim" },
+	-- 	keys = {
+	-- 		{
+	-- 			"<leader>e",
+	-- 			function()
+	-- 				require("lf").start({})
+	-- 			end,
+	-- 			desc = "File manager (lf)",
+	-- 		},
+	-- 	},
+	-- },
+	-- { "akinsho/toggleterm.nvim", lazy = true },
+	-- -- disabled plugins
 	-- { "nvim-neo-tree/neo-tree.nvim", enabled = false },
 	{ "folke/tokyonight.nvim", enabled = false },
-	{ "catppuccin", enabled = false },
+	-- { "catppuccin", enabled = false },
 	{ "echasnovski/mini.indentscope", enabled = false },
 }

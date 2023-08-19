@@ -66,22 +66,6 @@ ls.add_snippets(nil, {
 			t(")"),
 			i(0),
 		}),
-		s("Oyl", {
-			t([[print('yes']]),
-			i(0),
-		}),
-		s("Oyu", {
-			t([[print('Yes')]]),
-			i(0),
-		}),
-		s("Onl", {
-			t([[print('no']]),
-			i(0),
-		}),
-		s("Onu", {
-			t([[print('No')]]),
-			i(0),
-		}),
 		-- const
 		s("Inf", {
 			t("float('inf')", "hoge"),
