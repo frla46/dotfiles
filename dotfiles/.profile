@@ -3,10 +3,10 @@ export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
-export GOPATH=~/src/go
-export GOBIN=~/src/go/bin
-# export PATH=$PATH:~/.local/bin
-export PATH=$PATH:$GOBIN:~/.local/bin
+export PATH=$PATH:~/.local/bin
+# export GOPATH=~/src/go
+# export GOBIN=~/src/go/bin
+# export PATH=$PATH:$GOBIN:~/.local/bin
 
 # zsh
 export ZDOTDIR=~/.config/zsh
@@ -35,4 +35,7 @@ export ZK_NOTEBOOK_DIR=~/backup/note/
 # ssh
 if [ $(pgrep -c ssh-agent) -eq 0 ]; then
 	eval $(ssh-agent)
+fi
+if [ $(ssh-add -l | grep 'frn.rmla@gmail.com' | wc -l) -gt 0 ]; then
+	ssh-add ~/.ssh/id_ed25519
 fi
