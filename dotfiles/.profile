@@ -36,6 +36,6 @@ export ZK_NOTEBOOK_DIR=~/backup/note/
 if [ $(pgrep -c ssh-agent) -eq 0 ]; then
 	eval $(ssh-agent)
 fi
-if [ $(ssh-add -l | grep 'frn.rmla@gmail.com' | wc -l) -gt 0 ]; then
+if [ $(ssh-add -l | grep 'frn.rmla@gmail.com' | wc -l) -eq 0 ]; then
 	ssh-add ~/.ssh/id_ed25519
 fi
