@@ -39,4 +39,4 @@ bindkey '^z' _ctrl-z-fg
 bindkey '^xe' edit-command-line
 
 # # profiling zsh startup time
-# zmodload zsh/zprof
+zmodload zsh/zprof

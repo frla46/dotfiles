@@ -6,3 +6,4 @@ lazygit/state.yml
 mpv/watch_later
 mpv/bookmarker.json
 mpv/persistent_config.json
+dotfiles/.config/zsh/.zsh_plugins.zsh

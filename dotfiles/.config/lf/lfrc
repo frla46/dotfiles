@@ -82,7 +82,7 @@ map oE $lf -remote "send $id \$$EDITOR \$fx"
 map ov &alacritty -e $PAGER $f
 map oV $lf -remote "send $id \$$PAGER \$fx"
 map of &alacritty -e lf $(pwd)
-map oi $pqiv --browse ./
+map oi &pqiv --browse ./
 map gv :push :glob-select<space>
 map ugv :push :glob-unselect<space>
 map um :mark-remove

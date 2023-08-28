@@ -166,18 +166,13 @@ bindsym $mod+x mode $exec
 mode  $exec {
   bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
   bindsym d exec --no-startup-id  discord; mode "default"
+  bindsym c exec --no-startup-id  binggpt; mode "default"
   bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
   bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
   bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
   bindsym t exec --no-startup-id  alacritty -e btm; mode "default"
   bindsym Escape mode "default"
 }
-# bindsym $super+w exec --no-startup-id vivaldi-stable
-# bindsym $super+d exec --no-startup-id discord
-# bindsym $super+e exec --no-startup-id alacritty -e nvim
-# bindsym $super+f exec --no-startup-id alacritty -e lf
-# bindsym $super+v exec --no-startup-id alacritty -e pulsemixer
-# bindsym $super+t exec --no-startup-id alacritty -e btm
 
 # notify
 bindsym $mod+d exec --no-startup-id dunstctl close-all
