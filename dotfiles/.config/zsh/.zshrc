@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# # profiling zsh startup time
+zmodload zsh/zprof
+
 # plugin manager (antidote)
 # archlinux: pacman -S zsh-antidote
 source '/usr/share/zsh-antidote/antidote.zsh'
@@ -27,6 +30,11 @@ if [ -d $ZSHHOME -a -r $ZSHHOME -a \
     done
 fi
 
+# ssh-add
+if [ $(whoami) = 'frla' ] && [ $(ssh-add -l | grep 'frn.rmla@gmail.com' | wc -l) -eq 0 ]; then
+	ssh-add ~/.ssh/id_ed25519
+fi
+
 # load zoxide
 eval "$(zoxide init zsh)"
 
@@ -37,6 +45,3 @@ eval "$(gh completion -s zsh)"
 bindkey '^r' _select-history
 bindkey '^z' _ctrl-z-fg
 bindkey '^xe' edit-command-line
-
-# # profiling zsh startup time
-zmodload zsh/zprof

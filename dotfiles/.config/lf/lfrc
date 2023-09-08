@@ -8,6 +8,7 @@ set ifs "\n"
 set scrolloff 5
 set ignorecase true
 set incsearch true
+set mouse true
 
 # preview
 set previewer ctpv
@@ -44,13 +45,13 @@ map L
 map u
 map r
 
-# # set mappings
+## set mappings
 # map <esc> quit
 map r :rename
 map A :push r<c-e>
 map I :push r<c-a>
 map R :bulkrename
-map zp :set preview!
+# map zp :set preview!
 map af :push $touch<space>
 map ad :push $mkdir<space>
 map <backspace2> :set hidden!
@@ -72,7 +73,7 @@ map J :next-dir
 map K :prev-dir
 map <enter> :shell
 map f :zi
-map ? !file --mime-type -Lb $fx
+map ? %file --mime-type -Lb $fx
 map <c-z> $kill -STOP $PPID
 map ` :mark-load
 map "'" :push :tag<space>
@@ -83,31 +84,34 @@ map ov &alacritty -e $PAGER $f
 map oV $lf -remote "send $id \$$PAGER \$fx"
 map of &alacritty -e lf $(pwd)
 map oi &pqiv --browse ./
+map V :invert-below
 map gv :push :glob-select<space>
 map ugv :push :glob-unselect<space>
 map um :mark-remove
 map uv :unselect
 
-## commands
+## cmds
 cmd open &{{
   mimetype=$(file --mime-type -Lb $fx)
   case $mimetype in
     text/* | application/json | inode/x-empty )
-      lf -remote "send $id \$$EDITOR \$fx";;
+      lf -remote "send $id \$$EDITOR \$f";;
     audio/* | video/* )
-      mpv --title='${filename}' $fx;;
+      mpv --title='${filename}' $f;;
     image/*)
       pqiv --browse $f;;
     application/pdf )
-      zathura $fx &;;
+      zathura $f &;;
     exe/* )
-      wine $fx;;
+      wine $f;;
     *)
       case $fx in
         *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx )
-          libreoffice $fx;;
+          libreoffice $f;;
         *.zip | *.rar | *.7z )
-          atool -xe $fx && lf -remote "send $id load";;
+          atool -xe $f && lf -remote "send $id load";;
+        *.osz | *.osk )
+          osu-stable $f; lf -remote "send $id load";;
         * ) :;;
       esac;;
   esac

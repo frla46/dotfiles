@@ -14,6 +14,7 @@ binutils
 bison
 bottom
 chromium
+codon-bin
 cronie
 ctpv-git
 debugedit
@@ -100,6 +101,7 @@ osu
 p7zip
 pacman
 patch
+pdftk
 pfetch
 picom
 pipewire
@@ -132,6 +134,7 @@ stow
 sudo
 texinfo
 thunar
+tmux
 trash-cli
 ttf-hackgen
 ueberzug
@@ -162,6 +165,7 @@ xorg-xinput
 xsel
 yay
 yq
+yt-dlp
 zathura
 zathura-pdf-poppler
 zk
