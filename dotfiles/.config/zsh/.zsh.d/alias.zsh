@@ -15,14 +15,14 @@ alias j='_fg-fzf'
 alias -g V='|$PAGER'
 alias -g C='|xsel -bi'
 
-if [ $(which exa) &> /dev/null ]; then
-  alias l='exa'
-  alias ls='exa'
-  alias sl='exa'
-  alias la='exa -a'
-  alias ll='exa -l'
-  alias lla='exa -al'
-  alias lal='exa -al'
+if [ $(which eza) &> /dev/null ]; then
+  alias l='eza'
+  alias ls='eza'
+  alias sl='eza'
+  alias la='eza -a'
+  alias ll='eza -l'
+  alias lla='eza -al'
+  alias lal='eza -al'
 else
   alias l='ls'
   alias sl='ls'

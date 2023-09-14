@@ -5,10 +5,7 @@ return {
 			colorscheme = "nord",
 		},
 	},
-	{
-		"shaunsingh/nord.nvim",
-		event = "VeryLazy",
-	},
+	{ "shaunsingh/nord.nvim" },
 	{
 		"is0n/jaq-nvim",
 		keys = {
@@ -125,95 +122,6 @@ return {
 				return math.floor(vim.o.columns * 0.75)
 			end,
 		},
-		init = function()
-			local Util = require("lazyvim.util")
-			if not Util.has("noice.nvim") then
-				Util.on_very_lazy(function()
-					vim.notify = require("notify")
-				end)
-			end
-		end,
-	},
-	{
-		"nvim-lualine/lualine.nvim",
-		event = "VeryLazy",
-		opts = function()
-			local icons = require("lazyvim.config").icons
-			local Util = require("lazyvim.util")
-
-			return {
-				options = {
-					theme = "auto",
-					globalstatus = true,
-					disabled_filetypes = { statusline = { "dashboard", "alpha" } },
-				},
-				sections = {
-					lualine_a = { "mode" },
-					lualine_b = { "branch" },
-					lualine_c = {
-						{
-							"diagnostics",
-							symbols = {
-								error = icons.diagnostics.Error,
-								warn = icons.diagnostics.Warn,
-								info = icons.diagnostics.Info,
-								hint = icons.diagnostics.Hint,
-							},
-						},
-						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-						{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
-        -- stylua: ignore
-        {
-          function() return require("nvim-navic").get_location() end,
-          cond = function() return package.loaded["nvim-navic"] and require("nvim-navic").is_available() end,
-        },
-					},
-					lualine_x = {
-        -- stylua: ignore
-        {
-          function() return require("noice").api.status.command.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-          color = Util.fg("Statement"),
-        },
-        -- stylua: ignore
-        {
-          function() return require("noice").api.status.mode.get() end,
-          cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-          color = Util.fg("Constant"),
-        },
-        -- stylua: ignore
-        {
-          function() return "  " .. require("dap").status() end,
-          cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-          color = Util.fg("Debug"),
-        },
-						{
-							require("lazy.status").updates,
-							cond = require("lazy.status").has_updates,
-							color = Util.fg("Special"),
-						},
-						{
-							"diff",
-							symbols = {
-								added = icons.git.added,
-								modified = icons.git.modified,
-								removed = icons.git.removed,
-							},
-						},
-					},
-					lualine_y = {
-						-- { "progress", separator = " ", padding = { left = 1, right = 0 } },
-						-- { "location", padding = { left = 0, right = 1 } },
-					},
-					lualine_z = {
-						-- function()
-						-- 	return " " .. os.date("%R")
-						-- end,
-					},
-				},
-				extensions = { "neo-tree", "lazy" },
-			}
-		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -237,9 +145,9 @@ return {
 				sorting_strategy = "ascending",
 				winblend = 0,
 			},
-			-- pickers = {
-			-- 	find_files = { hidden = true },
-			-- },
+			pickers = {
+				find_files = { hidden = true },
+			},
 		},
 	},
 	{
@@ -250,7 +158,7 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			config = function()
-				require("luasnip.loaders.from_vscode").lazy_load()
+				-- require("luasnip.loaders.from_vscode").lazy_load()
 				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
 			end,
 		},
@@ -259,63 +167,6 @@ return {
 			delete_check_events = "TextChanged",
 		},
 	},
-	-- {
-	-- 	"hrsh7th/nvim-cmp",
-	-- 	version = false,
-	-- 	event = "InsertEnter",
-	-- 	dependencies = {
-	-- 		"hrsh7th/cmp-nvim-lsp",
-	-- 		"hrsh7th/cmp-buffer",
-	-- 		"hrsh7th/cmp-path",
-	-- 		"saadparwaiz1/cmp_luasnip",
-	-- 	},
-	-- 	opts = function()
-	-- 		local cmp = require("cmp")
-	-- 		return {
-	-- 			completion = {
-	-- 				completeopt = "menu,menuone,noinsert",
-	-- 			},
-	-- 			snippet = {
-	-- 				expand = function(args)
-	-- 					require("luasnip").lsp_expand(args.body)
-	-- 				end,
-	-- 			},
-	-- 			mapping = cmp.mapping.preset.insert({
-	-- 				["<tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-	-- 				["<S-tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-	-- 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
-	-- 				["<C-f>"] = cmp.mapping.scroll_docs(4),
-	-- 				["<C-Space>"] = cmp.mapping.complete(),
-	-- 				["<C-e>"] = cmp.mapping.abort(),
-	-- 				["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-	-- 				["<S-CR>"] = cmp.mapping.confirm({
-	-- 					behavior = cmp.ConfirmBehavior.Replace,
-	-- 					select = true,
-	-- 				}), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-	-- 			}),
-	-- 			sources = cmp.config.sources({
-	-- 				{ name = "nvim_lsp" },
-	-- 				{ name = "luasnip" },
-	-- 				{ name = "buffer" },
-	-- 				{ name = "path" },
-	-- 			}),
-	-- 			formatting = {
-	-- 				format = function(_, item)
-	-- 					local icons = require("lazyvim.config").icons.kinds
-	-- 					if icons[item.kind] then
-	-- 						item.kind = icons[item.kind] .. item.kind
-	-- 					end
-	-- 					return item
-	-- 				end,
-	-- 			},
-	-- 			experimental = {
-	-- 				ghost_text = {
-	-- 					hl_group = "LspCodeLens",
-	-- 				},
-	-- 			},
-	-- 		}
-	-- 	end,
-	-- },
 	-- -- disabled plugins
 	{ "folke/tokyonight.nvim", enabled = false },
 	{ "catppuccin", enabled = false },

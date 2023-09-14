@@ -11,6 +11,9 @@
 *.zip
 
 ## directory
+.git/
+node_modules/
+.cache/
+.steam/
 restic_repo/
-windows/
-src/res/text/
+.npm/

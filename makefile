@@ -7,7 +7,7 @@ help: ## show this help
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 all: minimal cui gui conf ## deploy all
-minimal: yay link git nvim zsh lf fd rg procs exa bat  ## deploy minimal
+minimal: yay link git nvim zsh lf fd rg procs eza bat  ## deploy minimal
 cui: at atool bottom docker dust fcitx5 ttf-hackgen jq protonvpn-cli restic tree ufw zk cronie ## deploy cui
 gui: alacritty chromium discord dunst i3 libreoffice maim megacmd mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura binggpt-desktop-bin  ## deploy gui
 conf: locale_conf systemd_conf zsh_conf nm_conf ## configure all
@@ -69,7 +69,7 @@ dunst:
 dust:
 	$(YAY) $@
 
-exa:
+eza:
 	$(YAY) $@
 
 fcitx5:

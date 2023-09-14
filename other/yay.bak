@@ -23,7 +23,7 @@ docker
 downgrade
 dunst
 dust
-exa
+eza
 fakeroot
 fcitx5
 fcitx5-configtool
@@ -85,6 +85,7 @@ marp-cli-bin
 megacmd
 mpv
 mpv-mpris
+navi
 neovim
 network-manager-applet
 networkmanager
