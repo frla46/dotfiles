@@ -71,7 +71,7 @@ if [ $(which yay) &> /dev/null ]; then
 fi
 
 if [ $(which lf) &> /dev/null ]; then
-  alias f='_lfcd'
+  alias f='lf'
 fi
 
 if [ $(which git) &> /dev/null ]; then

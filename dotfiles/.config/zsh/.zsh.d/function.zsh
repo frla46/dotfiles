@@ -42,8 +42,11 @@ function _ck() {
 function _fg-fzf() {
   local cnt job
   cnt=$(jobs | wc -l)
-  if [[ "$cnt" -eq 0 ]]; then
-  elif [[ "$cnt" -eq 1 ]]; then
+  if [[ "$cnt" -eq 0 ]]
+  then
+    :
+  elif [[ "$cnt" -eq 1 ]]
+  then
     fg
   else
     job=$(jobs | fzf | sed -e 's/\[//; s/\].*//' )
@@ -63,31 +66,16 @@ function _ctrl-z-fg () {
 }
 zle -N _ctrl-z-fg
 
-# cd when quittng lf
-function _lfcd () {
-  tmp="$(mktemp)"
-  lf -last-dir-path="$tmp" "$@"
-  if [ -f "$tmp" ]; then
-    dir="$(cat "$tmp")"
-    rm -f "$tmp"
-    if [ -d "$dir" ]; then
-      if [ "$dir" != "$(pwd)" ]; then
-        cd "$dir"
-      fi
-    fi
-  fi
-}
-
 # use vim as a pipe
 function _vipe () {
   COMMAND=$(echo "$*")
   \vim - -es +"$COMMAND" +'%p' +'q!' | sed '1d'
-
 }
 
 # disable "crontab -r"
 function crontab () {
-  if [ "$1" = "-r" ]; then
+  if [ "$1" = "-r" ]
+  then
     echo "crontab: disabled '-r' option";
   else
     command crontab "$@";

@@ -8,6 +8,7 @@ ${HOME}/.clamtk/
 ${HOME}/**/Default/Service Worker/
 ${HOME}/.config/vivaldi/BrowserMetrics/
 ${HOME}/.config/vivaldi/Default/File System/
+${HOME}/.config/vivaldi/Default/blob_storage/
 ${HOME}/.local/lib/
 ${HOME}/.local/share/Trash/
 ${HOME}/.local/share/Steam/
