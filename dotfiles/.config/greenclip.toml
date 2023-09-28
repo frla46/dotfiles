@@ -1,5 +1,5 @@
 [greenclip]
-history_file = "/home/frla/.cache/greenclip.history"
+history_file = "~/.cache/greenclip.history"
 image_cache_directory = "/tmp/greenclip"
 blacklisted_applications = []
 enable_image_support = true

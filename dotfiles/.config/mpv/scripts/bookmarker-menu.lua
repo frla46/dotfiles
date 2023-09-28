@@ -36,57 +36,6 @@ local oldSlot = 0
 
 -- // Controls \\ --
 
--- -- List of custom controls and their function
--- local bookmarkerControls = {
--- 	ESC = function()
--- 		abort("")
--- 	end,
--- 	DOWN = function()
--- 		jumpSlot(1)
--- 	end,
--- 	UP = function()
--- 		jumpSlot(-1)
--- 	end,
--- 	RIGHT = function()
--- 		jumpPage(1)
--- 	end,
--- 	LEFT = function()
--- 		jumpPage(-1)
--- 	end,
--- 	s = function()
--- 		addBookmark()
--- 	end,
--- 	S = function()
--- 		mode = "save"
--- 		typerStart()
--- 	end,
--- 	p = function()
--- 		mode = "replace"
--- 		typerStart()
--- 	end,
--- 	r = function()
--- 		mode = "rename"
--- 		typerStart()
--- 	end,
--- 	f = function()
--- 		mode = "filepath"
--- 		typerStart()
--- 	end,
--- 	m = function()
--- 		mode = "move"
--- 		moverStart()
--- 	end,
--- 	DEL = function()
--- 		mode = "delete"
--- 		typerStart()
--- 	end,
--- 	ENTER = function()
--- 		jumpToBookmark(currentSlot)
--- 	end,
--- 	KP_ENTER = function()
--- 		jumpToBookmark(currentSlot)
--- 	end,
--- }
 local bookmarkerControls = {
 	ESC = function()
 		abort("")
@@ -127,12 +76,6 @@ local bookmarkerControls = {
 	end,
 }
 
--- local bookmarkerFlags = {
--- 	DOWN = { repeatable = true },
--- 	UP = { repeatable = true },
--- 	RIGHT = { repeatable = true },
--- 	LEFT = { repeatable = true },
--- }
 local bookmarkerFlags = {
 	j = { repeatable = true },
 	k = { repeatable = true },

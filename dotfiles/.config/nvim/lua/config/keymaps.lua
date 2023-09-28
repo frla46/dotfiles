@@ -38,3 +38,6 @@ end, { desc = "Copy buffer name" })
 map("n", "y.", function()
 	vim.cmd("let @+ = expand('%:t:r')")
 end, { desc = "Copy buffer name without ext" })
+
+-- command alias
+map("c", "Sum", "!awk '{s += $1} END {print s}'")
