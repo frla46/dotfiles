@@ -20,5 +20,4 @@ setopt nocorrect
 setopt share_history
 
 # emacs bind key
-bindkey -d #reset keybind
-bindkey -e #emacs mode
+bindkey -d && bindkey -e

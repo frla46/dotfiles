@@ -7,6 +7,72 @@ return {
 	},
 	{ "shaunsingh/nord.nvim" },
 	{
+		"rcarriga/nvim-notify",
+		keys = {
+			{
+				"<leader><esc>",
+				function()
+					require("notify").dismiss({ silent = true, pending = true })
+				end,
+				desc = "Delete all Notifications",
+			},
+		},
+		opts = {
+			stages = "static",
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
+		},
+	},
+	{
+		"nvim-telescope/telescope.nvim",
+		opts = {
+			defaults = {
+				mappings = {
+					i = {
+						["<Esc>"] = function(...)
+							return require("telescope.actions").close(...)
+						end,
+						["<C-j>"] = function(...)
+							return require("telescope.actions").move_selection_next(...)
+						end,
+						["<C-k>"] = function(...)
+							return require("telescope.actions").move_selection_previous(...)
+						end,
+					},
+				},
+				layout_strategy = "horizontal",
+				layout_config = { prompt_position = "top" },
+				sorting_strategy = "ascending",
+				winblend = 0,
+			},
+			pickers = {
+				find_files = { hidden = true },
+			},
+		},
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		build = (not jit.os:find("Windows"))
+				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
+			or nil,
+		dependencies = {
+			"rafamadriz/friendly-snippets",
+			config = function()
+				-- require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
+			end,
+		},
+		opts = {
+			history = true,
+			delete_check_events = "TextChanged",
+		},
+	},
+	{
 		"is0n/jaq-nvim",
 		keys = {
 			{ "<leader>r", "<cmd>Jaq<cr>", desc = "Quickrun (jaq-nvim)" },
@@ -100,72 +166,6 @@ return {
 				},
 			})
 		end,
-	},
-	{
-		"rcarriga/nvim-notify",
-		keys = {
-			{
-				"<leader><esc>",
-				function()
-					require("notify").dismiss({ silent = true, pending = true })
-				end,
-				desc = "Delete all Notifications",
-			},
-		},
-		opts = {
-			stages = "static",
-			timeout = 3000,
-			max_height = function()
-				return math.floor(vim.o.lines * 0.75)
-			end,
-			max_width = function()
-				return math.floor(vim.o.columns * 0.75)
-			end,
-		},
-	},
-	{
-		"nvim-telescope/telescope.nvim",
-		opts = {
-			defaults = {
-				mappings = {
-					i = {
-						["<Esc>"] = function(...)
-							return require("telescope.actions").close(...)
-						end,
-						["<C-j>"] = function(...)
-							return require("telescope.actions").move_selection_next(...)
-						end,
-						["<C-k>"] = function(...)
-							return require("telescope.actions").move_selection_previous(...)
-						end,
-					},
-				},
-				layout_strategy = "horizontal",
-				layout_config = { prompt_position = "top" },
-				sorting_strategy = "ascending",
-				winblend = 0,
-			},
-			pickers = {
-				find_files = { hidden = true },
-			},
-		},
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		build = (not jit.os:find("Windows"))
-				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
-			or nil,
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-			config = function()
-				-- require("luasnip.loaders.from_vscode").lazy_load()
-				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
-			end,
-		},
-		opts = {
-			history = true,
-			delete_check_events = "TextChanged",
-		},
 	},
 	-- -- disabled plugins
 	{ "folke/tokyonight.nvim", enabled = false },

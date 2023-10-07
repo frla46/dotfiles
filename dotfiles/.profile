@@ -3,10 +3,7 @@ export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
-export PATH=$PATH:~/.local/bin
-# export GOPATH=~/src/go
-# export GOBIN=~/src/go/bin
-# export PATH=$PATH:$GOBIN:~/.local/bin
+export PATH=$PATH:~/.local/bin:~/bin/
 
 # zsh
 export ZDOTDIR=~/.config/zsh

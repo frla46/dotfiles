@@ -5,7 +5,7 @@
 -- See README.md for instructions
 
 -- Maximum number of characters for bookmark name
-local maxChar = 100
+local maxChar = 1000
 -- Number of bookmarks to be displayed per page
 local bookmarksPerPage = 10
 -- Whether to close the Bookmarker menu after loading a bookmark

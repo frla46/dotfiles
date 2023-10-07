@@ -7,6 +7,7 @@ end-of-files-action=wait
 thumbnail-size=256x256
 
 [keybindings]
+
 # # default
 # <KP_Add>  { set_scale_level_relative(1.1) }
 # h  { flip_horizontally() }

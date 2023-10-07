@@ -82,7 +82,7 @@ bindsym $mod+shift+9 move container to workspace number $ws9
 bindsym $mod+shift+10 move container to workspace number $ws10
 
 # system
-set $system "system [q:poweroff, r:reboot, s:suspend, l:lock, L:logout]"
+set $system "system [q: poweroff, r: reboot, s: suspend, l: lock, L: logout]"
 bindsym $mod+shift+q mode $system
 mode $system {
   bindsym q exec --no-startup-id "systemctl poweroff"; mode "default"
@@ -94,7 +94,7 @@ mode $system {
 }
 
 # layout (style)
-set $layout "layout [h:split h, v:split v, s:stacking, t:tabbed, e:toggle, f:floating, p:parent, c:child]"
+set $layout "layout [h: split h, v: split v, s: stacking, t: tabbed, e: toggle, f: floating, p: parent, c: child]"
 bindsym $mod+s mode $layout
 mode $layout {
   bindsym h split h; mode "default"
@@ -109,7 +109,7 @@ mode $layout {
 }
 
 # audio
-set $audio "audio [vol:m0-9, space:play-pause, <:prev, >:next, j:voldn, k:volup, l:forward, h:backward]"
+set $audio "audio [vol: m0-9, space: play-pause, <: prev, >: next, j: voldn, k: volup, l: forward, h: backward]"
 set $setvol pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
@@ -148,7 +148,7 @@ mode "resize" {
 
 # screenshot
 set $capture "screen shot"
-set $pic_dir /home/frla/pic/screenshot
+set $pic_dir ~/pic/screenshot
 set $delay 0.01
 set $date $(date +%Y%m%d%H%M%S)
 bindsym $mod+shift+s mode $capture
@@ -161,18 +161,18 @@ mode  $capture {
 }
 
 # # app launcher
-set $exec "exec [w:vivaldi, d:discord, e:nvim, f:lf, m:ncmpcpp, v:pulsemixer, t:btm]"
-bindsym $mod+x mode $exec
-mode  $exec {
-  bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
-  bindsym d exec --no-startup-id  discord; mode "default"
-  bindsym c exec --no-startup-id  binggpt; mode "default"
-  bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
-  bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
-  bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
-  bindsym t exec --no-startup-id  alacritty -e btm; mode "default"
-  bindsym Escape mode "default"
-}
+# set $exec "exec [w: vivaldi, d: discord, e: nvim, f: lf, m: ncmpcpp, v: pulsemixer, t: btm]"
+# bindsym $mod+x mode $exec
+# mode  $exec {
+#   bindsym w exec --no-startup-id  vivaldi-stable; mode "default"
+#   bindsym d exec --no-startup-id  discord; mode "default"
+#   bindsym c exec --no-startup-id  binggpt; mode "default"
+#   bindsym e exec --no-startup-id  alacritty -e nvim; mode "default"
+#   bindsym f exec --no-startup-id  alacritty -e lf; mode "default"
+#   bindsym v exec --no-startup-id  alacritty -e pulsemixer; mode "default"
+#   bindsym t exec --no-startup-id  alacritty -e btm; mode "default"
+#   bindsym Escape mode "default"
+# }
 
 # notify
 bindsym $mod+d exec --no-startup-id dunstctl close-all
@@ -230,7 +230,7 @@ exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id fcitx5
-exec --no-startup-id feh --bg-scale "$HOME/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg"
+exec --no-startup-id feh --bg-scale ~/pic/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
 exec --no-startup-id nm-applet
 exec --no-startup-id mega-sync
 exec --no-startup-id picom -b
