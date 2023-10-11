@@ -5,31 +5,29 @@ return {
 			colorscheme = "nord",
 		},
 	},
-	{ "shaunsingh/nord.nvim" },
 	{
-		"rcarriga/nvim-notify",
-		keys = {
-			{
-				"<leader><esc>",
-				function()
-					require("notify").dismiss({ silent = true, pending = true })
-				end,
-				desc = "Delete all Notifications",
-			},
-		},
-		opts = {
-			stages = "static",
-			timeout = 3000,
-			max_height = function()
-				return math.floor(vim.o.lines * 0.75)
-			end,
-			max_width = function()
-				return math.floor(vim.o.columns * 0.75)
-			end,
-		},
+		"shaunsingh/nord.nvim",
+		config = function()
+			vim.g.nord_disable_background = true
+			require("nord").set()
+		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"debugloop/telescope-undo.nvim",
+			config = function()
+				require("telescope").load_extension("undo")
+			end,
+		},
+		keys = {
+			{
+				"<leader>su",
+				"<cmd>Telescope undo<cr>",
+				desc = "Undo tree",
+			},
+		},
 		opts = {
 			defaults = {
 				mappings = {
@@ -56,6 +54,28 @@ return {
 		},
 	},
 	{
+		"rcarriga/nvim-notify",
+		keys = {
+			{
+				"<leader><esc>",
+				function()
+					require("notify").dismiss({ silent = true, pending = true })
+				end,
+				desc = "Clear all Notifications",
+			},
+		},
+		opts = {
+			stages = "static",
+			timeout = 3000,
+			max_height = function()
+				return math.floor(vim.o.lines * 0.75)
+			end,
+			max_width = function()
+				return math.floor(vim.o.columns * 0.75)
+			end,
+		},
+	},
+	{
 		"L3MON4D3/LuaSnip",
 		build = (not jit.os:find("Windows"))
 				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
@@ -73,40 +93,6 @@ return {
 		},
 	},
 	{
-		"is0n/jaq-nvim",
-		keys = {
-			{ "<leader>r", "<cmd>Jaq<cr>", desc = "Quickrun (jaq-nvim)" },
-		},
-		opts = function()
-			require("jaq-nvim").setup({
-				cmds = {
-					internal = {},
-					external = {
-						python = "python %",
-						cpp = "g++ % && ./a.out",
-						tex = "docker run -u $(id -u):$(id -g) --rm -v ${PWD}:/workdir ghcr.io/being24/latex-docker latexmk ./main.tex",
-					},
-				},
-				behavior = {
-					-- Default type
-					default = "quickfix",
-					-- Start in insert mode
-					startinsert = false,
-					-- Use `wincmd p` on startup
-					wincmd = false,
-					-- Auto-save files
-					autosave = false,
-				},
-				ui = {
-					quickfix = {
-						position = "bot",
-						size = 10,
-					},
-				},
-			})
-		end,
-	},
-	{
 		"mickael-menu/zk-nvim",
 		keys = {
 			{
@@ -114,35 +100,35 @@ return {
 				function()
 					require("zk.commands").get("ZkNew")({})
 				end,
-				desc = "Create notes (zk)",
+				desc = "Create note (zk)",
 			},
 			{
 				"<leader>zf",
 				function()
 					require("zk.commands").get("ZkNotes")({ sort = { "modified" } })
 				end,
-				desc = "Open notes (zk)",
+				desc = "Find note (zk)",
 			},
 			{
 				"<leader>zt",
 				function()
 					require("zk.commands").get("ZkTags")({})
 				end,
-				desc = "Open notes (zk)",
+				desc = "Find tag(zk)",
 			},
 			{
 				"<leader>zl",
 				function()
 					require("zk.commands").get("ZkLinks")()
 				end,
-				desc = "Open notes linked by the current note (zk)",
+				desc = "Find notes linked by the current note (zk)",
 			},
 			{
 				"<leader>zb",
 				function()
 					require("zk.commands").get("ZkBacklinks")()
 				end,
-				desc = "Open notes linking to the current note (zk)",
+				desc = "Find notes linking to the current note (zk)",
 			},
 		},
 		config = function()
@@ -167,6 +153,19 @@ return {
 			})
 		end,
 	},
+	-- {
+	-- 	"pwntester/octo.nvim",
+	-- 	event = "VeryLazy",
+	-- 	requires = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 	},
+	-- 	config = function()
+	-- 		require("octo").setup()
+	-- 	end,
+	-- },
+
 	-- -- disabled plugins
 	{ "folke/tokyonight.nvim", enabled = false },
 	{ "catppuccin", enabled = false },

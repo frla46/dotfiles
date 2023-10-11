@@ -154,9 +154,9 @@ set $date $(date +%Y%m%d%H%M%S)
 bindsym $mod+shift+s mode $capture
 mode  $capture {
   bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym s exec --no-startup-id maim -s -d $delay | xclip -selection clipboard -t image/png;  mode "default"
+  bindsym s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png;  mode "default"
   bindsym shift+a exec --no-startup-id maim -d $delay $pic_dir/$date.png;  mode "default"
-  bindsym shift+s exec --no-startup-id maim -s -d $delay $pic_dir/$date.png;  mode "default"
+  bindsym shift+s exec --no-startup-id maim -s $pic_dir/$date.png;  mode "default"
   bindsym Escape mode "default"
 }
 

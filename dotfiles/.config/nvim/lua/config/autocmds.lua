@@ -4,11 +4,11 @@
 
 local autocmd = vim.api.nvim_create_autocmd
 
--- use engligh messages
+-- Use engligh messages
 vim.cmd([[ language C.UTF-8 ]])
 vim.cmd([[ language messages C.UTF-8 ]])
 
--- ime
+-- IME
 vim.cmd([[
   if executable('fcitx5')
     let g:fcitx_state = 1
@@ -21,25 +21,20 @@ vim.cmd([[
   endif
 ]])
 
--- Don't auto commenting new line
-autocmd("FileType", {
-	pattern = "*",
-	command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
-})
-
--- transparent with picom
-vim.cmd([[highlight Normal guibg=NONE]])
-
 -- Remove postspaces on save
 autocmd("BufWritePre", {
 	pattern = "*",
 	command = ":%s/\\s\\+$//e",
 })
 
--- disable spellcheck for lazyvim
+-- Don't auto commenting new line
+autocmd("FileType", {
+	pattern = "*",
+	command = "setlocal formatoptions-=cro",
+})
+
+-- Markdown
 autocmd("FileType", {
 	pattern = "markdown",
-	callback = function()
-		vim.opt_local["spell"] = false
-	end,
+	command = "setlocal nospell comments=b:*,b:-,b:+,nb:> formatoptions-=c formatoptions+=jro",
 })

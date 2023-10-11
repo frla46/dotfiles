@@ -109,8 +109,10 @@ fi
 
 if [ $(which at) &> /dev/null ]; then
   alias atl='at -l'
-  alias atn='at -f <(echo "notify-send $(date +%R)")'
   alias atd='at -d $(at -l | fzf | cut -f 1)'
+  function atn(){
+    at $* -f <(echo "notify-send $*")
+  }
 fi
 
 if [ $(which restic) &> /dev/null ]; then

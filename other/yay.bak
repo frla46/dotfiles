@@ -85,7 +85,6 @@ marp-cli-bin
 megacmd
 mpv
 mpv-mpris
-navi
 neovim
 network-manager-applet
 networkmanager
@@ -135,6 +134,7 @@ sudo
 texinfo
 thunar
 tmux
+tmux-plugin-manager
 trash-cli
 ttf-hackgen
 ueberzug
