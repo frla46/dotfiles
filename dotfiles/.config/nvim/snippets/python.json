@@ -1,0 +1,38 @@
+{
+  "input()": {
+    "prefix": "Is",
+    "body": "${1} = input()"
+  },
+  "int(input())": {
+    "prefix": "Ii",
+    "body": "${1} = int(input())"
+  },
+  "input().split()": {
+    "prefix": "Isn",
+    "body": "${1} = input().split()"
+  },
+  "[int(i) for i in input().split()]": {
+    "prefix": "Iin",
+    "body": "${1} = [int(i) for i in input().split()]"
+  },
+  "[input() for _ in range(n)]": {
+    "prefix": "Isl",
+    "body": "${1} = [input() for _ in range(${2:n})]"
+  },
+  "[int(input()) for _ in range(n)]": {
+    "prefix": "Iil",
+    "body": "${1} = [int(input()) for _ in range(${2:n})]"
+  },
+  "[input().split() for _ in range(n)]": {
+    "prefix": "Isnl",
+    "body": "${1} = [input().split() for _ in range(${2:n})]"
+  },
+  "[[int(i) for i in input().split()] for _ in range(n)]": {
+    "prefix": "Iinl",
+    "body": "${1} = [[int(i) for i in input().split()] for _ in range(${2:n})]"
+  },
+  "INF": {
+    "prefix": "INF",
+    "body": "INF = float('inf')"
+  }
+}

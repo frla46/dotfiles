@@ -111,7 +111,7 @@ if [ $(which at) &> /dev/null ]; then
   alias atl='at -l'
   alias atd='at -d $(at -l | fzf | cut -f 1)'
   function atn(){
-    at $* -f <(echo "notify-send $*")
+    at $1 -f <(echo "notify-send $*")
   }
 fi
 
@@ -130,6 +130,7 @@ alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 alias mpv='mpv --no-terminal'
 
 ## function
+
 # fzf history
 function _select-history() {
   BUFFER=$(history -n -r 1 | fzf --exact --reverse --query="$LBUFFER" --prompt="History > ")

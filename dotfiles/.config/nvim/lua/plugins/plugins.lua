@@ -30,23 +30,22 @@ return {
 		},
 		opts = {
 			defaults = {
-				mappings = {
-					i = {
-						["<Esc>"] = function(...)
-							return require("telescope.actions").close(...)
-						end,
-						["<C-j>"] = function(...)
-							return require("telescope.actions").move_selection_next(...)
-						end,
-						["<C-k>"] = function(...)
-							return require("telescope.actions").move_selection_previous(...)
-						end,
-					},
-				},
-				layout_strategy = "horizontal",
+				-- mappings = {
+				-- 	i = {
+				-- 		["<Esc>"] = function(...)
+				-- 			return require("telescope.actions").close(...)
+				-- 		end,
+				-- 		["<C-j>"] = function(...)
+				-- 			return require("telescope.actions").move_selection_next(...)
+				-- 		end,
+				-- 		["<C-k>"] = function(...)
+				-- 			return require("telescope.actions").move_selection_previous(...)
+				-- 		end,
+				-- 	},
+				-- },
+				-- layout_strategy = "horizontal",
 				layout_config = { prompt_position = "top" },
 				sorting_strategy = "ascending",
-				winblend = 0,
 			},
 			pickers = {
 				find_files = { hidden = true },
@@ -77,20 +76,12 @@ return {
 	},
 	{
 		"L3MON4D3/LuaSnip",
-		build = (not jit.os:find("Windows"))
-				and "echo -e 'NOTE: jsregexp is optional, so not a big deal if it fails to build\n'; make install_jsregexp"
-			or nil,
-		dependencies = {
-			"rafamadriz/friendly-snippets",
-			config = function()
-				-- require("luasnip.loaders.from_vscode").lazy_load()
-				require("luasnip.loaders.from_lua").load({ paths = "./lua/snip/luasnip/" })
-			end,
-		},
-		opts = {
-			history = true,
-			delete_check_events = "TextChanged",
-		},
+		dependencies = { "rafamadriz/friendly-snippets" },
+		version = "v2.*",
+		build = "make install_jsregexp",
+		opts = function()
+			require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
+		end,
 	},
 	{
 		"mickael-menu/zk-nvim",
@@ -114,7 +105,7 @@ return {
 				function()
 					require("zk.commands").get("ZkTags")({})
 				end,
-				desc = "Find tag(zk)",
+				desc = "Find tag (zk)",
 			},
 			{
 				"<leader>zl",
@@ -165,9 +156,55 @@ return {
 	-- 		require("octo").setup()
 	-- 	end,
 	-- },
-
+	-- Sample configuration is supplied
+	{
+		"lmburns/lf.nvim",
+		dependencies = { "akinsho/toggleterm.nvim" },
+		keys = {
+			{
+				"<leader>e",
+				"<cmd>Lf<cr>",
+				desc = "lf",
+			},
+		},
+		config = function()
+			vim.g.lf_netrw = 1
+			require("lf").setup({
+				escape_quit = false,
+				border = "single",
+			})
+		end,
+	},
+	{
+		"michaelb/sniprun",
+		branch = "master",
+		build = "sh install.sh",
+		keys = {
+			{
+				"<leader>rr",
+				"<cmd>SnipRun",
+				desc = "Sniprun",
+			},
+			{
+				"<leader>rR",
+				"<cmd>SnipReset",
+				desc = "SnipReset",
+			},
+			{
+				"<leader>rc",
+				"<cmd>SnipClose",
+				desc = "SnipClose",
+			},
+		},
+		config = function()
+			require("sniprun").setup({
+				-- your options
+			})
+		end,
+	},
 	-- -- disabled plugins
 	{ "folke/tokyonight.nvim", enabled = false },
 	{ "catppuccin", enabled = false },
 	{ "echasnovski/mini.indentscope", enabled = false },
+	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
 }

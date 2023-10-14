@@ -102,11 +102,11 @@ cmd open &{{
       pqiv --browse $f;;
     application/pdf )
       zathura $f &;;
-    exe/* )
-      wine $f;;
     *)
       case $fx in
-        *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx )
+        *.exe )
+          wine $f;;
+        *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx | *.odg )
           libreoffice $f;;
         *.zip | *.rar | *.7z )
           atool -xe $f && lf -remote "send $id load";;
