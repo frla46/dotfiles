@@ -127,7 +127,6 @@ alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias hcp='fc -lnr | fzf | xsel -bi'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
-alias mpv='mpv --no-terminal'
 
 ## function
 

@@ -176,3 +176,7 @@ cmd zi ${{
 cmd tag-clear :tag; tag-toggle
 cmd prev-dir :updir; up; open
 cmd next-dir :updir; down; open
+
+cmd select_tagged_files ${{
+}}
+map gs :selected_files

@@ -18,10 +18,6 @@ vim.g.mapleader = " "
 
 map({ "n", "v" }, "_", ":", { desc = "Command mode" })
 map("n", "<c-a>", "ggVG", { desc = "Select all" })
-map("n", "+", "<c-a>", { desc = "Increment" })
-map("v", "g+", "g<c-a>", { desc = "Increment sequence" })
-map("n", "-", "<c-x>", { desc = "Decrement" })
-map("v", "g-", "g<c-x>", { desc = "Decrement sequence" })
 map("n", "<c-t>", "<cmd>term<cr>", { desc = "Open terminal tab" })
 map("n", "<leader>w=", "<c-w>=", { desc = "Equally high and width" })
 

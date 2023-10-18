@@ -16,10 +16,12 @@ return {
 		"nvim-telescope/telescope.nvim",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"debugloop/telescope-undo.nvim",
-			config = function()
-				require("telescope").load_extension("undo")
-			end,
+			{
+				"debugloop/telescope-undo.nvim",
+				config = function()
+					require("telescope").load_extension("undo")
+				end,
+			},
 		},
 		keys = {
 			{
@@ -30,25 +32,13 @@ return {
 		},
 		opts = {
 			defaults = {
-				-- mappings = {
-				-- 	i = {
-				-- 		["<Esc>"] = function(...)
-				-- 			return require("telescope.actions").close(...)
-				-- 		end,
-				-- 		["<C-j>"] = function(...)
-				-- 			return require("telescope.actions").move_selection_next(...)
-				-- 		end,
-				-- 		["<C-k>"] = function(...)
-				-- 			return require("telescope.actions").move_selection_previous(...)
-				-- 		end,
-				-- 	},
-				-- },
-				-- layout_strategy = "horizontal",
 				layout_config = { prompt_position = "top" },
 				sorting_strategy = "ascending",
 			},
 			pickers = {
-				find_files = { hidden = true },
+				find_files = {
+					hidden = true,
+				},
 			},
 		},
 	},
@@ -83,67 +73,6 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
 		end,
 	},
-	{
-		"mickael-menu/zk-nvim",
-		keys = {
-			{
-				"<leader>zn",
-				function()
-					require("zk.commands").get("ZkNew")({})
-				end,
-				desc = "Create note (zk)",
-			},
-			{
-				"<leader>zf",
-				function()
-					require("zk.commands").get("ZkNotes")({ sort = { "modified" } })
-				end,
-				desc = "Find note (zk)",
-			},
-			{
-				"<leader>zt",
-				function()
-					require("zk.commands").get("ZkTags")({})
-				end,
-				desc = "Find tag (zk)",
-			},
-			{
-				"<leader>zl",
-				function()
-					require("zk.commands").get("ZkLinks")()
-				end,
-				desc = "Find notes linked by the current note (zk)",
-			},
-			{
-				"<leader>zb",
-				function()
-					require("zk.commands").get("ZkBacklinks")()
-				end,
-				desc = "Find notes linking to the current note (zk)",
-			},
-		},
-		config = function()
-			require("zk").setup({
-				-- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-				-- it's recommended to use "telescope" or "fzf"
-				picker = "telescope",
-				lsp = {
-					-- `config` is passed to `vim.lsp.start_client(config)`
-					config = {
-						cmd = { "zk", "lsp" },
-						name = "zk",
-						-- on_attach = ...
-						-- etc, see `:h vim.lsp.start_client()`
-					},
-					-- automatically attach buffers in a zk notebook that match the given filetypes
-					auto_attach = {
-						enabled = true,
-						filetypes = { "markdown" },
-					},
-				},
-			})
-		end,
-	},
 	-- {
 	-- 	"pwntester/octo.nvim",
 	-- 	event = "VeryLazy",
@@ -156,7 +85,6 @@ return {
 	-- 		require("octo").setup()
 	-- 	end,
 	-- },
-	-- Sample configuration is supplied
 	{
 		"lmburns/lf.nvim",
 		dependencies = { "akinsho/toggleterm.nvim" },
@@ -182,23 +110,164 @@ return {
 		keys = {
 			{
 				"<leader>rr",
-				"<cmd>SnipRun",
+				"<cmd>SnipRun<cr>",
 				desc = "Sniprun",
+				mode = { "n", "v" },
 			},
 			{
 				"<leader>rR",
-				"<cmd>SnipReset",
+				"<cmd>SnipReset<cr>",
 				desc = "SnipReset",
 			},
 			{
 				"<leader>rc",
-				"<cmd>SnipClose",
+				"<cmd>SnipClose<cr>",
 				desc = "SnipClose",
 			},
 		},
 		config = function()
-			require("sniprun").setup({
-				-- your options
+			require("sniprun").setup({})
+		end,
+	},
+	{
+		"echasnovski/mini.splitjoin",
+		version = false,
+		keys = {
+			{
+				"gS",
+				function()
+					MiniSplitjoin.toggle()
+				end,
+				desc = "MiniSplitjoin",
+			},
+		},
+		config = function()
+			require("mini.splitjoin").setup({})
+		end,
+	},
+	{
+		"monaqa/dial.nvim",
+		keys = {
+			{
+				"+",
+				function()
+					require("dial.map").manipulate("increment", "normal")
+				end,
+			},
+			{
+				"-",
+				function()
+					require("dial.map").manipulate("decrement", "normal")
+				end,
+			},
+			{
+				"g+",
+				function()
+					require("dial.map").manipulate("increment", "gnormal")
+				end,
+			},
+			{
+				"g-",
+				function()
+					require("dial.map").manipulate("decrement", "gnormal")
+				end,
+			},
+			{
+				"+",
+				function()
+					require("dial.map").manipulate("increment", "visual")
+				end,
+				mode = { "v" },
+			},
+			{
+				"-",
+				function()
+					require("dial.map").manipulate("decrement", "visual")
+				end,
+				mode = { "v" },
+			},
+			{
+				"g+",
+				function()
+					require("dial.map").manipulate("increment", "gvisual")
+				end,
+				mode = { "v" },
+			},
+			{
+				"g-",
+				function()
+					require("dial.map").manipulate("decrement", "gvisual")
+				end,
+				mode = { "v" },
+			},
+		},
+	},
+	{
+		"renerocksai/telekasten.nvim",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+		},
+		keys = {
+			{
+				"<leader>z",
+				function()
+					require("telekasten").panel()
+				end,
+				desc = "help (telekasten)",
+			},
+			{
+				"<leader>zn",
+				function()
+					require("telekasten").new_note()
+				end,
+				desc = "Create new note (telekasten)",
+			},
+			{
+				"<leader>zf",
+				function()
+					require("telekasten").find_notes()
+				end,
+				desc = "Find notes (telekasten)",
+			},
+			{
+				"<leader>zg",
+				function()
+					require("telekasten").search_notes()
+				end,
+				desc = "Grep notes (telekasten)",
+			},
+			{
+				"<leader>zt",
+				function()
+					require("telekasten").goto_today()
+				end,
+				desc = "Open today notes (telekasten)",
+			},
+			{
+				"<leader>zl",
+				function()
+					require("telekasten").follow_link()
+				end,
+				desc = "Open note under cursor (telekasten)",
+			},
+			{
+				"<leader>zb",
+				function()
+					require("telekasten").show_backlinks()
+				end,
+				desc = "Show notes linking to the current note (telekasten)",
+			},
+		},
+		config = function()
+			local home = vim.fn.expand("~/backup/zettelkasten/")
+			require("telekasten").setup({
+				home = home,
+				dailies = home .. "/" .. "daily",
+				weeklies = home .. "/" .. "weekly",
+				templates = home .. "/" .. "templates",
+				template_new_note = home .. "/" .. "templates/new_note.md",
+				template_new_daily = home .. "/" .. "templates/daily.md",
+				template_new_weekly = home .. "/" .. "templates/weekly.md",
 			})
 		end,
 	},
