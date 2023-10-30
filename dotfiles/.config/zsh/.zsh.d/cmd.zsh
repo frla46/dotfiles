@@ -122,6 +122,11 @@ if [ $(which restic) &> /dev/null ]; then
   alias restic_clean='restic forget -l 5 && restic prune'
 fi
 
+if [ $(which mpv) &> /dev/null ]; then
+  alias mpv_audio='mpv --ytdl-format="worstvideo+bestaudio"'
+  alias mpv_video='mpv --ytdl-format=bestvideo[height<=?720]+bestaudio/best'
+fi
+
 # misc
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias hcp='fc -lnr | fzf | xsel -bi'

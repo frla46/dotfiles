@@ -13,7 +13,9 @@ binggpt-desktop-bin
 binutils
 bison
 bottom
+calibre
 chromium
+code
 codon-bin
 cronie
 ctpv-git
@@ -59,6 +61,7 @@ i3status
 inotify-tools
 iwd
 jq
+jre-openjdk
 lazydocker
 lazygit
 lf
@@ -82,7 +85,7 @@ maim
 make
 man-db
 marp-cli-bin
-megacmd
+megasync
 mpv
 mpv-mpris
 neovim
@@ -144,7 +147,6 @@ ufw
 unclutter
 unrar
 unzip
-vdhcoapp
 vim
 vimv-git
 virtualbox
@@ -167,6 +169,7 @@ xorg-xinput
 xsel
 yay
 yq
+yt-dlp
 zathura
 zathura-pdf-poppler
 zk

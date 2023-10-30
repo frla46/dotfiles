@@ -7,9 +7,9 @@ help: ## show this help
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 all: minimal cui gui conf ## deploy all
-minimal: yay link git nvim zsh lf fd rg procs eza bat  ## deploy minimal
-cui: at atool bottom docker dust fcitx5 ttf-hackgen jq protonvpn-cli restic tree ufw zk cronie ## deploy cui
-gui: alacritty chromium discord dunst i3 libreoffice maim megacmd mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura binggpt-desktop-bin  ## deploy gui
+minimal: yay link git nvim zsh procs eza bat  ## deploy minimal
+cui: at atool bottom docker dust fcitx5 ttf-hackgen jq protonvpn-cli restic tree ufw cronie ## deploy cui
+gui: alacritty chromium discord dunst i3 libreoffice maim megasync mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## deploy gui
 conf: locale_conf systemd_conf zsh_conf nm_conf ## configure all
 
 link: ## set symlink dotfiles
@@ -96,16 +96,16 @@ libreoffice:
 maim:
 	$(YAY) $@
 
-megacmd:
+megasync:
 	$(YAY) $@
 
 mpv:
 	$(YAY) $@ $@-mpris
 
 gtk-theme:
-	$(YAY) nordic-darker-theme capitaine-cursors fcitx5-nord
+	$(YAY) nordic-darker-theme nordzy-cursors nordzy-icon-theme fcitx5-nord
 
-nvim:
+nvim: fd rg lf
 	$(YAY) neovim
 
 picom:
@@ -170,15 +170,8 @@ yay: ## install yay
 zathura:
 	$(YAY) $@ $@-pdf-poppler
 
-zk:
-	$(YAY) $@
-
-zsh:
+zsh: at
 	$(YAY) $@ $@-antidote zoxide fzf
-
-binggpt-desktop-bin:
-	$(YAY) $@
-
 
 # config
 nm_conf:
@@ -198,9 +191,6 @@ zsh_conf: zsh
 	chsh -s $(shell which zsh)
 
 # # todo
-# set gtk-theme cursor-theme
+# set gtk-theme and cursor-theme
 # browser config
 # - chrome://flags/#enable-force-dark -> CIELAB based inversion
-# mega
-# 	mega-login 'USERID' 'PASSWORD'
-# 	mega-sync ~/backup/ /

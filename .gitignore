@@ -1,9 +1,0 @@
-lazy-lock.json
-.zsh_history
-dotfiles/.config/lazygit/state.yml
-dotfiles/.config/mpv/bookmarker.json
-dotfiles/.config/mpv/persistent_config.json
-dotfiles/.config/mpv/watch_later
-dotfiles/.config/tmux/plugins
-dotfiles/.config/zsh/.zcompdump
-dotfiles/.config/zsh/.zsh_plugins.zsh

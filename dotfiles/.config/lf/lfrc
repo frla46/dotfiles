@@ -1,7 +1,9 @@
-# lfrc
+# -- lfrc --
+
 # https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfrc.example
 
-## setitngs
+# -- setitngs --
+
 set shell zsh
 set shellopts '-euy'
 set ifs "\n"
@@ -10,21 +12,21 @@ set ignorecase true
 set incsearch true
 set mouse true
 
-# preview
+# -- preview --
+
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
-# set window title
+# -- set window title --
 &printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
 
-## mappings
-# disable mappings
-# map <up>
-# map <down>
-# map <left>
-# map <right>
+
+# -- mappings --
+
+# -- disable mappings --
+
 map <pgup>
 map <pgdn>
 map <home>
@@ -45,7 +47,8 @@ map L
 map u
 map r
 
-## set mappings
+# -- set mappings --
+
 # map <esc> quit
 map r :rename
 map A :push r<c-e>
@@ -90,7 +93,9 @@ map ugv :push :glob-unselect<space>
 map um :mark-remove
 map uv :unselect
 
-## cmds
+
+# -- commands --
+
 cmd open &{{
   mimetype=$(file --mime-type -Lb $fx)
   case $mimetype in
@@ -178,5 +183,6 @@ cmd prev-dir :updir; up; open
 cmd next-dir :updir; down; open
 
 cmd select_tagged_files ${{
+  lf -remote "seld $id select "
 }}
 map gs :selected_files

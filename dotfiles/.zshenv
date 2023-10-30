@@ -13,9 +13,9 @@ export HISTSIZE=100000
 export SAVEHIST=100000
 
 # fcitx
-export GTK_IM_MODULE=fcitx5
-export QT_IM_MODULE=fcitx5
-export XMODIFIERS=@im=fcitx5
+export GTK_IM_MODULE='fcitx5'
+export QT_IM_MODULE='fcitx5'
+export XMODIFIERS='@im=fcitx5'
 
 # restic
 export RESTIC_REPOSITORY=~/backup/restic_repo
@@ -26,3 +26,9 @@ export BAT_THEME='Nord'
 
 # zk
 export ZK_NOTEBOOK_DIR=~/backup/note/
+
+# rg
+export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
+
+# pfetch
+export PF_INFO='ascii title os wm shell editor'
