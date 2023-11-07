@@ -14,8 +14,8 @@ antidote load
 autoload -Uz promptinit && promptinit && prompt pure
 PURE_CMD_MAX_EXEC_TIME=86400 #1day
 
-# completion
-autoload -Uz compinit && compinit -C
+# # completion
+# autoload -Uz compinit && compinit -C
 
 # load zstyles
 [[ -f ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles

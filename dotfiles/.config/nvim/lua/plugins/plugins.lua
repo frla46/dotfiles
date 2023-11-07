@@ -143,24 +143,28 @@ return {
 				function()
 					require("dial.map").manipulate("increment", "normal")
 				end,
+				desc = "Add",
 			},
 			{
 				"-",
 				function()
 					require("dial.map").manipulate("decrement", "normal")
 				end,
+				desc = "Subtract",
 			},
 			{
 				"g+",
 				function()
 					require("dial.map").manipulate("increment", "gnormal")
 				end,
+				desc = "Add sequence",
 			},
 			{
 				"g-",
 				function()
 					require("dial.map").manipulate("decrement", "gnormal")
 				end,
+				desc = "Subtract sequence",
 			},
 			{
 				"+",
@@ -168,6 +172,7 @@ return {
 					require("dial.map").manipulate("increment", "visual")
 				end,
 				mode = { "v" },
+				desc = "Add",
 			},
 			{
 				"-",
@@ -175,6 +180,7 @@ return {
 					require("dial.map").manipulate("decrement", "visual")
 				end,
 				mode = { "v" },
+				desc = "Subtract",
 			},
 			{
 				"g+",
@@ -182,6 +188,7 @@ return {
 					require("dial.map").manipulate("increment", "gvisual")
 				end,
 				mode = { "v" },
+				desc = "Add sequence",
 			},
 			{
 				"g-",
@@ -189,6 +196,7 @@ return {
 					require("dial.map").manipulate("decrement", "gvisual")
 				end,
 				mode = { "v" },
+				desc = "Subtract sequence",
 			},
 		},
 	},
@@ -203,7 +211,7 @@ return {
 				function()
 					require("telekasten").panel()
 				end,
-				desc = "help (telekasten)",
+				desc = "Open panel (telekasten)",
 			},
 			{
 				"<leader>zn",
@@ -249,15 +257,15 @@ return {
 			},
 		},
 		config = function()
-			local home = vim.fn.expand("~/backup/zettelkasten/")
+			local zk_home = vim.fn.expand("~/backup/zettelkasten/")
 			require("telekasten").setup({
-				home = home,
-				dailies = home .. "/" .. "daily",
-				weeklies = home .. "/" .. "weekly",
-				templates = home .. "/" .. "templates",
-				template_new_note = home .. "/" .. "templates/new_note.md",
-				template_new_daily = home .. "/" .. "templates/daily.md",
-				template_new_weekly = home .. "/" .. "templates/weekly.md",
+				home = zk_home,
+				dailies = zk_home .. "/" .. "daily",
+				weeklies = zk_home .. "/" .. "weekly",
+				templates = zk_home .. "/" .. "templates",
+				template_new_note = zk_home .. "/" .. "templates/new_note.md",
+				template_new_daily = zk_home .. "/" .. "templates/daily.md",
+				template_new_weekly = zk_home .. "/" .. "templates/weekly.md",
 			})
 		end,
 	},

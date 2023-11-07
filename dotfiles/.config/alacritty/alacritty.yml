@@ -2,7 +2,7 @@ font:
   normal:
     family: hackgen console
     style: regular
-  size: 12
+  size: 10
 
 window:
   opacity: 0.5

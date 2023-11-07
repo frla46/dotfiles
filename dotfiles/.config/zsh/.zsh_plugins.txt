@@ -1,5 +1,6 @@
-sindresorhus/pure kind:fpath
 zsh-users/zsh-completions kind:defer
 zsh-users/zsh-autosuggestions kind:defer
 zsh-users/zsh-syntax-highlighting kind:defer
+sindresorhus/pure kind:fpath
+belak/zsh-utils path:completion
 bobsoppe/zsh-ssh-agent

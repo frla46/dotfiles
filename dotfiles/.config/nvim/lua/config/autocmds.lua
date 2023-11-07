@@ -30,11 +30,14 @@ autocmd("BufWritePre", {
 -- Don't auto commenting new line
 autocmd("FileType", {
 	pattern = "*",
-	command = "setlocal formatoptions-=cro",
+	-- command = "setlocal formatoptions-=cro",
+	callback = function()
+		vim.opt_local.formatoptions:remove({ "c", "r", "o" })
+	end,
 })
 
 -- Markdown
 autocmd("FileType", {
 	pattern = "markdown",
-	command = "setlocal nospell comments=b:*,b:-,b:+,nb:> formatoptions-=c formatoptions+=jro",
+	command = "setlocal comments=b:*,b:-,b:+,nb:> formatoptions-=c formatoptions+=jro nospell",
 })

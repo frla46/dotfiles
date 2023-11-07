@@ -7,8 +7,8 @@ help: ## show this help
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 all: minimal cui gui conf ## deploy all
-minimal: yay link git nvim zsh procs eza bat  ## deploy minimal
-cui: at atool bottom docker dust fcitx5 ttf-hackgen jq protonvpn-cli restic tree ufw cronie ## deploy cui
+minimal: yay link git nvim zsh tmux procs eza bat  ## deploy minimal
+cui: at atool bottom docker dust fcitx5 ttf-hackgen protonvpn-cli restic tree ufw cronie ## deploy cui
 gui: alacritty chromium discord dunst i3 libreoffice maim megasync mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## deploy gui
 conf: locale_conf systemd_conf zsh_conf nm_conf ## configure all
 
@@ -84,9 +84,6 @@ git:
 i3:
 	$(YAY) $@-wm $@status $@lock-color
 
-jq:
-	$(YAY) $@
-
 lf:
 	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer trash-cli xsel
 
@@ -105,7 +102,10 @@ mpv:
 gtk-theme:
 	$(YAY) nordic-darker-theme nordzy-cursors nordzy-icon-theme fcitx5-nord
 
-nvim: fd rg lf
+npm:
+	$(YAY) $@
+
+nvim: fd rg lf npm
 	$(YAY) neovim
 
 picom:
@@ -141,6 +141,9 @@ rofi:
 rofi-greenclip: rofi
 	$(YAY) $@
 
+tmux:
+	$(YAY) $@ tmux-plugin-manager
+
 tree:
 	$(YAY) $@
 
@@ -161,7 +164,8 @@ vivaldi:
 
 yay: ## install yay
 	mkdir -p ~/src/
-	-cd ~/src/ && git clone https://aur.archlinux.org/yay.git && cd yay/ && makepkg -si
+	cd ~/src/ && git clone https://aur.archlinux.org/yay.git
+	cd ~/src/yay/ && makepkg -si
 	$(YAY) yay reflector
 	sudo reflector -c jp -p https,http -l 5 --save /etc/pacman.d/mirrorlist
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
@@ -175,12 +179,12 @@ zsh: at
 
 # config
 nm_conf:
-	echo '[main]\ndns=none' | sudo tee /etc/NetworkManager/NetworkManager.conf
+	echo -e '[main]\ndns=none' | sudo tee /etc/NetworkManager/NetworkManager.conf
 	sudo systemctl restart NetworkManager
 
 locale_conf:
 	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' | sudo tee /etc/locale.gen
-	locale-gen
+	sudo locale-gen
 	echo 'LANG=ja_JP.UTF-8' | sudo tee -a /etc/locale.conf
 
 systemd_conf:

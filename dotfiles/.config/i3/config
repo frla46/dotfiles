@@ -225,7 +225,7 @@ default_border none
 
 # autostart
 exec_always --no-startup-id killall greenclip; greenclip daemon
-exec_always --no-startup-id killall redshift; redshift -x; redshift -b 0.8:0.6 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id killall redshift; redshift -x; redshift -b 1.0:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id fcitx5

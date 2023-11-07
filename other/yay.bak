@@ -54,6 +54,7 @@ gst-plugin-pipewire
 gzip
 hdparm
 hlsdl
+hugo
 i3-wm
 i3blocks
 i3lock-color
@@ -61,7 +62,6 @@ i3status
 inotify-tools
 iwd
 jq
-jre-openjdk
 lazydocker
 lazygit
 lf
@@ -93,14 +93,13 @@ network-manager-applet
 networkmanager
 nodejs
 nordic-darker-theme
-nordic-theme
 nordzy-cursors
+nordzy-icon-theme
 noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 npm
 openresolv
-osu
 p7zip
 pacman
 patch

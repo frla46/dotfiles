@@ -21,6 +21,13 @@ map("n", "<c-a>", "ggVG", { desc = "Select all" })
 map("n", "<c-t>", "<cmd>term<cr>", { desc = "Open terminal tab" })
 map("n", "<leader>w=", "<c-w>=", { desc = "Equally high and width" })
 
+map(
+	"n",
+	"gx",
+	[[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]],
+	{ desc = "Open the URL under cursor with browser" }
+)
+
 -- copy file path and more
 map("n", "yp", function()
 	vim.cmd("let @+ = expand('%:p')")

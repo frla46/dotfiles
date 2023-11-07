@@ -4,7 +4,7 @@ export TERM='alacritty'
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
-export PATH=$PATH:~/.local/bin:~/bin/
+export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/
 
 # zsh
 export ZDOTDIR=~/.config/zsh
