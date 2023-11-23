@@ -1,6 +1,8 @@
 # ignore files for telescope
 
+
 ## file
+
 *.docx
 *.db
 *.gz
@@ -11,7 +13,9 @@
 *.xlsx
 *.zip
 
+
 ## directory
+
 .git/
 node_modules/
 .cache/

@@ -32,3 +32,8 @@ export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
 
 # pfetch
 export PF_INFO='ascii title os wm shell editor'
+
+# go
+export GOPATH=~/src/go
+export GOBIN=~/src/go/bin
+export PATH=$PATH:$GOBIN:~/.local/bin

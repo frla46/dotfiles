@@ -19,6 +19,7 @@ code
 codon-bin
 cronie
 ctpv-git
+cursor-appimage
 debugedit
 discord
 docker
@@ -38,6 +39,7 @@ feh
 ffmpegthumbnailer
 file
 findutils
+firefox
 flex
 fzf
 gawk
@@ -73,7 +75,6 @@ libva-mesa-driver
 lightdm
 lightdm-gtk-greeter
 linux-firmware
-linux-lts
 linux-zen
 linux-zen-headers
 lostfiles
@@ -99,10 +100,14 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 npm
+obs-linuxbrowser-bin
+obs-studio
 openresolv
 p7zip
+paclog
 pacman
 patch
+pavucontrol
 pdftk
 pfetch
 picom

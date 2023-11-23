@@ -24,16 +24,16 @@ local o = {
 	mark_bookmark_as_chapter = false, --true is for marking the time as a chapter. false disables mark as chapter behavior.
 	preserve_video_settings = false, --(true/false). Preserve video settings when bookmarking items and loading bookmarks by writing mpv watch-later config
 	bookmark_save_keybind = [[
-	["ctrl+b", "ctrl+B"]
+	["ctrl+b"]
 	]], --Keybind that will be used to save the video and its time to log file
 	bookmark_fileonly_keybind = [[
-	["alt+b", "alt+B"]
+	["alt+b"]
 	]], --Keybind that will be used to save the video without time to log file
 	open_list_keybind = [[
-	[ ["b", "all"], ["B", "all"], ["k", "keybinds"], ["K", "keybinds"] ]
+	[ ["b", "all"] ]
 	]], --Keybind that will be used to open the list along with the specified filter.
 	list_filter_jump_keybind = [[
-	[ ["b", "all"], ["B", "all"], ["k", "keybinds"], ["K", "keybinds"], ["!", "/:group%TV Shows%"], ["@", "/:group%Movies%"], ["SHARP", "/:group%Anime%"], ["$", "/:group%Anime Movies%"], ["%", "/:group%Cartoon%"], ["r", "recents"], ["R", "recents"], ["d", "distinct"], ["D", "distinct"], ["f", "fileonly"], ["F", "fileonly"] ]
+	[]
 	]], --Keybind that is used while the list is open to jump to the specific filter (it also enables pressing a filter keybind twice to close list). Available fitlers: 'all', 'keybinds', 'recents', 'distinct', 'protocols', 'fileonly', 'titleonly', 'timeonly', 'keywords'.
 
 	-----Keybind Slots Settings-----
@@ -42,33 +42,33 @@ local o = {
 	keybinds_empty_fileonly = true, --When auto creating keybind slot, it will not save position.
 	keybinds_auto_resume = true, --When loading a keybind slot, it will auto resume to the saved time.
 	keybinds_add_load_keybind = [[
-	["alt+1", "alt+2", "alt+3", "alt+4", "alt+5", "alt+6", "alt+7", "alt+8", "alt+9"]
+	[]
 	]], --Keybind that will be used to bind list item to a key, as well as to load it. e.g.: Press alt+1 on list cursor position to add it, press alt+1 while list is hidden to load item keybinded into alt+1. (A new slot is automatically created for each keybind. e.g: .."alt+9, alt+0". Where alt+0 creates a new 10th slot.)
 	keybinds_quicksave_keybind = [[
-	["alt+!", "alt+@", "alt+#", "alt+$", "alt+%", "alt+^", "alt+&", "alt+*", "alt+("]
+	[]
 	]], --To save keybind to a slot without opening the list, to load these keybinds it uses keybinds_add_load_keybind
 	keybinds_remove_keybind = [[
-	["alt+-"]
+	[]
 	]], --Keybind that is used when list is open to remove the keybind slot based on cursor position
 	keybinds_remove_highlighted_keybind = [[
-	["alt+_"]
+	[]
 	]], --Keybind that is used when list is open to remove the keybind slot based on highlighted items
 
 	-----Group Settings-----
 	groups_list_and_keybind = [[
-	[ ["TV Shows", "ctrl+1", "ctrl+!"], ["Movies", "ctrl+2", "ctrl+@"], ["Anime", "ctrl+3", "ctrl+#"], ["Anime Movies", "ctrl+4", "ctrl+$"], ["Cartoon", "ctrl+5"], ["Animated Movies"] ]
+	[]
 	]], --Define the groups that can be assigned to a bookmarked item, you can also optionally assign the keybind, and the highlight keybind that puts the bookmarked item into the relevant group when the list is open. Alternatively you can use list_group_add_cycle_keybind to assign item to a group
 	list_groups_remove_keybind = [[
-	["ctrl+-"]
+	[]
 	]], --Keybind that is used when list is open to remove the group based on cursor position
 	list_groups_remove_highlighted_keybind = [[
-	["ctrl+_"]
+	[]
 	]], --Keybind that is used when list is open to remove the group based on highlighted items
 	list_group_add_cycle_keybind = [[
-	["ctrl+g"]
+	[]
 	]], --Keybind to add an item to the group, this cycles through all the different available groups when list is open
 	list_group_add_cycle_highlighted_keybind = [[
-	["ctrl+G"]
+	[]
 	]], --Keybind to add highlighted items to the group, this cycles through all the different available groups when list is open
 
 	-----Logging Settings-----
@@ -91,13 +91,13 @@ local o = {
 
 	-----Filter Settings------
 	filters_and_sequence = [[
-	["all", "keybinds", "groups", "/:group%TV Shows%", "/:group%Movies%", "/:group%Anime%", "/:group%Anime Movies%", "/:group%Cartoon%", "/:group%Animated Movies%", "protocols", "fileonly", "titleonly", "timeonly", "playing", "keywords", "recents", "distinct", "keybinds%+%groups", "all%-%groups%-%keybinds"]
+	[]
 	]], --Jump to the following filters and in the shown sequence when navigating via left and right keys. You can change the sequence and delete filters that are not needed.
 	next_filter_sequence_keybind = [[
-	["RIGHT", "MBTN_FORWARD"]
+	[]
 	]], --Keybind that will be used to go to the next available filter based on the filters_and_sequence
 	previous_filter_sequence_keybind = [[
-	["LEFT", "MBTN_BACK"]
+	[]
 	]], --Keybind that will be used to go to the previous available filter based on the filters_and_sequence
 	loop_through_filters = true, --true is for bypassing the last filter to go to first filter when navigating through filters using arrow keys, and vice-versa. false disables this behavior.
 	keywords_filter_list = [[
@@ -109,10 +109,10 @@ local o = {
 	--Sorts description: 'added-asc' is for the newest added item to show first. Or 'added-desc' for the newest added to show last. Or 'alphanum-asc' is for A to Z approach with filename and episode number lower first. Or 'alphanum-desc' is for its Z to A approach. Or 'time-asc', 'time-desc' to sort the list based on time.
 	list_default_sort = "added-asc", --the default sorting method for all the different filters in the list. Choose between available sorts.
 	list_filters_sort = [[
-	[ ["keybinds", "keybind-asc"], ["fileonly", "alphanum-asc"], ["playing", "time-asc"] ]
+	[]
 	]], --Default sort for specific filters, e.g.: [ ["all", "alphanum-asc"], ["playing", "added-desc"] ]
 	list_cycle_sort_keybind = [[
-	["alt+s", "alt+S"]
+	[]
 	]], --Keybind to cycle through the different available sorts when list is open
 
 	-----List Design Settings-----
@@ -181,22 +181,22 @@ local o = {
 	--Add below (after a comma) any additional keybind you want to bind. Or change the letter inside the quotes to change the keybind
 	--Example of changing and adding keybinds: --From ["b", "B"] To ["b"]. --From [""] to ["alt+b"]. --From [""] to ["a" "ctrl+a", "alt+a"]
 	list_move_up_keybind = [[
-	["UP", "WHEEL_UP"]
+	["k", "WHEEL_UP"]
 	]], --Keybind that will be used to navigate up on the list
 	list_move_down_keybind = [[
-	["DOWN", "WHEEL_DOWN"]
+	["j", "WHEEL_DOWN"]
 	]], --Keybind that will be used to navigate down on the list
 	list_page_up_keybind = [[
-	["PGUP"]
+	["h"]
 	]], --Keybind that will be used to go to the first item for the page shown on the list
 	list_page_down_keybind = [[
-	["PGDWN"]
+	["l"]
 	]], --Keybind that will be used to go to the last item for the page shown on the list
 	list_move_first_keybind = [[
-	["HOME"]
+	["g"]
 	]], --Keybind that will be used to navigate to the first item on the list
 	list_move_last_keybind = [[
-	["END"]
+	["G"]
 	]], --Keybind that will be used to navigate to the last item on the list
 	list_highlight_move_keybind = [[
 	["SHIFT"]

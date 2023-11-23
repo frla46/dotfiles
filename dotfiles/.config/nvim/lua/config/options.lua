@@ -6,7 +6,6 @@ local opt = vim.opt
 opt.encoding = "utf-8"
 opt.fileencoding = "utf-8"
 opt.fileencodings = "utf-8,sjis"
-opt.helplang = "ja,en"
 opt.swapfile = false
 opt.gdefault = true
 opt.number = false

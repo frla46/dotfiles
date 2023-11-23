@@ -72,8 +72,8 @@ map yp :yank-path
 map yd :yank-dirname
 map yf :yank-basename
 map y. :yank-basename-without-ext
-map J :next-dir
-map K :prev-dir
+map J move-parent down
+map K move-parent up
 map <enter> :shell
 map f :zi
 map ? %file --mime-type -Lb $fx
@@ -92,6 +92,7 @@ map gv :push :glob-select<space>
 map ugv :push :glob-unselect<space>
 map um :mark-remove
 map uv :unselect
+map gs :select_tagged_files
 
 
 # -- commands --
@@ -149,9 +150,11 @@ cmd on-cd &{{
 }}
 
 cmd bulkrename ${{
+  lf -remote "send $id set preview!"
   vimv $(basename -a -- $fx)
   lf -remote "send $id load"
   lf -remote "send $id unselect"
+  lf -remote "send $id set preview!"
 }}
 
 cmd link %{{
@@ -179,10 +182,21 @@ cmd zi ${{
 }}
 
 cmd tag-clear :tag; tag-toggle
-cmd prev-dir :updir; up; open
-cmd next-dir :updir; down; open
+
+cmd move-parent &{{
+    dironly="setlocal '$(dirname "$PWD")' dironly"
+    lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
+}}
+
+cmd share $curl -F"file=@$fx" https://0x0.st | xsel -bi
 
 cmd select_tagged_files ${{
-  lf -remote "seld $id select "
+  tagged_files=/home/frla/.local/share/lf/tags
+  while read line
+    do
+      tagged_file=${line/%??/}
+      if [ $(dirname ${tagged_file}) = ${PWD} ]; then
+        lf -remote "send $id toggle ${tagged_file}"
+      fi
+    done < ${tagged_files}
 }}
-map gs :selected_files

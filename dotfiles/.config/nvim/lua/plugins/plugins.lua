@@ -28,9 +28,6 @@ return {
 				},
 			},
 		},
-		-- config = function(_, opts)
-		-- 	require("telescope").setup(opts)
-		-- end,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -121,7 +118,6 @@ return {
 	},
 	{
 		"echasnovski/mini.splitjoin",
-		version = false,
 		keys = {
 			{
 				"gS",

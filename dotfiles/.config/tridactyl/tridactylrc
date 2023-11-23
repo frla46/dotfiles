@@ -1,0 +1,24 @@
+" ---
+" config
+" ---
+
+"set smoothscroll false
+
+" ---
+" keybind
+" ---
+
+bind YY composite js document.title + "\n" + document.URL | yank
+
+bind j scrollline 4
+bind k scrollline -4
+
+bind J tabnext
+bind K tabprev
+
+command translatepage js -r js/translatePage.js
+bind A translatepage
+
+bind ,r composite js source; js alert('tridactylrc loaded!')
+
+keymap d <nop>
