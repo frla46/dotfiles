@@ -190,13 +190,13 @@ cmd move-parent &{{
 
 cmd share $curl -F"file=@$fx" https://0x0.st | xsel -bi
 
-cmd select_tagged_files ${{
-  tagged_files=/home/frla/.local/share/lf/tags
+cmd select_tagged_files &{{
+  tagged_files=~/.local/share/lf/tags
   while read line
     do
       tagged_file=${line/%??/}
-      if [ $(dirname ${tagged_file}) = ${PWD} ]; then
-        lf -remote "send $id toggle ${tagged_file}"
+      if [ $(dirname "${tagged_file}") = "${PWD}" ] && [ -e "${tagged_file}" ]; then
+        lf -remote "send $id toggle '${tagged_file}'"
       fi
     done < ${tagged_files}
 }}

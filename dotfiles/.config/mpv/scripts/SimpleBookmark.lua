@@ -181,10 +181,10 @@ local o = {
 	--Add below (after a comma) any additional keybind you want to bind. Or change the letter inside the quotes to change the keybind
 	--Example of changing and adding keybinds: --From ["b", "B"] To ["b"]. --From [""] to ["alt+b"]. --From [""] to ["a" "ctrl+a", "alt+a"]
 	list_move_up_keybind = [[
-	["k", "WHEEL_UP"]
+	["k", "UP", "WHEEL_UP"]
 	]], --Keybind that will be used to navigate up on the list
 	list_move_down_keybind = [[
-	["j", "WHEEL_DOWN"]
+	["j", "DOWN", "WHEEL_DOWN"]
 	]], --Keybind that will be used to navigate down on the list
 	list_page_up_keybind = [[
 	["h"]

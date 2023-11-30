@@ -1,4 +1,15 @@
 [greenclip]
+static_history = [
+  '''site:github.com OR site:zenn.dev OR site:qiita.com''',
+  '''site:yuchrszk.blogspot.com''',
+  '''site:life-lemon.com''',
+  '''site:hatenablog.com OR site:hatenablog.jp OR site:hateblo.jp OR site:hatenadiary.com OR site:hatenadiary.jp''',
+  '''%!sort | uniq | sed -e '/^\!/d; /^$/d; /^\/\//d''',
+  '''%!sed -e 's/、/, /; s/。/. /; s/【/ [/; s/】/] /; s/（/ (/; s/）/) /; s/：/: /''',
+  '''!awk '{s += $1} END {print s}''',
+  '''$(date +%Y%m%d%H%M%S)''',
+  '''s67+1ScR1ny4s9vLKc59ubf4''',
+]
 history_file = "~/.cache/greenclip.history"
 image_cache_directory = "/tmp/greenclip"
 blacklisted_applications = []
@@ -6,7 +17,4 @@ enable_image_support = true
 max_history_length = 10000
 max_selection_size_bytes = 0
 trim_space_from_selection = true
-use_primary_selection_as_input = false
-static_history =
-[
-]
+use_primary_selection_as_input = true
