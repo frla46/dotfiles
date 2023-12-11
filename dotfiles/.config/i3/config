@@ -224,8 +224,9 @@ focus_follows_mouse no
 default_border none
 
 # autostart
-exec_always --no-startup-id killall greenclip > /dev/null; greenclip daemon > /dev/null
-exec_always --no-startup-id killall redshift > /dev/null; redshift -x; redshift -b 1.0:0.6 -t 5000:3000 -l 36:140 -r > /dev/null
+# exec_always --no-startup-id killall greenclip > /dev/null; greenclip daemon > /dev/null
+exec_always --no-startup-id (pgrep greenclip && pkill greenclip); greenclip daemon
+exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.7 -t 5000:3500 -l 36:140 -r
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id fcitx5
@@ -244,7 +245,7 @@ bindsym $mod+Return exec --no-startup-id alacritty
 bindsym $mod+space exec --no-startup-id rofi -show run
 bindsym $mod+w exec --no-startup-id rofi -show window
 bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
-# bindsym $mod+shift+c exec --no-startup-id ~/bin/snippets.sh
+bindsym $mod+shift+b exec --no-startup-id pkill -USR1 '^redshift$' # toggle enable/dsiable redshift
 
 # assign window to workspace
 for_window [class="^Alacritty$" title="^scratch$"] move --no-auto-back-and-forth scratchpad

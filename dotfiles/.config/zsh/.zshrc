@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# # profiling zsh startup time
+# profiling zsh startup time
 zmodload zsh/zprof
 
 # plugin manager (antidote)
@@ -12,10 +12,7 @@ antidote load
 
 # prompt
 autoload -Uz promptinit && promptinit && prompt pure
-PURE_CMD_MAX_EXEC_TIME=86400 #1day
-
-# # completion
-# autoload -Uz compinit && compinit -C
+PURE_CMD_MAX_EXEC_TIME=604800 # 1 week
 
 # load zstyles
 [[ -f ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles
