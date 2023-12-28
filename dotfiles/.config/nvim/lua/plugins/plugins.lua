@@ -235,21 +235,28 @@ return {
 				function()
 					require("telekasten").goto_today()
 				end,
-				desc = "Open today notes (telekasten)",
+				desc = "Open today's daily note (telekasten)",
+			},
+			{
+				"<leader>zT",
+				function()
+					require("telekasten").find_daily_notes()
+				end,
+				desc = "Find daily notes by title (telekasten)",
 			},
 			{
 				"<leader>zl",
 				function()
 					require("telekasten").follow_link()
 				end,
-				desc = "Open note under cursor (telekasten)",
+				desc = "Follow the link under the cursor (telekasten)",
 			},
 			{
 				"<leader>zb",
 				function()
 					require("telekasten").show_backlinks()
 				end,
-				desc = "Show notes linking to the current note (telekasten)",
+				desc = "Show all notes linking to the current one (telekasten)",
 			},
 		},
 		config = function()
@@ -270,4 +277,5 @@ return {
 	{ "catppuccin", enabled = false },
 	{ "echasnovski/mini.indentscope", enabled = false },
 	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
+	{ "headlines.nvim", enabled = false },
 }

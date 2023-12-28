@@ -226,7 +226,7 @@ default_border none
 # autostart
 # exec_always --no-startup-id killall greenclip > /dev/null; greenclip daemon > /dev/null
 exec_always --no-startup-id (pgrep greenclip && pkill greenclip); greenclip daemon
-exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.7 -t 5000:3500 -l 36:140 -r
+exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id fcitx5

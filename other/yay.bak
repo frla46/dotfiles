@@ -68,6 +68,7 @@ jq
 lazydocker
 lazygit
 lf
+libc++
 libpulse
 libreoffice-still
 libreoffice-still-ja
@@ -104,6 +105,7 @@ npm
 obs-linuxbrowser-bin
 obs-studio
 openresolv
+osu-lazer-bin
 p7zip
 paclog
 pacman
@@ -120,8 +122,10 @@ pkgconf
 playerctl
 pqiv
 procs
+protonvpn
 protonvpn-cli
 pulsemixer
+python-matplotlib
 python-pip
 python-pynvim
 python-pytest
@@ -132,6 +136,7 @@ restic
 ripgrep
 rofi
 rofi-greenclip
+ruby-vimgolf
 rustup
 sed
 smartmontools
@@ -161,6 +166,8 @@ vulkan-radeon
 w3m
 wget
 which
+wine
+winetricks
 wireless_tools
 wireplumber
 xclip
