@@ -1,7 +1,5 @@
 # -- lfrc --
 
-# https://raw.githubusercontent.com/gokcehan/lf/master/etc/lfrc.example
-
 # -- setitngs --
 
 set shell zsh
@@ -11,16 +9,14 @@ set scrolloff 5
 set ignorecase true
 set incsearch true
 set mouse true
+set sixel true
 
 # -- preview --
 
-set previewer ~/.config/lf/lf_kitty_preview
-set cleaner ~/.config/lf/lf_kitty_clean
-
-# set previewer ctpv
-# set cleaner ctpvclear
-# &ctpv -s $id
-# &ctpvquit $id
+set previewer ctpv
+set cleaner ctpvclear
+&ctpv -s $id
+&ctpvquit $id
 
 # -- set window title --
 &printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
@@ -49,6 +45,7 @@ map M
 map L
 map u
 map r
+map <c-j>
 
 # -- set mappings --
 
@@ -57,7 +54,7 @@ map r :rename
 map A :push r<c-e>
 map I :push r<c-a>
 map R :bulkrename
-# map zp :set preview!
+map zp :set preview!
 map af :push $touch<space>
 map ad :push $mkdir<space>
 map <backspace2> :set hidden!
@@ -84,11 +81,11 @@ map <c-z> $kill -STOP $PPID
 map ` :mark-load
 map "'" :push :tag<space>
 map ut :tag-clear
-map oe &alacritty -e $EDITOR $f
+map oe &wezterm -e $EDITOR $f
 map oE $lf -remote "send $id \$$EDITOR \$fx"
-map ov &alacritty -e $PAGER $f
+map ov &wezterm -e $PAGER $f
 map oV $lf -remote "send $id \$$PAGER \$fx"
-map of &alacritty -e lf $(pwd)
+map of &wezterm -e lf $(pwd)
 map oi &pqiv --browse ./
 map V :invert-below
 map gv :push :glob-select<space>

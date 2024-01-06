@@ -18,8 +18,8 @@
 - video viewer: [mpv](https://github.com/mpv-player/mpv)
 - keyboard: [crkbd](https://github.com/foostan/crkbd)
 
-# TODO
+## TODO
 
 - add images in README.md
-- add install guide
-- add usage
+- write install guide
+- write usage
