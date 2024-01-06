@@ -15,6 +15,7 @@ binutils
 bison
 bottom
 calibre
+chafa
 chromium
 code
 codon-bin
@@ -65,6 +66,7 @@ i3status
 inotify-tools
 iwd
 jq
+kitty
 lazydocker
 lazygit
 lf
@@ -88,7 +90,7 @@ maim
 make
 man-db
 marp-cli-bin
-megasync
+megasync-bin
 mpv
 mpv-mpris
 neovim
@@ -104,6 +106,7 @@ noto-fonts-extra
 npm
 obs-linuxbrowser-bin
 obs-studio
+opam
 openresolv
 osu-lazer-bin
 p7zip
@@ -153,7 +156,6 @@ translate-shell
 trash-cli
 ttf-hackgen
 typst
-ueberzug
 ufw
 unclutter
 unrar
@@ -164,6 +166,7 @@ virtualbox
 vivaldi
 vulkan-radeon
 w3m
+wezterm
 wget
 which
 wine

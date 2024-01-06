@@ -37,8 +37,3 @@ eval "$(zoxide init zsh)"
 bindkey '^r' _select-history
 bindkey '^z' _ctrl-z-fg
 bindkey '^xe' edit-command-line
-
-# execute tmux
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-    tmux attach || tmux >/dev/null 2>&1
-fi

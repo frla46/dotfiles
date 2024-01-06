@@ -9,7 +9,7 @@ help: ## show this help
 all: minimal cui gui conf ## deploy all
 minimal: yay link git nvim zsh tmux procs eza bat  ## deploy minimal
 cui: at atool bottom docker dust fcitx5 ttf-hackgen protonvpn-cli restic tree ufw cronie ## deploy cui
-gui: alacritty chromium discord dunst i3 libreoffice maim megasync mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## deploy gui
+gui: wezterm kitty chromium discord dunst i3 libreoffice maim megasync mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## deploy gui
 conf: locale_conf systemd_conf zsh_conf nm_conf ## configure all
 
 link: ## set symlink dotfiles
@@ -30,8 +30,8 @@ test: docker ## test Makefile
 
 
 # packages
-alacritty:
-	$(YAY) $@
+wezterm: lf
+	$(YAY) $@ kitty
 
 at:
 	$(YAY) $@
@@ -94,7 +94,7 @@ maim:
 	$(YAY) $@
 
 megasync:
-	$(YAY) $@
+	$(YAY) $@-bin
 
 mpv:
 	$(YAY) $@ $@-mpris

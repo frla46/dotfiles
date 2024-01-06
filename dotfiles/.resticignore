@@ -10,6 +10,7 @@ ${HOME}/.local/share/Steam/
 ${HOME}/.local/share/Trash/
 ${HOME}/.local/share/nvim/
 ${HOME}/.local/share/osu
+${HOME}/.local/share/wineprefixes
 ${HOME}/.megaCmd/megacmdserver.log
 ${HOME}/.rustup/
 ${HOME}/.wine/

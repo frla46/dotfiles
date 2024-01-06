@@ -94,11 +94,11 @@ mode $system {
 }
 
 # layout (style)
-set $layout "layout [h: split h, v: split v, s: stacking, t: tabbed, e: toggle, f: floating, p: parent, c: child]"
+set $layout "layout [v: split v, h: split h, s: stack, t: tab, e: toggle, f: float, p: parent, c: child]"
 bindsym $mod+s mode $layout
 mode $layout {
-  bindsym h split h; mode "default"
   bindsym v split v; mode "default"
+  bindsym h split h; mode "default"
   bindsym s layout stacking; mode "default"
   bindsym t layout tabbed; mode "default"
   bindsym e layout toggle split; mode "default"
@@ -236,19 +236,19 @@ exec --no-startup-id megasync
 exec --no-startup-id picom -b
 exec --no-startup-id unclutter -idle 1 -root
 
-exec --no-startup-id alacritty -t scratch
+exec --no-startup-id wezterm
 exec --no-startup-id vivaldi-stable
 exec --no-startup-id discord
 
 # app shortcut
-bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id wezterm
 bindsym $mod+space exec --no-startup-id rofi -show run
 bindsym $mod+w exec --no-startup-id rofi -show window
 bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
+bindsym $mod+shift+c exec --no-startup-id ~/bin/snippets.sh
 bindsym $mod+shift+b exec --no-startup-id pkill -USR1 '^redshift$' # toggle enable/dsiable redshift
 
 # assign window to workspace
-for_window [class="^Alacritty$" title="^scratch$"] move --no-auto-back-and-forth scratchpad
 for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Vivaldi-stable$"] move --no-auto-back-and-forth to workspace $ws2
 for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws1
