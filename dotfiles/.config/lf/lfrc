@@ -45,7 +45,6 @@ map M
 map L
 map u
 map r
-map <c-j>
 
 # -- set mappings --
 

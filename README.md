@@ -4,8 +4,7 @@
 - theme: [nord](https://github.com/nordtheme/nord)
 - wm: [i3](https://github.com/i3/i3)
   - bar: [i3-status](https://github.com/i3/i3status)
-- terminal: [alacritty](https://github.com/alacritty/alacritty)
-  - multiplexer: [tmux](https://github.com/tmux/tmux)
+- terminal: [wezterm](https://github.com/wez/wezterm)
 - shell: [zsh](https://github.com/zsh-users/zsh)
   - plugin manager: [antidote](https://github.com/mattmc3/antidote)
   - prompt: [pure](https://github.com/sindresorhus/pure)
@@ -15,7 +14,7 @@
 - file manager: [lf](https://github.com/gokcehan/lf)
   - previewer: [ctpv](https://github.com/NikitaIvanovV/ctpv)
 - image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
-- video viewer: [mpv](https://github.com/mpv-player/mpv)
+- video player: [mpv](https://github.com/mpv-player/mpv)
 - keyboard: [crkbd](https://github.com/foostan/crkbd)
 
 ## TODO

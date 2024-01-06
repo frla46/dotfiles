@@ -1,0 +1,5 @@
+format = """$character"""
+right_format = """$all"""
+
+[cmd_duration]
+disabled = true

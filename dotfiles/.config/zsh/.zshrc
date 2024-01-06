@@ -10,9 +10,8 @@ source '/usr/share/zsh-antidote/antidote.zsh'
 # source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 antidote load
 
-# prompt
-autoload -Uz promptinit && promptinit && prompt pure
-PURE_CMD_MAX_EXEC_TIME=604800 # 1 week
+# load starship
+eval "$(starship init zsh)"
 
 # load zstyles
 [[ -f ${ZDOTDIR:-~}/.zstyles ]] && source ${ZDOTDIR:-~}/.zstyles
