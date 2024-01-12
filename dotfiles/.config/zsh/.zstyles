@@ -1,8 +1,4 @@
 #!/bin/zsh
 
-zstyle :prompt:pure:path color blue
-zstyle :prompt:pure:prompt:success color green
-zstyle :prompt:pure:suspended_jobs color blue
-
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'

@@ -1,14 +1,10 @@
 #!/bin/zsh
 
-# profiling zsh startup time
-zmodload zsh/zprof
+# # profiling zsh startup time
+# zmodload zsh/zprof
 
-# plugin manager (antidote)
-# archlinux: pacman -S zsh-antidote
-source '/usr/share/zsh-antidote/antidote.zsh'
-# git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-~}/.antidote
-# source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-antidote load
+# plugin manager (sheldon)
+eval "$(sheldon source)"
 
 # load starship
 eval "$(starship init zsh)"
@@ -32,7 +28,7 @@ eval "$(zoxide init zsh)"
 # load gh comp
 # eval "$(gh completion -s zsh)"
 
-# bindkey
+# keybind
 bindkey '^r' _select-history
 bindkey '^z' _ctrl-z-fg
 bindkey '^xe' edit-command-line
