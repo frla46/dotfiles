@@ -148,7 +148,7 @@ function _fe() {
   file=$(fd --type file -H | fzf) && $EDITOR "$file"
 }
 
-# cd with fzf included hidden directory
+# cd with fzf
 function _fd() {
   local dir
   dir=$(fd --type d -H | fzf) && cd "$dir"

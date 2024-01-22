@@ -1,14 +1,14 @@
-set chafasixel
+# set chafasixel
 
 remove audio
 remove video
 
 preview audio audio/* {{
   ffmpegthumbnailer -i "$f" -s 0 -q 0 -o "$cache_f" 2>/dev/null
-  convert_and_show_image audio_thumb
+  convert_and_show_image
 }}
 
 preview video video/* {{
   ffmpegthumbnailer -i "$f" -s 0 -q 0 -t 10% -o "$cache_f" 2>/dev/null
-  convert_and_show_image video
+  convert_and_show_image
 }}

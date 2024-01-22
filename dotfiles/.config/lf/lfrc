@@ -104,7 +104,7 @@ cmd open &{{
     audio/* | video/* )
       mpv --title='${filename}' $f;;
     image/*)
-      pqiv --browse $f;;
+      pqiv $f;;
     application/pdf )
       zathura $f &;;
     *)

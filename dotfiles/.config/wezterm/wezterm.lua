@@ -4,7 +4,7 @@ local act = wezterm.action
 return {
 	font_size = 12.0,
 	color_scheme = "nord",
-	window_background_opacity = 0.5,
+	window_background_opacity = 0.8,
 	use_ime = true,
 	font = wezterm.font_with_fallback({
 		{ family = "hackgen console", weight = "Regular" },
@@ -45,6 +45,9 @@ return {
 		{ key = "L", mods = "LEADER", action = act.AdjustPaneSize({ "Right", 5 }) },
 		{ key = "K", mods = "LEADER", action = act.AdjustPaneSize({ "Up", 5 }) },
 		{ key = "J", mods = "LEADER", action = act.AdjustPaneSize({ "Down", 5 }) },
+
+		{ key = "<", mods = "LEADER | SHIFT", action = act.MoveTabRelative(-1) },
+		{ key = ">", mods = "LEADER | SHIFT", action = act.MoveTabRelative(1) },
 
 		{ key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
 		{ key = "Enter", mods = "ALT", action = "DisableDefaultAssignment" },

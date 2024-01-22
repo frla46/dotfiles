@@ -233,13 +233,6 @@ return {
 			{
 				"<leader>zt",
 				function()
-					require("telekasten").goto_today()
-				end,
-				desc = "Open today's daily note (telekasten)",
-			},
-			{
-				"<leader>zT",
-				function()
 					require("telekasten").find_daily_notes()
 				end,
 				desc = "Find daily notes by title (telekasten)",
@@ -250,13 +243,6 @@ return {
 					require("telekasten").follow_link()
 				end,
 				desc = "Follow the link under the cursor (telekasten)",
-			},
-			{
-				"<leader>zb",
-				function()
-					require("telekasten").show_backlinks()
-				end,
-				desc = "Show all notes linking to the current one (telekasten)",
 			},
 		},
 		config = function()
