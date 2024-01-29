@@ -6,11 +6,13 @@ return {
 	color_scheme = "nord",
 	window_background_opacity = 0.8,
 	use_ime = true,
+	-- disable_default_key_bindings = true,
 	font = wezterm.font_with_fallback({
 		{ family = "hackgen console", weight = "Regular" },
 	}),
 	hide_tab_bar_if_only_one_tab = true,
 	show_tab_index_in_tab_bar = false,
+	-- enable_tab_bar = false,
 	-- use_fancy_tab_bar = false,
 	window_padding = {
 		left = 0,
@@ -18,11 +20,6 @@ return {
 		top = 0,
 		bottom = 0,
 	},
-	-- wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-	-- 	return {
-	-- 		{ Text = " " .. tab.active_pane.title .. " " },
-	-- 	}
-	-- end),
 	leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
 		{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },

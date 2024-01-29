@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-doc-name, undefined-field, undefined-global
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
@@ -18,7 +19,6 @@ vim.g.mapleader = " "
 
 map({ "n", "v" }, "_", ":", { desc = "Command mode" })
 map("n", "<c-a>", "ggVG", { desc = "Select all" })
-map("n", "<c-t>", "<cmd>term<cr>", { desc = "Open terminal tab" })
 map("n", "<leader>w=", "<c-w>=", { desc = "Equally high and width" })
 
 map(

@@ -115,6 +115,8 @@ cmd open &{{
           libreoffice $f;;
         *.zip | *.rar | *.7z )
           atool -xe $f && lf -remote "send $id load";;
+        *.html )
+          vivaldi-stable $f;;
         *.osz | *.osk )
           osu-stable $f; lf -remote "send $id load";;
         * ) :;;

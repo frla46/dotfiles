@@ -1,5 +1,6 @@
 alacritty
 amd-ucode
+anki
 archlinux-keyring
 aria2
 at
@@ -48,6 +49,7 @@ gettext
 gimp
 git
 github-cli
+go
 grep
 groff
 grub
@@ -60,6 +62,7 @@ i3-wm
 i3blocks
 i3lock-color
 i3status
+ijq
 inotify-tools
 iwd
 jq
@@ -165,13 +168,16 @@ wine
 winetricks
 wireless_tools
 wireplumber
+wmctrl
 xclip
 xdg-utils
+xdotool
 xf86-video-amdgpu
 xf86-video-ati
 xorg-server
 xorg-xinit
 xorg-xinput
+xorg-xwininfo
 xsel
 yay
 yt-dlp
