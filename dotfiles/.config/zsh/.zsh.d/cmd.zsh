@@ -1,4 +1,5 @@
-## alias
+# alias
+
 alias _='sudo'
 alias q='exit'
 alias c='clear'
@@ -24,8 +25,8 @@ else
   alias sl='ls'
   alias la='ls -a'
   alias ll='ls -l'
-  alias lal='ls -al'
   alias lla='ls -al'
+  alias lal='ls -al'
 fi
 
 if [ $(which tmux) &> /dev/null ]; then
@@ -51,7 +52,9 @@ if [ $(which bat) &> /dev/null ]; then
   alias cat='bat -p'
 fi
 
-if [ $(which trash-put) &> /dev/null ]; then
+if [ $(which conceal) &> /dev/null ]; then
+  alias -g rm='cnc'
+elif [ $(which trash-put) &> /dev/null ]; then
   alias -g rm='trash-put'
 else
   alias rm='rm -i'
@@ -109,7 +112,7 @@ fi
 
 if [ $(which at) &> /dev/null ]; then
   alias atl='at -l'
-  alias atd='at -d $(at -l | fzf | cut -f 1)'
+  alias atd='at -d $(at -l | fzf -m | cut -f 1)'
   function atn(){
     at $1 -f <(echo "notify-send $*")
   }
@@ -117,7 +120,7 @@ fi
 
 if [ $(which restic) &> /dev/null ]; then
   alias restic_backup='restic --exclude-file ~/.resticignore backup ~'
-  alias restic_delete='restic forget $(restic snapshots | rg "^\w{8}\s" | fzf | cut -d " " -f 1)'
+  alias restic_delete='restic forget $(restic snapshots | rg "^\w{8}\s" | fzf -m | cut -d " " -f 1)'
   alias restic_mount='sudo mkdir -p /mnt/restic && restic mount /mnt/restic'
   alias restic_clean='restic forget -l 5 && restic prune'
 fi
@@ -127,34 +130,29 @@ if [ $(which mpv) &> /dev/null ]; then
   alias mpv_video='mpv --ytdl-format=bestvideo[height<=?720]+bestaudio/best'
 fi
 
-# misc
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias hcp='fc -lnr | fzf | xsel -bi'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 
-## function
+# function
 
-# fzf history
 function _select-history() {
   BUFFER=$(history -n -r 1 | fzf --exact --reverse --query="$LBUFFER" --prompt="History > ")
   CURSOR=${#BUFFER}
 }
 zle -N _select-history
 
-# open file in editor with fzf
 function _fe() {
   local file
-  file=$(fd --type file -H | fzf) && $EDITOR "$file"
+  file=$(fd --type file -H | sk) && $EDITOR "$file"
 }
 
-# cd with fzf
 function _fd() {
   local dir
-  dir=$(fd --type d -H | fzf) && cd "$dir"
+  dir=$(fd --type d -H | sk) && cd "$dir"
 }
 
-# kill with fzf
 function _fk() {
   local pid
   pid=$(\ps -ef | sed 1d | fzf -m | awk '{print $2}')
@@ -164,7 +162,6 @@ function _fk() {
   fi
 }
 
-# kill with click
 function _ck() {
   local pid
   pid=$(xprop | sed -e '/_NET_WM_PID(CARDINAL) = /!d; s/_NET_WM_PID(CARDINAL) = //')
@@ -174,8 +171,7 @@ function _ck() {
   fi
 }
 
-# fg with fzf
-function _fg-fzf() {
+function _fg() {
   local cnt job
   cnt=$(jobs | wc -l)
   if [[ "$cnt" -eq 0 ]]
@@ -190,7 +186,6 @@ function _fg-fzf() {
   fi
 }
 
-# use c-z instead of fg
 function _ctrl-z-fg () {
   if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
@@ -202,13 +197,11 @@ function _ctrl-z-fg () {
 }
 zle -N _ctrl-z-fg
 
-# use vim as a pipe
 function _vipe () {
   COMMAND=$(echo "$*")
   \vim - -es +"$COMMAND" +'%p' +'q!' | sed '1d'
 }
 
-# disable "crontab -r"
 function crontab () {
   if [ "$1" = "-r" ]
   then
@@ -218,7 +211,6 @@ function crontab () {
   fi
 }
 
-# notify when task finished
 function _n() {
   $*
   if [ $? -eq 0 ]; then
@@ -246,6 +238,5 @@ function stopwatch() {
     done
 }
 
-# edit current command with EDITOR
 autoload -Uz edit-command-line
 zle -N edit-command-line
