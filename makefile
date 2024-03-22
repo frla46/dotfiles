@@ -6,12 +6,6 @@ help: ## show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 	| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-all: minimal cui gui conf ## deploy all
-minimal: yay link git nvim zsh tmux procs eza bat  ## deploy minimal
-cui: at atool bottom docker dust fcitx5 ttf-hackgen protonvpn-cli restic tree ufw cronie ## deploy cui
-gui: wezterm kitty chromium discord dunst i3 libreoffice maim megasync mpv gtk-theme picom playerctl pqiv pulsemixer redshift rofi rofi-greenclip unclutter zathura ## deploy gui
-conf: locale_conf systemd_conf zsh_conf nm_conf ## configure all
-
 link: ## set symlink dotfiles
 	$(YAY) stow
 	stow -Rv -t ~ dotfiles
@@ -28,18 +22,16 @@ test: docker ## test Makefile
 	docker build -t dotfiles ${PWD}
 	docker run -it --name dotfiles_test -d dotfiles:latest /bin/bash
 
-
-# packages
 wezterm: lf
 	$(YAY) $@ kitty
 
 at:
 	$(YAY) $@
+	sudo systemctl --now enable atd
 
 atool:
 	$(YAY) $@
-	$(YAY) zip unzip tar
-	# $(YAY) bzip2 cpio gzip lha xz lzop p7zip tar unace unrar zip unzip
+	$(YAY) zip unzip unrar
 
 bat:
 	$(YAY) $@
@@ -50,6 +42,9 @@ bottom:
 chromium:
 	$(YAY) $@
 
+code:
+	$(YAY) $@
+
 cronie:
 	$(YAY) $@
 
@@ -58,10 +53,9 @@ discord:
 	betterdiscordctl install
 
 docker:
-	$(YAY) $@ lazy$@
+	$(YAY) $@
 	sudo usermod -aG $@ $(shell whoami)
 	sudo systemctl --now enable docker
-
 
 dunst:
 	$(YAY) $@
@@ -69,14 +63,8 @@ dunst:
 dust:
 	$(YAY) $@
 
-eza:
-	$(YAY) $@
-
 fcitx5:
-	$(YAY) $@ $@-gtk $@-qt $@-configtool $@-mozc
-
-fd:
-	$(YAY) $@
+	$(YAY) $@-im $@-nord
 
 git:
 	$(YAY) $@ lazy$@
@@ -85,7 +73,7 @@ i3:
 	$(YAY) $@-wm $@status $@lock-color
 
 lf:
-	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer trash-cli xsel
+	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer conceal-bin xclip chafa file
 
 libreoffice:
 	$(YAY) $@-still
@@ -132,17 +120,14 @@ redshift:
 restic:
 	$(YAY) $@
 
-rg:
-	$(YAY) ripgrep
+ripgrep:
+	$(YAY) $@
 
 rofi:
 	$(YAY) $@
 
 rofi-greenclip: rofi
 	$(YAY) $@
-
-tmux:
-	$(YAY) $@ tmux-plugin-manager
 
 tree:
 	$(YAY) $@
@@ -174,8 +159,8 @@ yay: ## install yay
 zathura:
 	$(YAY) $@ $@-pdf-poppler
 
-zsh: at
-	$(YAY) $@ $@-antidote zoxide fzf
+zsh:
+	$(YAY) $@ sheldon zoxide fzf at eza fd
 
 # config
 nm_conf:
@@ -193,8 +178,3 @@ systemd_conf:
 
 zsh_conf: zsh
 	chsh -s $(shell which zsh)
-
-# # todo
-# set gtk-theme and cursor-theme
-# browser config
-# - chrome://flags/#enable-force-dark -> CIELAB based inversion

@@ -86,7 +86,7 @@ mode $system {
   bindsym r exec --no-startup-id "systemctl reboot"; mode "default"
   bindsym s exec --no-startup-id "systemctl suspend"; mode "default"
   bindsym l exec --no-startup-id ~/.config/i3/i3lock-color.sh; mode "default"
-  bindsym L exec --no-startup-id "i3-msg exit"; mode "default"
+  bindsym shift+l exec --no-startup-id "i3-msg exit"; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -106,7 +106,7 @@ mode $layout {
 }
 
 # audio
-set $audio "audio [space: play-pause, m0-9: vol, <: prev, >: next, j: voldn, k: volup, l: forward, h: backward]"
+set $audio "audio [space: play-pause, m0-9: vol, <: prev, >: next, l: forward, h: backward]"
 set $setvol pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
@@ -126,40 +126,40 @@ mode $audio {
   bindsym shift+period exec --no-startup-id playerctl next
   bindsym h exec --no-startup-id playerctl position 5-
   bindsym l exec --no-startup-id playerctl position 5+
-  bindsym j exec --no-startup-id playerctl volume 0.1-
-  bindsym k exec --no-startup-id playerctl volume 0.1+
   bindsym Escape mode "default"
+
+  # NOTE: did not work
+  # bindsym j exec --no-startup-id playerctl volume 0.1-
+  # bindsym k exec --no-startup-id playerctl volume 0.1+
 }
 
 # resize
 bindsym $mod+r mode "resize"
-set $resize_init 5 px or 5 ppt
+set $init 5 px or 5 ppt
 mode "resize" {
-  bindsym $left resize shrink width $resize_init
-  bindsym $down resize grow height $resize_init
-  bindsym $up resize shrink height $resize_init
-  bindsym $right resize grow width $resize_init
+  bindsym $left resize shrink width $init
+  bindsym $down resize grow height $init
+  bindsym $up resize shrink height $init
+  bindsym $right resize grow width $init
   bindsym Escape mode "default"
 }
 
 # screenshot
 set $capture "screen shot"
-set $pic_dir ~/pic/screenshot
 set $delay 0.01
-set $date $(date +%Y%m%d%H%M%S)
+set $pic_dir ~/img/screenshot
+set $filename $(date +%Y%m%d%H%M%S).png
 bindsym $mod+shift+s mode $capture
 mode  $capture {
   bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
   bindsym s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png;  mode "default"
   bindsym shift+a exec --no-startup-id maim -d $delay $pic_dir/$date.png;  mode "default"
   bindsym shift+s exec --no-startup-id maim -s $pic_dir/$date.png;  mode "default"
-  bindsym Escape mode "default"
-}
 
-# notify
+# hide desctop notify
 bindsym $mod+n exec --no-startup-id dunstctl close-all
 
-# insert
+# disable i3 shortcut keys temporary
 bindsym $mod+i mode "insert"
 mode  "insert" {
   bindsym Escape mode "default"
@@ -173,7 +173,7 @@ set $blue #81A1C1
 set $red #BF616A
 set $yellow #EBCB8B
 
-# class                  border backgr  text   indicator child_border
+# class                 border backgr  text   indicator child_border
 client.focused          $black $gray   $white $yellow   $blue
 client.unfocused        $black $black  $white $yellow   $blue
 client.focused_inactive $black $black  $white $yellow   $blue

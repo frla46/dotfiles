@@ -254,7 +254,7 @@ S { toggle_slideshow() }
 <Left>  { shift_x(50) }
 <Right>  { shift_x(-50) }
 # command
-c { command(echo -n $(realpath $1\) | xsel --input --clipboard); }
+c { command(echo -n $(realpath $1\) | xclip -sel c); }
 D { command(trash-put $1)}
 
 @MONTAGE {

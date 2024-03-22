@@ -1,0 +1,13 @@
+[Default Applications]
+text/html=vivaldi-stable.desktop
+application/x-extension-htm=vivaldi-stable.desktop
+application/x-extension-html=vivaldi-stable.desktop
+x-scheme-handler/http=vivaldi-stable.desktop
+x-scheme-handler/https=vivaldi-stable.desktop
+x-scheme-handler/about=vivaldi-stable.desktop
+x-scheme-handler/unknown=vivaldi-stable.desktop
+application/pdf=org.pwmt.zathura.desktop
+image/jpeg=pqiv.desktop
+image/png=pqiv.desktop
+
+[Added Associations]

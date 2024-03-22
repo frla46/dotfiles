@@ -1,4 +1,4 @@
-## file
+## --- file ---
 
 *.docx
 *.db
@@ -11,7 +11,7 @@
 *.zip
 
 
-## directory
+## --- directory ---
 
 .git/
 node_modules/
@@ -19,3 +19,4 @@ node_modules/
 .steam/
 restic_repo/
 .npm/
+.trash/

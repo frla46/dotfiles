@@ -19,7 +19,7 @@ set cleaner ctpvclear
 &ctpvquit $id
 
 # -- set window title --
-&printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
+&printf "\033]0; $(pwd | sed 's|$HOME|~|')\007" > /dev/tty
 
 
 # -- mappings --
@@ -44,7 +44,6 @@ map H
 map M
 map L
 map u
-map r
 
 # -- set mappings --
 
@@ -74,16 +73,18 @@ map y. :yank-basename-without-ext
 map J move-parent down
 map K move-parent up
 map <enter> :shell
-map f :zi
+map f :push :z<space>
+map F :zi
 map ? %file --mime-type -Lb $fx
 map <c-z> $kill -STOP $PPID
+map m :mark-save
 map ` :mark-load
 map "'" :push :tag<space>
 map ut :tag-clear
-map oe &wezterm -e $EDITOR $f
-map oE $lf -remote "send $id \$$EDITOR \$fx"
-map ov &wezterm -e $PAGER $f
-map oV $lf -remote "send $id \$$PAGER \$fx"
+map oe $lf -remote "send $id \$$EDITOR \$fx"
+map oE &wezterm -e $EDITOR $f
+map ov $lf -remote "send $id \$$PAGER \$fx"
+map oV &wezterm -e $PAGER $f
 map of &wezterm -e lf $(pwd)
 map oi &pqiv --browse ./
 map V :invert-below
@@ -100,33 +101,39 @@ cmd open &{{
   mimetype=$(file --mime-type -Lb $fx)
   case $mimetype in
     text/* | application/json | inode/x-empty )
-      lf -remote "send $id \$$EDITOR \$f";;
+      lf -remote "send $id \$$EDITOR \$fx";;
     audio/* | video/* )
-      mpv --title='${filename}' $f;;
-    image/*)
-      pqiv $f;;
+      mpv --title='${filename}' $fx;;
+    image/* )
+      pqiv $fx;;
     application/pdf )
       zathura $f &;;
     *)
       case $fx in
         *.exe )
           wine $f;;
-        *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx | *.odg )
-          libreoffice $f;;
+        *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx | *.odg | *.xls )
+          libreoffice $fx;;
         *.zip | *.rar | *.7z )
-          atool -xe $f && lf -remote "send $id load";;
+          aunpack -e $fx
+          lf -remote "send $id load";;
         *.html )
-          vivaldi-stable $f;;
+          vivaldi-stable $fx;;
         *.osz | *.osk )
-          osu-stable $f; lf -remote "send $id load";;
+          if [ $(which osu-lazer) &> /dev/null ]; then
+            osu-stable $fx
+          elif [ $(which osu-stable) &> /dev/null ]; then
+            osu-lazer $fx
+          fi
+          lf -remote "send $id load";;
         * ) :;;
       esac;;
   esac
 }}
 
-cmd yank-path $printf '%s' "$fx" | xsel -bi
-cmd yank-dirname $dirname -- "$fx" | head -c-1 | xsel -bi
-cmd yank-basename $basename -a -- $fx | head -c-1 | xsel -bi
+cmd yank-path $printf '%s' "$fx" | xclip -sel c
+cmd yank-dirname $dirname -- "$fx" | head -c-1 | xclip -sel c
+cmd yank-basename $basename -a -- $fx | head -c-1 | xclip -sel c
 cmd yank-basename-without-ext ${{
   echo "$fx" |
     xargs -r -d '\n' basename -a |
@@ -142,12 +149,12 @@ cmd yank-basename-without-ext ${{
         print $0
     }' |
     if [ -n "$fs" ]; then cat; else tr -d '\n'; fi |
-    xsel -bi
+    xclip -sel c
 }}
 
 cmd on-cd &{{
-  printf "\033]0; $(pwd | sed 's|$HOME|~|') - lf\007" > /dev/tty
-  zoxide add $(pwd)
+  printf "\033]0; $(pwd | sed 's|$HOME|~|')\007" > /dev/tty
+  zoxide add "$PWD"
 }}
 
 cmd bulkrename ${{
@@ -177,27 +184,32 @@ cmd link %{{
 }}
 
 # zoxide
+cmd z %{{
+	result="$(zoxide query --exclude $PWD $@ | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
+}}
+
 cmd zi ${{
-	result="$(zoxide query -i)"
-	lf -remote "send $id cd $result"
+	result="$(zoxide query -i | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	lf -remote "send $id cd \"$result\""
 }}
 
 cmd tag-clear :tag; tag-toggle
 
 cmd move-parent &{{
-    dironly="setlocal '$(dirname "$PWD")' dironly"
-    lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
+  dironly="setlocal '$(dirname "$PWD")' dironly"
+  lf -remote "send $id :updir; $dironly true; $1; $dironly false; open"
 }}
 
-cmd share $curl -F"file=@$fx" https://0x0.st | xsel -bi
+cmd share $curl -F"file=@$fx" https://0x0.st | xclip -sel c
 
 cmd select_tagged_files &{{
   tagged_files=~/.local/share/lf/tags
   while read line
     do
       tagged_file=${line/%??/}
-      if [ $(dirname "${tagged_file}") = "${PWD}" ] && [ -e "${tagged_file}" ]; then
-        lf -remote "send $id toggle '${tagged_file}'"
+      if [ $(dirname "$tagged_file") = "$PWD" ] && [ -e "$tagged_file" ]; then
+        lf -remote "send $id toggle '$tagged_file'"
       fi
     done < ${tagged_files}
 }}

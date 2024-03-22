@@ -8,9 +8,9 @@ alias e='$EDITOR'
 alias cp='cp -i'
 alias mv='mv -i'
 alias cal='cal -y'
-alias -g V='|$PAGER'
-alias -g C='|xsel -bi'
-alias -g VI='|_vipe'
+alias -g V='| $PAGER'
+alias -g C='| xclip -sel c'
+alias -g VI='| _vipe'
 
 if [ $(which eza) &> /dev/null ]; then
   alias l='eza'
@@ -87,7 +87,7 @@ fi
 
 if [ $(which docker) &> /dev/null ]; then
   alias d='docker'
-  alias dcp='docker ps -a | sed "1d" | fzf -m | awk "{print $1}" | xsel -bi'
+  alias dcp='docker ps -a | sed "1d" | fzf -m | awk "{print $1}" | xclip -sel c'
   alias dps='docker ps'
   alias dpa='docker ps -a'
   alias dim='docker images'
@@ -122,7 +122,7 @@ if [ $(which restic) &> /dev/null ]; then
   alias restic_backup='restic --exclude-file ~/.resticignore backup ~'
   alias restic_delete='restic forget $(restic snapshots | rg "^\w{8}\s" | fzf -m | cut -d " " -f 1)'
   alias restic_mount='sudo mkdir -p /mnt/restic && sudo chown $(whoami):$(whoami) /mnt/restic && restic mount /mnt/restic'
-  alias restic_clean='restic forget -l 5 && restic prune'
+  alias restic_clean='restic forget -l 3 && restic prune'
 fi
 
 if [ $(which mpv) &> /dev/null ]; then
@@ -131,7 +131,7 @@ if [ $(which mpv) &> /dev/null ]; then
 fi
 
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
-alias hcp='fc -lnr | fzf | xsel -bi'
+alias hcp='fc -lnr | fzf | xclip -sel c'
 alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
 alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 
