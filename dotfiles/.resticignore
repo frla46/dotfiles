@@ -15,6 +15,7 @@ ${HOME}/.megaCmd/megacmdserver.log
 ${HOME}/.rustup/
 ${HOME}/.wine/
 ${HOME}/backup/
+${HOME}/dl/
 .Cache/
 .cache/
 Cache/

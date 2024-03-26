@@ -147,21 +147,20 @@ mode "resize" {
 # screenshot
 set $capture "screen shot"
 set $delay 0.01
-set $pic_dir ~/img/screenshot
-set $filename $(date +%Y%m%d%H%M%S).png
 bindsym $mod+shift+s mode $capture
-mode  $capture {
-  bindsym a exec --no-startup-id maim -d $delay | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym s exec --no-startup-id maim -s | xclip -selection clipboard -t image/png;  mode "default"
-  bindsym shift+a exec --no-startup-id maim -d $delay $pic_dir/$date.png;  mode "default"
-  bindsym shift+s exec --no-startup-id maim -s $pic_dir/$date.png;  mode "default"
+mode $capture {
+  bindsym a exec --no-startup-id maim -d $delay | xclip -sel c -t image/png; mode "default"
+  bindsym s exec --no-startup-id maim -s | xclip -sel c -t image/png;  mode "default"
+  bindsym shift+a exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -d $delay; mode "default"
+  bindsym shift+s exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -s; mode "default"
+}
 
 # hide desctop notify
 bindsym $mod+n exec --no-startup-id dunstctl close-all
 
-# disable i3 shortcut keys temporary
+# disable i3 keybind temporary
 bindsym $mod+i mode "insert"
-mode  "insert" {
+mode "insert" {
   bindsym Escape mode "default"
 }
 
@@ -223,14 +222,14 @@ default_border none
 # autostart
 exec_always --no-startup-id (pgrep greenclip && pkill greenclip); greenclip daemon
 exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.6 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id fcitx5
 exec --no-startup-id megasync
-exec --no-startup-id nm-applet
 exec --no-startup-id picom -b
 exec --no-startup-id unclutter -idle 1 -root
 exec --no-startup-id feh --bg-scale ~/img/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
+# exec --no-startup-id nm-applet
 
 # exec --no-startup-id wezterm
 # exec --no-startup-id vivaldi-stable

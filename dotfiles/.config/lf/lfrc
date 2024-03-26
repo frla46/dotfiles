@@ -13,10 +13,13 @@ set sixel true
 
 # -- preview --
 
-set previewer ctpv
-set cleaner ctpvclear
-&ctpv -s $id
-&ctpvquit $id
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
+
+# set previewer ctpv
+# set cleaner ctpvclear
+# &ctpv -s $id
+# &ctpvquit $id
 
 # -- set window title --
 &printf "\033]0; $(pwd | sed 's|$HOME|~|')\007" > /dev/tty
@@ -75,7 +78,7 @@ map K move-parent up
 map <enter> :shell
 map f :push :z<space>
 map F :zi
-map ? %file --mime-type -Lb $fx
+map ? %file -Lb --mime-type $fx
 map <c-z> $kill -STOP $PPID
 map m :mark-save
 map ` :mark-load

@@ -9,5 +9,3 @@ x-scheme-handler/unknown=vivaldi-stable.desktop
 application/pdf=org.pwmt.zathura.desktop
 image/jpeg=pqiv.desktop
 image/png=pqiv.desktop
-
-[Added Associations]

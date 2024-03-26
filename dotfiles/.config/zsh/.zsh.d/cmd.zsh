@@ -29,10 +29,6 @@ else
   alias lal='ls -al'
 fi
 
-if [ $(which tmux) &> /dev/null ]; then
-  alias t='tmux'
-fi
-
 if [ $(which fd) &> /dev/null ]; then
   alias find='fd'
 fi
@@ -49,13 +45,12 @@ if [ $(which procs) &> /dev/null ]; then
 fi
 
 if [ $(which bat) &> /dev/null ]; then
+  alias bat='bat -p'
   alias cat='bat -p'
 fi
 
 if [ $(which conceal) &> /dev/null ]; then
   alias -g rm='cnc'
-elif [ $(which trash-put) &> /dev/null ]; then
-  alias -g rm='trash-put'
 else
   alias rm='rm -i'
 fi
@@ -106,7 +101,7 @@ fi
 if [ $(which protonvpn-cli) &> /dev/null ]; then
   alias vpn='protonvpn-cli'
   alias vpns='protonvpn-cli status'
-  alias vpnc='protonvpn-cli c --cc NL'
+  alias vpnc='protonvpn-cli c'
   alias vpnd='protonvpn-cli d'
 fi
 
@@ -132,8 +127,6 @@ fi
 
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias hcp='fc -lnr | fzf | xclip -sel c'
-alias mozc_dic='/usr/lib/mozc/mozc_tool --mode=dictionary_tool'
-alias mozc_add='/usr/lib/mozc/mozc_tool --mode=word_register_dialog'
 
 # function
 

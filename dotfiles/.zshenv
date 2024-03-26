@@ -1,7 +1,7 @@
 # variables
 
-export TERM='alacritty'
-export PAGER='less'
+export TERM='wezterm'
+export PAGER='bat'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
 export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/
