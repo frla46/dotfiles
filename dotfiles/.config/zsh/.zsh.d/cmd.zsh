@@ -117,7 +117,7 @@ if [ $(which restic) &> /dev/null ]; then
   alias restic_backup='restic --exclude-file ~/.resticignore backup ~'
   alias restic_delete='restic forget $(restic snapshots | rg "^\w{8}\s" | fzf -m | cut -d " " -f 1)'
   alias restic_mount='sudo mkdir -p /mnt/restic && sudo chown $(whoami):$(whoami) /mnt/restic && restic mount /mnt/restic'
-  alias restic_clean='restic forget -l 3 && restic prune'
+  alias restic_clean='restic forget -l 4 && restic prune'
 fi
 
 if [ $(which mpv) &> /dev/null ]; then

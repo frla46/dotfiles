@@ -91,32 +91,6 @@ return {
 		end,
 	},
 	{
-		"michaelb/sniprun",
-		branch = "master",
-		build = "sh install.sh",
-		keys = {
-			{
-				"<leader>rr",
-				"<cmd>SnipRun<cr>",
-				desc = "Sniprun",
-				mode = { "n", "v" },
-			},
-			{
-				"<leader>rR",
-				"<cmd>SnipReset<cr>",
-				desc = "SnipReset",
-			},
-			{
-				"<leader>rc",
-				"<cmd>SnipClose<cr>",
-				desc = "SnipClose",
-			},
-		},
-		config = function()
-			require("sniprun").setup({})
-		end,
-	},
-	{
 		"echasnovski/mini.splitjoin",
 		keys = {
 			{
@@ -257,6 +231,27 @@ return {
 				template_new_weekly = zk_home .. "/" .. "templates/weekly.md",
 			})
 		end,
+	},
+	{
+		"danielfalk/smart-open.nvim",
+		-- branch = "0.2.x",
+		config = function()
+			require("telescope").load_extension("smart_open")
+		end,
+		dependencies = {
+			"kkharji/sqlite.lua",
+			-- Only required if using match_algorithm fzf
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+		keys = {
+			{
+				"<leader>fs",
+				function()
+					require("telescope").extensions.smart_open.smart_open()
+				end,
+				desc = "Find files (smart-open)",
+			},
+		},
 	},
 	-- -- disabled plugins
 	{ "folke/tokyonight.nvim", enabled = false },

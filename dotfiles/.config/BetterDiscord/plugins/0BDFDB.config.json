@@ -1,7 +1,7 @@
 {
 	"all": {
 		"changeLogs": {
-			"BDFDB": "3.5.9",
+			"BDFDB": "3.6.3",
 			"BetterSearchPage": "1.2.4",
 			"NotificationSounds": "3.9.6",
 			"PluginRepo": "2.5.5",
@@ -18,7 +18,7 @@
 			"useChromium": false
 		},
 		"hashes": {
-			"0BDFDB.data.json": "919e53ac2118bf1c07cb0427a5862bbdb1733440",
+			"0BDFDB.data.json": "ca0957393863fa7ed9a1c8c1fbba280dcc05fc4f",
 			"0BDFDB.raw.css": "8c083e2a87a82aded5f3b2e27fb8b2f816b5f74a"
 		}
 	}
