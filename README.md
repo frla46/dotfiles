@@ -12,13 +12,13 @@
   - based [LazyVim](https://github.com/LazyVim/LazyVim)
 - launcher: [rofi](https://github.com/davatorium/rofi)
 - file manager: [lf](https://github.com/gokcehan/lf)
-  - previewer: [ctpv](https://github.com/NikitaIvanovV/ctpv)
 - image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
 - video player: [mpv](https://github.com/mpv-player/mpv)
 - keyboard: [crkbd](https://github.com/foostan/crkbd)
 
 ## TODO
 
+- update makefile
 - add images in README.md
 - write install guide
 - write usage

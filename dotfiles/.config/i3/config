@@ -153,10 +153,12 @@ mode $capture {
   bindsym s exec --no-startup-id maim -s | xclip -sel c -t image/png;  mode "default"
   bindsym shift+a exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -d $delay; mode "default"
   bindsym shift+s exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -s; mode "default"
+  bindsym Escape mode "default"
 }
 
 # hide desctop notify
 bindsym $mod+n exec --no-startup-id dunstctl close-all
+bindsym $mod+shift+n exec --no-startup-id ~/.config/i3/toggle_dunst_pause.sh
 
 # disable i3 keybind temporary
 bindsym $mod+i mode "insert"
@@ -221,7 +223,7 @@ default_border none
 
 # autostart
 exec_always --no-startup-id (pgrep greenclip && pkill greenclip); greenclip daemon
-exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.8 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.6 -t 5000:3000 -l 36:140 -r
 exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc

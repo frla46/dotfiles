@@ -9,3 +9,4 @@ x-scheme-handler/unknown=vivaldi-stable.desktop
 application/pdf=org.pwmt.zathura.desktop
 image/jpeg=pqiv.desktop
 image/png=pqiv.desktop
+x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop

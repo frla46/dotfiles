@@ -60,18 +60,6 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
 		end,
 	},
-	-- {
-	-- 	"pwntester/octo.nvim",
-	-- 	event = "VeryLazy",
-	-- 	requires = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-telescope/telescope.nvim",
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 	},
-	-- 	config = function()
-	-- 		require("octo").setup()
-	-- 	end,
-	-- },
 	{
 		"lmburns/lf.nvim",
 		dependencies = { "akinsho/toggleterm.nvim" },
@@ -106,150 +94,65 @@ return {
 		end,
 	},
 	{
-		"monaqa/dial.nvim",
-		keys = {
-			{
-				"+",
-				function()
-					require("dial.map").manipulate("increment", "normal")
-				end,
-				desc = "Add",
-			},
-			{
-				"-",
-				function()
-					require("dial.map").manipulate("decrement", "normal")
-				end,
-				desc = "Subtract",
-			},
-			{
-				"g+",
-				function()
-					require("dial.map").manipulate("increment", "gnormal")
-				end,
-				desc = "Add sequence",
-			},
-			{
-				"g-",
-				function()
-					require("dial.map").manipulate("decrement", "gnormal")
-				end,
-				desc = "Subtract sequence",
-			},
-			{
-				"+",
-				function()
-					require("dial.map").manipulate("increment", "visual")
-				end,
-				mode = { "v" },
-				desc = "Add",
-			},
-			{
-				"-",
-				function()
-					require("dial.map").manipulate("decrement", "visual")
-				end,
-				mode = { "v" },
-				desc = "Subtract",
-			},
-			{
-				"g+",
-				function()
-					require("dial.map").manipulate("increment", "gvisual")
-				end,
-				mode = { "v" },
-				desc = "Add sequence",
-			},
-			{
-				"g-",
-				function()
-					require("dial.map").manipulate("decrement", "gvisual")
-				end,
-				mode = { "v" },
-				desc = "Subtract sequence",
-			},
-		},
-	},
-	{
-		"renerocksai/telekasten.nvim",
+		"epwalsh/obsidian.nvim",
+		version = "*",
 		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
+			"nvim-treesitter/nvim-treesitter",
 		},
+		ft = "markdown",
 		keys = {
-			{
-				"<leader>z",
-				function()
-					require("telekasten").panel()
-				end,
-				desc = "Open panel (telekasten)",
-			},
 			{
 				"<leader>zn",
-				function()
-					require("telekasten").new_note()
-				end,
-				desc = "Create new note (telekasten)",
-			},
-			{
-				"<leader>zf",
-				function()
-					require("telekasten").find_notes()
-				end,
-				desc = "Find notes (telekasten)",
-			},
-			{
-				"<leader>zg",
-				function()
-					require("telekasten").search_notes()
-				end,
-				desc = "Grep notes (telekasten)",
+				"<cmd>ObsidianNew<cr>",
 			},
 			{
 				"<leader>zt",
-				function()
-					require("telekasten").find_daily_notes()
-				end,
-				desc = "Find daily notes by title (telekasten)",
+				"<cmd>ObsidianToday<cr>",
+			},
+			{
+				"<leader>zT",
+				"<cmd>ObsidianTags<cr>",
+			},
+			{
+				"<leader>zf",
+				"<cmd>ObsidianSearch<cr>",
 			},
 			{
 				"<leader>zl",
-				function()
-					require("telekasten").follow_link()
-				end,
-				desc = "Follow the link under the cursor (telekasten)",
+				"<cmd>ObsidianFollowLink<cr>",
+			},
+			{
+				"<leader>zb",
+				"<cmd>ObsidianBacklinks<cr>",
+			},
+			{
+				"<leader>zi",
+				"<cmd>ObsidianPasteImg<cr>",
+			},
+			{
+				"<leader>zw",
+				"<cmd>ObsidianWorkspace<cr>",
+			},
+			{
+				"<leader>zr",
+				"<cmd>ObsidianRename<cr>",
 			},
 		},
-		config = function()
-			local zk_home = vim.fn.expand("~/backup/zettelkasten/")
-			require("telekasten").setup({
-				home = zk_home,
-				dailies = zk_home .. "/" .. "daily",
-				weeklies = zk_home .. "/" .. "weekly",
-				templates = zk_home .. "/" .. "templates",
-				template_new_note = zk_home .. "/" .. "templates/new_note.md",
-				template_new_daily = zk_home .. "/" .. "templates/daily.md",
-				template_new_weekly = zk_home .. "/" .. "templates/weekly.md",
-			})
-		end,
-	},
-	{
-		"danielfalk/smart-open.nvim",
-		-- branch = "0.2.x",
-		config = function()
-			require("telescope").load_extension("smart_open")
-		end,
-		dependencies = {
-			"kkharji/sqlite.lua",
-			-- Only required if using match_algorithm fzf
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-		keys = {
-			{
-				"<leader>fs",
-				function()
-					require("telescope").extensions.smart_open.smart_open()
-				end,
-				desc = "Find files (smart-open)",
+		opts = {
+			workspaces = {
+				{
+					name = "memo",
+					path = "~/backup/memo",
+				},
+			},
+			completion = { nvim_cmp = true },
+			daily_notes = {
+				folder = "daily",
+				date_format = "%Y-%m-%d",
+				alias_format = nil,
 			},
 		},
 	},
@@ -258,5 +161,4 @@ return {
 	{ "catppuccin", enabled = false },
 	{ "echasnovski/mini.indentscope", enabled = false },
 	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
-	-- { "headlines.nvim", enabled = false },
 }

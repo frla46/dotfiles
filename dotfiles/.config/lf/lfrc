@@ -83,13 +83,14 @@ map <c-z> $kill -STOP $PPID
 map m :mark-save
 map ` :mark-load
 map "'" :push :tag<space>
-map ut :tag-clear
-map oe $lf -remote "send $id \$$EDITOR \$fx"
 map oE &wezterm -e $EDITOR $f
-map ov $lf -remote "send $id \$$PAGER \$fx"
 map oV &wezterm -e $PAGER $f
+map ob &vivaldi-stable $f
+map oe $lf -remote "send $id \$$EDITOR \$fx"
 map of &wezterm -e lf $(pwd)
 map oi &pqiv --browse ./
+map ov $lf -remote "send $id \$$PAGER \$fx"
+map ut :tag-clear
 map V :invert-below
 map gv :push :glob-select<space>
 map ugv :push :glob-unselect<space>

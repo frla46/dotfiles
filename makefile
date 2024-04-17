@@ -10,143 +10,6 @@ link: ## set symlink dotfiles
 	$(YAY) stow
 	stow -Rv -t ~ dotfiles
 
-allupdate: update pipupdate ## update all
-
-update: ## update archlinux packages
-	yay --needed --noconfirm
-
-pipupdate: ## update python packages
-	pip list --user | cut -d" " -f 1 | tail -n +3 | xargs pip install -U --user
-
-test: docker ## test Makefile
-	docker build -t dotfiles ${PWD}
-	docker run -it --name dotfiles_test -d dotfiles:latest /bin/bash
-
-wezterm: lf
-	$(YAY) $@ kitty
-
-at:
-	$(YAY) $@
-	sudo systemctl --now enable atd
-
-atool:
-	$(YAY) $@
-	$(YAY) zip unzip unrar
-
-bat:
-	$(YAY) $@
-
-bottom:
-	$(YAY) $@
-
-chromium:
-	$(YAY) $@
-
-code:
-	$(YAY) $@
-
-cronie:
-	$(YAY) $@
-
-discord:
-	$(YAY) $@ betterdiscordctl
-	betterdiscordctl install
-
-docker:
-	$(YAY) $@
-	sudo usermod -aG $@ $(shell whoami)
-	sudo systemctl --now enable docker
-
-dunst:
-	$(YAY) $@
-
-dust:
-	$(YAY) $@
-
-fcitx5:
-	$(YAY) $@-im $@-nord
-
-git:
-	$(YAY) $@ lazy$@
-
-i3:
-	$(YAY) $@-wm $@status $@lock-color
-
-lf:
-	$(YAY) $@ ctpv-git vimv-git ffmpegthumbnailer conceal-bin xclip chafa file
-
-libreoffice:
-	$(YAY) $@-still
-
-maim:
-	$(YAY) $@
-
-megasync:
-	$(YAY) $@-bin
-
-mpv:
-	$(YAY) $@ $@-mpris
-
-gtk-theme:
-	$(YAY) nordic-darker-theme nordzy-cursors nordzy-icon-theme fcitx5-nord
-
-npm:
-	$(YAY) $@
-
-nvim: fd rg lf npm
-	$(YAY) neovim
-
-picom:
-	$(YAY) $@
-
-playerctl:
-	$(YAY) $@
-
-pqiv:
-	$(YAY) $@
-
-procs:
-	$(YAY) $@
-
-protonvpn-cli:
-	$(YAY) $@
-
-pulsemixer:
-	$(YAY) $@
-
-redshift:
-	$(YAY) $@
-
-restic:
-	$(YAY) $@
-
-ripgrep:
-	$(YAY) $@
-
-rofi:
-	$(YAY) $@
-
-rofi-greenclip: rofi
-	$(YAY) $@
-
-tree:
-	$(YAY) $@
-
-ttf-hackgen:
-	$(YAY) $@
-
-ufw:
-	$(YAY) $@
-	sudo ufw default deny
-	sudo ufw enable
-
-
-unclutter:
-	$(YAY) $@
-
-vivaldi:
-	$(YAY) $@
-
 yay: ## install yay
 	mkdir -p ~/src/
 	cd ~/src/ && git clone https://aur.archlinux.org/yay.git
@@ -156,13 +19,21 @@ yay: ## install yay
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
-zathura:
-	$(YAY) $@ $@-pdf-poppler
+at_conf:
+	sudo systemctl --now enable atd
 
-zsh:
-	$(YAY) $@ sheldon zoxide fzf at eza fd
+cronie_conf:
+	sudo systemctl enable cronie
+	sudo systemctl start cronie
 
-# config
+docker_conf:
+	sudo usermod -aG $@ $(shell whoami)
+	sudo systemctl --now enable docker
+
+ufw_conf:
+	sudo ufw default deny
+	sudo ufw enable
+
 nm_conf:
 	echo -e '[main]\ndns=none' | sudo tee /etc/NetworkManager/NetworkManager.conf
 	sudo systemctl restart NetworkManager
