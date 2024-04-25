@@ -1,6 +1,7 @@
 {
     "settings": {
         "latestUsedVersion": "1.3.3",
-        "exclude": []
+        "exclude": [],
+        "autoEnable": true
     }
 }

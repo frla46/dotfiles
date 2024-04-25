@@ -1,5 +1,6 @@
 amd-ucode
 arch-install-scripts
+aria2
 at
 atool
 aur-auto-vote-git
@@ -11,6 +12,7 @@ betterdiscordctl
 bottom
 chafa
 chromium
+clamav
 code
 conceal-bin
 cronie
@@ -33,6 +35,7 @@ fd
 feh
 ffmpegthumbnailer
 fzf
+genymotion
 git
 git-delta
 github-cli
@@ -118,12 +121,14 @@ unzip
 vi
 vim
 vimv-git
+virtualbox
 vivaldi
 vulkan-intel
 vulkan-radeon
 wezterm
 wget
 wine
+winetricks
 wireless_tools
 wireplumber
 xclip
