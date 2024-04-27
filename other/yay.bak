@@ -63,6 +63,7 @@ lightdm
 lightdm-gtk-greeter
 linux
 linux-firmware
+linux-headers
 lxappearance
 maim
 man-db
