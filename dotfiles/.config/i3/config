@@ -106,7 +106,7 @@ mode $layout {
 }
 
 # audio
-set $audio "audio [space: play-pause, m0-9: vol, <: prev, >: next, l: forward, h: backward]"
+set $audio "audio [space: play-pause, [m1-90]: vol, p: prev, n: next, l: forward, h: backward]"
 set $setvol pactl set-sink-volume @DEFAULT_SINK@
 bindsym $mod+a mode $audio
 mode $audio {
@@ -122,8 +122,8 @@ mode $audio {
   bindsym 9 exec --no-startup-id $setvol 90%
   bindsym 0 exec --no-startup-id $setvol 100%
   bindsym space exec --no-startup-id playerctl play-pause
-  bindsym shift+comma exec --no-startup-id playerctl previous
-  bindsym shift+period exec --no-startup-id playerctl next
+  bindsym p exec --no-startup-id playerctl previous
+  bindsym n exec --no-startup-id playerctl next
   bindsym h exec --no-startup-id playerctl position 5-
   bindsym l exec --no-startup-id playerctl position 5+
   bindsym Escape mode "default"

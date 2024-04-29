@@ -19,6 +19,9 @@ yay: ## install yay
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
+install_pkg: ## install packages from pkglist.bak
+	yay -S --needed - < ./pkglist.bak
+
 at_conf:
 	sudo systemctl --now enable atd
 

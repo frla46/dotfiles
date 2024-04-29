@@ -5,6 +5,7 @@ export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
 export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/
+export TIME_STYLE='posix-long-iso'
 
 # zsh
 export ZDOTDIR=~/.config/zsh

@@ -5,6 +5,7 @@ at
 atool
 aur-auto-vote-git
 autorandr
+bacpac
 base
 base-devel
 bat
@@ -53,7 +54,6 @@ kitty
 lazygit
 lf
 lib32-faudio
-lib32-gnutls
 lib32-systemd
 libpulse
 libreoffice-still-ja
