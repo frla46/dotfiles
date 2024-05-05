@@ -4,8 +4,7 @@ export TERM='wezterm'
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
-export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/
-export TIME_STYLE='posix-long-iso'
+export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/:~/.rye/shims
 
 # zsh
 export ZDOTDIR=~/.config/zsh
@@ -34,4 +33,4 @@ export PF_INFO='ascii title os wm shell editor'
 # go
 export GOPATH=~/src/go
 export GOBIN=~/src/go/bin
-export PATH=$PATH:$GOBIN:~/.local/bin
+export PATH=$PATH:$GOBIN

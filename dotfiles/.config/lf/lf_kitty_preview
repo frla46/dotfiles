@@ -48,7 +48,7 @@ fi
 
 if [[ "$filetype" =~ ^video ]] ||
 	[[ "$filetype" =~ ^audio ]]; then
-	kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$(vidthumb "$file")" </dev/null >/dev/tty
+	kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$(~/dotfiles/dotfiles/.config/lf/vidthumb "$file")" </dev/null >/dev/tty
 	exit 1
 fi
 

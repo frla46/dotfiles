@@ -184,7 +184,7 @@ client.background       $black
 
 # statusbar
 bar {
-  status_command i3status
+  # status_command i3status
   strip_workspace_numbers yes
   tray_output none
   colors {
