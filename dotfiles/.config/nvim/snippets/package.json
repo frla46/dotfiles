@@ -6,19 +6,19 @@
         "language": [
           "all"
         ],
-        "path": "./snippets/all.json"
-      },
-      {
-        "language": [
-          "lua"
-        ],
-        "path": "./lua.json"
+        "path": "./all.json"
       },
       {
         "language": [
           "python"
         ],
         "path": "./python.json"
+      },
+      {
+        "language": [
+          "lua"
+        ],
+        "path": "./lua.json"
       }
     ]
   }

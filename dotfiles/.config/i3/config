@@ -230,7 +230,6 @@ exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id megasync
 exec --no-startup-id picom -b
 exec --no-startup-id unclutter -idle 1 -root
-exec --no-startup-id feh --bg-scale ~/img/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
 # exec --no-startup-id nm-applet
 
 # exec --no-startup-id wezterm

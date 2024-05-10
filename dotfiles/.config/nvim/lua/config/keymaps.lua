@@ -17,12 +17,6 @@ end
 
 vim.g.mapleader = " "
 
-map({ "n", "v" }, "_", ":", { desc = "Command mode" })
-map("n", "<c-a>", "ggVG", { desc = "Select all" })
-map("n", "+", "<c-a>", { desc = "Increase" })
-map("n", "-", "<c-x>", { desc = "Decrease" })
-map("n", "<leader>w=", "<c-w>=", { desc = "Equally high and width" })
-
 map(
 	"n",
 	"gx",

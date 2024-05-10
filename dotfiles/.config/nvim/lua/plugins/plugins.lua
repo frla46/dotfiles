@@ -153,6 +153,23 @@ return {
 				folder = "daily",
 				date_format = "%Y-%m-%d",
 				alias_format = nil,
+				template = "daily.md",
+			},
+			templates = {
+				folder = "templates",
+				date_format = "%Y-%m-%d",
+				time_format = "%H:%M",
+			},
+			follow_url_func = function(url)
+				vim.fn.jobstart({ "xdg-open", url })
+			end,
+			ui = {
+				enable = true,
+				update_debounce = 200,
+				checkboxes = {
+					[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
+					["x"] = { char = "", hl_group = "ObsidianDone" },
+				},
 			},
 		},
 	},

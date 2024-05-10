@@ -19,8 +19,8 @@ yay: ## install yay
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
-install_pkg: ## install packages from pkglist.bak
-	yay -S --needed - < ./pkglist.bak
+install: ## install packages from pkglist.bak
+	$(YAY) - < ./pkglist.bak
 
 at_conf:
 	sudo systemctl --now enable atd
@@ -30,16 +30,12 @@ cronie_conf:
 	sudo systemctl start cronie
 
 docker_conf:
-	sudo usermod -aG $@ $(shell whoami)
+	sudo usermod -aG docker $(shell whoami)
 	sudo systemctl --now enable docker
 
 ufw_conf:
 	sudo ufw default deny
 	sudo ufw enable
-
-nm_conf:
-	echo -e '[main]\ndns=none' | sudo tee /etc/NetworkManager/NetworkManager.conf
-	sudo systemctl restart NetworkManager
 
 locale_conf:
 	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' | sudo tee /etc/locale.gen
@@ -50,5 +46,5 @@ systemd_conf:
 	sudo sed -i 's/#SystemMaxUse=/SystemMaxUse=50M/' /etc/systemd/journald.conf
 	sudo systemctl restart systemd-journald
 
-zsh_conf: zsh
+zsh_conf:
 	chsh -s $(shell which zsh)

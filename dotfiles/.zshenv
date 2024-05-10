@@ -4,7 +4,7 @@ export TERM='wezterm'
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='vivaldi-stable'
-export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/:~/.rye/shims
+export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/:~/.rye/shims:~/flutter/bin
 
 # zsh
 export ZDOTDIR=~/.config/zsh

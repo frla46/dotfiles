@@ -1,5 +1,5 @@
+acpi
 amd-ucode
-aria2
 at
 atool
 aur-auto-vote-git
@@ -35,7 +35,6 @@ ffmpegthumbnailer
 fzf
 genymotion
 git
-git-delta
 github-cli
 gst-plugin-pipewire
 hugo
@@ -81,6 +80,7 @@ obsidian
 openssh
 openvpn-update-resolv-conf-git
 osu-lazer-bin
+p7zip
 pavucontrol
 picom
 pipewire
@@ -95,6 +95,7 @@ python-bs4
 python-cloudscraper
 python-fire
 python-moviepy
+python-pyautogui
 python-pyfzf
 redshift
 reflector
