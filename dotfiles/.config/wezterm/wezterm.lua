@@ -83,7 +83,7 @@ return {
 	hide_tab_bar_if_only_one_tab = true,
 	enable_tab_bar = true,
 	use_fancy_tab_bar = false,
-	scrollback_line = 100000,
+	scrollback_lines = 100000,
 	window_padding = {
 		left = 0,
 		right = 0,
@@ -120,7 +120,7 @@ return {
 			mods = "LEADER",
 			action = act.PromptInputLine({
 				description = "Enter new name for tab",
-				action = wezterm.action_callback(function(window, pane, line)
+				action = wezterm.action_callback(function(window, _, line)
 					if line then
 						window:active_tab():set_title(line)
 					end
