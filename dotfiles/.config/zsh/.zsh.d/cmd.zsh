@@ -8,9 +8,14 @@ alias e='$EDITOR'
 alias cp='cp -i'
 alias mv='mv -i'
 alias cal='cal -y'
+
 alias -g V='| $PAGER'
 alias -g C='| xclip -sel c'
 alias -g VI='| _vipe'
+
+alias sz='source ${ZDOTDIR:-~}/.zshrc'
+alias eh='e $HISTFILE'
+alias hcp='fc -lnr | fzf | xclip -sel c'
 
 if [ $(which eza) &> /dev/null ]; then
   alias l='eza'
@@ -114,19 +119,16 @@ if [ $(which at) &> /dev/null ]; then
 fi
 
 if [ $(which restic) &> /dev/null ]; then
-  alias restic_backup='restic --exclude-file ~/.resticignore backup ~'
+  alias restic_backup='restic backup --exclude-file ~/.resticignore ~'
   alias restic_delete='restic forget $(restic snapshots | rg "^\w{8}\s" | fzf -m | cut -d " " -f 1)'
   alias restic_mount='sudo mkdir -p /mnt/restic && sudo chown $(whoami):$(whoami) /mnt/restic && restic mount /mnt/restic'
-  alias restic_clean='restic forget -l 4 && restic prune'
+  alias restic_clean='restic forget -m 1 && restic prune'
 fi
 
 if [ $(which mpv) &> /dev/null ]; then
   alias mpv_audio='mpv --ytdl-format="worstvideo+bestaudio"'
   alias mpv_video='mpv --ytdl-format=bestvideo[height<=?720]+bestaudio/best'
 fi
-
-alias sz='source ${ZDOTDIR:-~}/.zshrc'
-alias hcp='fc -lnr | fzf | xclip -sel c'
 
 # function
 

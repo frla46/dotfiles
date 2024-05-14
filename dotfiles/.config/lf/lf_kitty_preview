@@ -42,13 +42,13 @@ if [[ "$filetype" =~ application/json ]]; then
 fi
 
 if [[ "$filetype" =~ ^image ]]; then
-	kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file" </dev/null >/dev/tty
+	chafa -f sixel -s "$2x$3" --animate off --polite on "$file"
 	exit 1
 fi
 
 if [[ "$filetype" =~ ^video ]] ||
 	[[ "$filetype" =~ ^audio ]]; then
-	kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$(~/dotfiles/dotfiles/.config/lf/vidthumb "$file")" </dev/null >/dev/tty
+	chafa -f sixel -s "$2x$3" --animate off --polite on "$(~/dotfiles/dotfiles/.config/lf/vidthumb "$file")"
 	exit 1
 fi
 

@@ -23,7 +23,7 @@ fi
 
 thumbnail="$(uuidgen).jpg"
 
-if ! ffmpegthumbnailer -i "$movie" -o "$cache/$thumbnail" -s 0 2>/dev/null; then
+if ! ffmpegthumbnailer -i "$movie" -o "$cache/$thumbnail" -s 720 2>/dev/null; then
 	exit 1
 fi
 
