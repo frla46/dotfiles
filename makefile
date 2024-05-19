@@ -26,11 +26,10 @@ install: ## install packages from pkglist.bak
 	$(YAY) - < ./pkglist.bak
 
 at_conf:
-	sudo systemctl --now enable atd
+	sudo systemctl enable --now atd
 
 cronie_conf:
-	sudo systemctl enable cronie
-	sudo systemctl start cronie
+	sudo systemctl enable --now cronie
 
 docker_conf:
 	sudo usermod -aG docker $(shell whoami)
@@ -39,6 +38,8 @@ docker_conf:
 ufw_conf:
 	sudo ufw default deny
 	sudo ufw enable
+	sudo ufw status verbose
+	sudo systemctl enable --now ufw
 
 locale_conf:
 	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' | sudo tee /etc/locale.gen

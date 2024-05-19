@@ -105,6 +105,10 @@ return {
 		ft = "markdown",
 		keys = {
 			{
+				"<leader>zo",
+				"<cmd>ObsidianOpen<cr>",
+			},
+			{
 				"<leader>zn",
 				"<cmd>ObsidianNew<cr>",
 			},
@@ -164,7 +168,7 @@ return {
 				vim.fn.jobstart({ "xdg-open", url })
 			end,
 			ui = {
-				enable = true,
+				enable = false,
 				update_debounce = 200,
 				checkboxes = {
 					[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },

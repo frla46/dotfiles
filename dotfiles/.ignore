@@ -1,22 +1,26 @@
-## --- file ---
+# -- file --
 
-*.docx
+*.asar
 *.db
+*.docx
+*.exe
 *.gz
 *.jpg
+*.pb
 *.pdf
 *.png
+*.pyc
+*.so
 *.tar
 *.xlsx
 *.zip
 
+# -- directory --
 
-## --- directory ---
-
-.git/
-node_modules/
 .cache/
-.steam/
-restic_repo/
+.git/
 .npm/
+.steam/
 .trash/
+node_modules/
+restic_repo/
