@@ -10,6 +10,8 @@ base
 base-devel
 bat
 betterdiscordctl
+bluez
+bluez-utils
 bottom
 chafa
 chromium
@@ -33,6 +35,8 @@ fcitx5-qt
 fd
 feh
 ffmpegthumbnailer
+firefox
+floorp-bin
 fzf
 genymotion
 git
@@ -43,6 +47,7 @@ i3-wm
 i3blocks
 i3lock-color
 i3status
+img2pdf
 intel-media-driver
 iwd
 jq
@@ -58,13 +63,15 @@ lightdm
 lightdm-gtk-greeter
 linux
 linux-firmware
+linux-headers
 lostfiles
 lxappearance
 maim
 man-db
-megasync-bin
+megasync
 mpv-mpris
 neovim
+neovim-drop-in
 nordic-darker-theme
 nordzy-cursors
 nordzy-icon-theme
@@ -78,7 +85,6 @@ openssh
 openvpn-update-resolv-conf-git
 osu-lazer-bin
 p7zip
-pavucontrol
 pfetch
 picom
 pipewire
@@ -93,8 +99,10 @@ python-bs4
 python-cloudscraper
 python-fire
 python-moviepy
+python-pip
 python-pyautogui
 python-pyfzf
+python-selenium
 redshift
 reflector
 restic
@@ -114,8 +122,7 @@ ufw
 unclutter
 unrar
 unzip
-vi
-vim
+uv
 vimv-git
 virtualbox
 vivaldi

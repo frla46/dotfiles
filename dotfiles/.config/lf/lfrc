@@ -114,6 +114,8 @@ cmd open &{{
       zathura $f &;;
     *)
       case $fx in
+        *.txt | *.sh | *.py | *.js | *.lua )
+          lf -remote "send $id \$$EDITOR \$fx";;
         *.exe )
           wine $f;;
         *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx | *.odg | *.xls )
@@ -162,11 +164,9 @@ cmd on-cd &{{
 }}
 
 cmd bulkrename ${{
-  lf -remote "send $id set preview!"
   vimv $(basename -a -- $fx)
   lf -remote "send $id load"
   lf -remote "send $id unselect"
-  lf -remote "send $id set preview!"
 }}
 
 cmd link %{{

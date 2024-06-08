@@ -30,6 +30,13 @@ return {
 		},
 	},
 	{
+		"nvim-lualine/lualine.nvim",
+		opts = function(_, opts)
+			opts.sections.lualine_z = opts.sections.lualine_y
+			opts.sections.lualine_y = {}
+		end,
+	},
+	{
 		"rcarriga/nvim-notify",
 		keys = {
 			{
@@ -40,24 +47,15 @@ return {
 				desc = "Clear all Notifications",
 			},
 		},
-		opts = {
-			stages = "static",
-			timeout = 3000,
-			max_height = function()
+		ops = function(_, opts)
+			opts.stages = "static"
+			opts.timeout = 3000
+			opts.max_height = function()
 				return math.floor(vim.o.lines * 0.75)
-			end,
-			max_width = function()
+			end
+			opts.max_width = function()
 				return math.floor(vim.o.columns * 0.75)
-			end,
-		},
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
-		version = "v2.*",
-		build = "make install_jsregexp",
-		opts = function()
-			require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets/" } })
+			end
 		end,
 	},
 	{
@@ -76,21 +74,6 @@ return {
 				escape_quit = false,
 				border = "single",
 			})
-		end,
-	},
-	{
-		"echasnovski/mini.splitjoin",
-		keys = {
-			{
-				"gS",
-				function()
-					MiniSplitjoin.toggle()
-				end,
-				desc = "MiniSplitjoin",
-			},
-		},
-		config = function()
-			require("mini.splitjoin").setup({})
 		end,
 	},
 	{
@@ -180,6 +163,5 @@ return {
 	-- -- disabled plugins
 	{ "folke/tokyonight.nvim", enabled = false },
 	{ "catppuccin", enabled = false },
-	{ "echasnovski/mini.indentscope", enabled = false },
 	{ "nvim-neo-tree/neo-tree.nvim", enabled = false },
 }
