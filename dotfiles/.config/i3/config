@@ -223,7 +223,7 @@ default_border none
 
 # autostart
 exec_always --no-startup-id (pgrep greenclip && pkill greenclip); greenclip daemon
-exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.8 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.8 -t 5000:3000 -l 36:140 -r &> /dev/null
 exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id feh --bg-scale ~/img/wallpaper/landscape-black-monochrome-night-planet-nature.jpg

@@ -13,13 +13,7 @@ set sixel true
 
 # -- preview --
 
-set previewer ~/.config/lf/lf_kitty_preview
-set cleaner ~/.config/lf/lf_kitty_clean
-
-# set previewer ctpv
-# set cleaner ctpvclear
-# &ctpv -s $id
-# &ctpvquit $id
+set previewer ~/.config/lf/preview.sh
 
 # -- set window title --
 &printf "\033]0; $(pwd | sed 's|$HOME|~|')\007" > /dev/tty

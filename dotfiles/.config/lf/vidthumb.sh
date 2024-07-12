@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if ! [ -f "$1" ]; then
-	exit 1
+  exit 1
 fi
 
 cache="$HOME/.cache/vidthumb"
@@ -11,24 +11,24 @@ movie="$(realpath "$1")"
 mkdir -p "$cache"
 
 if [ -f "$index" ]; then
-	thumbnail="$(jq -r ". \"$movie\"" <"$index")"
-	if [[ "$thumbnail" != "null" ]]; then
-		if [[ ! -f "$cache/$thumbnail" ]]; then
-			exit 1
-		fi
-		echo "$cache/$thumbnail"
-		exit 0
-	fi
+  thumbnail="$(jq -r ". \"$movie\"" <"$index")"
+  if [[ "$thumbnail" != "null" ]]; then
+    if [[ ! -f "$cache/$thumbnail" ]]; then
+      exit 1
+    fi
+    echo "$cache/$thumbnail"
+    exit 0
+  fi
 fi
 
 thumbnail="$(uuidgen).jpg"
 
 if ! ffmpegthumbnailer -i "$movie" -o "$cache/$thumbnail" -s 720 2>/dev/null; then
-	exit 1
+  exit 1
 fi
 
 if [[ ! -f "$index" ]]; then
-	echo "{\"$movie\": \"$thumbnail\"}" >"$index"
+  echo "{\"$movie\": \"$thumbnail\"}" >"$index"
 fi
 json="$(jq -r --arg "$movie" "$thumbnail" ". + {\"$movie\": \"$thumbnail\"}" <"$index")"
 echo "$json" >"$index"
