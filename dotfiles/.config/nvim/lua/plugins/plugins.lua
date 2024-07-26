@@ -90,42 +90,52 @@ return {
 			{
 				"<leader>zo",
 				"<cmd>ObsidianOpen<cr>",
+				desc = "ObsidianOpen",
 			},
 			{
 				"<leader>zn",
 				"<cmd>ObsidianNew<cr>",
+				desc = "ObsidianNew",
 			},
 			{
 				"<leader>zt",
 				"<cmd>ObsidianToday<cr>",
+				desc = "ObsidianToday",
 			},
 			{
 				"<leader>zT",
 				"<cmd>ObsidianTags<cr>",
+				desc = "ObsidianTags",
 			},
 			{
 				"<leader>zf",
 				"<cmd>ObsidianSearch<cr>",
+				desc = "ObsidianSearch",
 			},
 			{
 				"<leader>zl",
 				"<cmd>ObsidianFollowLink<cr>",
+				desc = "ObsidianFollowLink",
 			},
 			{
 				"<leader>zb",
 				"<cmd>ObsidianBacklinks<cr>",
+				desc = "ObsidianBacklinks",
 			},
 			{
 				"<leader>zi",
 				"<cmd>ObsidianPasteImg<cr>",
+				desc = "ObsidianPasteImg",
 			},
 			{
 				"<leader>zw",
 				"<cmd>ObsidianWorkspace<cr>",
+				desc = "ObsidianWorkspace",
 			},
 			{
 				"<leader>zr",
 				"<cmd>ObsidianRename<cr>",
+				desc = "ObsidianRename",
 			},
 		},
 		opts = {

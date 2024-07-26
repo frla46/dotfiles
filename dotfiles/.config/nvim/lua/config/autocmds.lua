@@ -36,8 +36,14 @@ autocmd("FileType", {
 	end,
 })
 
+-- disable spell check
+autocmd("FileType", {
+	pattern = "*",
+	command = "setlocal nospell",
+})
+
 -- Markdown
 autocmd("FileType", {
 	pattern = "markdown",
-	command = "setlocal comments=b:*,b:-,b:+,nb:> formatoptions-=c formatoptions+=jro nospell",
+	command = "setlocal comments=b:*,b:-,b:+,nb:> formatoptions-=c formatoptions+=jro",
 })

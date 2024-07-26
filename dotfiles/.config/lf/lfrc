@@ -110,6 +110,8 @@ cmd open &{{
       case $fx in
         *.txt | *.sh | *.py | *.js | *.lua )
           lf -remote "send $id \$$EDITOR \$fx";;
+        *.mp3 | *.mp4 )
+          mpv --title='${filename}' $fx;;
         *.exe )
           wine $f;;
         *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx | *.odg | *.xls )

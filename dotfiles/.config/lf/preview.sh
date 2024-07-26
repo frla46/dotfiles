@@ -46,8 +46,10 @@ if [[ "$filetype" =~ ^image ]]; then
   exit 1
 fi
 
-if [[ "$filetype" =~ ^video ]] ||
-  [[ "$filetype" =~ ^audio ]]; then
+if [[ "$filetype" =~ ^audio ]] ||
+  [[ "$filetype" =~ ^video ]] ||
+  [[ "$file" =~ mp3$ ]] ||
+  [[ "$file" =~ mp4$ ]]; then
   chafa -f sixel -s "$2x$3" --animate off --polite on "$(~/.config/lf/vidthumb.sh "$file")"
   exit 1
 fi

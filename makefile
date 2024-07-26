@@ -20,7 +20,7 @@ yay: ## install yay
 	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 minimal: ## install packages of minimal
-	$(YAY) zsh wezterm neovim
+	$(YAY) zsh wezterm neovim git sheldon starship
 
 install: ## install packages from pkglist.bak
 	$(YAY) - < ./pkglist.bak
