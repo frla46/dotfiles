@@ -9,7 +9,6 @@ base-devel
 bat
 betterdiscordctl
 bottom
-bubblewrap
 chafa
 chromium
 code
@@ -30,12 +29,10 @@ fd
 feh
 ffmpegthumbnailer
 fzf
+genymotion
 gimp
 git
 github-cli
-gptfdisk
-gst-plugin-pipewire
-hdparm
 hugo
 i3-wm
 i3blocks
@@ -81,8 +78,6 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
-pipewire-v4l2
-pipewire-zeroconf
 playerctl
 pqiv
 procs

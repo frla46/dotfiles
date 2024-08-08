@@ -3,3 +3,6 @@ right_format = """$all"""
 
 [cmd_duration]
 disabled = true
+
+[gcloud]
+disabled = true

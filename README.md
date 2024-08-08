@@ -1,5 +1,7 @@
 # dotfiles
 
+![image](./misc/img/20240610205751.png)
+
 - os: [Arch Linux](https://bbs.archlinux.org/)
 - theme: [nord](https://github.com/nordtheme/nord)
 - wm: [i3](https://github.com/i3/i3)
@@ -13,9 +15,3 @@
 - file manager: [lf](https://github.com/gokcehan/lf)
 - image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
 - video player: [mpv](https://github.com/mpv-player/mpv)
-
-## TODO
-
-- add images
-- write install guide
-- write usage

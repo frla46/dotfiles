@@ -222,6 +222,7 @@ function countdown() {
         printf '%s\r' "$(date -u -d "@$time" +%H:%M:%S)"
         sleep 0.1
     done
+    notify-send $1
 }
 
 function stopwatch() {
