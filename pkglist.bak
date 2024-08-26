@@ -2,8 +2,11 @@ alsa-firmware
 alsa-utils
 amd-ucode
 arch-install-scripts
+aria2
+aria2p
 at
 atool
+aur-auto-vote-git
 base
 base-devel
 bat
@@ -28,6 +31,7 @@ fcitx5-qt
 fd
 feh
 ffmpegthumbnailer
+firefox
 fzf
 genymotion
 gimp
@@ -94,13 +98,13 @@ restic
 ripgrep
 rofi
 rofi-greenclip
-rye
 sheldon
 smartmontools
 sof-firmware
 starship
 steam
 stow
+tetrio-desktop
 thunar
 ttf-hackgen
 ufw
@@ -127,6 +131,7 @@ xf86-video-vmware
 xorg-xinit
 yay
 yay-debug
+yt-dlp
 zathura
 zathura-pdf-poppler
 zip

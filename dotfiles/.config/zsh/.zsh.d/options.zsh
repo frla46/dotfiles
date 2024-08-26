@@ -1,4 +1,5 @@
-## options
+# options
+
 setopt IGNOREEOF
 setopt append_history
 setopt auto_cd

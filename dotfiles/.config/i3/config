@@ -136,11 +136,16 @@ mode $audio {
 # resize
 bindsym $mod+r mode "resize"
 set $init 5 px or 5 ppt
+set $large_init 10 px or 10 ppt
 mode "resize" {
   bindsym $left resize shrink width $init
   bindsym $down resize grow height $init
   bindsym $up resize shrink height $init
   bindsym $right resize grow width $init
+  bindsym shift+$left resize shrink width $large_init
+  bindsym shift+$down resize grow height $large_init
+  bindsym shift+$up resize shrink height $large_init
+  bindsym shift+$right resize grow width $large_init
   bindsym Escape mode "default"
 }
 
