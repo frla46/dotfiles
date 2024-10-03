@@ -189,7 +189,6 @@ client.background       $black
 
 # statusbar
 bar {
-  # status_command i3status
   strip_workspace_numbers yes
   tray_output none
   colors {
@@ -230,10 +229,11 @@ default_border none
 exec_always --no-startup-id (pgrep greenclip && pkill greenclip); greenclip daemon
 exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -b 1.0:0.8 -t 5000:3000 -l 36:140 -r &> /dev/null
 exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
-exec_always --no-startup-id (pgrep picom && pkill picom); picom -b
 exec_always --no-startup-id xset r rate 180 50
-exec --no-startup-id feh --bg-scale ~/img/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
+# exec_always --no-startup-id (pgrep picom && pkill picom); picom -b
+exec --no-startup-id (pgrep picom && pkill picom); picom -b
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
+exec --no-startup-id feh --bg-scale ~/img/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
 exec --no-startup-id megasync
 exec --no-startup-id unclutter -idle 1 -root
 
@@ -252,4 +252,3 @@ bindsym $mod+shift+b exec --no-startup-id pkill -USR1 '^redshift$' # toggle enab
 # assign window to workspace
 for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1
 for_window [class="^Vivaldi-stable$"] move --no-auto-back-and-forth to workspace $ws2
-for_window [class="^Vivaldi-stable$" title="^LINE - Vivaldi$"] move --no-auto-back-and-forth to workspace $ws1

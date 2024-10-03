@@ -54,6 +54,10 @@ wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, _)
 		leading_fg = TAB_BAR_BG
 	end
 
+	-- if tabs[1].is_active and is_first then
+	-- 	leading_fg = ACTIVE_TAB_BG
+	-- end
+
 	if is_last then
 		trailing_bg = TAB_BAR_BG
 	end

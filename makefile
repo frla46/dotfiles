@@ -50,5 +50,9 @@ systemd_conf:
 	sudo sed -i 's/#SystemMaxUse=/SystemMaxUse=50M/' /etc/systemd/journald.conf
 	sudo systemctl restart systemd-journald
 
+resolved_conf:
+	sudo systemctl disable --now systemd-resolved
+	echo 'nameserver 1.1.1.1' | sudo tee /etc/resolv.conf
+
 zsh_conf:
 	chsh -s $(shell which zsh)
