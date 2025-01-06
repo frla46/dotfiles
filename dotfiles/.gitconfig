@@ -1,0 +1,11 @@
+[user]
+	email = frn.rmla@gmail.com
+	name = frla46
+[http]
+	sslVerify = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

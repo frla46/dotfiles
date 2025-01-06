@@ -79,11 +79,11 @@ bindsym $mod+shift+9 move container to workspace number $ws9
 bindsym $mod+shift+10 move container to workspace number $ws10
 
 # system
-set $system "system [q: poweroff, r: reboot, s: suspend, l: lock, L: logout]"
+set $system "system [Q: poweroff, R: reboot, s: suspend, l: lock, L: logout]"
 bindsym $mod+shift+q mode $system
 mode $system {
-  bindsym q exec --no-startup-id "systemctl poweroff"; mode "default"
-  bindsym r exec --no-startup-id "systemctl reboot"; mode "default"
+  bindsym shift+q exec --no-startup-id "systemctl poweroff"; mode "default"
+  bindsym shift+r exec --no-startup-id "systemctl reboot"; mode "default"
   bindsym s exec --no-startup-id "systemctl suspend"; mode "default"
   bindsym l exec --no-startup-id ~/.config/i3/i3lock-color.sh; mode "default"
   bindsym shift+l exec --no-startup-id "i3-msg exit"; mode "default"
@@ -164,6 +164,14 @@ mode $capture {
 # hide desctop notify
 bindsym $mod+n exec --no-startup-id dunstctl close-all
 bindsym $mod+shift+n exec --no-startup-id ~/.config/i3/toggle_dunst_pause.sh
+
+# output monitor
+bindsym $mod+m mode "monitor"
+mode "monitor" {
+  bindsym s exec --no-startup-id xrandr --output eDP --off; mode "default"
+  bindsym d exec --no-startup-id xrandr --output eDP --auto --primary; mode "default"
+  bindsym Escape mode "default"
+}
 
 # disable i3 keybind temporary
 bindsym $mod+i mode "insert"
@@ -246,8 +254,8 @@ bindsym $mod+w exec --no-startup-id rofi -show window
 bindsym $mod+c exec --no-startup-id rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+shift+c exec --no-startup-id ~/bin/snippets.sh
 bindsym $mod+shift+b exec --no-startup-id pkill -USR1 '^redshift$' # toggle enable/dsiable redshift
+bindsym $mod+e exec --no-startup-id rofi -modi emoji -show emoji
 # bindsym $mod+d exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
-# bindsym $mod+e exec --no-startup-id rofi -modi emoji -show emoji
 
 # assign window to workspace
 for_window [class="^discord$"] move --no-auto-back-and-forth to workspace $ws1

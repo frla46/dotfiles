@@ -1,8 +1,6 @@
 # aliases
 
-alias _='sudo'
 alias q='exit'
-alias c='clear'
 alias v='$PAGER'
 alias e='$EDITOR'
 alias cp='cp -i'
@@ -11,7 +9,6 @@ alias cal='cal -y'
 
 alias -g V='| $PAGER'
 alias -g C='| xclip -sel c'
-alias -g VI='| _vipe'
 
 alias sz='source ${ZDOTDIR:-~}/.zshrc'
 alias eh='e $HISTFILE'
@@ -103,13 +100,6 @@ if [ $(which lazydocker) &> /dev/null ]; then
   alias ld='lazydocker'
 fi
 
-if [ $(which protonvpn-cli) &> /dev/null ]; then
-  alias vpn='protonvpn-cli'
-  alias vpns='protonvpn-cli status'
-  alias vpnc='protonvpn-cli c'
-  alias vpnd='protonvpn-cli d'
-fi
-
 if [ $(which at) &> /dev/null ]; then
   alias atl='at -l'
   alias atd='at -d $(at -l | fzf -m | cut -f 1)'
@@ -123,10 +113,5 @@ if [ $(which restic) &> /dev/null ]; then
   alias restic_delete='restic forget $(restic snapshots | rg "^\w{8}\s" | fzf -m | cut -d " " -f 1)'
   alias restic_mount='sudo mkdir -p /mnt/restic && sudo chown $(whoami):$(whoami) /mnt/restic && restic mount /mnt/restic'
   alias restic_clean='restic forget -m 1 && restic prune'
-fi
-
-if [ $(which mpv) &> /dev/null ]; then
-  alias mpv_audio='mpv --ytdl-format="worstvideo+bestaudio"'
-  alias mpv_video='mpv --ytdl-format=bestvideo[height<=?720]+bestaudio/best'
 fi
 

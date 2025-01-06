@@ -194,6 +194,8 @@ cmd zi ${{
 	lf -remote "send $id cd \"$result\""
 }}
 
+# misc
+
 cmd tag-clear :tag; tag-toggle
 
 cmd move-parent &{{

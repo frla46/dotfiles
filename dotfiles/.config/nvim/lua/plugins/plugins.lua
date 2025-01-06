@@ -37,28 +37,6 @@ return {
 		end,
 	},
 	{
-		"rcarriga/nvim-notify",
-		keys = {
-			{
-				"<leader><esc>",
-				function()
-					require("notify").dismiss({ silent = true, pending = true })
-				end,
-				desc = "Clear all Notifications",
-			},
-		},
-		ops = function(_, opts)
-			opts.stages = "static"
-			opts.timeout = 3000
-			opts.max_height = function()
-				return math.floor(vim.o.lines * 0.75)
-			end
-			opts.max_width = function()
-				return math.floor(vim.o.columns * 0.75)
-			end
-		end,
-	},
-	{
 		"lmburns/lf.nvim",
 		dependencies = { "akinsho/toggleterm.nvim" },
 		keys = {
@@ -145,7 +123,7 @@ return {
 					path = "~/backup/memo",
 				},
 			},
-			completion = { nvim_cmp = true },
+			completion = { nvim_cmp = false },
 			daily_notes = {
 				folder = "daily",
 				date_format = "%Y-%m-%d",
@@ -167,6 +145,17 @@ return {
 					[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
 					["x"] = { char = "", hl_group = "ObsidianDone" },
 				},
+			},
+		},
+	},
+	{
+		"saghen/blink.cmp",
+		dependencies = {
+			{ "saghen/blink.compat", lazy = true, version = false },
+		},
+		opts = {
+			sources = {
+				compat = { "obsidian", "obsidian_new", "obsidian_tags" },
 			},
 		},
 	},

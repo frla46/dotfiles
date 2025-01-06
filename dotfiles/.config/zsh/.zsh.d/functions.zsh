@@ -8,12 +8,12 @@ zle -N _select-history
 
 function _fe() {
   local file
-  file=$(fd --type file -H | sk) && $EDITOR "$file"
+  file=$(fd --type file -H | fzf) && $EDITOR "$file"
 }
 
 function _fd() {
   local dir
-  dir=$(fd --type d -H | sk) && cd "$dir"
+  dir=$(fd --type d -H | fzf) && cd "$dir"
 }
 
 function _fk() {
@@ -101,6 +101,16 @@ function stopwatch() {
         sleep 0.1
     done
 }
+
+function _my-clear() {
+  for i in {3..$(tput lines)}
+  do
+    printf '\n'
+  done
+  printf '\33[H\33[2J'
+  zle reset-prompt
+}
+zle -N _my-clear
 
 autoload -Uz edit-command-line
 zle -N edit-command-line

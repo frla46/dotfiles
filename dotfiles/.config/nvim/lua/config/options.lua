@@ -10,3 +10,5 @@ opt.swapfile = false
 opt.gdefault = true
 opt.number = false
 opt.relativenumber = false
+
+vim.g.snacks_animate = false -- disable animations

@@ -1,3 +1,4 @@
+7zip
 alsa-firmware
 alsa-utils
 amd-ucode
@@ -13,11 +14,13 @@ betterdiscordctl
 bottom
 chafa
 chromium
-code
 conceal-bin
 cronie
+devcontainer-cli
 discord
 docker
+docker-compose
+downgrade
 dunst
 dust
 efibootmgr
@@ -42,10 +45,10 @@ i3-wm
 i3blocks
 i3lock-color
 i3status
-img2pdf
 intel-media-driver
 iwd
 jq
+lazydocker
 lazygit
 less
 lf
@@ -53,7 +56,6 @@ lib32-systemd
 libpulse
 libreoffice-still-ja
 libva-intel-driver
-libva-mesa-driver
 lightdm
 lightdm-gtk-greeter
 linux
@@ -72,11 +74,11 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 npm
+obs-studio
 obsidian
 openssh
 openvpn-update-resolv-conf-git
 osu-lazer-bin
-p7zip
 pfetch
 picom
 pipewire
@@ -87,12 +89,13 @@ playerctl
 pqiv
 procs
 pulsemixer
-qimgv
 redshift
 reflector
 restic
 ripgrep
 rofi
+rofi-calc
+rofi-emoji
 rofi-greenclip
 sheldon
 smartmontools
@@ -100,9 +103,8 @@ sof-firmware
 starship
 steam
 stow
-tetrio-desktop
 thunar
-traceroute
+tt-rss
 ttf-hackgen
 ufw
 unclutter
@@ -128,7 +130,6 @@ xf86-video-vmware
 xorg-xinit
 yay
 yt-dlp
-zathura
 zathura-pdf-poppler
 zip
 zoxide

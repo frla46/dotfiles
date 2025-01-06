@@ -2,7 +2,7 @@
 
 setopt IGNOREEOF
 setopt append_history
-setopt auto_cd
+# setopt auto_cd
 setopt auto_param_keys
 setopt correct
 setopt hist_expand
