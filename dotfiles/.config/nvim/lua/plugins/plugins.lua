@@ -13,23 +13,6 @@ return {
 		end,
 	},
 	{
-		"nvim-telescope/telescope.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		opts = {
-			defaults = {
-				layout_config = { prompt_position = "top" },
-				sorting_strategy = "ascending",
-			},
-			pickers = {
-				find_files = {
-					hidden = true,
-				},
-			},
-		},
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		opts = function(_, opts)
 			opts.sections.lualine_z = opts.sections.lualine_y
@@ -59,9 +42,8 @@ return {
 		version = "*",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-			"nvim-telescope/telescope.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"ibhagwan/fzf-lua",
 		},
 		ft = "markdown",
 		keys = {
@@ -123,7 +105,10 @@ return {
 					path = "~/backup/memo",
 				},
 			},
-			completion = { nvim_cmp = false },
+			-- completion = { nvim_cmp = false },
+			picker = {
+				name = "fzf-lua",
+			},
 			daily_notes = {
 				folder = "daily",
 				date_format = "%Y-%m-%d",
@@ -146,6 +131,12 @@ return {
 					["x"] = { char = "", hl_group = "ObsidianDone" },
 				},
 			},
+		},
+	},
+	{
+		"kevinhwang91/nvim-ufo",
+		dependencies = {
+			{ "kevinhwang91/promise-async" },
 		},
 	},
 	{

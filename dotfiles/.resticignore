@@ -1,20 +1,9 @@
+${HOME}/.Genymobile/
 ${HOME}/.cargo/
 ${HOME}/.clamtk/
-${HOME}/.config/discord/Code Cache/
-${HOME}/.config/vivaldi/BrowserMetrics/
-${HOME}/.config/vivaldi/Default/File System/
-${HOME}/.config/vivaldi/Default/Service Worker/
-${HOME}/.config/vivaldi/Default/blob_storage/
-${HOME}/.Genymobile/
-${HOME}/.local/lib/
-${HOME}/.local/share/Steam/
 ${HOME}/.local/share/Trash/
-${HOME}/.local/share/nvim/
-${HOME}/.local/share/osu/
 ${HOME}/.rustup/
-${HOME}/.wine/
 ${HOME}/backup/
-${HOME}/dl/
 .Cache/
 .cache/
 Cache/

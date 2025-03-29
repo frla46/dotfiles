@@ -1,11 +1,12 @@
 [Default Applications]
-text/html=vivaldi-stable.desktop
-application/x-extension-htm=vivaldi-stable.desktop
-application/x-extension-html=vivaldi-stable.desktop
-x-scheme-handler/http=vivaldi-stable.desktop
-x-scheme-handler/https=vivaldi-stable.desktop
-x-scheme-handler/about=vivaldi-stable.desktop
-x-scheme-handler/unknown=vivaldi-stable.desktop
+text/html=zen.desktop
+application/x-extension-htm=zen.desktop
+application/x-extension-html=zen.desktop
+x-scheme-handler/http=zen.desktop
+x-scheme-handler/https=zen.desktop
+x-scheme-handler/about=zen.desktop
+x-scheme-handler/unknown=zen.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
 x-scheme-handler/discord-1184796349334552576=discord-1184796349334552576.desktop
+x-scheme-handler/betterdiscord=discord.desktop

@@ -3,8 +3,8 @@
 export TERM='wezterm'
 export PAGER='less'
 export EDITOR='nvim'
-export BROWSER='vivaldi-stable'
-export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/:~/.rye/shims:~/flutter/bin
+export BROWSER='zen-browser'
+export PATH=$PATH:~/.local/bin:~/.cargo/bin/:~/bin/
 
 # zsh
 export ZDOTDIR=~/.config/zsh
@@ -18,7 +18,7 @@ export QT_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 
 # restic
-export RESTIC_REPOSITORY=~/backup/restic_repo
+export RESTIC_REPOSITORY=/mnt/E/C/
 export RESTIC_PASSWORD_FILE=~/backup/files/restic_passwd.txt
 
 ## bat

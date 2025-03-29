@@ -1,7 +1,6 @@
 [global]
 alignment = center
 background = "#2E3440"
-#browser = vivaldi-stable
 font = hackgen 14
 foreground = "#D8DEE9"
 frame_width = 0

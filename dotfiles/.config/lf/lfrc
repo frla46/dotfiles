@@ -79,7 +79,7 @@ map ` :mark-load
 map "'" :push :tag<space>
 map oE &wezterm -e $EDITOR $f
 map oV &wezterm -e $PAGER $f
-map ob &vivaldi-stable $f
+map ob &zen-browser $f
 map oe $lf -remote "send $id \$$EDITOR \$fx"
 map of &wezterm -e lf $(pwd)
 map oi &pqiv --browse ./
@@ -91,6 +91,24 @@ map ugv :push :glob-unselect<space>
 map um :mark-remove
 map uv :unselect
 map gs :select_tagged_files
+map +ur $chmod u+r $f
+map +uw $chmod u+w $f
+map +ux $chmod u+x $f
+map +gr $chmod g+r $f
+map +gw $chmod g+w $f
+map +gx $chmod g+x $f
+map +or $chmod o+r $f
+map +ow $chmod o+w $f
+map +ox $chmod o+x $f
+map -ur $chmod u-r $f
+map -uw $chmod u-w $f
+map -ux $chmod u-x $f
+map -gr $chmod g-r $f
+map -gw $chmod g-w $f
+map -gx $chmod g-x $f
+map -or $chmod o-r $f
+map -ow $chmod o-w $f
+map -ox $chmod o-x $f
 
 
 # -- commands --
@@ -116,11 +134,11 @@ cmd open &{{
           wine $f;;
         *.pptx | *.odt | *.docx | *.doc | *.ods | *.xlsx | *.odg | *.xls )
           libreoffice $fx;;
-        *.zip | *.rar | *.7z )
+        *.zip | *.rar | *.7z | *.tar.gz )
           aunpack -e $fx
           lf -remote "send $id load";;
         *.html )
-          vivaldi-stable $fx;;
+          zen-browser $fx;;
         *.osz | *.osk )
           if [ $(which osu-lazer) &> /dev/null ]; then
             osu-stable $fx
