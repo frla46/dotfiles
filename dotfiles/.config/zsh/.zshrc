@@ -1,18 +1,12 @@
 #!/bin/zsh
 
-# # profiling zsh startup time
-# zmodload zsh/zprof
+# zmodload zsh/zprof # profiling zsh startup time
+# autoload -Uz compinit && compinit # completions
 
-# plugin manager (sheldon)
-eval "$(sheldon source)"
-
-# load starship
-eval "$(starship init zsh)"
-
-# # completions (If enabled, startup will be slow)
-# autoload -Uz compinit
-# compinit
+eval "$(sheldon source)" # sheldon
+eval "$(starship init zsh)" # starship
 eval "$(zoxide init zsh)" # zoxide
+
 # eval "$(uv generate-shell-completion zsh)" # uv
 # eval "$(gh completion -s zsh)" # gh
 

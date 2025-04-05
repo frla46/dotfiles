@@ -12,6 +12,6 @@
   - prompt: [starship](https://github.com/starship/starship)
 - editor: [neovim](https://github.com/neovim/neovim)([LazyVim](https://github.com/LazyVim/LazyVim))
 - launcher: [rofi](https://github.com/davatorium/rofi)
-- file manager: [lf](https://github.com/gokcehan/lf)
+- file manager: [yazi](https://github.com/sxyazi/yazi)
 - image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
 - video player: [mpv](https://github.com/mpv-player/mpv)

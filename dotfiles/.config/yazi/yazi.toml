@@ -1,0 +1,44 @@
+[manager]
+ratio = [1, 2, 3]
+sort_by = "natural"
+show_symlink = false
+
+[preview]
+cache_dir = "~/.cache/yazi/"
+
+[opener]
+text = [{ run = '${EDITOR:-vi} "$@"', block = true, for = "unix" }]
+image = [{ run = 'pqiv "$@"', orphan = true, for = "unix" }]
+video = [{ run = 'mpv "$@"', orphan = true, for = "unix" }]
+office = [{ run = 'libreoffice "$@"', orphan = true, for = "unix" }]
+osu = [{ run = 'osu-lazer "$@"', orphan = true, for = "unix" }]
+extract = [{ run = 'ya pub extract --list "$@"', for = "unix" }]
+
+[open]
+rules = [
+  # text
+  { mime = "text/*", use = ["text"] },
+  { mime = "inode/empty", use = ["text"] },
+  { mime = "*/{json,javascript}", use = ["text"] },
+  # image
+  { mime = "image/*", use = ["image"] },
+  # video
+  { mime = "{audio,video}/*", use = ["video"] },
+  # office
+  { mime = "application/oasis.opendocument.*", use = ["office"] },
+  # osu
+  { name = "*.{osz,osk,osr}", use = ["osu"] },
+  # extract
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz}", use = ["extract"] },
+]
+
+[plugin]
+prepend_fetchers = [
+  { id = "mime", name = "*.{mp3,mp4,png,jpg,jpeg,webp}", run = "mime-ext", prio = "high" },
+  { id = "simple-tag", name = "*", run = "simple-tag" },
+  { id = "simple-tag", name = "*/", run = "simple-tag" },
+]
+prepend_previewers = [
+  { mime = "text/*", run = "bat" },
+  { mime = "*/{json,javascript}", run = "bat" },
+]

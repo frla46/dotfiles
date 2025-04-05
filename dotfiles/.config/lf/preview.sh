@@ -12,9 +12,7 @@ if [[ "$filetype" =~ ^image ]]; then
   chafa -f sixel --animate off --polite on "$file"
   exit 1
 elif [[ "$filetype" =~ ^audio ]] ||
-  [[ "$filetype" =~ ^video ]] ||
-  [[ "$file" =~ mp3$ ]] ||
-  [[ "$file" =~ mp4$ ]]; then
+  [[ "$filetype" =~ ^video ]]; then
   chafa -f sixel --animate off --polite on "$(~/.config/lf/vidthumb.sh "$file")"
   exit 1
 elif [ $(which bat) ] &>/dev/null; then

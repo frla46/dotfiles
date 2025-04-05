@@ -70,8 +70,15 @@ if [ $(which yay) &> /dev/null ]; then
   alias yc='yay --noconfirm -Yc && yay --noconfirm -Sc'
 fi
 
-if [ $(which lf) &> /dev/null ]; then
-  alias f='lf'
+if [ $(which yazi) &> /dev/null ]; then
+  function f() {
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+      builtin cd -- "$cwd"
+    fi
+    \rm -f -- "$tmp"
+  }
 fi
 
 if [ $(which git) &> /dev/null ]; then

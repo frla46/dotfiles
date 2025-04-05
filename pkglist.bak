@@ -7,12 +7,12 @@ aria2
 aria2p
 at
 atool
+atuin
 base
 base-devel
 bat
 betterdiscordctl
 bottom
-chafa
 chromium
 conceal-bin
 cronie
@@ -49,7 +49,6 @@ jq
 lazydocker
 lazygit
 less
-lf
 lib32-systemd
 libpulse
 libreoffice-still-ja
@@ -112,7 +111,6 @@ unzip
 uv
 vdhcoapp-bin
 vim
-vimv-git
 virtualbox
 vnstat
 vulkan-intel
@@ -128,6 +126,7 @@ xf86-video-nouveau
 xf86-video-vmware
 xorg-xinit
 yay
+yazi
 yt-dlp
 zathura-pdf-poppler
 zen-browser-bin

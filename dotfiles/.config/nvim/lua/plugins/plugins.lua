@@ -20,22 +20,19 @@ return {
 		end,
 	},
 	{
-		"lmburns/lf.nvim",
-		dependencies = { "akinsho/toggleterm.nvim" },
+		"mikavilpas/yazi.nvim",
+		event = "VeryLazy",
+		dependencies = { "folke/snacks.nvim" },
 		keys = {
 			{
 				"<leader>e",
-				"<cmd>Lf<cr>",
-				desc = "lf",
+				"<cmd>Yazi<cr>",
+				desc = "Open yazi at the current file",
 			},
 		},
-		config = function()
-			vim.g.lf_netrw = 1
-			require("lf").setup({
-				escape_quit = false,
-				border = "single",
-			})
-		end,
+		opts = {
+			open_for_directories = false,
+		},
 	},
 	{
 		"epwalsh/obsidian.nvim",
