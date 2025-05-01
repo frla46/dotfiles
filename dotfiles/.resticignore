@@ -1,6 +1,7 @@
 ${HOME}/.Genymobile/
 ${HOME}/.cargo/
 ${HOME}/.clamtk/
+${HOME}/.local/share/Steam/
 ${HOME}/.local/share/Trash/
 ${HOME}/.rustup/
 ${HOME}/backup/

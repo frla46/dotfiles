@@ -25,34 +25,39 @@ minimal: ## install minimal packages
 install: ## install packages from pkglist.bak
 	$(YAY) - < ./pkglist.bak
 
-at_conf:
+at:
+	$(YAY) $@
 	sudo systemctl enable --now atd
 
-cronie_conf:
+cronie:
+	$(YAY) $@
 	sudo systemctl enable --now cronie
 
-docker_conf:
+docker:
+	$(YAY) $@
 	sudo usermod -aG docker $(shell whoami)
 	sudo systemctl --now enable docker
 
-ufw_conf:
+ufw:
+	$(YAY) $@
 	sudo ufw default deny
 	sudo ufw enable
 	sudo ufw status verbose
 	sudo systemctl enable --now ufw
 
-locale_conf:
+locale:
 	echo -e 'ja_JP.UTF-8 UTF-8\nen_US.UTF-8 UTF-8' | sudo tee /etc/locale.gen
 	sudo locale-gen
 	echo 'LANG=ja_JP.UTF-8' | sudo tee -a /etc/locale.conf
 
-systemd_conf:
+systemd:
 	sudo sed -i 's/#SystemMaxUse=/SystemMaxUse=50M/' /etc/systemd/journald.conf
 	sudo systemctl restart systemd-journald
 
-resolved_conf:
-	sudo systemctl disable --now systemd-resolved
+resolved:
+	# sudo systemctl disable --now systemd-resolved
 	echo 'nameserver 1.1.1.1' | sudo tee /etc/resolv.conf
 
-zsh_conf:
+zsh:
+	$(YAY) zsh
 	chsh -s $(shell which zsh)

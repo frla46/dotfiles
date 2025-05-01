@@ -4,10 +4,12 @@
 prepend_keymap = [
   # [boydaihungst/simple-tag.yazi](https://github.com/boydaihungst/simple-tag.yazi)
   { on = [
-    '"',
+    "t",
+    "a",
   ], run = "plugin simple-tag -- toggle-tag", desc = "Toggle a tag (press any key)" },
   { on = [
-    "'",
+    "t",
+    "t",
   ], run = "plugin simple-tag -- toggle-tag --key=*", desc = "Toggle tag with fixed tag key = *" },
   { on = [
     "t",

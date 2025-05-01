@@ -2,12 +2,10 @@
 alsa-firmware
 alsa-utils
 amd-ucode
-arch-install-scripts
 aria2
 aria2p
 at
 atool
-atuin
 base
 base-devel
 bat
@@ -17,8 +15,6 @@ chromium
 conceal-bin
 cronie
 discord
-docker
-docker-compose
 downgrade
 dunst
 dust
@@ -38,6 +34,7 @@ genymotion
 gimp
 git
 github-cli
+go
 hugo
 i3-wm
 i3blocks
@@ -46,7 +43,6 @@ i3status
 intel-media-driver
 iwd
 jq
-lazydocker
 lazygit
 less
 lib32-systemd
@@ -72,6 +68,7 @@ noto-fonts-cjk
 noto-fonts-emoji
 noto-fonts-extra
 npm
+nsxiv
 obs-studio
 obsidian
 openssh
@@ -84,7 +81,6 @@ pipewire-alsa
 pipewire-jack
 pipewire-pulse
 playerctl
-pqiv
 procs
 pulsemixer
 redshift
@@ -95,6 +91,8 @@ rofi
 rofi-calc
 rofi-emoji
 rofi-greenclip
+rust-analyzer
+rustup
 sheldon
 smartmontools
 sof-firmware
