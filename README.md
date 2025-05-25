@@ -13,5 +13,5 @@
 - editor: [neovim](https://github.com/neovim/neovim)([LazyVim](https://github.com/LazyVim/LazyVim))
 - launcher: [rofi](https://github.com/davatorium/rofi)
 - file manager: [yazi](https://github.com/sxyazi/yazi)
-- image viewer: [pqiv](https://github.com/phillipberndt/pqiv)
+- image viewer: [nsxiv](https://codeberg.org/nsxiv/nsxiv)
 - video player: [mpv](https://github.com/mpv-player/mpv)

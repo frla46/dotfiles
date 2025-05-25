@@ -34,7 +34,6 @@ genymotion
 gimp
 git
 github-cli
-go
 hugo
 i3-wm
 i3blocks
@@ -108,6 +107,7 @@ unrar
 unzip
 uv
 vdhcoapp-bin
+vesktop-bin
 vim
 virtualbox
 vnstat
@@ -118,6 +118,7 @@ wget
 wireplumber
 xclip
 xdg-utils
+xdotool
 xf86-video-amdgpu
 xf86-video-ati
 xf86-video-nouveau

@@ -4,7 +4,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"saghen/blink.cmp",
-		"ibhagwan/fzf-lua",
+		"folke/snacks.nvim",
 		"nvim-treesitter/nvim-treesitter",
 	},
 	ft = "markdown",
@@ -12,8 +12,6 @@ return {
 		{ "<leader>zn", "<cmd>ObsidianNew<cr>", desc = "ObsidianNew" },
 		{ "<leader>zf", "<cmd>ObsidianSearch<cr>", desc = "ObsidianSearch" },
 		{ "<leader>zt", "<cmd>ObsidianToday<cr>", desc = "ObsidianToday" },
-		{ "<leader>zh", "<cmd>ObsidianYesterday<cr>", desc = "ObsidianYesterday" },
-		{ "<leader>zl", "<cmd>ObsidianTomorrow<cr>", desc = "ObsidianTomorrow" },
 		{ "<leader>zj", "<cmd>ObsidianLinks<cr>", desc = "ObsidianLinks" },
 		{ "<leader>zk", "<cmd>ObsidianBacklinks<cr>", desc = "ObsidianBacklinks" },
 		{ "<leader>zo", "<cmd>ObsidianOpen<cr>", desc = "ObsidianOpen" },
@@ -27,14 +25,15 @@ return {
 				path = "~/backup/memo",
 			},
 		},
+		notes_subdir = "inbox",
 		picker = {
-			name = "fzf-lua",
+			name = "snacks.pick",
 		},
 		daily_notes = {
 			folder = "daily",
 			date_format = "%Y-%m-%d",
 			alias_format = nil,
-			template = "daily.md",
+			template = "daily",
 		},
 		templates = {
 			folder = "templates",
@@ -45,10 +44,6 @@ return {
 		---@param url string
 		follow_url_func = function(url)
 			vim.fn.jobstart({ "zen-browser", url })
-		end,
-		---@param img string
-		follow_img_func = function(img)
-			vim.fn.jobstart({ "pqiv", img })
 		end,
 		ui = {
 			enable = false,

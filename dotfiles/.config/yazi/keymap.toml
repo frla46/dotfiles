@@ -2,6 +2,24 @@
 
 [manager]
 prepend_keymap = [
+  # swap zoxide keymap
+  { on = "z", run = "plugin zoxide", desc = "Jump to a directory via zoxide" },
+  { on = "Z", run = "plugin fzf", desc = "Jump to a file/directory via fzf" },
+
+  # disable wraparound
+  { on = "k", run = "arrow -1", desc = "Previous file" },
+  { on = "j", run = "arrow 1", desc = "Next file" },
+  { on = "<Space>", run = [
+    "toggle",
+    "arrow 1",
+  ], desc = "Toggle the current selection state" },
+
+  # toggle & visual mode
+  { on = "v", run = "toggle_all", desc = "Invert selection of all files" },
+  { on = "V", run = "visual_mode", desc = "Enter visual mode (selection mode)" },
+  { on = "<C-a>", run = "noop" },
+  { on = "<C-r>", run = "noop" },
+
   # [boydaihungst/simple-tag.yazi](https://github.com/boydaihungst/simple-tag.yazi)
   { on = [
     "t",
@@ -23,12 +41,6 @@ prepend_keymap = [
     "t",
     "f",
   ], run = "plugin simple-tag -- filter", desc = "Filter files/folders by a tag (press any key)" },
-
-  # toggle & visual mode
-  { on = "v", run = "toggle_all", desc = "Invert selection of all files" },
-  { on = "V", run = "visual_mode", desc = "Enter visual mode (selection mode)" },
-  { on = "<C-a>", run = "noop" },
-  { on = "<C-r>", run = "noop" },
 
   # disable keymaps
   { on = [

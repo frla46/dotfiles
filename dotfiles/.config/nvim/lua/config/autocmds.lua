@@ -2,8 +2,6 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
-local autocmd = vim.api.nvim_create_autocmd
-
 -- Use engligh messages
 vim.cmd([[ language C.UTF-8 ]])
 vim.cmd([[ language messages C.UTF-8 ]])
@@ -22,13 +20,13 @@ vim.cmd([[
 ]])
 
 -- Remove postspaces on save
-autocmd("BufWritePre", {
+vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	command = ":%s/\\s\\+$//e",
 })
 
 -- Don't auto commenting new line
-autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
 	-- command = "setlocal formatoptions-=cro",
 	callback = function()
@@ -37,13 +35,7 @@ autocmd("FileType", {
 })
 
 -- disable spell check
-autocmd("FileType", {
+vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",
 	command = "setlocal nospell",
-})
-
--- Markdown
-autocmd("FileType", {
-	pattern = "markdown",
-	command = "setlocal comments=b:*,b:-,b:+,nb:> formatoptions-=c formatoptions+=jro",
 })

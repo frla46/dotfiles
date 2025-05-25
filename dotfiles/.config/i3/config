@@ -196,6 +196,7 @@ client.urgent           $black $black  $red   $yellow   $blue
 client.background       $black
 
 # statusbar
+
 bar {
   strip_workspace_numbers yes
   tray_output none

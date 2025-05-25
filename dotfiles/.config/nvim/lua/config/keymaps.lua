@@ -23,17 +23,3 @@ map(
 	[[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]],
 	{ desc = "Open the URL under cursor with browser" }
 )
-
--- copy file path and more
-map("n", "yp", function()
-	vim.cmd("let @+ = expand('%:p')")
-end, { desc = "Copy file full path" })
-map("n", "yd", function()
-	vim.cmd("let @+ = expand('%:p:h')")
-end, { desc = "Copy file directory" })
-map("n", "yf", function()
-	vim.cmd("let @+ = expand('%:t')")
-end, { desc = "Copy file name" })
-map("n", "y.", function()
-	vim.cmd("let @+ = expand('%:t:r')")
-end, { desc = "Copy file name without ext" })

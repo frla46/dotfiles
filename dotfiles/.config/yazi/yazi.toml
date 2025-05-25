@@ -1,7 +1,6 @@
 [manager]
 ratio = [1, 2, 3]
 sort_by = "natural"
-show_symlink = false
 
 [preview]
 cache_dir = "~/.cache/yazi/"
@@ -58,8 +57,4 @@ prepend_fetchers = [
   { id = "mime", name = "*.{txt,mp3,mp4,png,jpg,jpeg,webp}", run = "mime-ext", prio = "high" },
   { id = "simple-tag", name = "*", run = "simple-tag" },
   { id = "simple-tag", name = "*/", run = "simple-tag" },
-]
-prepend_previewers = [
-  { mime = "text/*", run = "bat" },
-  { mime = "*/{json,javascript}", run = "bat" },
 ]
