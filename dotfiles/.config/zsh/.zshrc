@@ -146,7 +146,7 @@ if [ $(which at) &> /dev/null ]; then
   alias atl='at -l'
   alias atd='at -d $(at -l | fzf -m | cut -f 1)'
   function atn(){
-    at $1 -f <(echo "notify-send $*")
+    at $1 -f <(echo "notify-send $*") > /dev/null 2>&1
   }
 fi
 

@@ -45,14 +45,6 @@ return {
 		follow_url_func = function(url)
 			vim.fn.jobstart({ "zen-browser", url })
 		end,
-		ui = {
-			enable = false,
-			-- update_debounce = 200,
-			checkboxes = {
-				[" "] = { char = "󰄱", hl_group = "ObsidianTodo" },
-				["x"] = { char = "", hl_group = "ObsidianDone" },
-			},
-		},
 		attachments = {
 			img_folder = "assets",
 			---@return string

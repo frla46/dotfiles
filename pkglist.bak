@@ -9,12 +9,10 @@ atool
 base
 base-devel
 bat
-betterdiscordctl
 bottom
 chromium
 conceal-bin
 cronie
-discord
 downgrade
 dunst
 dust
@@ -43,6 +41,7 @@ intel-media-driver
 iwd
 jq
 lazygit
+lazysql-bin
 less
 lib32-systemd
 libpulse
