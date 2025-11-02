@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while read file; do
+  case "$1" in
+  "C-c") echo -n "$file" | xclip -sel c ;; # copy file name
+  esac
+done

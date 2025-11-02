@@ -1,0 +1,17 @@
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
+
+[[plugin.deps]]
+use = "boydaihungst/simple-tag"
+rev = "466aa5a"
+hash = "4f0819d5270161b94ed694016011f607"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mime-ext"
+rev = "8f1d971"
+hash = "4c49c446328c4553a4ccab7facc10b21"
+
+[flavor]
+deps = []
