@@ -10,8 +10,10 @@ hash = "4f0819d5270161b94ed694016011f607"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "8f1d971"
+rev = "2301ff8"
 hash = "4c49c446328c4553a4ccab7facc10b21"
 
-[flavor]
-deps = []
+[[flavor.deps]]
+use = "AdithyanA2005/nord"
+rev = "3a791e9"
+hash = "fa7142cda74a50b271ea212356b40b57"

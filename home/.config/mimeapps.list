@@ -8,4 +8,3 @@ x-scheme-handler/about=zen.desktop
 x-scheme-handler/unknown=zen.desktop
 application/pdf=org.pwmt.zathura.desktop
 x-scheme-handler/betterdiscord=discord.desktop
-x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop

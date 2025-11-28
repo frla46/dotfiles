@@ -1,52 +1,51 @@
+# https://yazi-rs.github.io/docs/configuration/yazi
+# https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/yazi-default.toml
+
 [mgr]
 ratio = [1, 2, 3]
 sort_by = "natural"
 
 [preview]
 cache_dir = "~/.cache/yazi/"
+image_filter = "nearest"
+image_quality = 50
 
 [opener]
-text = [{ run = '${EDITOR:-vi} "$@"', block = true, for = "unix" }]
-image = [{ run = 'nsxiv_rifle.sh "$@"', orphan = true, for = "unix" }]
-video = [{ run = 'mpv "$@"', orphan = true, for = "unix" }]
-pdf = [{ run = 'zathura "$@"', orphan = true, for = "unix" }]
-office = [{ run = 'libreoffice "$@"', orphan = true, for = "unix" }]
-osu = [{ run = 'osu-lazer "$@"', orphan = true, for = "unix" }]
-extract = [{ run = 'ya pub extract --list "$@"', for = "unix" }]
+text = [
+  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
+]
+image = [
+  { run = 'nsxiv_rifle.sh "$@"', desc = "nsxiv", orphan = true, for = "unix" },
+]
+video = [
+  { run = 'mpv "$@"', desc = "mpv", orphan = true, for = "unix" },
+  { run = 'mpv --loop-file "$@"', desc = "mpv (loop)", orphan = true, for = "unix" },
+]
+pdf = [{ run = 'zathura "$@"', desc = "zathura", orphan = true, for = "unix" }]
+office = [
+  { run = 'libreoffice "$@"', desc = "libreoffice", orphan = true, for = "unix" },
+]
+extract = [
+  { run = 'ya pub extract --list "$@"', desc = "extract", for = "unix" },
+]
 
 [open]
 rules = [
-  # text
-  { mime = "text/*", use = [
+  { mime = "{text/*,inode/empty,application/json,application/javascript}", use = [
     "text",
   ] },
-  { mime = "inode/empty", use = [
-    "text",
-  ] },
-  { mime = "*/{json,javascript}", use = [
-    "text",
-  ] },
-  # image
   { mime = "image/*", use = [
     "image",
   ] },
-  # video
   { mime = "{audio,video}/*", use = [
     "video",
   ] },
-  # pdf
   { mime = "application/pdf", use = [
     "pdf",
   ] },
-  # office
   { mime = "application/{oasis.opendocument,vnd.openxmlformats-officedocument}.*", use = [
     "office",
   ] },
-  # osu
-  { name = "*.{osz,osk,osr}", use = [
-    "osu",
-  ] },
-  # extract
   { mime = "application/{zip,rar,7z*,tar,gzip,xz}", use = [
     "extract",
   ] },
@@ -54,7 +53,7 @@ rules = [
 
 [plugin]
 prepend_fetchers = [
-  { id = "mime", name = "*.{txt,mp3,mp4,png,jpg,jpeg,webp}", run = "mime-ext", prio = "high" },
+  { id = "mime", name = "*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext", prio = "high" },
   { id = "simple-tag", name = "*", run = "simple-tag" },
   { id = "simple-tag", name = "*/", run = "simple-tag" },
 ]

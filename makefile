@@ -7,9 +7,9 @@ YAY := yay -S --needed --noconfirm
 
 all: yay install-minimal install-core install-extra ## deploy dotfiles
 install-minimal: git neovim wezterm zsh ## install minimal packages
-install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd github-cli hackgen i3 jq lazygit libreoffice maim megasync mimeapps mpv noto-fonts nsxiv obsidian playerctl procs pulsemixer redshift restic ripgrep rofi steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
-install-extra: ani-cli aria2 chromium downgrade genymotion ghidra gimp netcat hugo lostfiles nord-theme osu-lazer pfetch pwndbg radare2 rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
-system-configs: locale systemd resolved ## set configs
+install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd github-cli hackgen i3 jq lazygit libreoffice maim mimeapps mpv noto-fonts nsxiv obsidian picom playerctl procs pulsemixer rclone redshift restic ripgrep rofi steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
+install-extra: ani-cli aria2 chromium downgrade genymotion ghidra gimp netcat hugo lostfiles nord-theme pfetch pwndbg radare2 rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
+system-configs: locale systemd resolved ## set system configs
 
 ani-cli:
 	$(YAY) $@
@@ -46,18 +46,16 @@ cronie:
 	sudo systemctl enable --now cronie
 
 discord:
-	$(YAY) $@ betterdiscordctl
+	$(YAY) $@ better$@ctl
 	status_output="$$(betterdiscordctl status 2>/dev/null || true)"; \
 	if echo "$$status_output" | grep -q 'Discord "index.js" injected: no'; then \
 		betterdiscordctl install; \
-	else \
-		betterdiscordctl reinstall; \
 	fi
 	mkdir -p ${HOME}/.config/BetterDiscord/data/stable/
 	ln -vsfn ${HOME_SRC_DIR}/.config/BetterDiscord/data/stable/custom.css ${HOME}/.config/BetterDiscord/data/stable/custom.css
 
 docker:
-	$(YAY) $@ $@-compose lazydocker
+	$(YAY) $@ $@-compose lazy$@
 	sudo usermod -aG docker $(shell whoami)
 	sudo systemctl --now enable docker
 
@@ -80,6 +78,7 @@ fcitx5:
 
 fd:
 	$(YAY) $@
+	ln -vsfn ${HOME_SRC_DIR}/.ignore ${HOME}/.ignore
 
 genymotion:
 	$(YAY) $@
@@ -135,9 +134,6 @@ lostfiles:
 maim:
 	$(YAY) $@
 
-megasync:
-	$(YAY) $@-bin
-
 mimeapps:
 	ln -vsfn ${HOME_SRC_DIR}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
 
@@ -164,15 +160,18 @@ nsxiv:
 	$(YAY) $@
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@/nsxiv_rifle.sh ${HOME}/.local/bin/nsxiv_rifle.sh
 
 obsidian:
 	$(YAY) $@
 
-osu-lazer:
-	$(YAY) $@-bin
-
 pfetch:
 	$(YAY) $@
+
+picom:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
 playerctl:
 	$(YAY) $@
@@ -188,6 +187,11 @@ pwndbg:
 
 radare2:
 	$(YAY) $@
+
+rclone:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
 redshift:
 	$(YAY) $@
@@ -303,4 +307,3 @@ zsh:
 	rm -rf ${HOME}/.config/sheldon
 	ln -vsfn ${HOME_SRC_DIR}/.config/sheldon ${HOME}/.config/sheldon
 	ln -vsfn ${HOME_SRC_DIR}/.config/starship.toml ${HOME}/.config/starship.toml
-

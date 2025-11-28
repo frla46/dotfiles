@@ -2,7 +2,7 @@
 --- bookmark.lua ---
 
 -- options --
-local output_path = os.getenv("HOME") .. "/.config/mpv/mpv_bookmark.csv"
+local output_path = os.getenv("HOME") .. "/.local/share/mpv/mpv_bookmark.csv"
 local save_bookmark_keybind = "ctrl+b"
 -------------
 

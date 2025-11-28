@@ -31,33 +31,36 @@ local NORMAL_TAB_FG = WHITE
 wezterm.on("format-tab-title", function(tab, tabs, _, _, hover, _)
 	local title = tab_title(tab)
 
-	local background = NORMAL_TAB_BG
-	local foreground = NORMAL_TAB_FG
-
 	local is_first = tab.tab_id == tabs[1].tab_id
 	local is_last = tab.tab_id == tabs[#tabs].tab_id
 
+	local background, foreground
 	if tab.is_active then
 		background = ACTIVE_TAB_BG
 		foreground = ACTIVE_TAB_FG
 	elseif hover then
 		background = HOVER_TAB_BG
 		foreground = HOVER_TAB_FG
+	else
+		background = NORMAL_TAB_BG
+		foreground = NORMAL_TAB_FG
 	end
 
 	local leading_fg = NORMAL_TAB_BG
 	local leading_bg = background
-
 	local trailing_fg = background
 	local trailing_bg = NORMAL_TAB_BG
 
 	if is_first then
-		leading_fg = TAB_BAR_BG
+		return {
+			{ Background = { Color = background } },
+			{ Foreground = { Color = foreground } },
+			{ Text = " " .. title .. " " },
+			{ Background = { Color = trailing_bg } },
+			{ Foreground = { Color = trailing_fg } },
+			{ Text = SOLID_RIGHT_ARROW },
+		}
 	end
-
-	-- if tabs[1].is_active and is_first then
-	-- 	leading_fg = ACTIVE_TAB_BG
-	-- end
 
 	if is_last then
 		trailing_bg = TAB_BAR_BG

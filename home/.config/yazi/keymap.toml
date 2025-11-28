@@ -1,3 +1,4 @@
+# https://yazi-rs.github.io/docs/configuration/keymap/
 # https://github.com/sxyazi/yazi/blob/shipped/yazi-config/preset/keymap-default.toml
 
 [mgr]
@@ -17,6 +18,18 @@ prepend_keymap = [
   # toggle & visual mode
   { on = "v", run = "visual_mode", desc = "Enter visual mode (selection mode)" },
   { on = "V", run = "toggle_all", desc = "Invert selection of all files" },
+
+  # copy file
+  { on = [
+    "c",
+    "C",
+  ], run = '''shell -- printf "file://%s\n" "$@" | xclip -selection clipboard -t text/uri-list''', desc = "Copy the file path (uri-list)" },
+
+  # Spotting
+  { on = "i", run = "spot", desc = "Spot hovered file" },
+
+  # Tabs
+  { on = "<tab>", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
   # [boydaihungst/simple-tag.yazi](https://github.com/boydaihungst/simple-tag.yazi)
   { on = [
@@ -45,25 +58,10 @@ prepend_keymap = [
     "g",
     "d",
   ], run = "noop" },
-  { on = "t", run = "noop" },
-  { on = "1", run = "noop" },
-  { on = "2", run = "noop" },
-  { on = "3", run = "noop" },
-  { on = "4", run = "noop" },
-  { on = "5", run = "noop" },
-  { on = "6", run = "noop" },
-  { on = "7", run = "noop" },
-  { on = "8", run = "noop" },
-  { on = "9", run = "noop" },
-  { on = "[", run = "noop" },
-  { on = "]", run = "noop" },
-  { on = "{", run = "noop" },
-  { on = "}", run = "noop" },
   { on = "<S-PageUp>", run = "noop" },
   { on = "<S-PageDown>", run = "noop" },
   { on = "<PageUp>", run = "noop" },
   { on = "<PageDown>", run = "noop" },
   { on = "<C-a>", run = "noop" },
   { on = "<C-r>", run = "noop" },
-
 ]

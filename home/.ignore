@@ -1,0 +1,18 @@
+# -- file --
+
+*.asar
+*.db
+*.pb
+*.pyc
+*.so
+
+# -- directory --
+
+.cache/
+.git/
+.npm/
+.steam/
+.trash/
+.wine/
+node_modules/
+restic_repo/

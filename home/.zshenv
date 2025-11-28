@@ -4,7 +4,7 @@ export TERM='wezterm'
 export PAGER='less'
 export EDITOR='nvim'
 export BROWSER='zen-browser'
-export PATH=$PATH:~/.cargo/bin/:~/bin/
+export PATH=$PATH:~/.local/bin/:~/.cargo/bin/:~/bin/
 
 ## zsh
 export ZDOTDIR=~/.config/zsh
@@ -28,9 +28,12 @@ export BAT_THEME='Nord'
 export RIPGREP_CONFIG_PATH=~/.config/ripgrep/ripgreprc
 
 ## pfetch
-export PF_INFO='ascii title os wm shell editor pkgs'
+export PF_INFO='ascii title os wm shell editor'
 
 ## go
 export GOPATH=~/src/go
 export GOBIN=~/src/go/bin
 export PATH=$PATH:$GOBIN
+
+## ani-cli
+export ANI_CLI_DOWNLOAD_DIR=~/dl/

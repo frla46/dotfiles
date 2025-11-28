@@ -33,15 +33,12 @@ fcitx5-nord
 fcitx5-qt
 fd
 feh
-firefox
 freerdp
 fzf
 genymotion
-ghidra
-gimp
 git
+git-crypt
 github-cli
-gnu-netcat
 hugo
 i3-wm
 i3blocks
@@ -66,7 +63,6 @@ lostfiles
 lxappearance
 maim
 man-db
-megasync-bin
 mpv-mpris
 neovim
 nordic-darker-theme
@@ -80,7 +76,6 @@ nsxiv
 obsidian
 openssh
 openvpn-update-resolv-conf-git
-osu-lazer-bin
 pfetch
 picom
 pipewire
@@ -90,8 +85,6 @@ pipewire-pulse
 playerctl
 procs
 pulsemixer
-pwndbg
-radare2
 rclone
 redshift
 reflector

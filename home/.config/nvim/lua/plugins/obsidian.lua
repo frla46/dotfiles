@@ -1,6 +1,7 @@
 return {
 	"obsidian-nvim/obsidian.nvim",
-	version = "*",
+	-- version = "*",
+	version = "3.14.3",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"saghen/blink.cmp",

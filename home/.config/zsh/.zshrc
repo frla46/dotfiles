@@ -158,7 +158,7 @@ if [ $(which restic) &> /dev/null ]; then
 fi
 
 if [ $(which btm) &> /dev/null ]; then
-  alias btm='btm --basic'
+  alias btm='btm --basic --group_processes'
 fi
 
 function _select-history() {
