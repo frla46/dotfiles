@@ -193,6 +193,14 @@ rclone:
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
+rclone_push: ## backup to cloud
+	$(YAY) $@
+	rclone sync ~/sync/ gdrive:sync --progress
+
+rclone_pull: ## download from cloud
+	$(YAY) $@
+	rclone sync gdrive:sync ~/sync/ --progress
+
 redshift:
 	$(YAY) $@
 
@@ -238,6 +246,10 @@ ufw:
 
 unclutter:
 	$(YAY) $@
+
+unlock: ## unlock encrypted files
+	$(YAY) git-crypt
+	git-crypt unlock
 
 uv:
 	$(YAY) $@
