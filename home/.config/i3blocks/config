@@ -1,0 +1,12 @@
+[sfeed]
+command=~/.config/i3blocks/sfeed_unread_count.sh
+interval=5
+
+[battery]
+command=~/.config/i3blocks/battery.sh
+interval=60
+
+[time]
+command=date +"%m.%d. %H:%M "
+interval=1
+

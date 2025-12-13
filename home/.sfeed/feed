@@ -1,0 +1,67 @@
+#!/usr/bin/env sh
+
+SFEED_DIR="$HOME/.local/share/sfeed"
+SFEED_FEED_DIR="$SFEED_DIR/feeds"
+SFEED_UNREAD_FILE="$SFEED_DIR/unread"
+SFEED_READING_FILE="$SFEED_DIR/reading"
+SFEED_READ_FILE="$SFEED_DIR/read"
+
+usage() {
+  echo "usage: $(basename $0) [get|show|read|browser]"
+}
+
+filter_unread() {
+  awk -F'\t' '
+    FNR == NR {
+      read[$0]
+      next
+    }
+    !($3 in read) {
+      fname = FILENAME
+      sub(".*/", "", fname)
+      $2 = "[" fname "] " $2
+      new = $1
+      for (i = 2; i <= NF; i++) {
+        new = new "\t" $i
+      }
+      print new
+    }
+  ' "$SFEED_READ_FILE" "$SFEED_FEED_DIR"/* >"$SFEED_UNREAD_FILE"
+}
+
+open_with_browser() {
+  cp "$SFEED_UNREAD_FILE" "$SFEED_READING_FILE"
+  sfeed_html "$SFEED_READING_FILE" >"$SFEED_DIR/sfeed.html"
+  $BROWSER "$SFEED_DIR/sfeed.html"
+}
+
+markread() {
+  cut -f3 $SFEED_READING_FILE >>$SFEED_READ_FILE
+  sort -u $SFEED_READ_FILE -o $SFEED_READ_FILE
+}
+
+if [ -z "$1" ]; then
+  usage
+  exit 1
+fi
+
+case "$1" in
+get)
+  sfeed_update
+  filter_unread
+  ;;
+show)
+  cat "$SFEED_UNREAD_FILE"
+  ;;
+browser)
+  filter_unread
+  open_with_browser
+  ;;
+read)
+  markread
+  ;;
+*)
+  usage
+  exit 1
+  ;;
+esac

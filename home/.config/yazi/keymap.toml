@@ -20,15 +20,19 @@ prepend_keymap = [
   { on = "V", run = "toggle_all", desc = "Invert selection of all files" },
 
   # copy file
-  { on = [
-    "c",
-    "C",
-  ], run = '''shell -- printf "file://%s\n" "$@" | xclip -selection clipboard -t text/uri-list''', desc = "Copy the file path (uri-list)" },
+  { on = "y", run = [
+    '''shell -- printf "file://%s\n" "$@" | xclip -selection clipboard -t text/uri-list''',
+    "yank",
+  ] },
 
-  # Spotting
+  # quit
+  { on = "q", run = "close", desc = "Close the current tab, or quit if it's last" },
+  { on = "Q", run = "quit", desc = "Quit the process" },
+
+  # spotting
   { on = "i", run = "spot", desc = "Spot hovered file" },
 
-  # Tabs
+  # tabs
   { on = "<tab>", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
   # [boydaihungst/simple-tag.yazi](https://github.com/boydaihungst/simple-tag.yazi)

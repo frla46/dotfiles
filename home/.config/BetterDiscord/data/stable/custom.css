@@ -2,11 +2,16 @@
 @import url(https://croissantdunord.github.io/discord-adblock/adblock-extras.css);
 
 /* quest tab */
-li[class^=channel_]:has(a[href="/quest-home"]) {
-    display: none;
+li[class^="channel_"]:has(a[href="/quest-home"]) {
+  display: none;
 }
 
 /* text area buttons */
 .buttons__74017 {
-    display: none;
+  display: none;
+}
+
+/* server boosts buttons */
+.container__877f0 {
+  display: none;
 }

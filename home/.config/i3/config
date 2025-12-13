@@ -150,10 +150,10 @@ mode "resize" {
 }
 
 # screenshot
-set $capture "screenshot"
+set $screenshot "screenshot"
 set $delay 0.01
-bindsym $mod+shift+s mode $capture
-mode $capture {
+bindsym $mod+shift+s mode $screenshot
+mode $screenshot {
   bindsym a exec --no-startup-id maim -d $delay | xclip -sel c -t image/png; mode "default"
   bindsym s exec --no-startup-id maim -s | xclip -sel c -t image/png;  mode "default"
   bindsym shift+a exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -d $delay; mode "default"
@@ -161,17 +161,29 @@ mode $capture {
   bindsym Escape mode "default"
 }
 
-# hide desctop notify
+# notify
 bindsym $mod+n exec --no-startup-id dunstctl close-all
 bindsym $mod+shift+n exec --no-startup-id ~/.config/i3/toggle_dunst_pause.sh
 
 # output monitor
-bindsym $mod+m mode "monitor"
-mode "monitor" {
+set $monitor "monitor [s: single, d: double]"
+bindsym $mod+m mode $monitor
+mode $monitor {
   bindsym s exec --no-startup-id xrandr --output eDP --off; mode "default"
   bindsym d exec --no-startup-id xrandr --output eDP --auto --primary; mode "default"
   bindsym Escape mode "default"
 }
+
+# feed
+set $feed "feed [g: get, b: open with browser, r: markread]"
+bindsym $mod+slash mode $feed
+mode $feed {
+  bindsym g exec --no-startup-id ~/.sfeed/feed get; mode "default"
+  bindsym b exec --no-startup-id ~/.sfeed/feed browser; mode "default"
+  bindsym r exec --no-startup-id ~/.sfeed/feed read; mode "default"
+  bindsym Escape mode "default"
+}
+
 
 # disable i3 keybind temporary
 bindsym $mod+i mode "insert"
@@ -213,7 +225,7 @@ bar {
 }
 
 bar {
-  status_command i3status
+  status_command i3blocks
   strip_workspace_numbers yes
   mode hide
   modifier $super
@@ -229,6 +241,7 @@ bar {
   }
 }
 
+
 # misc
 gaps inner 10
 focus_follows_mouse no
@@ -241,7 +254,6 @@ exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id clipcatd
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id feh --bg-scale ~/dotfiles/misc/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
-exec --no-startup-id picom -b
 exec --no-startup-id unclutter -idle 1 -root
 
 exec --no-startup-id wezterm

@@ -5,7 +5,7 @@
 - os: [Arch Linux](https://bbs.archlinux.org/)
 - theme: [nord](https://github.com/nordtheme/nord)
 - wm: [i3](https://github.com/i3/i3)
-  - bar: [i3-status](https://github.com/i3/i3status)
+  - bar: [i3blocks](https://github.com/vivien/i3blocks)
 - terminal: [wezterm](https://github.com/wez/wezterm)
 - shell: [zsh](https://github.com/zsh-users/zsh)
   - plugin manager: [sheldon](https://github.com/rossmacarthur/sheldon)

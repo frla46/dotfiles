@@ -7,7 +7,7 @@ YAY := yay -S --needed --noconfirm
 
 all: yay install-minimal install-core install-extra ## deploy dotfiles
 install-minimal: git neovim wezterm zsh ## install minimal packages
-install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd github-cli hackgen i3 jq lazygit libreoffice maim mimeapps mpv noto-fonts nsxiv obsidian picom playerctl procs pulsemixer rclone redshift restic ripgrep rofi steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
+install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd github-cli hackgen i3 jq lazygit libreoffice maim mimeapps mpv noto-fonts nsxiv obsidian playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
 install-extra: ani-cli aria2 chromium downgrade genymotion ghidra gimp netcat hugo lostfiles nord-theme pfetch pwndbg radare2 rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
 system-configs: locale systemd resolved ## set system configs
 
@@ -107,10 +107,11 @@ hugo:
 	$(YAY) $@
 
 i3:
+	$(YAY) $@-wm $@blocks $@lock-color
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-	rm -rf ${HOME}/.config/$@status
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@status ${HOME}/.config/$@status
+	rm -rf ${HOME}/.config/$@blocks
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@blocks ${HOME}/.config/$@blocks
 
 jq:
 	$(YAY) $@
@@ -168,11 +169,6 @@ obsidian:
 pfetch:
 	$(YAY) $@
 
-picom:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-
 playerctl:
 	$(YAY) $@
 
@@ -227,6 +223,11 @@ rofi:
 
 rust:
 	$(YAY) $@up $@-analyzer
+
+sfeed:
+	$(YAY) $@
+	rm -rf ${HOME}/.$@
+	ln -vsfn ${HOME_SRC_DIR}/.$@ ${HOME}/.$@
 
 steam:
 	$(YAY) $@ lib32-systemd

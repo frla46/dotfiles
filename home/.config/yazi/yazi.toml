@@ -43,7 +43,7 @@ rules = [
   { mime = "application/pdf", use = [
     "pdf",
   ] },
-  { mime = "application/{oasis.opendocument,vnd.openxmlformats-officedocument}.*", use = [
+  { mime = "application/{oasis.opendocument,openxmlformats-officedocument}.*", use = [
     "office",
   ] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz}", use = [
