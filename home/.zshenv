@@ -37,3 +37,4 @@ export PATH=$PATH:$GOBIN
 
 ## ani-cli
 export ANI_CLI_DOWNLOAD_DIR=~/dl/
+

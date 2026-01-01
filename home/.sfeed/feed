@@ -7,7 +7,7 @@ SFEED_READING_FILE="$SFEED_DIR/reading"
 SFEED_READ_FILE="$SFEED_DIR/read"
 
 usage() {
-  echo "usage: $(basename $0) [get|show|read|browser]"
+  echo "usage: $(basename $0) [get|browser|read|find]"
 }
 
 filter_unread() {
@@ -29,15 +29,56 @@ filter_unread() {
   ' "$SFEED_READ_FILE" "$SFEED_FEED_DIR"/* >"$SFEED_UNREAD_FILE"
 }
 
+generate_html() {
+  cat <<EOF
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>sfeed</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<ul class="feed">
+EOF
+  awk -F'\t' '
+    {
+      cmd = "date -d @" $1 " +\"%Y-%m-%d %H:%M\""
+      cmd | getline t
+      close(cmd)
+      printf "  <li class=\"item\">\n"
+      printf "    <time class=\"date\">%s</time>\n", t
+      printf "    <a class=\"title\" href=\"%s\">%s</a>\n", $3, $2
+      printf "  </li>\n"
+    }
+  ' "$SFEED_READING_FILE"
+  cat <<EOF
+</ul>
+</body>
+</html>
+EOF
+}
+
 open_with_browser() {
   cp "$SFEED_UNREAD_FILE" "$SFEED_READING_FILE"
-  sfeed_html "$SFEED_READING_FILE" >"$SFEED_DIR/sfeed.html"
-  $BROWSER "$SFEED_DIR/sfeed.html"
+  timestamp=$(date +%Y%m%d%H%M%S)
+  html_file="$SFEED_DIR/html/sfeed-${timestamp}.html"
+  generate_html >${html_file}
+  $BROWSER ${html_file}
 }
 
 markread() {
   cut -f3 $SFEED_READING_FILE >>$SFEED_READ_FILE
   sort -u $SFEED_READ_FILE -o $SFEED_READ_FILE
+}
+
+find() {
+  if [ -z "$1" ]; then
+    echo "usage: $(basename $0) find url"
+    exit 1
+  fi
+  curl -sL "$1" | sfeed_web | cut -f1
+
 }
 
 if [ -z "$1" ]; then
@@ -50,15 +91,18 @@ get)
   sfeed_update
   filter_unread
   ;;
-show)
-  cat "$SFEED_UNREAD_FILE"
-  ;;
 browser)
   filter_unread
   open_with_browser
+  markread
+  filter_unread
   ;;
 read)
   markread
+  filter_unread
+  ;;
+find)
+  find "$2"
   ;;
 *)
   usage

@@ -8,7 +8,7 @@ YAY := yay -S --needed --noconfirm
 all: yay install-minimal install-core install-extra ## deploy dotfiles
 install-minimal: git neovim wezterm zsh ## install minimal packages
 install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd github-cli hackgen i3 jq lazygit libreoffice maim mimeapps mpv noto-fonts nsxiv obsidian playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
-install-extra: ani-cli aria2 chromium downgrade genymotion ghidra gimp netcat hugo lostfiles nord-theme pfetch pwndbg radare2 rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
+install-extra: ani-cli aria2 chromium downgrade freerdp genymotion gimp hugo lostfiles nord-theme pfetch rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
 system-configs: locale systemd resolved ## set system configs
 
 ani-cli:
@@ -45,6 +45,8 @@ cronie:
 	$(YAY) $@
 	sudo systemctl enable --now cronie
 
+ctf: ghidra netcat pwndbg radare2
+
 discord:
 	$(YAY) $@ better$@ctl
 	status_output="$$(betterdiscordctl status 2>/dev/null || true)"; \
@@ -79,6 +81,9 @@ fcitx5:
 fd:
 	$(YAY) $@
 	ln -vsfn ${HOME_SRC_DIR}/.ignore ${HOME}/.ignore
+
+freerdp:
+	$(YAY) $@
 
 genymotion:
 	$(YAY) $@

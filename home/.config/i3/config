@@ -175,12 +175,11 @@ mode $monitor {
 }
 
 # feed
-set $feed "feed [g: get, b: open with browser, r: markread]"
+set $feed "feed [g: get, b: open with browser]"
 bindsym $mod+slash mode $feed
 mode $feed {
   bindsym g exec --no-startup-id ~/.sfeed/feed get; mode "default"
   bindsym b exec --no-startup-id ~/.sfeed/feed browser; mode "default"
-  bindsym r exec --no-startup-id ~/.sfeed/feed read; mode "default"
   bindsym Escape mode "default"
 }
 

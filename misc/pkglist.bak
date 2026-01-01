@@ -44,7 +44,6 @@ hugo
 i3-wm
 i3blocks
 i3lock-color
-i3status
 intel-media-driver
 iwd
 jq
@@ -85,6 +84,7 @@ pipewire-jack
 pipewire-pulse
 playerctl
 procs
+protontricks
 pulsemixer
 rclone
 redshift

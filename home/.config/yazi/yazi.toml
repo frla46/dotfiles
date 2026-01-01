@@ -28,6 +28,9 @@ office = [
 extract = [
   { run = 'ya pub extract --list "$@"', desc = "extract", for = "unix" },
 ]
+html = [
+  { run = '${BROWSER:-firefox} "$@"', desc = "$BROWSER", block = true, for = "unix" },
+]
 
 [open]
 rules = [
@@ -48,6 +51,9 @@ rules = [
   ] },
   { mime = "application/{zip,rar,7z*,tar,gzip,xz}", use = [
     "extract",
+  ] },
+  { mime = "text/html", use = [
+    "html",
   ] },
 ]
 
