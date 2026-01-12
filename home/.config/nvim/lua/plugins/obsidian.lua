@@ -10,14 +10,16 @@ return {
 	},
 	ft = "markdown",
 	keys = {
-		{ "<leader>zn", "<cmd>ObsidianNew<cr>", desc = "ObsidianNew" },
-		{ "<leader>zf", "<cmd>ObsidianSearch<cr>", desc = "ObsidianSearch" },
-		{ "<leader>zt", "<cmd>ObsidianToday<cr>", desc = "ObsidianToday" },
-		{ "<leader>zj", "<cmd>ObsidianLinks<cr>", desc = "ObsidianLinks" },
-		{ "<leader>zk", "<cmd>ObsidianBacklinks<cr>", desc = "ObsidianBacklinks" },
-		{ "<leader>zo", "<cmd>ObsidianOpen<cr>", desc = "ObsidianOpen" },
-		{ "<leader>zT", "<cmd>ObsidianTags<cr>", desc = "ObsidianTags" },
-		{ "<leader>zi", "<cmd>ObsidianPasteImg<cr>", desc = "ObsidianPasteImg" },
+		{ "<leader>zn", "<cmd>Obsidian new<cr>", desc = "Obsidian new" },
+		-- { "<leader>zN", "<cmd>Obsidian new_from_template<cr>", desc = "Obsidian new from template" },
+		{ "<leader>zf", "<cmd>Obsidian search<cr>", desc = "Obsidian search" },
+		{ "<leader>zz", "<cmd>Obsidian today<cr>", desc = "Obsidian today" },
+		-- { "<leader>zt", "<cmd>Obsidian template<cr>", desc = "Obsidian template" },
+		-- { "<leader>zj", "<cmd>Obsidian links<cr>", desc = "Obsidian links" },
+		{ "<leader>zk", "<cmd>Obsidian backlinks<cr>", desc = "Obsidian backlinks" },
+		{ "<leader>zo", "<cmd>Obsidian open<cr>", desc = "Obsidian open" },
+		{ "<leader>zT", "<cmd>Obsidian tags<cr>", desc = "Obsidian tags" },
+		{ "<leader>zi", "<cmd>Obsidian paste_img<cr>", desc = "Obsidian paste img" },
 	},
 	opts = {
 		workspaces = {
@@ -27,14 +29,10 @@ return {
 			},
 		},
 		notes_subdir = "inbox",
-		picker = {
-			name = "snacks.pick",
-		},
 		daily_notes = {
 			folder = "daily",
 			date_format = "%Y-%m-%d",
-			alias_format = nil,
-			template = "daily",
+			template = "daily.md",
 		},
 		templates = {
 			folder = "templates",

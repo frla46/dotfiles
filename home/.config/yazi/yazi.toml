@@ -59,7 +59,7 @@ rules = [
 
 [plugin]
 prepend_fetchers = [
-  { id = "mime", name = "*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext", prio = "high" },
-  { id = "simple-tag", name = "*", run = "simple-tag" },
-  { id = "simple-tag", name = "*/", run = "simple-tag" },
+  { id = "mime", url = "*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext", prio = "high" },
+  { id = "simple-tag", url = "*", run = "simple-tag" },
+  { id = "simple-tag", url = "*/", run = "simple-tag" },
 ]

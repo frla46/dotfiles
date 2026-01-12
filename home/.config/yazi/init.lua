@@ -1,39 +1,31 @@
-require("yatline"):setup({
-	show_background = false,
-	display_status_line = false,
-	style_a = {
-		fg = "black",
-		bg_mode = {
-			normal = "blue",
-		},
-	},
-	tab_width = 0,
+---@diagnostic disable: undefined-global
 
-	header_line = {
-		left = {
-			section_a = {
-				{ type = "line", custom = false, name = "tabs", params = { "left" } },
-			},
-			section_b = {},
-			section_c = {},
-		},
-		right = {
-			section_a = {
-				{ type = "string", custom = false, name = "cursor_position" },
-			},
-			section_b = {
-				{ type = "string", custom = false, name = "hovered_ownership" },
-				{ type = "string", custom = false, name = "hovered_size" },
-				{ type = "coloreds", custom = false, name = "permissions" },
-			},
-			section_c = {
-				{ type = "string", custom = false, name = "hovered_path" },
-			},
-		},
-	},
-})
-
+-- [simple-tag.yazi](https://github.com/boydaihungst/simple-tag.yazi)
 require("simple-tag"):setup({
 	ui_mode = "text",
 	save_path = os.getenv("HOME") .. "/.local/share/yazi/tags",
 })
+
+-- [Show symlink in status bar](https://yazi-rs.github.io/docs/tips/#symlink-in-status)
+Status:children_add(function(self)
+	local h = self._current.hovered
+	if h and h.link_to then
+		return " -> " .. tostring(h.link_to)
+	else
+		return ""
+	end
+end, 3300, Status.LEFT)
+
+-- [Show user/group of files in status bar](https://yazi-rs.github.io/docs/tips/#user-group-in-status)
+Status:children_add(function()
+	local h = cx.active.current.hovered
+	if not h or ya.target_family() ~= "unix" then
+		return ""
+	end
+	return ui.Line({
+		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+		":",
+		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
+		" ",
+	})
+end, 500, Status.RIGHT)

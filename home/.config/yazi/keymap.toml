@@ -56,6 +56,31 @@ prepend_keymap = [
     "t",
     "f",
   ], run = "plugin simple-tag -- filter", desc = "Filter files/folders by a tag (press any key)" },
+  { on = [
+    "t",
+    "s",
+    "r",
+  ], run = "plugin simple-tag -- replace-select", desc = "replace-select" },
+  { on = [
+    "t",
+    "s",
+    "u",
+  ], run = "plugin simple-tag -- unite-select", desc = "unite-select" },
+  { on = [
+    "t",
+    "s",
+    "i",
+  ], run = "plugin simple-tag -- intersect-select", desc = "intersect-select" },
+  { on = [
+    "t",
+    "s",
+    "s",
+  ], run = "plugin simple-tag -- subtract-select", desc = "subtract-select" },
+  { on = [
+    "t",
+    "s",
+    "e",
+  ], run = "plugin simple-tag -- exclude-select", desc = "exclude-select" },
 
   # disable keymaps
   { on = [

@@ -2,12 +2,12 @@
 
 SFEED_DIR="$HOME/.local/share/sfeed"
 SFEED_FEED_DIR="$SFEED_DIR/feeds"
+SFEED_HTML_DIR="$SFEED_DIR/html"
 SFEED_UNREAD_FILE="$SFEED_DIR/unread"
-SFEED_READING_FILE="$SFEED_DIR/reading"
 SFEED_READ_FILE="$SFEED_DIR/read"
 
 usage() {
-  echo "usage: $(basename $0) [get|browser|read|find]"
+  echo "usage: $(basename "$0") [get|browser|find]"
 }
 
 filter_unread() {
@@ -20,16 +20,16 @@ filter_unread() {
       fname = FILENAME
       sub(".*/", "", fname)
       $2 = "[" fname "] " $2
-      new = $1
+      out = $1
       for (i = 2; i <= NF; i++) {
-        new = new "\t" $i
+        out = out "\t" $i
       }
-      print new
+      print out
     }
   ' "$SFEED_READ_FILE" "$SFEED_FEED_DIR"/* >"$SFEED_UNREAD_FILE"
 }
 
-generate_html() {
+generate_html_and_markread() {
   cat <<EOF
 <!DOCTYPE html>
 <html lang="ja">
@@ -41,7 +41,7 @@ generate_html() {
 <body>
 <ul class="feed">
 EOF
-  awk -F'\t' '
+  awk -F'\t' -v read="$SFEED_READ_FILE" '
     {
       cmd = "date -d @" $1 " +\"%Y-%m-%d %H:%M\""
       cmd | getline t
@@ -50,8 +50,9 @@ EOF
       printf "    <time class=\"date\">%s</time>\n", t
       printf "    <a class=\"title\" href=\"%s\">%s</a>\n", $3, $2
       printf "  </li>\n"
+      print $3 >> read
     }
-  ' "$SFEED_READING_FILE"
+  ' "$SFEED_UNREAD_FILE"
   cat <<EOF
 </ul>
 </body>
@@ -60,31 +61,23 @@ EOF
 }
 
 open_with_browser() {
-  cp "$SFEED_UNREAD_FILE" "$SFEED_READING_FILE"
+  mkdir -p "$SFEED_HTML_DIR"
   timestamp=$(date +%Y%m%d%H%M%S)
-  html_file="$SFEED_DIR/html/sfeed-${timestamp}.html"
-  generate_html >${html_file}
-  $BROWSER ${html_file}
-}
-
-markread() {
-  cut -f3 $SFEED_READING_FILE >>$SFEED_READ_FILE
-  sort -u $SFEED_READ_FILE -o $SFEED_READ_FILE
+  html_file="$SFEED_HTML_DIR/sfeed-${timestamp}.html"
+  generate_html_and_markread >"$html_file"
+  sort -u "$SFEED_READ_FILE" -o "$SFEED_READ_FILE"
+  "$BROWSER" "$html_file"
 }
 
 find() {
   if [ -z "$1" ]; then
-    echo "usage: $(basename $0) find url"
+    echo "usage: $(basename "$0") find url"
     exit 1
   fi
   curl -sL "$1" | sfeed_web | cut -f1
-
 }
 
-if [ -z "$1" ]; then
-  usage
-  exit 1
-fi
+[ -z "$1" ] && usage && exit 1
 
 case "$1" in
 get)
@@ -94,11 +87,6 @@ get)
 browser)
   filter_unread
   open_with_browser
-  markread
-  filter_unread
-  ;;
-read)
-  markread
   filter_unread
   ;;
 find)

@@ -8,7 +8,7 @@ local function tab_title(tab)
 	if title and #title > 0 then
 		return title
 	end
-	-- Otherwise, use the default title.
+	-- otherwise, use the default title
 	return tab.tab_index + 1 .. ""
 end
 
@@ -100,6 +100,7 @@ return {
 	},
 	leader = { key = "q", mods = "CTRL", timeout_milliseconds = 1000 },
 	keys = {
+		{ key = "q", mods = "LEADER | CTRL", action = act.SendKey({ key = "q", mods = "CTRL" }) },
 		{ key = "c", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
 		{ key = "q", mods = "LEADER", action = act.CloseCurrentTab({ confirm = true }) },
 		{ key = "n", mods = "LEADER", action = act.ActivateTabRelative(1) },
