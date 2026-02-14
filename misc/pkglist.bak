@@ -12,6 +12,8 @@ base
 base-devel
 bat
 betterdiscordctl
+bluez
+bluez-utils
 bottom
 chromium
 cifs-utils
@@ -37,6 +39,7 @@ feh
 freerdp
 fzf
 genymotion
+gimp
 git
 git-crypt
 github-cli
@@ -76,7 +79,6 @@ nsxiv
 obsidian
 openssh
 openvpn-update-resolv-conf-git
-osu-lazer-bin
 pfetch
 picom
 pipewire
@@ -120,7 +122,6 @@ vulkan-intel
 vulkan-radeon
 wezterm
 wget
-winboat-bin
 wireplumber
 xclip
 xdg-utils
@@ -135,6 +136,7 @@ yay
 yazi
 yt-dlp
 zathura-pdf-poppler
+zbar
 zen-browser-bin
 zip
 zoxide

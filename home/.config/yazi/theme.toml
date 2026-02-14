@@ -25,16 +25,6 @@ sep_right = { open = "", close = "" }
 
 [filetype]
 rules = [
-  # Images
-  # { mime = "image/*", fg = "yellow" },
-  # Media
-  # { mime = "{audio,video}/*", fg = "magenta" },
-  # Archives
-  # { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "red" },
-  # Documents
-  # { mime = "application/{pdf,doc,rtf}", fg = "cyan" },
-  # Empty files
-  # { mime = "inode/empty", fg = "red" },
   # Special files
   { url = "*", is = "orphan", fg = "red" },
   { url = "*", is = "exec", fg = "green" },
@@ -45,3 +35,10 @@ rules = [
   { url = "*", fg = "white" },
   { url = "*/", fg = "blue", bold = true },
 ]
+
+[icon]
+globs = []
+dirs = []
+files = []
+exts = []
+conds = []

@@ -1,8 +1,8 @@
 daemonize = true
 pid_file = "/run/user/1000/clipcatd.pid"
-max_history = 100000
+max_history = 100
 synchronize_selection_with_clipboard = false
-history_file_path = ""
+history_file_path = "/home/frla/.cache/clipcat/"
 snippets = []
 
 [log]

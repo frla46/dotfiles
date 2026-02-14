@@ -249,8 +249,8 @@ default_border none
 # autostart
 exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
 exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -x; redshift -b 1.0:0.8 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id clipcatd
 exec_always --no-startup-id xset r rate 180 50
-exec --no-startup-id clipcatd
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id feh --bg-scale ~/dotfiles/misc/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
 exec --no-startup-id unclutter -idle 1 -root

@@ -9,7 +9,7 @@ all: yay install-minimal install-core install-extra ## deploy dotfiles
 install-minimal: git neovim wezterm zsh ## install minimal packages
 install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd hackgen i3 jq lazygit libreoffice maim mimeapps mpv noto-fonts nsxiv obsidian playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
 install-extra: ani-cli aria2 chromium downgrade freerdp genymotion gimp hugo lostfiles nord-theme pfetch rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
-system-configs: locale resolved ## set system configs
+system-configs: locale resolved zram-generator ## set system configs
 
 ani-cli:
 	$(YAY) $@
@@ -308,6 +308,12 @@ zen-browser:
 
 zoxide:
 	$(YAY) $@
+
+zram-generator:
+	$(YAY) $@
+	echo "[zram0]" | sudo tee /etc/systemd/zram-generator.conf
+	echo "zram-size = ram / 2" | sudo tee -a /etc/systemd/zram-generator.conf
+	echo "compression-algorithm = zstd" | sudo tee -a /etc/systemd/zram-generator.conf
 
 zsh:
 	$(YAY) $@ sheldon starship

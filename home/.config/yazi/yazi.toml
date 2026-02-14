@@ -11,32 +11,19 @@ image_filter = "nearest"
 image_quality = 50
 
 [opener]
-text = [
-  { run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true, for = "unix" },
-]
-image = [
-  { run = 'nsxiv_rifle.sh "$@"', desc = "nsxiv", orphan = true, for = "unix" },
-]
+image = [{ run = 'nsxiv_rifle.sh "$@"', desc = "nsxiv", orphan = true }]
 video = [
-  { run = 'mpv "$@"', desc = "mpv", orphan = true, for = "unix" },
-  { run = 'mpv --loop-file "$@"', desc = "mpv (loop)", orphan = true, for = "unix" },
+  { run = 'mpv "$@"', desc = "mpv", orphan = true },
+  { run = 'mpv --loop-file "$@"', desc = "mpv (loop)", orphan = true },
 ]
-pdf = [{ run = 'zathura "$@"', desc = "zathura", orphan = true, for = "unix" }]
-office = [
-  { run = 'libreoffice "$@"', desc = "libreoffice", orphan = true, for = "unix" },
-]
-extract = [
-  { run = 'ya pub extract --list "$@"', desc = "extract", for = "unix" },
-]
-html = [
-  { run = '${BROWSER:-firefox} "$@"', desc = "$BROWSER", block = true, for = "unix" },
-]
+pdf = [{ run = 'zathura "$@"', desc = "zathura", orphan = true }]
+office = [{ run = 'libreoffice "$@"', desc = "libreoffice", orphan = true }]
+extract = [{ run = 'ya pub extract --list "$@"', desc = "extract" }]
+html = [{ run = '${BROWSER:-firefox} "$@"', desc = "$BROWSER", orphan = true }]
+text = [{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true }]
 
 [open]
 rules = [
-  { mime = "{text/*,inode/empty,application/json,application/javascript}", use = [
-    "text",
-  ] },
   { mime = "image/*", use = [
     "image",
   ] },
@@ -53,7 +40,11 @@ rules = [
     "extract",
   ] },
   { mime = "text/html", use = [
+    "text",
     "html",
+  ] },
+  { mime = "{text/*,inode/empty,application/json,application/javascript}", use = [
+    "text",
   ] },
 ]
 
