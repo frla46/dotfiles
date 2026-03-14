@@ -68,6 +68,7 @@ maim
 man-db
 mpv-mpris
 neovim
+noisetorch
 nordic-darker-theme
 nordzy-cursors
 nordzy-icon-theme
@@ -79,6 +80,7 @@ nsxiv
 obsidian
 openssh
 openvpn-update-resolv-conf-git
+osu-lazer-bin
 pfetch
 picom
 pipewire
@@ -90,6 +92,7 @@ procs
 protontricks
 protonup-qt
 pulsemixer
+pwndbg
 rclone
 redshift
 reflector

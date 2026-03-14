@@ -165,13 +165,20 @@ mode $screenshot {
 bindsym $mod+n exec --no-startup-id dunstctl close-all
 bindsym $mod+shift+n exec --no-startup-id ~/.config/i3/toggle_dunst_pause.sh
 
-# output monitor
-set $monitor "monitor [s: single, d: double]"
-bindsym $mod+m mode $monitor
-mode $monitor {
-  bindsym s exec --no-startup-id xrandr --output eDP --off; mode "default"
-  bindsym d exec --no-startup-id xrandr --output eDP --auto --primary; mode "default"
+# display output
+set $display "display [1-3: output, h: bright down, l: bright up, j: temp up, k: temp down, m: toggle redshift]"
+bindsym $mod+m mode $display
+mode $display {
+  bindsym 1 exec --no-startup-id xrandr --output eDP --auto --primary --output HDMI-A-0 --off; mode "default"
+  bindsym 2 exec --no-startup-id xrandr --output HDMI-A-0 --auto --primary --output eDP --off; mode "default"
+  bindsym 3 exec --no-startup-id xrandr --output eDP --auto --primary --output HDMI-A-0 --auto --right-of eDP; mode "default"
+  bindsym l exec --no-startup-id ~/.config/i3/redshift.sh bright-up 0.1
+  bindsym h exec --no-startup-id ~/.config/i3/redshift.sh bright-down 0.1
+  bindsym k exec --no-startup-id ~/.config/i3/redshift.sh temp-up 500
+  bindsym j exec --no-startup-id ~/.config/i3/redshift.sh temp-down 500
+  bindsym m exec --no-startup-id pkill -USR1 '^redshift$' # toggle enable/disable redshift
   bindsym Escape mode "default"
+
 }
 
 # feed
@@ -248,7 +255,7 @@ default_border none
 
 # autostart
 exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
-exec_always --no-startup-id (pgrep redshift && pkill redshift); redshift -x; redshift -b 1.0:0.8 -t 5000:3000 -l 36:140 -r
+exec_always --no-startup-id ~/.config/i3/redshift.sh init
 exec_always --no-startup-id clipcatd
 exec_always --no-startup-id xset r rate 180 50
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
@@ -264,7 +271,6 @@ bindsym $mod+w exec --no-startup-id rofi -show window
 bindsym $mod+c exec clipcat-menu insert
 bindsym $mod+o exec clipcat-menu remove
 bindsym $mod+shift+c exec --no-startup-id ~/bin/snippets.sh
-bindsym $mod+shift+b exec --no-startup-id pkill -USR1 '^redshift$' # toggle enable/disable redshift
 bindsym $mod+e exec --no-startup-id rofi -modi emoji -show emoji
 bindsym $mod+d exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort
 

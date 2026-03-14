@@ -287,7 +287,7 @@ yay: ## install yay
 	$(YAY) yay reflector
 	sudo reflector -c jp -p https,http -l 5 --save /etc/pacman.d/mirrorlist
 	sudo sed -i 's/#Color/Color/' /etc/pacman.conf
-	sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
+	# sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 yazi:
 	$(YAY) $@ ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick xclip

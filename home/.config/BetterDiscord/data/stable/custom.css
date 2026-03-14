@@ -7,6 +7,11 @@ div[id^="popout_"]:has(img[class$="-gameServerHostingImage"]) {
   display: none;
 } */
 
+/* You have X days left to try Nitro banner (January 2026) */
+div[class^="notice"]:has(path[d^="M16.23 12c0 1.29-.95 2.25-2.22 2.25A2.18"]) {
+  display: none;
+}
+
 /* Nitro, Shop, and Quests buttons */
 ul[role="list"] {
   div:has([data-list-item-id$="__nitro"]) ,
@@ -16,13 +21,23 @@ ul[role="list"] {
   }
 }
 
+/* Valentines 2026 gift button popup */
+div[id^="popout_"]:has(img[src="https://cdn.discordapp.com/assets/content/5dfef8152e15e88d17a282438dd8b5ebdc6d136928da827d178d2f2371b196b3.png"]) {
+  display: none;
+}
+
 /* Gift button */
-div[class^=buttons__] > div[class^="button__"]:not(div[class^="expression-picker-chat-input-button"]):not(div[class$="app-launcher-entrypoint"]) {
+div[class^="channelBottomBarArea"] div[class^="buttons_"] > div:not(div[class^="expression-picker-chat-input-button"]):not(div[class$="app-launcher-entrypoint"]):has(div[class^="lottieIcon_"]) {
   display: none;
 }
 
 /* Nitro upsell banner in emoji picker */
 div[class^="emojiPicker_"] div[class^="upsellContainer__"] {
+  display: none;
+}
+
+/* Super reaction button in emoji picker */
+#emoji-picker-tab-panel > div > div:has(#burst-reaction-toggle-button) {
   display: none;
 }
 
@@ -54,17 +69,21 @@ div[class$="-interactive"] > div > div[class$="-inset"]:has(img[src*="/quests/"]
   display: none;
 } */
 
-/* Nitro WARP+ ad in untrusted links modal TODO Spawn an untrusted link modal
-div[class*="-linkCalloutContainer"] ~ div[class*="-container"]:has(div[class$="-ctaContainer"]) {
+/* Nitro WARP+ ad in untrusted links modal */
+div[class^="linkCalloutContainer_"] ~ div[class^="container__"]:has(div[class^="ctaContainer__"]) {
   display: none;
-} */
+}
+
+/* Quests icon next to games in members list */
+svg[class^="questsIcon_"] {
+  display: none;
+}
 
 /* Settings pages */
 /* WARP+ Cloudflare sponsorship */
-/* TODO Is this gone?
 div[data-settings-sidebar-item="private_browsing_panel"] {
   display: none;
-} */
+}
 
 /* Billing settings */
 div[data-list-id="settings-sidebar"] ul:has(div[data-settings-sidebar-item="nitro_panel"]) {
@@ -77,7 +96,7 @@ div[class^="settingsPage_"] div[class^="container__"]:has(div[class^="artContain
 }
 
 /* Avatar decoration, nameplate, and profile effect settings */
-div[class^=profileCustomizationSection__] > div[class^=baseLayout__] > div[class^="formContent__"] > div[class^=sectionsContainer_] {
+div[class^=profileCustomizationSection__] div[class^=sectionsContainer_] {
   div[class^=customizationSection_]:nth-of-type(5) ,
   div[class^=customizationSection_]:nth-of-type(6) ,
   div[class^=customizationSection_]:nth-of-type(7)
@@ -94,6 +113,9 @@ div[class^="imageSelectionSection_"] {
   li:has(div[class^="gifGrid_"]) ,
   ~ div[class^="upsellContainer__"]
   { display: none; }
+}
+div[class^="modalContent__"] div[class^="upsellContainer__"] {
+  display: none;
 }
 
 /* Profile settings bottom upsell ("Try Nitro!" preview) */
@@ -150,6 +172,11 @@ div[class^="sidebarList__"] ul > div[class^="container__"]:has(div[class^="progr
   display: none;
 }
 
+/* Server tag badge packs for boosts ad */
+div[id^="popover"]:has(img[src="https://cdn.discordapp.com/assets/content/196e929b196180fe33dc1fca35f40478270ff03434e24f72ca3cc64ee94222b4.png"]) {
+  display: none;
+}
+
 /* Nitro Boosted guild icon */
 div[class^=guildIconContainer__]:has(svg[class^=boostedGuildIconGem__]) {
   display: none;
@@ -194,11 +221,7 @@ div[class^="popoutContainer__"]:has(div[class^="roleIconContainer__"]) button {
 }
 
 /* UI top bar */
-div[class*="-layer"] > div[class*="-container"] > div[class*="-base"] > div[class*="-bar"]:has(div[class*="-title"]) {
-  display: none;
-}
-
-nav[class*=-wrapper]:has(div[class*="-unreadMentionsIndicatorTop"]) {
+nav[class^=wrapper_]:has(div[class^="unreadMentionsIndicatorTop_"]) {
   margin-top: 0.9em;
 }
 
@@ -206,29 +229,34 @@ nav[class*=-wrapper]:has(div[class*="-unreadMentionsIndicatorTop"]) {
   --custom-app-top-bar-height: 0.1px;
 }
 
-/* Activity list */
-h3[class*=-membersGroup]:has(span[role="button"]) ,
-div[class*=-container]>aside[class*=-membersWrap]>div[class*=-members]>div[role^=list]>div:has(div[class*="-openOnHover"]) {
+div[class^="base__"] > div[class^="bar_"] {
   display: none;
 }
 
+/* Activity list */
+div[class^="members_"]  {
+  h3:has(span[role="button"]) ,
+  div:not([class])
+  { display: none; }
+}
+
 /* "Now playing" sidebar in friends list */
-div[class*=nowPlayingColumn] {
+div[class^=nowPlayingColumn__] {
   display: none;
 }
 
 /* Download Apps button in web app */
-div[class*=-listItem]:has(div[data-list-item-id=guildsnav___app-download-button]) {
+nav[class^="wrapper_"] div[class^=listItem__]:has(div[data-list-item-id=guildsnav___app-download-button]) {
   display: none;
 }
 
 /* Remove game collection buttons */
-div[class$="-widgetPreviews"],[class$="user-profile-popout"] section[class$="-container"]:has(div[class$="-icons"]) {
+div[class^="widgetPreviews__"],[class$="user-profile-popout"] section[class^="container__"]:has(div[class^="icons_"]) {
   display: none;
 }
 
 /* Chat box sticker button */
-div[class^=expression-picker-chat-input-button]:has(div[class*=-stickerButton]) {
+div[class^=expression-picker-chat-input-button]:has(div[class*=stickerButton__]) {
   display: none;
 }
 
@@ -239,115 +267,117 @@ div[class~="app-launcher-entrypoint"] {               /* In-chat app catalogue  
 }
 
 /* Server tag button in guild popout list */
-  #guild-header-popout > div {
-  div > div[id="guild-header-popout-guild-tag"] { display: none; }
-  div + div[role="separator"] { display: none; }
-  /* Removes separator under "server tag" */
-  /* Because it's assumed you use Discord Adblock as well. */
+#guild-header-popout-guild-tag {
+  display: none;
 }
 
 /* Emoji selector sticker tab */
 #sticker-picker-tab {
-display: none;
+  display: none;
+}
+
+/* Clean up "server" invites */
+div[class^="guildInviteContainer"] div[class^="container"] {
+  &:has(div[class^="gameIcon"]),
+  &:has(div[class^="trait"])
+  { display: none; }
 }
 
 /* Avatar decorations */
-svg[class*=-avatarDecoration] ,
-img[class*=-avatarDecoration] {
+svg[class^="avatarDecorationContainer__"] ,
+img[class^="avatarDecoration_"] {
   display: none;
 }
 
 /* Profile decorations */
-div[class*=profileEffects] {
+div[class^=profileEffects__] {
   display: none;
 }
 
 /* Animated nameplate */
-div[class*="-nameplated"] > div[class*="-container"]:has(img[src*="/nameplates/"],[class*="-videoContainer"]) {
-  display: none;
-}
-li[class*="-dm"] > div[class*="-interactive"] > div[class*="-container"]:has(img[src*="/nameplates/"],[class*="-videoContainer"]) {
-  display: none;
+li[class*="dm__"] , div[class^="member__"] {
+  div[class^="container__"]:has([src*="/nameplates/"])
+  { display: none; }
 }
 
-/* Community badge... thing */
-span[class*="-chipletContainerInner"]:has(img[class*="-badge"]) ,
-div[class*="-tags"] > span[class*="-guildTagContainer"] {
+/* Community badges */
+span[class^="chipletContainerInner__"]:has(img[class^="badge__"]) ,
+span[class^="guildTagContainer__"] {
   display: none;
 }
 
 /* Profile tag nag ("You can now wear a tag from...") */
-div[id^="popout_"]:has(img[src*="/clan-badges/"]):has(div[class$="-closeButton"]) {
+div[id^="popout_"]:has(img[src*="/clan-badges/"]):has(div[class^="closeButton_"]) {
   display: none;
 }
 
 /* Custom status reaction buttons */
-div[class~="user-profile-modal-v2"] div[class*="-statusPopover"] ,
-div[class~="user-profile-popout"] div[class*="-statusPopover"] {
+div[class~="user-profile-modal-v2"] div[class*="statusPopover__"] ,
+div[class~="user-profile-popout"] div[class*="statusPopover__"] {
   display: none;
 }
 
 /* Popout profile message box */
-div[class$="user-profile-popout"] div[class$="-footer"]:has(div[role="textbox"]) {
+div[class$="user-profile-popout"] div[class^="footer__"]:has(div[role="textbox"]) {
+  display: none;
+}
+
+/* Remove "Find or start conversation" button in DM list */
+nav[class^=privateChannels_] > [class^=searchBar_] {
   display: none;
 }
 
 /* Hide ENTIRE "servers" bar */
-nav[class*=-wrapper]:has(div[class*="-unreadMentionsIndicatorTop"]) {
+/* nav[class*=guilds__] {
   display: none;
-}
+} */
 
 /* "Discover" button */
-div[class*=-itemsContainer]>div[class*=-stack]>div[class*=-listItem]:has(div[data-list-item-id=guildsnav___guild-discover-button]) {
+div[class^=listItem__]:has(div[data-list-item-id=guildsnav___guild-discover-button]) {
   display: none;
 }
 
 /* Server boost elements */
 /* Boost settings */
-ul[class*="-content"] > li:has([data-list-item-id^="channels___skill-trees-"]) {
+ul[class^="content_"] > li:has([data-list-item-id^="channels___skill-trees-"]) {
   display: none;
 }
 
 /* "Events" button at the top of channel list */
-#channels>ul>li:has([id^=upcoming-events-]) {
+#channels li:has([id^=upcoming-events-]) {
   display: none;
 }
 
 /* Username gradients in boosted guilds */
-span[class*="-usernameGradient"] {
+span[class*="usernameGradient_"] {
   -webkit-text-fill-color: unset;
   background: none;
   color: var(--custom-gradient-color-1);
 }
 
-span[class*="-nameGlow"] {
-  display: none;
-}
-
-/* Quests icon */
-svg[class^=questsIcon_] {
+span[class^="nameGlow__"] {
   display: none;
 }
 
 /* Remove suggested activities in-call */
 /* Removing the entire button will also get rid of this. */
 /* I recommend using only one of the two rules. */
-div[class$="-clickTrapContainer"] > div[id^="popout_"]:has(div[class$="-activityContainer"]) {
+div[class^="clickTrapContainer__"] > div[id^="popout_"]:has(div[class^="activityContainer__"]) {
   display: none;
 }
 
 /* In-call activities buttons */
-div[class*="-actionButtons"] > button:has(g[transform="matrix(2.700000047683716,0,0,2.700000047683716,-79.60000610351562,-81.35110473632812)"]) {
+div[class^="actionButtons_"] > button:has(g[transform="matrix(2.700000047683716,0,0,2.700000047683716,-79.60000610351562,-81.35110473632812)"]) {
   display: none; /* Bottom left in-call activities button */
 }
-div[class*="-buttonSection"] > div[class*="-buttonContainer"]:has(g[transform="matrix(2.700000047683716,0,0,2.700000047683716,-79.60000610351562,-81.35110473632812)"]) {
+div[class^="buttonSection__"] > div[class^="buttonContainer__"]:has(g[transform="matrix(2.700000047683716,0,0,2.700000047683716,-79.60000610351562,-81.35110473632812)"]) {
   display: none; /* In-call users-screen activities button */
 }
 
 /* In-call soundboard buttons */
-div[class*="-actionButtons"] > span:has(g[transform="matrix(0.03999999910593033,0,0,0.03999999910593033,0,0)"]) {
+div[class^="actionButtons_"] > span:has(g[transform="matrix(0.03999999910593033,0,0,0.03999999910593033,0,0)"]) {
   display: none; /* Bottom left in-call soundboard button */
 }
-div[class*="-buttonSection"] > div[class*="-attachedCaretButtonContainer"]:has(g[transform="matrix(25,0,0,25,299.98699951171875,300.0119934082031)"]) {
+div[class^="buttonSection__"] > div[class^="attachedCaretButtonContainer_"]:has(g[transform="matrix(25,0,0,25,299.98699951171875,300.0119934082031)"]) {
   display: none; /* In-call users-screen soundboard button */
 }
