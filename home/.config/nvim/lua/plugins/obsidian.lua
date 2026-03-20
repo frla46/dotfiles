@@ -39,7 +39,9 @@ return {
 			date_format = "%Y-%m-%d",
 			time_format = "%H:%M",
 		},
-		preferred_link_style = "markdown",
+		link = {
+			style = "markdown",
+		},
 		attachments = {
 			folder = "assets",
 			---@return string

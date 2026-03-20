@@ -24,11 +24,11 @@ text = [{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true }]
 
 [open]
 rules = [
+  { mime = "{{audio,video}/*,image/gif}", use = [
+    "video",
+  ] },
   { mime = "image/*", use = [
     "image",
-  ] },
-  { mime = "{audio,video}/*", use = [
-    "video",
   ] },
   { mime = "application/pdf", use = [
     "pdf",
