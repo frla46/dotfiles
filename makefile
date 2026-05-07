@@ -3,13 +3,14 @@
 MAKEFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 DOTFILES_DIR := $(abspath $(dir $(MAKEFILE_PATH)))
 HOME_SRC_DIR := $(DOTFILES_DIR)/home
+PACMAN := sudo pacman -S --needed --noconfirm
 YAY := yay -S --needed --noconfirm
 
 all: yay install-minimal install-core install-extra ## deploy dotfiles
 install-minimal: git neovim wezterm zsh ## install minimal packages
-install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd hackgen i3 jq lazygit libreoffice maim mimeapps mpv noto-fonts nsxiv obsidian playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam thunar ufw unclutter uv vim vnstat xclip xinit yazi zathura zen-browser zoxide ## install packages
-install-extra: ani-cli aria2 chromium downgrade freerdp genymotion gimp hugo lostfiles nord-theme pfetch rust vdhcoapp virtualbox yt-dlp ## install extra packages (long build time or occationally used)
-system-configs: locale resolved zram-generator ## set system configs
+install-core: at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd gammastep hackgen imv jq lazygit libreoffice man mimeapps mpv noto-fonts obsidian openvpn playerctl procs pulsemixer rclone restic ripgrep rofi sfeed steam sway thunar ufw uv vim wl-clipboard xinit yazi zathura zen-browser zoxide ## install packages
+install-extra: ani-cli aria2 chromium downgrade freerdp genymotion ghidra gimp hugo lostfiles netcat nord-theme pfetch pwndbg radere2 rust virtualbox yt-dlp ## install extra packages (long build time or occationally used)
+system-configs: locale zram-generator ## set system configs
 
 ani-cli:
 	$(YAY) $@
@@ -45,10 +46,8 @@ cronie:
 	$(YAY) $@
 	sudo systemctl enable --now cronie
 
-ctf: ghidra netcat pwndbg radare2
-
 discord:
-	$(YAY) $@ better$@ctl
+	$(YAY) $@ better$@ctl noisetorch
 	status_output="$$(betterdiscordctl status 2>/dev/null || true)"; \
 	if echo "$$status_output" | grep -q 'Discord "index.js" injected: no'; then \
 		betterdiscordctl install; \
@@ -85,6 +84,9 @@ fd:
 freerdp:
 	$(YAY) $@
 
+gammastep:
+	$(YAY) $@
+
 genymotion:
 	$(YAY) $@
 
@@ -108,12 +110,18 @@ help: ## show this help
 hugo:
 	$(YAY) $@
 
-i3:
-	$(YAY) $@-wm $@blocks $@lock-color
+imv:
+	$(YAY) $@
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-	rm -rf ${HOME}/.config/$@blocks
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@blocks ${HOME}/.config/$@blocks
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@/imv_rifle.sh ${HOME}/.local/bin/imv_rifle.sh
+
+# i3:
+# 	$(YAY) $@-wm $@blocks $@lock-color
+# 	rm -rf ${HOME}/.config/$@
+# 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+# 	rm -rf ${HOME}/.config/$@blocks
+# 	ln -vsfn ${HOME_SRC_DIR}/.config/$@blocks ${HOME}/.config/$@blocks
 
 jq:
 	$(YAY) $@
@@ -134,8 +142,11 @@ locale:
 lostfiles:
 	$(YAY) $@
 
-maim:
-	$(YAY) $@
+man:
+	$(YAY) $@-db
+
+# maim:
+# 	$(YAY) $@
 
 mimeapps:
 	ln -vsfn ${HOME_SRC_DIR}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
@@ -146,7 +157,7 @@ mpv:
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
 neovim:
-	$(YAY) $@ npm
+	$(YAY) $@ npm luarocks
 	rm -rf ${HOME}/.config/nvim
 	ln -vsfn ${HOME_SRC_DIR}/.config/nvim ${HOME}/.config/nvim
 
@@ -155,17 +166,23 @@ netcat:
 
 nord-theme:
 	$(YAY) $@ nordic-darker-theme nordzy-cursors nordzy-icon-theme fcitx5-nord
+	gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+	gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
+	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
 noto-fonts:
 	$(YAY) $@-cjk $@-emoji $@-extra
 
-nsxiv:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@/nsxiv_rifle.sh ${HOME}/.local/bin/nsxiv_rifle.sh
+# nsxiv:
+# 	$(YAY) $@
+# 	rm -rf ${HOME}/.config/$@
+# 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+# 	ln -vsfn ${HOME_SRC_DIR}/.config/$@/nsxiv_rifle.sh ${HOME}/.local/bin/nsxiv_rifle.sh
 
 obsidian:
+	$(YAY) $@
+
+openvpn:
 	$(YAY) $@
 
 pfetch:
@@ -199,15 +216,15 @@ rclone_pull: ## download from cloud
 	$(YAY) $@
 	rclone sync gdrive:sync ~/sync/ --progress
 
-redshift:
-	$(YAY) $@
+# redshift:
+# 	$(YAY) $@
 
-resolved:
-	sudo systemctl disable --now systemd-resolved
-	@if [ -L /etc/resolv.conf ] && [ ! -e /etc/resolv.conf ]; then \
-		sudo rm -f /etc/resolv.conf; \
-	fi
-	echo 'nameserver 1.1.1.1' | sudo tee /etc/resolv.conf
+# resolved:
+# 	sudo systemctl disable --now systemd-resolved
+# 	@if [ -L /etc/resolv.conf ] && [ ! -e /etc/resolv.conf ]; then \
+# 		sudo rm -f /etc/resolv.conf; \
+# 	fi
+# 	echo 'nameserver 1.1.1.1' | sudo tee /etc/resolv.conf
 
 restic:
 	$(YAY) $@
@@ -225,6 +242,7 @@ rofi:
 
 rust:
 	$(YAY) $@up $@-analyzer
+	rustup default stable
 
 sfeed:
 	$(YAY) $@
@@ -232,7 +250,14 @@ sfeed:
 	ln -vsfn ${HOME_SRC_DIR}/.$@ ${HOME}/.$@
 
 steam:
+	sudo sed -i '/^#\[multilib\]/,/^#Include = \/etc\/pacman.d\/mirrorlist/ s/^#//' /etc/pacman.conf
 	$(YAY) $@ lib32-systemd protonup-qt
+
+sway:
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+	rm -rf ${HOME}/.config/$@blocks
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@blocks ${HOME}/.config/$@blocks
 
 thunar:
 	$(YAY) $@
@@ -243,8 +268,8 @@ ufw:
 	sudo ufw enable
 	sudo systemctl enable --now ufw
 
-unclutter:
-	$(YAY) $@
+# unclutter:
+# 	$(YAY) $@
 
 unlock: ## unlock encrypted files
 	$(YAY) git-crypt
@@ -253,31 +278,32 @@ unlock: ## unlock encrypted files
 uv:
 	$(YAY) $@
 
-vdhcoapp:
-	$(YAY) $@-bin
-
 vim:
 	$(YAY) $@
 
 virtualbox:
 	$(YAY) $@
 
-vnstat:
-	$(YAY) $@
+# vnstat:
+# 	$(YAY) $@
 
 wezterm:
 	$(YAY) $@
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
-xclip:
+wl-clipboard:
 	$(YAY) $@
+
+# xclip:
+# 	$(YAY) $@
 
 xinit:
 	ln -vsfn ${HOME_SRC_DIR}/.xinitrc ${HOME}/.xinitrc
 	ln -vsfn ${HOME_SRC_DIR}/.Xresources ${HOME}/.Xresources
 
 yay: ## install yay
+	$(PACMAN) base-devel git
 	@if ! which yay >/dev/null 2>&1; then \
 		YAY_TEMP="$$(mktemp -d)"; \
 		git clone --depth=1 https://aur.archlinux.org/yay.git "$$YAY_TEMP"; \
@@ -290,7 +316,7 @@ yay: ## install yay
 	# sudo sed -i 's/#ParallelDownloads/ParallelDownloads/' /etc/pacman.conf
 
 yazi:
-	$(YAY) $@ ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick xclip
+	$(YAY) $@ ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick wl-clipboard
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 	ya pkg upgrade
@@ -317,10 +343,11 @@ zram-generator:
 
 zsh:
 	$(YAY) $@ sheldon starship
-	chsh -s $(shell which zsh)
+	sudo chsh -s $(shell which zsh)
 	ln -vsfn ${HOME_SRC_DIR}/.zshenv ${HOME}/.zshenv
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 	rm -rf ${HOME}/.config/sheldon
 	ln -vsfn ${HOME_SRC_DIR}/.config/sheldon ${HOME}/.config/sheldon
 	ln -vsfn ${HOME_SRC_DIR}/.config/starship.toml ${HOME}/.config/starship.toml
+

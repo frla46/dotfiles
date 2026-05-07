@@ -1,5 +1,4 @@
-# i3 config file (v4)
-# https://i3wm.org/docs/userguide.html
+# [Home · swaywm/sway Wiki](https://github.com/swaywm/sway/wiki)
 
 # mod key
 set $mod Mod1
@@ -38,7 +37,7 @@ bindsym $mod+q kill
 bindsym --release button2 kill
 
 # restart
-bindsym $mod+shift+r restart
+bindsym $mod+shift+r exec --no-startup-id swaymsg reload
 
 # workspace
 set $ws1 1:
@@ -85,8 +84,8 @@ mode $system {
   bindsym shift+q exec --no-startup-id "systemctl poweroff"; mode "default"
   bindsym shift+r exec --no-startup-id "systemctl reboot"; mode "default"
   bindsym s exec --no-startup-id "systemctl suspend"; mode "default"
-  bindsym l exec --no-startup-id ~/.config/i3/i3lock-color.sh; mode "default"
-  bindsym shift+l exec --no-startup-id "i3-msg exit"; mode "default"
+  bindsym l exec --no-startup-id ~/.config/sway/swaylock.sh; mode "default"
+  bindsym shift+l exec --no-startup-id "swaymsg exit"; mode "default"
   bindsym Escape mode "default"
 }
 
@@ -124,13 +123,11 @@ mode $audio {
   bindsym space exec --no-startup-id playerctl play-pause
   bindsym p exec --no-startup-id playerctl previous
   bindsym n exec --no-startup-id playerctl next
+  bindsym j exec --no-startup-id playerctl volume 0.1-
+  bindsym k exec --no-startup-id playerctl volume 0.1+
   bindsym h exec --no-startup-id playerctl position 5-
   bindsym l exec --no-startup-id playerctl position 5+
   bindsym Escape mode "default"
-
-  # NOTE: did not work
-  # bindsym j exec --no-startup-id playerctl volume 0.1-
-  # bindsym k exec --no-startup-id playerctl volume 0.1+
 }
 
 # resize
@@ -151,34 +148,27 @@ mode "resize" {
 
 # screenshot
 set $screenshot "screenshot"
-set $delay 0.01
 bindsym $mod+shift+s mode $screenshot
 mode $screenshot {
-  bindsym a exec --no-startup-id maim -d $delay | xclip -sel c -t image/png; mode "default"
-  bindsym s exec --no-startup-id maim -s | xclip -sel c -t image/png;  mode "default"
-  bindsym shift+a exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -d $delay; mode "default"
-  bindsym shift+s exec --no-startup-id maim -d $delay ~/img/screenshot/$(date +%Y%m%d%H%M%S).png -s; mode "default"
+  bindsym a exec grim - | wl-copy; mode "default"
+  bindsym s exec grim -g "$(slurp)" - | wl-copy; mode "default"
+  bindsym shift+a exec grim ~/img/screenshot/$(date +%Y%m%d%H%M%S).png; mode "default"
+  bindsym shift+s exec grim -g "$(slurp)" ~/img/screenshot/$(date +%Y%m%d%H%M%S).png; mode "default"
   bindsym Escape mode "default"
 }
 
 # notify
 bindsym $mod+n exec --no-startup-id dunstctl close-all
-bindsym $mod+shift+n exec --no-startup-id ~/.config/i3/toggle_dunst_pause.sh
+bindsym $mod+shift+n exec --no-startup-id ~/.config/sway/toggle_dunst_pause.sh
 
 # display output
-set $display "display [1-3: output destination, h: bright-, l: bright+, j: temp-, k: temp+, m: toggle redshift]"
+set $display "display [1-2: output destination]"
 bindsym $mod+m mode $display
 mode $display {
-  bindsym 1 exec --no-startup-id xrandr --output eDP --auto --primary --output HDMI-A-0 --off; mode "default"
-  bindsym 2 exec --no-startup-id xrandr --output HDMI-A-0 --auto --primary --output eDP --off; mode "default"
-  bindsym 3 exec --no-startup-id xrandr --output eDP --auto --primary --output HDMI-A-0 --auto --right-of eDP; mode "default"
-  bindsym l exec --no-startup-id ~/.config/i3/redshift.sh bright-up 0.1
-  bindsym h exec --no-startup-id ~/.config/i3/redshift.sh bright-down 0.1
-  bindsym k exec --no-startup-id ~/.config/i3/redshift.sh temp-up 500
-  bindsym j exec --no-startup-id ~/.config/i3/redshift.sh temp-down 500
-  bindsym m exec --no-startup-id pkill -USR1 '^redshift$' # toggle enable/disable redshift
+  bindsym 1 exec --no-startup-id swaymsg output eDP-1 enable && swaymsg output HDMI-A-1 disable; mode "default"
+  bindsym 2 exec --no-startup-id swaymsg output HDMI-A-1 enable && swaymsg output eDP-1 disable; mode "default"
+  bindsym m exec --no-startup-id pkill -USR1 '^gammastep$' # toggle enable/disable gammastep
   bindsym Escape mode "default"
-
 }
 
 # feed
@@ -191,11 +181,21 @@ mode $feed {
 }
 
 
-# disable i3 keybind temporary
+# disable sway keybind temporary
 bindsym $mod+i mode "insert"
 mode "insert" {
   bindsym Escape mode "default"
 }
+
+# input
+input "type:keyboard" {
+    repeat_delay 180
+    repeat_rate 50
+    xkb_options caps:escape
+}
+
+# wallpaper
+output * bg ~/dotfiles/misc/wallpaper/landscape-black-monochrome-night-planet-nature.jpg fill
 
 # color
 set $black #2E3440
@@ -214,7 +214,6 @@ client.urgent           $black $black  $red   $yellow   $blue
 client.background       $black
 
 # statusbar
-
 bar {
   strip_workspace_numbers yes
   tray_output none
@@ -247,22 +246,18 @@ bar {
   }
 }
 
-
 # misc
 gaps inner 10
 focus_follows_mouse no
 default_border none
+seat seat0 hide_cursor 1000
+xwayland enable
 
 # autostart
-exec_always --no-startup-id (pgrep fcitx5 && pkill fcitx5); fcitx5
-exec_always --no-startup-id ~/.config/i3/redshift.sh init
-exec_always --no-startup-id clipcatd
-exec_always --no-startup-id xset r rate 180 50
+exec_always --no-startup-id (pgrep gammastep && pkill gammastep); gammastep -l 36:140 -t 5000:2500 -b 1.0:0.6 -r
+exec --no-startup-id fcitx5 -d
+exec --no-startup-id clipcatd
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id feh --bg-scale ~/dotfiles/misc/wallpaper/landscape-black-monochrome-night-planet-nature.jpg
-exec --no-startup-id unclutter -idle 1 -root
-
-exec --no-startup-id wezterm
 
 # app shortcuts
 bindsym $mod+Return exec --no-startup-id wezterm

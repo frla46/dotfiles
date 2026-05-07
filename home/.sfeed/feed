@@ -167,7 +167,7 @@ find() {
 # Command dispatcher
 case "$1" in
 get)
-  sfeed_update 2>&1 | tee -a "$SFEED_UPDATE_LOGFILE"
+  sfeed_update 2>&1 | tee "$SFEED_UPDATE_LOGFILE"
   ;;
 read)
   markread

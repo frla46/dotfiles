@@ -36,5 +36,5 @@ export GOBIN=~/src/go/bin
 export PATH=$PATH:$GOBIN
 
 ## ani-cli
-export ANI_CLI_DOWNLOAD_DIR=~/dl/
+export ANI_CLI_DOWNLOAD_DIR=/mnt/D/video/anime
 

@@ -82,7 +82,7 @@ end)
 return {
 	font_size = 12.0,
 	color_scheme = "nord",
-	window_background_opacity = 0.7,
+	window_background_opacity = 1.0,
 	use_ime = true,
 	-- disable_default_key_bindings = true,
 	font = wezterm.font_with_fallback({
