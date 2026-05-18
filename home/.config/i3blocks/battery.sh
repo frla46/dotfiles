@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 BAT=/sys/class/power_supply/BAT0
 

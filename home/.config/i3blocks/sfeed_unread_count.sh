@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 count=$(feed show | wc -l)
 echo "󰑫 $count "

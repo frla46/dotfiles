@@ -21,7 +21,7 @@ prepend_keymap = [
 
   # copy file
   { on = "y", run = [
-    '''shell -- printf "file://%s\n" "$@" | xclip -selection clipboard -t text/uri-list''',
+    '''shell -- printf "file://%s\n" "$@" | xclip -sel c -t text/uri-list''',
     "yank",
   ] },
 

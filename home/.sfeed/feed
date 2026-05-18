@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 # Base directory for all sfeed-related data
 SFEED_DIR="$HOME/.local/share/sfeed"
@@ -17,6 +17,10 @@ SFEED_READING_FILE="$SFEED_DIR/reading"
 
 # File containing `sfeed_update` command's output
 SFEED_UPDATE_LOGFILE="$SFEED_DIR/sfeed_update.log"
+
+# Ensure directories and files exist
+mkdir -p "$SFEED_FEED_DIR" "$SFEED_HTML_DIR"
+touch "$SFEED_READ_FILE" "$SFEED_READING_FILE" "$SFEED_UPDATE_LOGFILE"
 
 # Print usage information and exit
 usage() {

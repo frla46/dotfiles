@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/bin/sh
 
 paused=$(dunstctl is-paused)
 if [[ "$paused" = true ]]; then

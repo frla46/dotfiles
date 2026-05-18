@@ -13,8 +13,8 @@ set statusbar-home-tilde true
 # keymaps
 map u scroll half-up
 map d scroll half-down
-map r reload
-map R rotate
+map r rotate rotate-cw
+map R rotate rotate-ccw
 
 ## nord theme
 # page color

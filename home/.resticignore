@@ -6,7 +6,6 @@ ${HOME}/.local/
 ${HOME}/.npm/
 ${HOME}/.rustup/
 ${HOME}/backup/
-${HOME}/src/go/
 .Cache/
 .cache/
 .venv/

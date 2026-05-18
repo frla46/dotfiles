@@ -1,12 +1,12 @@
 [[plugin.deps]]
 use = "boydaihungst/simple-tag"
-rev = "3dc3001"
-hash = "8f3f54bff5cb9b9c5b73f9f72b60f76a"
+rev = "e8be031"
+hash = "50ba6725b86ae62c626d27eb5836decb"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:mime-ext"
-rev = "80cd5b5"
-hash = "48a77ab785d1ee73bc2d7bbe2a4c2090"
+rev = "5d5c480"
+hash = "2678c84a0b3a0b22504e918ccaf99011"
 
 [flavor]
 deps = []

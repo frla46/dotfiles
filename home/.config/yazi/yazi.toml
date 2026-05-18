@@ -53,8 +53,8 @@ rules = [
 
 [plugin]
 prepend_fetchers = [
-  { id = "mime", url = "local://*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext.local", prio = "high" },
-  { id = "mime", url = "remote://*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext.remote", prio = "high" },
-  { id = "simple-tag", url = "*", run = "simple-tag" },
-  { id = "simple-tag", url = "*/", run = "simple-tag" },
+  { id = "mime", url = "local://*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext.local", prio = "high", group = "mime" },
+  { id = "mime", url = "remote://*.{mp3,mp4,png,jpg,jpeg,webp,part*}", run = "mime-ext.remote", prio = "high", group = "mime" },
+  { id = "simple-tag", url = "*", run = "simple-tag", group = "simple-tag" },
+  { id = "simple-tag", url = "*/", run = "simple-tag", group = "simple-tag" },
 ]
