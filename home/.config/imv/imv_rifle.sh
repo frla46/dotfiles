@@ -15,16 +15,20 @@ listfiles() {
 open_img() {
   file="$1"
   shift
-  # only go through listfiles() if the file has a valid img extension
+
   if echo "$file" | is_img_extension >/dev/null 2>&1; then
-    trap 'rm -f $tmp' EXIT
+    trap 'rm -f "$tmp"' EXIT
     count="$(listfiles "///${file%/*}" | grep -nF "$file")"
   fi
+
   if [ -n "$count" ]; then
-    imv -n "${count%%:*}" "$@" $(cat "$tmp")
+    set --
+    while IFS= read -r img; do
+      set -- "$@" "$img"
+    done <"$tmp"
+
+    imv -n "${count%%:*}" "$@"
   else
-    # fallback incase file didn't have a valid extension, or we couldn't
-    # find it inside the list
     imv "$file" "$@"
   fi
 }

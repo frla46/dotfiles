@@ -17,3 +17,5 @@ h = pan -10 0
 l = pan 10 0
 k = pan 0 -10
 j = pan 0 10
+z = prev
+x = next

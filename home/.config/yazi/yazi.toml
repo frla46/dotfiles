@@ -8,12 +8,10 @@ sort_by = "natural"
 [preview]
 cache_dir = "~/.cache/yazi/"
 image_filter = "nearest"
-image_quality = 50
 
 [opener]
 image = [
   { run = 'imv_rifle.sh "$@"', desc = "imv", orphan = true },
-  # { run = 'nsxiv_rifle.sh "$@"', desc = "nsxiv", orphan = true },
 ]
 video = [
   { run = 'mpv "$@"', desc = "mpv", orphan = true },
@@ -27,7 +25,7 @@ text = [{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true }]
 
 [open]
 rules = [
-  { mime = "{{audio,video}/*,image/gif}", use = [
+  { mime = "{{audio,video}/*}", use = [
     "video",
   ] },
   { mime = "image/*", use = [
@@ -46,7 +44,7 @@ rules = [
     "text",
     "html",
   ] },
-  { mime = "{text/*,inode/empty,application/json,application/javascript}", use = [
+  { mime = "{text/*,inode/empty,application/{json,ndjson},application/javascript}", use = [
     "text",
   ] },
 ]

@@ -98,10 +98,8 @@ fi
 
 if [ $(which yay) &> /dev/null ]; then
   alias y='yay'
-  alias yy='yay --noconfirm --needed'
   alias ya='yay -S $(yay -Ssq | fzf -m)'
-  alias yya='yay --noconfirm -S $(yay -Ssq | fzf -m)'
-  alias yr='yay -Rs $(yay -Qeq | fzf -m)'
+  alias yr='yay -Rs --noconfirm $(yay -Qeq | fzf -m)'
   alias yc='yay --noconfirm -Yc && yay --noconfirm -Sc'
 fi
 
@@ -262,6 +260,13 @@ function _my-clear() {
   zle reset-prompt
 }
 zle -N _my-clear
+
+function rgurl() {
+    local url="$1"
+    local encoded
+    encoded=$(python -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=":/#"))' "$url")
+    rg -F -e "$url" -e "$encoded" "${@:2}"
+}
 
 autoload -Uz edit-command-line
 zle -N edit-command-line

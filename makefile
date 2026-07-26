@@ -47,7 +47,7 @@ zsh:
 	ln -vsfn ${HOME_SRC_DIR}/.config/sheldon ${HOME}/.config/sheldon
 	ln -vsfn ${HOME_SRC_DIR}/.config/starship.toml ${HOME}/.config/starship.toml
 
-install: install-minimal at atool bat bottom clipcat conceal cronie discord docker dunst dust eza fcitx5 fd hackgen i3 imv jq lazygit libreoffice man maim mimeapps mpv noto-fonts obsidian openvpn playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam ufw uv vim xclip xinit yazi zathura zen-browser zoxide ## install packages
+install: install-minimal at atool bat bottom clipcat codex conceal cronie discord docker dunst dust eza fcitx5 fd hackgen i3 imv jq lazygit libreoffice man maim markdown mimeapps mpv noto-fonts obsidian openvpn playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam ufw uv xclip xinit yazi zathura zen-browser zoxide ## install packages
 
 at:
 	$(YAY) $@
@@ -67,6 +67,9 @@ clipcat:
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
+codex:
+	$(YAY) openai-$@
+
 conceal:
 	$(YAY) $@-bin
 
@@ -75,11 +78,7 @@ cronie:
 	sudo systemctl enable --now cronie
 
 discord:
-	$(YAY) $@ better$@ctl
-	status_output="$$(betterdiscordctl status 2>/dev/null || true)"; \
-	if echo "$$status_output" | grep -q 'Discord "index.js" injected: no'; then \
-		betterdiscordctl install; \
-	fi
+	$(YAY) $@ better$@ctl noisetorch-bin
 	mkdir -p ${HOME}/.config/BetterDiscord/data/stable/
 	ln -vsfn ${HOME_SRC_DIR}/.config/BetterDiscord/data/stable/custom.css ${HOME}/.config/BetterDiscord/data/stable/custom.css
 
@@ -106,6 +105,9 @@ fd:
 	$(YAY) $@
 	ln -vsfn ${HOME_SRC_DIR}/.ignore ${HOME}/.ignore
 
+flatpak:
+	$(YAY) flatpak flatseal
+
 hackgen:
 	$(YAY) ttf-$@
 
@@ -126,6 +128,9 @@ imv:
 	mkdir -p ${HOME}/.local/bin
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@/imv_rifle.sh ${HOME}/.local/bin/imv_rifle.sh
 
+java:
+	$(YAY) jre-openjdk
+
 jq:
 	$(YAY) $@
 
@@ -145,6 +150,9 @@ man:
 
 maim:
 	$(YAY) $@
+
+markdown:
+	$(YAY) $@lint-cli2 prettier
 
 mimeapps:
 	ln -vsfn ${HOME_SRC_DIR}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
@@ -181,7 +189,7 @@ redshift:
 	$(YAY) $@
 
 restic:
-	$(YAY) $@
+	$(YAY) $@ fuse2
 	ln -vsfn ${HOME_SRC_DIR}/.resticignore ${HOME}/.resticignore
 
 ripgrep:
@@ -199,9 +207,9 @@ sfeed:
 	rm -rf ${HOME}/.$@
 	ln -vsfn ${HOME_SRC_DIR}/.$@ ${HOME}/.$@
 
-steam:
-	sudo sed -i '/^#\[multilib\]/,/^#Include = \/etc\/pacman.d\/mirrorlist/ s/^#//' /etc/pacman.conf
-	$(YAY) $@ lib32-systemd protonup-qt
+steam: flatpak
+	flatpak install flathub com.valvesoftware.Steam
+	$(YAY) protonup-qt
 
 ufw:
 	$(YAY) $@
@@ -210,9 +218,6 @@ ufw:
 	sudo systemctl enable --now ufw
 
 uv:
-	$(YAY) $@
-
-vim:
 	$(YAY) $@
 
 xclip:
@@ -251,9 +256,6 @@ aria2:
 chromium:
 	$(YAY) $@
 
-codex:
-	$(YAY) openai-$@
-
 downgrade:
 	$(YAY) $@
 
@@ -262,9 +264,6 @@ freerdp:
 
 gemini:
 	$(YAY) $@-cli
-
-genymotion:
-	$(YAY) $@
 
 ghidra:
 	$(YAY) $@
@@ -280,6 +279,12 @@ nord-theme:
 	gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
 	gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
 	gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+
+obs:
+	$(YAY) $@-studio
+
+osu:
+	$(YAY) $@-lazer-bin
 
 pfetch:
 	$(YAY) $@-rs
@@ -298,9 +303,15 @@ thunar:
 	$(YAY) $@
 
 unclutter:
-	$(YAY) $@
+	$(YAY) $@-xfixes-git
 
 virtualbox:
+	$(YAY) $@
+
+xclicker:
+	$(YAY) $@
+
+xdotool:
 	$(YAY) $@
 
 yt-dlp:

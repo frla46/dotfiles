@@ -1,15 +1,14 @@
 ${HOME}/.Genymobile/
 ${HOME}/.android/
 ${HOME}/.cargo/
-${HOME}/.clamtk/
 ${HOME}/.local/
 ${HOME}/.npm/
 ${HOME}/.rustup/
+${HOME}/.var/
 ${HOME}/backup/
 .Cache/
 .cache/
 .venv/
-.wine/
 Cache/
 cache/
 target/debug/

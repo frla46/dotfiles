@@ -34,6 +34,7 @@ export GOPATH=~/src/go
 export GOBIN=~/src/go/bin
 export PATH=$PATH:$GOBIN
 
-# ani-cli
+# download anime
 export ANI_CLI_DOWNLOAD_DIR=/mnt/D/video/anime
-
+export ANILIST_USERNAME=frla
+export ANIDL_TITLE_LANGUAGE=native
