@@ -269,7 +269,6 @@ bindsym $mod+Return exec --no-startup-id wezterm
 bindsym $mod+space exec --no-startup-id rofi -show run
 bindsym $mod+w exec --no-startup-id rofi -show window
 bindsym $mod+c exec clipcat-menu insert
-bindsym $mod+o exec clipcat-menu remove
 bindsym $mod+shift+c exec --no-startup-id ~/bin/snippets.sh
 bindsym $mod+e exec --no-startup-id rofi -modi emoji -show emoji
 bindsym $mod+d exec --no-startup-id rofi -show calc -modi calc -no-show-match -no-sort

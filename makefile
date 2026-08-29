@@ -21,33 +21,7 @@ yay: ## install yay
 
 # main packages
 
-install-minimal: git neovim wezterm zsh ## install minimal packages
-
-git:
-	$(YAY) $@ $@hub-cli
-	ln -vsfn ${HOME_SRC_DIR}/.gitconfig ${HOME}/.gitconfig
-
-neovim:
-	$(YAY) $@ npm luarocks
-	rm -rf ${HOME}/.config/nvim
-	ln -vsfn ${HOME_SRC_DIR}/.config/nvim ${HOME}/.config/nvim
-
-wezterm:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-
-zsh:
-	$(YAY) $@ sheldon starship
-	chsh -s $(shell which zsh)
-	ln -vsfn ${HOME_SRC_DIR}/.zshenv ${HOME}/.zshenv
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-	rm -rf ${HOME}/.config/sheldon
-	ln -vsfn ${HOME_SRC_DIR}/.config/sheldon ${HOME}/.config/sheldon
-	ln -vsfn ${HOME_SRC_DIR}/.config/starship.toml ${HOME}/.config/starship.toml
-
-install: install-minimal at atool bat bottom clipcat codex conceal cronie discord docker dunst dust eza fcitx5 fd hackgen i3 imv jq lazygit libreoffice man maim markdown mimeapps mpv noto-fonts obsidian openvpn playerctl procs pulsemixer rclone redshift restic ripgrep rofi sfeed steam ufw uv xclip xinit yazi zathura zen-browser zoxide ## install packages
+install-cli: at atool bat bottom codex conceal cronie docker dust eza fd git jq lazygit man markdown neovim openvpn procs rclone restic ripgrep ufw uv xclip yazi zoxide zsh ## install cli packages
 
 at:
 	$(YAY) $@
@@ -62,11 +36,6 @@ bat:
 bottom:
 	$(YAY) $@
 
-clipcat:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-
 codex:
 	$(YAY) openai-$@
 
@@ -77,20 +46,10 @@ cronie:
 	$(YAY) $@
 	sudo systemctl enable --now cronie
 
-discord:
-	$(YAY) $@ better$@ctl noisetorch-bin
-	mkdir -p ${HOME}/.config/BetterDiscord/data/stable/
-	ln -vsfn ${HOME_SRC_DIR}/.config/BetterDiscord/data/stable/custom.css ${HOME}/.config/BetterDiscord/data/stable/custom.css
-
 docker:
 	$(YAY) $@ $@-compose lazy$@
 	sudo usermod -aG docker $(shell whoami)
 	sudo systemctl --now enable docker
-
-dunst:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
 dust:
 	$(YAY) $@
@@ -98,12 +57,109 @@ dust:
 eza:
 	$(YAY) $@
 
-fcitx5:
-	$(YAY) $@-im $@-mozc
-
 fd:
 	$(YAY) $@
 	ln -vsfn ${HOME_SRC_DIR}/.ignore ${HOME}/.ignore
+
+git:
+	$(YAY) $@ $@hub-cli
+	ln -vsfn ${HOME_SRC_DIR}/.gitconfig ${HOME}/.gitconfig
+
+jq:
+	$(YAY) $@
+
+lazygit:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+
+man:
+	$(YAY) $@-db
+
+markdown:
+	$(YAY) $@lint-cli2 prettier
+
+neovim:
+	$(YAY) $@ npm luarocks
+	rm -rf ${HOME}/.config/nvim
+	ln -vsfn ${HOME_SRC_DIR}/.config/nvim ${HOME}/.config/nvim
+
+openvpn:
+	$(YAY) $@
+
+procs:
+	$(YAY) $@
+
+rclone:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+
+restic:
+	$(YAY) $@ fuse2
+	ln -vsfn ${HOME_SRC_DIR}/.resticignore ${HOME}/.resticignore
+
+ripgrep:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+
+ufw:
+	$(YAY) $@
+	sudo ufw default deny
+	sudo ufw enable
+	sudo systemctl enable --now ufw
+
+uv:
+	$(YAY) $@
+
+xclip:
+	$(YAY) $@
+
+yazi:
+	$(YAY) $@ ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick xclip
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+	ya pkg upgrade
+
+zoxide:
+	$(YAY) $@
+
+zsh:
+	$(YAY) $@ sheldon starship
+	chsh -s $(shell which zsh)
+	ln -vsfn ${HOME_SRC_DIR}/.zshenv ${HOME}/.zshenv
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+	rm -rf ${HOME}/.config/sheldon
+	ln -vsfn ${HOME_SRC_DIR}/.config/sheldon ${HOME}/.config/sheldon
+	ln -vsfn ${HOME_SRC_DIR}/.config/starship.toml ${HOME}/.config/starship.toml
+
+install-gui: clipcat discord dunst fcitx5 flatpak hackgen i3 imv libreoffice maim mimeapps mpv noto-fonts obsidian playerctl pulsemixer redshift rofi sfeed steam flatpak wezterm xinit xrandr zathura zen-browser ## install gui packages
+
+clipcat:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+
+discord:
+	$(YAY) $@ better$@ctl $@-rpc-extension-no-tray-bin lastfm-rpc
+	mkdir -p ${HOME}/.config/BetterDiscord/data/stable/
+	ln -vsfn ${HOME_SRC_DIR}/.config/BetterDiscord/data/stable/custom.css ${HOME}/.config/BetterDiscord/data/stable/custom.css
+	ln -vsfn ${HOME_SRC_DIR}/.config/lastfm-rpc.toml ${HOME}/.config/lastfm-rpc.toml
+	mkdir -p ${HOME}/.config/systemd/user/
+	ln -vsfn ${HOME_SRC_DIR}/.config/systemd/user/discord-rpc-extension.service ${HOME}/.config/systemd/user/discord-rpc-extension.service
+	ln -vsfn ${HOME_SRC_DIR}/.config/systemd/user/lastfm-rpc.service ${HOME}/.config/systemd/user/lastfm-rpc.service
+	systemctl --user daemon-reload
+	systemctl --user enable --now discord-rpc-extension.service lastfm-rpc.service
+
+dunst:
+	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
+
+fcitx5:
+	$(YAY) $@-im $@-mozc
 
 flatpak:
 	$(YAY) flatpak flatseal
@@ -111,11 +167,8 @@ flatpak:
 hackgen:
 	$(YAY) ttf-$@
 
-hugo:
-	$(YAY) $@
-
-i3:
-	$(YAY) $@-wm $@lock-color $@blocks feh
+i3: xrandr
+	$(YAY) $@-wm $@lock-color $@blocks feh unclutter-xfixes-git
 	rm -rf ${HOME}/.config/$@
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 	rm -rf ${HOME}/.config/$@blocks
@@ -128,31 +181,11 @@ imv:
 	mkdir -p ${HOME}/.local/bin
 	ln -vsfn ${HOME_SRC_DIR}/.config/$@/imv_rifle.sh ${HOME}/.local/bin/imv_rifle.sh
 
-java:
-	$(YAY) jre-openjdk
-
-jq:
-	$(YAY) $@
-
-lazygit:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-
 libreoffice:
 	$(YAY) $@-still-ja
 
-lostfiles:
-	$(YAY) $@
-
-man:
-	$(YAY) $@-db
-
 maim:
 	$(YAY) $@
-
-markdown:
-	$(YAY) $@lint-cli2 prettier
 
 mimeapps:
 	ln -vsfn ${HOME_SRC_DIR}/.config/mimeapps.list ${HOME}/.config/mimeapps.list
@@ -168,34 +201,14 @@ noto-fonts:
 obsidian:
 	$(YAY) $@
 
-openvpn:
-	$(YAY) $@
-
 playerctl:
-	$(YAY) $@
-
-procs:
 	$(YAY) $@
 
 pulsemixer:
 	$(YAY) $@
 
-rclone:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-
 redshift:
 	$(YAY) $@
-
-restic:
-	$(YAY) $@ fuse2
-	ln -vsfn ${HOME_SRC_DIR}/.resticignore ${HOME}/.resticignore
-
-ripgrep:
-	$(YAY) $@
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
 rofi:
 	$(YAY) $@ $@-calc $@-emoji
@@ -211,28 +224,18 @@ steam: flatpak
 	flatpak install flathub com.valvesoftware.Steam
 	$(YAY) protonup-qt
 
-ufw:
+wezterm:
 	$(YAY) $@
-	sudo ufw default deny
-	sudo ufw enable
-	sudo systemctl enable --now ufw
-
-uv:
-	$(YAY) $@
-
-xclip:
-	$(YAY) $@
+	rm -rf ${HOME}/.config/$@
+	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
 
 xinit:
 	$(YAY) xorg-xset
 	ln -vsfn ${HOME_SRC_DIR}/.xinitrc ${HOME}/.xinitrc
 	ln -vsfn ${HOME_SRC_DIR}/.Xresources ${HOME}/.Xresources
 
-yazi:
-	$(YAY) $@ ffmpeg 7zip jq poppler fd ripgrep fzf zoxide imagemagick xclip
-	rm -rf ${HOME}/.config/$@
-	ln -vsfn ${HOME_SRC_DIR}/.config/$@ ${HOME}/.config/$@
-	ya pkg upgrade
+xrandr:
+	$(YAY) xorg-$@
 
 zathura:
 	$(YAY) $@-pdf-poppler
@@ -241,9 +244,6 @@ zathura:
 
 zen-browser:
 	$(YAY) $@-bin
-
-zoxide:
-	$(YAY) $@
 
 # extra packages
 
@@ -262,19 +262,25 @@ downgrade:
 freerdp:
 	$(YAY) $@
 
-gemini:
-	$(YAY) $@-cli
-
 ghidra:
 	$(YAY) $@
 
 gimp:
 	$(YAY) $@
 
+hugo:
+	$(YAY) $@
+
+java:
+	$(YAY) jre-openjdk
+
+lostfiles:
+	$(YAY) $@
+
 netcat:
 	$(YAY) gnu-$@
 
-nord-theme:
+nord:
 	$(YAY) $@ nordic-darker-theme nordzy-cursors nordzy-icon-theme fcitx5-nord
 	gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
 	gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
@@ -301,9 +307,6 @@ rust:
 
 thunar:
 	$(YAY) $@
-
-unclutter:
-	$(YAY) $@-xfixes-git
 
 virtualbox:
 	$(YAY) $@

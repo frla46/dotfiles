@@ -1,0 +1,12 @@
+[Unit]
+Description=Last.fm Discord Rich Presence
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/lastfm-rpc
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

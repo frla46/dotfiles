@@ -43,7 +43,7 @@ return {
 			style = "markdown",
 		},
 		attachments = {
-			folder = "assets",
+			folder = "assets/images",
 			---@return string
 			img_name_func = function()
 				return string.format("%s", os.date("%Y%m%d%H%M%S"))

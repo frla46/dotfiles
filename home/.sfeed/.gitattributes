@@ -1,3 +1,4 @@
 env filter=git-crypt diff=git-crypt
 sfeedrc filter=git-crypt diff=git-crypt
+sfeedrc.bak filter=git-crypt diff=git-crypt
 

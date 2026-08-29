@@ -1,0 +1,11 @@
+[Unit]
+Description=Discord RPC Extension
+After=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/discord-rpc-extension
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

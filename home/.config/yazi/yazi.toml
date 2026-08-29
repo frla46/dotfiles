@@ -11,17 +11,17 @@ image_filter = "nearest"
 
 [opener]
 image = [
-  { run = 'imv_rifle.sh "$@"', desc = "imv", orphan = true },
+  { run = 'imv_rifle.sh %s', desc = "imv", orphan = true },
 ]
 video = [
-  { run = 'mpv "$@"', desc = "mpv", orphan = true },
-  { run = 'mpv --loop-file "$@"', desc = "mpv (loop)", orphan = true },
+  { run = 'mpv %s', desc = "mpv", orphan = true },
+  { run = 'mpv --loop-file %s', desc = "mpv (loop)", orphan = true },
 ]
-pdf = [{ run = 'zathura "$@"', desc = "zathura", orphan = true }]
-office = [{ run = 'libreoffice "$@"', desc = "libreoffice", orphan = true }]
-extract = [{ run = 'ya pub extract --list "$@"', desc = "extract" }]
-html = [{ run = '${BROWSER:-firefox} "$@"', desc = "$BROWSER", orphan = true }]
-text = [{ run = '${EDITOR:-vi} "$@"', desc = "$EDITOR", block = true }]
+pdf = [{ run = 'zathura %s', desc = "zathura", orphan = true }]
+office = [{ run = 'libreoffice %s', desc = "libreoffice", orphan = true }]
+extract = [{ run = 'ya pub extract --list %s', desc = "extract" }]
+html = [{ run = '${BROWSER:-firefox} %s', desc = "$BROWSER", orphan = true }]
+text = [{ run = '${EDITOR:-vi} %s', desc = "$EDITOR", block = true }]
 
 [open]
 rules = [
